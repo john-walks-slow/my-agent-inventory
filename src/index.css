@@ -112,11 +112,8 @@ html, body {
 
 .sdv-cell.active {
   background-color: #fff1d0;
-  border: 2px solid #dc2626 !important;
-  box-shadow: 
-    0 0 0 1.5px #ef4444,
-    inset 0 0 0 1px #ffd166,
-    0 0 6px rgba(220, 38, 38, 0.5);
+  border: 3px solid #dc2626 !important;
+  box-shadow: inset 0 0 0 1px #ffd166;
   z-index: 20;
 }
 

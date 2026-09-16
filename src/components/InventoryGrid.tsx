@@ -113,7 +113,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
                 >
                   {/* Hotbar index badge for standard numeric keys 1-9, 0 */}
                   {idx < 10 && (
-                    <span className="absolute top-0.5 left-0.5 text-[8px] font-mono font-bold text-[#6e2e05]/60 pointer-events-none leading-none">
+                    <span className="absolute top-1 left-1 text-[8px] font-mono font-bold text-[#6e2e05]/60 pointer-events-none leading-none">
                       {(idx + 1) % 10}
                     </span>
                   )}
@@ -123,7 +123,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
                       <PixelArtIcon name={item.iconType} size={28} className="max-w-full max-h-full" />
                       <PixelQualityBadge rarity={item.rarity} />
                       {item.stackSize && item.stackSize > 1 && (
-                        <span className="absolute bottom-0.5 right-0.5 text-[9px] font-bold text-[#381503] font-mono bg-[#fff1d0]/90 px-0.5 leading-none rounded-none border border-[#6e2e05]/50 pointer-events-none">
+                        <span className="absolute bottom-1 right-1 text-[9px] font-bold text-[#381503] font-mono bg-[#fff1d0]/90 px-0.5 leading-none rounded-none border border-[#6e2e05]/50 pointer-events-none">
                           {item.stackSize}
                         </span>
                       )}

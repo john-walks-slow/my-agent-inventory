@@ -385,23 +385,38 @@ export const PixelArtIcon: React.FC<PixelArtIconProps> = ({
       case 'scroll':
         return (
           <g>
-            {/* Top roll */}
-            <ellipse cx="8" cy="2" rx="5" ry="1.5" fill="#853605" />
-            <ellipse cx="8" cy="2" rx="4" ry="1" fill="#d68f54" />
-            {/* Body */}
-            <rect x="3" y="2" width="10" height="11" fill="#fefae0" />
-            <rect x="3" y="2" width="2" height="11" fill="#e9d8a6" />
-            <rect x="11" y="2" width="2" height="11" fill="#e9d8a6" />
-            {/* Text lines */}
-            <rect x="4" y="4" width="7" height="1" fill="#916132" />
-            <rect x="4" y="6" width="8" height="1" fill="#916132" />
-            <rect x="4" y="8" width="5" height="1" fill="#916132" />
-            <rect x="4" y="10" width="7" height="1" fill="#916132" />
-            {/* Bottom roll */}
-            <ellipse cx="8" cy="13" rx="5" ry="1.5" fill="#853605" />
-            <ellipse cx="8" cy="13" rx="4" ry="1" fill="#d68f54" />
-            {/* Wax seal */}
-            <circle cx="12" cy="8" r="1.5" fill="#e63946" />
+            {/* Top spindle wooden/brass handles */}
+            <rect x="1" y="2" width="2" height="2" fill="#ffd166" />
+            <rect x="0" y="2.5" width="1" height="1" fill="#5b2b2a" />
+            <rect x="13" y="2" width="2" height="2" fill="#ffd166" />
+            <rect x="15" y="2.5" width="1" height="1" fill="#5b2b2a" />
+            {/* Top rolled paper curve */}
+            <rect x="2" y="1" width="12" height="3" fill="#5b2b2a" rx="1" />
+            <rect x="3" y="2" width="10" height="2" fill="#e9d8a6" />
+            <rect x="4" y="2" width="8" height="1" fill="#fff6d6" />
+            {/* Parchment Body */}
+            <rect x="3" y="3" width="10" height="9" fill="#5b2b2a" />
+            <rect x="4" y="3" width="8" height="9" fill="#fefae0" />
+            {/* Curled parchment shadow margins */}
+            <rect x="3" y="4" width="1" height="7" fill="#d4a373" />
+            <rect x="12" y="4" width="1" height="7" fill="#d4a373" />
+            {/* Ancient Handwritten Ink Lines */}
+            <rect x="5" y="5" width="5" height="1" fill="#853605" />
+            <rect x="5" y="7" width="6" height="1" fill="#853605" />
+            <rect x="5" y="9" width="4" height="1" fill="#853605" />
+            {/* Bottom rolled paper curve */}
+            <rect x="2" y="11" width="12" height="3" fill="#5b2b2a" rx="1" />
+            <rect x="3" y="11" width="10" height="2" fill="#d4a373" />
+            <rect x="4" y="12" width="8" height="1" fill="#e9d8a6" />
+            {/* Bottom spindle wooden/brass handles */}
+            <rect x="1" y="12" width="2" height="2" fill="#ffd166" />
+            <rect x="0" y="12.5" width="1" height="1" fill="#5b2b2a" />
+            <rect x="13" y="12" width="2" height="2" fill="#ffd166" />
+            <rect x="15" y="12.5" width="1" height="1" fill="#5b2b2a" />
+            {/* Crimson Wax Seal & Ribbon on Bottom Right */}
+            <rect x="10" y="10" width="1.5" height="4" fill="#a4161a" />
+            <circle cx="10.5" cy="11.5" r="1.5" fill="#e63946" />
+            <circle cx="10.5" cy="11.5" r="0.8" fill="#ffd166" />
           </g>
         );
 
@@ -477,19 +492,47 @@ export const PixelArtIcon: React.FC<PixelArtIconProps> = ({
           </g>
         );
 
-      // skill-workflow-troubleshoot (Mechanic Wrench & Gear)
+      // skill-workflow-troubleshoot (Stardew Red Ladybug / Debug Bug)
+      case 'bug':
       case 'wrench':
         return (
           <g>
-            <circle cx="6" cy="10" r="4" fill="#e9c46a" />
-            <rect x="2" y="9" width="8" height="2" fill="#d4a373" />
-            <rect x="5" y="6" width="2" height="8" fill="#d4a373" />
-            <circle cx="6" cy="10" r="1.8" fill="#853605" />
-            <path d="M12 2 L14 4 L6 12 L4 10 Z" fill="#6c757d" />
-            <path d="M12 2 L14 4 L6 12 L4 10 Z" fill="none" stroke="#343a40" strokeWidth="0.6" />
-            <circle cx="12.5" cy="3.5" r="2.2" fill="#adb5bd" />
-            <polygon points="12,1 14,3 11,4" fill="#212529" />
-            <rect x="3" y="11" width="2" height="2" fill="#495057" />
+            {/* Antennae */}
+            <rect x="5" y="1" width="1" height="2" fill="#212529" />
+            <rect x="4" y="0" width="1" height="1" fill="#212529" />
+            <rect x="10" y="1" width="1" height="2" fill="#212529" />
+            <rect x="11" y="0" width="1" height="1" fill="#212529" />
+            {/* 6 Crawling Legs */}
+            <rect x="2" y="4" width="2" height="1" fill="#212529" />
+            <rect x="1" y="3" width="1" height="1" fill="#212529" />
+            <rect x="12" y="4" width="2" height="1" fill="#212529" />
+            <rect x="14" y="3" width="1" height="1" fill="#212529" />
+            <rect x="1" y="8" width="3" height="1" fill="#212529" />
+            <rect x="0" y="9" width="1" height="1" fill="#212529" />
+            <rect x="12" y="8" width="3" height="1" fill="#212529" />
+            <rect x="15" y="9" width="1" height="1" fill="#212529" />
+            <rect x="2" y="12" width="2" height="1" fill="#212529" />
+            <rect x="1" y="13" width="1" height="1" fill="#212529" />
+            <rect x="12" y="12" width="2" height="1" fill="#212529" />
+            <rect x="14" y="13" width="1" height="1" fill="#212529" />
+            {/* Head */}
+            <rect x="5" y="2" width="6" height="3" fill="#212529" rx="1" />
+            <rect x="5" y="3" width="1" height="1" fill="#ffffff" />
+            <rect x="10" y="3" width="1" height="1" fill="#ffffff" />
+            {/* Red Shell Body (Elytra) */}
+            <rect x="3" y="4" width="10" height="10" fill="#5b2b2a" rx="4" />
+            <rect x="4" y="5" width="8" height="8" fill="#d90429" rx="3" />
+            <rect x="4" y="5" width="4" height="4" fill="#ef233c" />
+            {/* Wing Suture Center Division */}
+            <rect x="7.5" y="4" width="1" height="10" fill="#212529" />
+            {/* Classic Ladybug Black Dots */}
+            <circle cx="5.5" cy="7.5" r="1" fill="#212529" />
+            <circle cx="10.5" cy="7.5" r="1" fill="#212529" />
+            <circle cx="5.5" cy="10.5" r="1" fill="#212529" />
+            <circle cx="10.5" cy="10.5" r="1" fill="#212529" />
+            {/* Shiny Shell Glint Highlight */}
+            <rect x="5" y="5" width="1" height="1" fill="#ffffff" />
+            <rect x="6" y="5" width="1" height="1" fill="#ffccd5" />
           </g>
         );
 
@@ -532,16 +575,43 @@ export const PixelArtIcon: React.FC<PixelArtIconProps> = ({
       case 'broom':
         return (
           <g>
-            <line x1="13" y1="2" x2="6" y2="9" stroke="#853605" strokeWidth="2" strokeLinecap="round" />
-            <line x1="12.5" y1="2.5" x2="6.5" y2="8.5" stroke="#d68f54" strokeWidth="1" />
-            <rect x="5" y="8" width="2" height="2" fill="#ffd166" />
-            <polygon points="6,9 2,12 3,15 7,14 6,9" fill="#e9c46a" />
-            <polygon points="6,9 2,12 3,15 7,14 6,9" fill="none" stroke="#853605" strokeWidth="0.8" />
-            <line x1="3" y1="13" x2="5" y2="10" stroke="#b45309" strokeWidth="0.6" />
-            <line x1="5" y1="14" x2="6" y2="11" stroke="#b45309" strokeWidth="0.6" />
-            <rect x="1" y="10" width="1" height="1" fill="#ffea00" />
-            <rect x="2" y="8" width="1" height="1" fill="#ffffff" />
-            <rect x="7" y="15" width="1" height="1" fill="#ffea00" />
+            {/* Wooden Handle (Stepped Pixel Diagonal 45°) */}
+            <rect x="14" y="2" width="1" height="1" fill="#4a2113" />
+            <rect x="13" y="3" width="1" height="1" fill="#4a2113" />
+            <rect x="12" y="4" width="1" height="1" fill="#4a2113" />
+            <rect x="11" y="5" width="1" height="1" fill="#4a2113" />
+            <rect x="10" y="6" width="1" height="1" fill="#4a2113" />
+            <rect x="9" y="7" width="1" height="1" fill="#4a2113" />
+            <rect x="8" y="8" width="1" height="1" fill="#4a2113" />
+
+            <rect x="14" y="1" width="1" height="1" fill="#b45309" />
+            <rect x="13" y="2" width="1" height="1" fill="#d4a373" />
+            <rect x="12" y="3" width="1" height="1" fill="#d4a373" />
+            <rect x="11" y="4" width="1" height="1" fill="#d4a373" />
+            <rect x="10" y="5" width="1" height="1" fill="#d4a373" />
+            <rect x="9" y="6" width="1" height="1" fill="#d4a373" />
+            <rect x="8" y="7" width="1" height="1" fill="#d4a373" />
+            <rect x="13" y="1" width="1" height="1" fill="#fefae0" />
+
+            {/* Crimson Straw Binding Cord & Golden Clasp */}
+            <rect x="6" y="7" width="2" height="2" fill="#d90429" />
+            <rect x="7" y="8" width="2" height="2" fill="#d90429" />
+            <rect x="7" y="7" width="1" height="1" fill="#ffd166" />
+
+            {/* Straw Broom Head (Flared Bristles with Serrated Tips) */}
+            <polygon points="6,9 8,8 6,13 5,15 4,14 3,15 2,14 1,15 1,12 5,8" fill="#4a2113" />
+            <polygon points="6,9 7,9 5,12 4,14 3,13 2,14 2,12 5,8" fill="#e9c46a" />
+            <rect x="4" y="10" width="1" height="3" fill="#b45309" />
+            <rect x="3" y="11" width="1" height="2" fill="#b45309" />
+            <rect x="5" y="10" width="1" height="2" fill="#ffd166" />
+            <rect x="3" y="13" width="1" height="1" fill="#fff3b0" />
+
+            {/* Tidy Sparkles (Clean Sweep Dynamic Glints) */}
+            <rect x="11" y="1" width="1" height="1" fill="#ffea00" />
+            <rect x="12" y="0" width="1" height="1" fill="#ffffff" />
+            <rect x="1" y="9" width="1" height="1" fill="#ffffff" />
+            <rect x="0" y="10" width="1" height="1" fill="#90e0ef" />
+            <rect x="7" y="14" width="1" height="1" fill="#ffea00" />
           </g>
         );
 
@@ -599,35 +669,82 @@ export const PixelArtIcon: React.FC<PixelArtIconProps> = ({
           </g>
         );
 
-      // skill-spawn-reviewer (Detective Monocle)
+      // skill-spawn-reviewer (Auditor Clipboard with Pass Mark)
+      case 'clipboard':
       case 'monocle':
         return (
           <g>
-            <circle cx="7" cy="7" r="5" fill="#5b2b2a" />
-            <circle cx="7" cy="7" r="4.2" fill="#ffd166" />
-            <circle cx="7" cy="7" r="3.4" fill="#a2d2ff" opacity="0.85" />
-            <polygon points="5,5 7,4 6,7 4,7" fill="#ffffff" />
-            <rect x="8" y="8" width="1.5" height="1.5" fill="#ffffff" />
-            <rect x="11" y="7" width="2" height="1" fill="#b45309" />
-            <circle cx="13" cy="9" r="1" fill="#ffd166" />
-            <circle cx="12" cy="11" r="1" fill="#ffd166" />
-            <circle cx="10" cy="13" r="1" fill="#ffd166" />
+            {/* Wooden Clipboard Backing */}
+            <rect x="2" y="1" width="12" height="14" fill="#4a2113" rx="1" />
+            <rect x="3" y="2" width="10" height="12" fill="#853605" />
+            <rect x="3" y="2" width="1" height="12" fill="#a34805" />
+            {/* Paper Sheet */}
+            <rect x="4" y="3" width="8" height="10" fill="#fefae0" />
+            <rect x="4" y="12" width="8" height="1" fill="#e9d8a6" />
+            {/* Top Metal Clip & Hanger Ring */}
+            <rect x="7" y="0" width="2" height="1" fill="#6c757d" />
+            <rect x="5" y="1" width="6" height="3" fill="#495057" rx="0.5" />
+            <rect x="6" y="1" width="4" height="2" fill="#ced4da" />
+            <rect x="7" y="2" width="2" height="1" fill="#ffffff" />
+            {/* Review Checklist Code Text Lines */}
+            <rect x="5" y="5" width="4" height="1" fill="#b08968" />
+            <rect x="5" y="7" width="3" height="1" fill="#b08968" />
+            {/* Big Green Pass Checkmark (✓) */}
+            <rect x="5" y="9" width="1" height="2" fill="#1b4332" />
+            <rect x="6" y="10" width="2" height="2" fill="#1b4332" />
+            <rect x="5" y="9" width="1" height="1" fill="#38b000" />
+            <rect x="6" y="10" width="2" height="1" fill="#38b000" />
+            <rect x="7" y="9" width="2" height="1" fill="#38b000" />
+            <rect x="8" y="8" width="2" height="1" fill="#38b000" />
+            <rect x="9" y="7" width="2" height="1" fill="#38b000" />
+            <rect x="10" y="6" width="1" height="1" fill="#70e000" />
+            {/* Crimson Review Approved Seal Stamp */}
+            <rect x="8" y="10" width="3" height="2" fill="#a4161a" />
+            <rect x="8.5" y="10.5" width="2" height="1" fill="#e63946" />
+            <rect x="9" y="10.5" width="1" height="1" fill="#ffffff" />
           </g>
         );
 
-      // skill-spawn-deep-researcher (Stardew Brass Telescope)
+      // skill-spawn-deep-researcher (Explorer's Brass Spyglass)
       case 'telescope':
         return (
           <g>
-            <line x1="7" y1="9" x2="2" y2="15" stroke="#853605" strokeWidth="1.5" strokeLinecap="round" />
-            <line x1="8" y1="9" x2="8" y2="15" stroke="#5b2b2a" strokeWidth="1.5" strokeLinecap="round" />
-            <line x1="9" y1="9" x2="14" y2="15" stroke="#853605" strokeWidth="1.5" strokeLinecap="round" />
-            <rect x="7" y="8" width="2" height="2" fill="#2b2d42" />
-            <path d="M3 11 L12 4 L14 6 L5 13 Z" fill="#ffd166" />
-            <path d="M3 11 L12 4 L14 6 L5 13 Z" fill="none" stroke="#853605" strokeWidth="0.8" />
-            <rect x="12" y="3" width="3" height="3" fill="#48cae4" />
-            <rect x="2" y="11" width="2" height="2" fill="#5b2b2a" />
-            <rect x="14" y="1" width="1" height="1" fill="#ffea00" />
+            {/* Deep Space Discovery Star (Target of Research) */}
+            <rect x="14" y="0" width="1" height="1" fill="#ffffff" />
+            <rect x="13" y="1" width="1" height="1" fill="#ffea00" />
+            <rect x="15" y="1" width="1" height="1" fill="#ffea00" />
+            <rect x="14" y="2" width="1" height="1" fill="#ffffff" />
+
+            {/* Brass Eyepiece (Bottom Left) */}
+            <polygon points="2,13 4,15 5,14 3,12" fill="#4a2113" />
+            <polygon points="3,13 4,14 4,13 3,12" fill="#ffd166" />
+            <rect x="1" y="14" width="2" height="1" fill="#853605" />
+
+            {/* Inner Brass Draw Tube (Segment 1) */}
+            <polygon points="3,11 6,14 8,12 5,9" fill="#5b2b2a" />
+            <polygon points="4,11 6,13 7,12 5,10" fill="#e9c46a" />
+            <polygon points="4,10 5,11 6,10 5,9" fill="#fff3b0" />
+
+            {/* Main Outer Brass Barrel (Segment 2 & Objective Housing) */}
+            {/* Dark Outline Base */}
+            <polygon points="5,8 8,11 13,6 10,3" fill="#4a2113" />
+            {/* Gold Brass Body */}
+            <polygon points="6,8 8,10 12,6 10,4" fill="#ffd166" />
+            {/* Leather Grip Wrap Band (Stardew Crafted Look) */}
+            <polygon points="7,8 9,10 10,9 8,7" fill="#853605" />
+            <polygon points="7,8 8,9 9,8 8,7" fill="#d90429" />
+            {/* Top Sunlight Glint Line */}
+            <rect x="9" y="3" width="2" height="1" fill="#ffffff" />
+            <rect x="11" y="4" width="1" height="1" fill="#ffffff" />
+            {/* Bottom Brass Shadow Edge */}
+            <polygon points="7,9 8,10 12,6 11,6" fill="#b45309" />
+
+            {/* Objective Ring & Gemstone Blue Coated Lens */}
+            {/* Front Bezel Ring */}
+            <polygon points="10,2 14,6 15,5 11,1" fill="#ffd166" />
+            <polygon points="11,2 14,5 14,4 12,2" fill="#0077b6" />
+            <polygon points="12,2 13,3 14,2 13,1" fill="#48cae4" />
+            <rect x="13" y="2" width="1" height="1" fill="#ffffff" />
           </g>
         );
 
@@ -699,16 +816,30 @@ export const PixelArtIcon: React.FC<PixelArtIconProps> = ({
       case 'dice':
         return (
           <g>
-            <polygon points="8,1 14,4.5 14,11.5 8,15 2,11.5 2,4.5" fill="#4a2113" />
-            <polygon points="8,2 13,5 8,8 3,5" fill="#ffffff" />
-            <circle cx="8" cy="5" r="1.2" fill="#d90429" />
-            <polygon points="3,5 8,8 8,14 3,11" fill="#e2e8f0" />
-            <circle cx="5" cy="8" r="0.8" fill="#212529" />
-            <circle cx="6" cy="11.5" r="0.8" fill="#212529" />
-            <polygon points="8,8 13,5 13,11 8,14" fill="#cbd5e1" />
-            <circle cx="10" cy="7" r="0.8" fill="#212529" />
-            <circle cx="10.5" cy="9.5" r="0.8" fill="#212529" />
-            <circle cx="11" cy="12" r="0.8" fill="#212529" />
+            {/* Crisp Isometric Hexagon Outer Frame */}
+            <polygon points="8,1 14,4 14,11 8,15 2,11 2,4" fill="#3a1505" />
+            {/* Top Face (Bright Pure Ivory) */}
+            <polygon points="8,2 13,4 8,7 3,4" fill="#ffffff" />
+            {/* Top Center Ruby 1-Pip (Stardew Ace Destiny) */}
+            <rect x="7" y="3" width="2" height="3" fill="#d90429" />
+            <rect x="6" y="4" width="4" height="1" fill="#d90429" />
+            <rect x="7" y="4" width="2" height="1" fill="#ff4d6d" />
+            {/* Left Face (Soft Ambient Gray) */}
+            <polygon points="3,5 8,7 8,14 3,11" fill="#e2e8f0" />
+            {/* Left Face 2-Pips (Perspective-aligned) */}
+            <rect x="4" y="7" width="2" height="1" fill="#212529" />
+            <rect x="5" y="7" width="1" height="1" fill="#495057" />
+            <rect x="6" y="11" width="2" height="1" fill="#212529" />
+            <rect x="7" y="11" width="1" height="1" fill="#495057" />
+            {/* Right Face (Deep Shadow Gray) */}
+            <polygon points="8,7 13,5 13,11 8,14" fill="#94a3b8" />
+            {/* Right Face 3-Pips (Even Diagonal Perspective) */}
+            <rect x="11" y="6" width="2" height="1" fill="#0f172a" />
+            <rect x="10" y="9" width="2" height="1" fill="#0f172a" />
+            <rect x="9" y="12" width="2" height="1" fill="#0f172a" />
+            {/* Inner Crest Edge Highlight */}
+            <polyline points="3,4 8,7 13,4" fill="none" stroke="#f1f5f9" strokeWidth="0.8" />
+            <line x1="8" y1="7" x2="8" y2="14" stroke="#475569" strokeWidth="0.8" />
           </g>
         );
 
@@ -809,7 +940,7 @@ export const PixelQualityBadge: React.FC<{ rarity: 'normal' | 'silver' | 'gold' 
       viewBox="0 0 8 8"
       width={12}
       height={12}
-      className="absolute bottom-0.5 right-0.5 pointer-events-none drop-shadow-[0_1px_0_rgba(0,0,0,0.8)]"
+      className="absolute bottom-1 right-1 pointer-events-none drop-shadow-[0_1px_0_rgba(0,0,0,0.8)]"
       style={{ imageRendering: 'pixelated' }}
     >
       {/* 5-pointed pixel star */}
