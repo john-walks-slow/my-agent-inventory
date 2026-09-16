@@ -82,7 +82,7 @@ export const App: React.FC = () => {
           { id: 'ai-core' as SubCategory, label: '核心AI' },
           { id: 'office' as SubCategory, label: '研习' },
           { id: 'multimodal' as SubCategory, label: '生图' },
-          { id: 'rabbit-skills' as SubCategory, label: '🐰兔包' }
+          { id: 'rabbit-skills' as SubCategory, label: '工作方式' }
         ];
       case 'mcp':
         return [
@@ -191,7 +191,7 @@ export const App: React.FC = () => {
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 h-full">
               {/* Left Column: Backpack Grid (7 cols) */}
-              <div className="lg:col-span-7 flex flex-col min-h-0">
+              <div className="lg:col-span-7 flex flex-col min-h-0 h-full">
                 <InventoryGrid
                   items={currentItems}
                   selectedItem={selectedItem}
@@ -201,7 +201,7 @@ export const App: React.FC = () => {
                   subCategoryOptions={subCategoryOptions}
                   searchQuery={searchQuery}
                   onSearchChange={setSearchQuery}
-                  totalSlots={36}
+                  totalSlots={Math.max(36, Math.ceil(currentItems.length / 12) * 12)}
                 />
               </div>
 

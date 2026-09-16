@@ -509,7 +509,7 @@ export const SKILLS_DATA: InventoryItem[] = [
     subCategory: 'rabbit-skills',
     rarity: 'silver',
     stackSize: 1,
-    iconType: 'flame',
+    iconType: 'potion',
     customColor: '#ef4444',
     description: '当 Agent 觉得代码难于理解、设计混乱或不易维护时主动触发，进行代码质量自审。',
     longDescription: `【嗅觉训练】
@@ -533,7 +533,7 @@ export const SKILLS_DATA: InventoryItem[] = [
     subCategory: 'ops',
     rarity: 'gold',
     stackSize: 1,
-    iconType: 'terminal',
+    iconType: 'warning-sign',
     customColor: '#e63946',
     description: '容器 rootfs /dev /proc /sys 安全规范的故障排查入口与索引技能。',
     longDescription: `【触发条件】
@@ -560,7 +560,7 @@ export const SKILLS_DATA: InventoryItem[] = [
     subCategory: 'ai-core',
     rarity: 'iridium',
     stackSize: 1,
-    iconType: 'puzzle',
+    iconType: 'anvil',
     customColor: '#8338ec',
     description: '在本机进行任何编程或软件开发前必须立刻读取并严格遵循的核心规范。',
     longDescription: `【三大原则】
@@ -588,7 +588,7 @@ export const SKILLS_DATA: InventoryItem[] = [
     subCategory: 'rabbit-skills',
     rarity: 'gold',
     stackSize: 1,
-    iconType: 'shield-check',
+    iconType: 'git-branch',
     customColor: '#2a9d8f',
     description: '基于 git-hunk 提交改动，防止带入其他无关的未提交修改，事关安全。',
     longDescription: `【为什么需要】
@@ -613,7 +613,7 @@ export const SKILLS_DATA: InventoryItem[] = [
     subCategory: 'workflow',
     rarity: 'silver',
     stackSize: 1,
-    iconType: 'compass',
+    iconType: 'dice',
     customColor: '#e9c46a',
     description: '模拟与演化虚拟世界、环境及 Living Agent 的每日生活事件，执行因果与反应结算。',
     longDescription: `【世界引擎】
@@ -637,7 +637,7 @@ Agent 通过 \`life_react\` 记录对事件的情感、思考与行动反应，
     subCategory: 'rabbit-skills',
     rarity: 'gold',
     stackSize: 1,
-    iconType: 'search',
+    iconType: 'scale',
     customColor: '#7209b7',
     description: '使用子代理对当前的想法、结论、计划或决策进行批判性检查和核实。',
     longDescription: `【触发时机】
@@ -715,7 +715,7 @@ full-auto 替代所有用户交互，而 deep-auto 进一步提升推理深度�
     subCategory: 'ops',
     rarity: 'silver',
     stackSize: 1,
-    iconType: 'globe',
+    iconType: 'wormhole',
     customColor: '#4361ee',
     description: '一行命令给本地开发服务器开临时 Cloudflare 隧道（免登录 quick tunnel）。',
     longDescription: `【用途】
@@ -744,7 +744,7 @@ full-auto 替代所有用户交互，而 deep-auto 进一步提升推理深度�
     subCategory: 'rabbit-skills',
     rarity: 'silver',
     stackSize: 1,
-    iconType: 'cpu',
+    iconType: 'robot',
     customColor: '#06d6a0',
     description: '所有需要向用户提问、决策、授权的地方，替换为询问 auto_human 子代理。',
     longDescription: `【全自动哲学】
@@ -796,7 +796,7 @@ Gemini 生图风格偏真实照片质感，seedream 更偏插画/动漫风格。
     subCategory: 'rabbit-skills',
     rarity: 'silver',
     stackSize: 1,
-    iconType: 'flame',
+    iconType: 'grill',
     customColor: '#ff006e',
     description: '围绕计划对用户进行刨根问底的追问，厘清计划的疑点和模糊地带。',
     longDescription: `【场景】
@@ -823,7 +823,7 @@ Gemini 生图风格偏真实照片质感，seedream 更偏插画/动漫风格。
     subCategory: 'rabbit-skills',
     rarity: 'silver',
     stackSize: 1,
-    iconType: 'book-open',
+    iconType: 'briefcase',
     customColor: '#f4a261',
     description: '编写交接文档，将工作上下文传递给另一个 agent、同事、检视者或 oncall。',
     longDescription: `【功能】
@@ -850,7 +850,7 @@ Gemini 生图风格偏真实照片质感，seedream 更偏插画/动漫风格。
     subCategory: 'ops',
     rarity: 'gold',
     stackSize: 1,
-    iconType: 'shield-check',
+    iconType: 'wormhole',
     customColor: '#06d6a0',
     description: '将本机某个端口以固定自定义域名（*.<your-domain>）永久暴露到公网。',
     longDescription: `【与临时隧道的区别】
@@ -927,7 +927,7 @@ Agent 的进程本身运行在 DSH 内部。直接 \`supervisorctl restart dsh\`
     subCategory: 'rabbit-skills',
     rarity: 'gold',
     stackSize: 1,
-    iconType: 'search',
+    iconType: 'telescope',
     customColor: '#4361ee',
     description: '使用 deep-researcher 子代理对特定主题进行深度、广泛、准确的网络调研。',
     longDescription: `【使用时机】
@@ -954,7 +954,7 @@ Agent 的进程本身运行在 DSH 内部。直接 \`supervisorctl restart dsh\`
     subCategory: 'rabbit-skills',
     rarity: 'gold',
     stackSize: 1,
-    iconType: 'check-circle-2',
+    iconType: 'monocle',
     customColor: '#2a9d8f',
     description: '使用 reviewer 子代理进行高质量的代码审查，拉起前必须阅读本技能。',
     longDescription: `【审查标准】
@@ -1006,7 +1006,7 @@ teach-me 则围绕当前正在做的需求/设计/问题，把核心设计、关
     subCategory: 'rabbit-skills',
     rarity: 'normal',
     stackSize: 1,
-    iconType: 'sparkles',
+    iconType: 'broom',
     customColor: '#90e0ef',
     description: '清理无用/冗余的修改，保持工作区干净。',
     longDescription: `【场景】
@@ -1031,7 +1031,7 @@ teach-me 则围绕当前正在做的需求/设计/问题，把核心设计、关
     subCategory: 'rabbit-skills',
     rarity: 'silver',
     stackSize: 1,
-    iconType: 'database',
+    iconType: 'safe',
     customColor: '#2a9d8f',
     description: '为目标文件创建可回退的备份，在对文件做不确定的破坏性修改前必须使用。',
     longDescription: `【核心理念】
@@ -1060,7 +1060,7 @@ teach-me 则围绕当前正在做的需求/设计/问题，把核心设计、关
     subCategory: 'rabbit-skills',
     rarity: 'gold',
     stackSize: 1,
-    iconType: 'sparkles',
+    iconType: 'lifebuoy',
     customColor: '#ff6000',
     description: '对同一问题连续修改两次都未达预期时，立刻暂停并退一步重新分析。',
     longDescription: `【反模式】
@@ -1270,7 +1270,7 @@ yet-another-ai-generated-blog 是一个由 AI 自主生成内容的博客站点�
     subCategory: 'rabbit-skills',
     rarity: 'gold',
     stackSize: 1,
-    iconType: 'check-circle-2',
+    iconType: 'crown',
     customColor: '#e76f51',
     description: '项目领导工作流，当用户给出愿景希望 AI 自主、持续推进项目方向时使用。',
     longDescription: `【适用场景】
@@ -1296,7 +1296,7 @@ leader 是"想做什么"，manage-tasks 是"怎么分配做"。`,
     subCategory: 'rabbit-skills',
     rarity: 'gold',
     stackSize: 1,
-    iconType: 'check-circle-2',
+    iconType: 'clipboard',
     customColor: '#457b9d',
     description: '任务分派工作流，当用户一次提出多条任务、需要协调多个子代理时使用。',
     longDescription: `【核心流程】
@@ -1349,7 +1349,7 @@ manage-tasks 是执行层的任务分配，leader 是方向层的愿景规划。
     subCategory: 'rabbit-skills',
     rarity: 'gold',
     stackSize: 1,
-    iconType: 'flame',
+    iconType: 'wrench',
     customColor: '#d00000',
     description: '根因分析工作流，排查复杂问题时必须遵守此流程分析原因。',
     longDescription: `【流程】
@@ -1377,7 +1377,7 @@ unstuck 是"两次失败就停"，troubleshoot 是"停下来后的系统分析�
     subCategory: 'rabbit-skills',
     rarity: 'iridium',
     stackSize: 1,
-    iconType: 'cpu',
+    iconType: 'prismatic',
     customColor: '#e63946',
     description: '在对用户精力消耗最少的情况下，将简略 idea 转变为极致体验的完整可交付产物。',
     longDescription: `【核心理念】
@@ -1409,7 +1409,7 @@ max-effort 进一步追求极致质量，自动拉起 e2e-tester 子代理进行
     subCategory: 'rabbit-skills',
     rarity: 'gold',
     stackSize: 1,
-    iconType: 'check-circle-2',
+    iconType: 'gamepad',
     customColor: '#06d6a0',
     description: '使用 e2e-tester 子代理对指定功能/修复执行端到端测试，输出含证据的测试报告。',
     longDescription: `【子代理能力】

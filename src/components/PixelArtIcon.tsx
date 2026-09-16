@@ -405,6 +405,369 @@ export const PixelArtIcon: React.FC<PixelArtIconProps> = ({
           </g>
         );
 
+      // skill-coding (Blacksmith Anvil & Golden Hammer)
+      case 'anvil':
+        return (
+          <g>
+            <rect x="3" y="12" width="10" height="3" fill="#2b2d42" />
+            <rect x="4" y="11" width="8" height="2" fill="#4a4e69" />
+            <rect x="5" y="9" width="6" height="3" fill="#2b2d42" />
+            <path d="M1 6 H14 V9 H4 L1 7 Z" fill="#6c757d" />
+            <rect x="3" y="6" width="10" height="1" fill="#adb5bd" />
+            <rect x="8" y="2" width="5" height="1" fill="#853605" />
+            <rect x="7" y="3" width="2" height="4" fill="#ffd166" />
+            <rect x="6" y="3" width="1" height="4" fill="#b45309" />
+            <rect x="9" y="3" width="1" height="4" fill="#b45309" />
+            <rect x="4" y="4" width="1" height="1" fill="#ffea00" />
+            <rect x="2" y="5" width="1" height="1" fill="#ff9770" />
+          </g>
+        );
+
+      // skill-commit-own-changes (Git Commit Tree / Branch)
+      case 'git-branch':
+        return (
+          <g>
+            <rect x="4" y="2" width="2" height="12" fill="#1b4332" />
+            <rect x="4" y="2" width="1" height="12" fill="#2d6a4f" />
+            <path d="M5 8 Q8 8 10 6 L10 4" stroke="#d90429" strokeWidth="1.5" fill="none" />
+            <circle cx="10" cy="4" r="2" fill="#f72585" />
+            <circle cx="10" cy="4" r="1" fill="#ffffff" />
+            <circle cx="5" cy="12" r="2.5" fill="#2a9d8f" />
+            <circle cx="5" cy="12" r="1.2" fill="#ffffff" />
+            <circle cx="5" cy="4" r="2.5" fill="#52b788" />
+            <circle cx="5" cy="4" r="1.2" fill="#ffffff" />
+          </g>
+        );
+
+      // skill-workflow-leader (Golden Monarch Crown)
+      case 'crown':
+        return (
+          <g>
+            <rect x="2" y="11" width="12" height="3" fill="#b45309" rx="0.5" />
+            <rect x="3" y="11" width="10" height="2" fill="#ffd166" />
+            <polygon points="2,11 2,6 5,9 8,3 11,9 14,6 14,11" fill="#ffd166" />
+            <polygon points="2,11 2,6 5,9 8,3 11,9 14,6 14,11" fill="none" stroke="#b45309" strokeWidth="0.8" />
+            <circle cx="2" cy="5" r="1" fill="#ffffff" />
+            <circle cx="8" cy="3" r="1.2" fill="#ffffff" />
+            <circle cx="14" cy="5" r="1" fill="#ffffff" />
+            <rect x="7" y="7" width="2" height="3" fill="#d90429" />
+            <rect x="7" y="7" width="1" height="1" fill="#ff758f" />
+            <circle cx="4" cy="12" r="1" fill="#3a86ff" />
+            <circle cx="8" cy="12" r="1" fill="#38b000" />
+            <circle cx="12" cy="12" r="1" fill="#3a86ff" />
+          </g>
+        );
+
+      // skill-workflow-manage-tasks (Task Checklist Board)
+      case 'clipboard':
+        return (
+          <g>
+            <rect x="3" y="2" width="10" height="13" fill="#853605" rx="1" />
+            <rect x="4" y="3" width="8" height="11" fill="#fdf5df" />
+            <rect x="6" y="1" width="4" height="2" fill="#adb5bd" />
+            <rect x="7" y="1" width="2" height="1" fill="#495057" />
+            <rect x="5" y="5" width="2" height="2" fill="#2a9d8f" />
+            <path d="M5 6 L6 7 L8 4" stroke="#ffffff" strokeWidth="0.8" fill="none" />
+            <rect x="8" y="5" width="3" height="1" fill="#5b2b2a" />
+            <rect x="5" y="8" width="2" height="2" fill="#2a9d8f" />
+            <path d="M5 9 L6 10 L8 7" stroke="#ffffff" strokeWidth="0.8" fill="none" />
+            <rect x="8" y="8" width="3" height="1" fill="#5b2b2a" />
+            <rect x="5" y="11" width="2" height="2" fill="#e9c46a" />
+            <rect x="8" y="11" width="2" height="1" fill="#5b2b2a" />
+          </g>
+        );
+
+      // skill-workflow-troubleshoot (Mechanic Wrench & Gear)
+      case 'wrench':
+        return (
+          <g>
+            <circle cx="6" cy="10" r="4" fill="#e9c46a" />
+            <rect x="2" y="9" width="8" height="2" fill="#d4a373" />
+            <rect x="5" y="6" width="2" height="8" fill="#d4a373" />
+            <circle cx="6" cy="10" r="1.8" fill="#853605" />
+            <path d="M12 2 L14 4 L6 12 L4 10 Z" fill="#6c757d" />
+            <path d="M12 2 L14 4 L6 12 L4 10 Z" fill="none" stroke="#343a40" strokeWidth="0.6" />
+            <circle cx="12.5" cy="3.5" r="2.2" fill="#adb5bd" />
+            <polygon points="12,1 14,3 11,4" fill="#212529" />
+            <rect x="3" y="11" width="2" height="2" fill="#495057" />
+          </g>
+        );
+
+      // skill-bad-smell (Bubbling Toxic Potion)
+      case 'potion':
+        return (
+          <g>
+            <rect x="7" y="1" width="2" height="2" fill="#853605" />
+            <rect x="7" y="3" width="2" height="3" fill="#ced4da" opacity="0.8" />
+            <circle cx="8" cy="10" r="5" fill="#38b000" />
+            <circle cx="8" cy="10" r="4" fill="#70e000" />
+            <circle cx="6" cy="9" r="1" fill="#ccff33" />
+            <circle cx="9" cy="11" r="1" fill="#ccff33" />
+            <circle cx="7" cy="12" r="0.7" fill="#ffffff" />
+            <path d="M6 3 Q5 1 6 0" stroke="#9d4edd" strokeWidth="1" fill="none" />
+            <path d="M10 2 Q11 0 10 -1" stroke="#9d4edd" strokeWidth="1" fill="none" />
+          </g>
+        );
+
+      // skill-unstuck (Emergency Lifebuoy)
+      case 'lifebuoy':
+        return (
+          <g>
+            <circle cx="8" cy="8" r="6.5" fill="#5b2b2a" />
+            <circle cx="8" cy="8" r="5.5" fill="#e63946" />
+            <path d="M3 5.5 L6 7.5 L6 8.5 L3 10.5 Z" fill="#ffffff" />
+            <path d="M13 5.5 L10 7.5 L10 8.5 L13 10.5 Z" fill="#ffffff" />
+            <path d="M5.5 3 L7.5 6 L8.5 6 L10.5 3 Z" fill="#ffffff" />
+            <path d="M5.5 13 L7.5 10 L8.5 10 L10.5 13 Z" fill="#ffffff" />
+            <circle cx="8" cy="8" r="2.8" fill="#5b2b2a" />
+            <circle cx="8" cy="8" r="2.2" fill="#fff6e0" />
+            <rect x="2" y="7" width="1" height="2" fill="#ffd166" />
+            <rect x="13" y="7" width="1" height="2" fill="#ffd166" />
+            <rect x="7" y="2" width="2" height="1" fill="#ffd166" />
+            <rect x="7" y="13" width="2" height="1" fill="#ffd166" />
+          </g>
+        );
+
+      // skill-tidy (Stardew Witch Straw Broom)
+      case 'broom':
+        return (
+          <g>
+            <line x1="13" y1="2" x2="6" y2="9" stroke="#853605" strokeWidth="2" strokeLinecap="round" />
+            <line x1="12.5" y1="2.5" x2="6.5" y2="8.5" stroke="#d68f54" strokeWidth="1" />
+            <rect x="5" y="8" width="2" height="2" fill="#ffd166" />
+            <polygon points="6,9 2,12 3,15 7,14 6,9" fill="#e9c46a" />
+            <polygon points="6,9 2,12 3,15 7,14 6,9" fill="none" stroke="#853605" strokeWidth="0.8" />
+            <line x1="3" y1="13" x2="5" y2="10" stroke="#b45309" strokeWidth="0.6" />
+            <line x1="5" y1="14" x2="6" y2="11" stroke="#b45309" strokeWidth="0.6" />
+            <rect x="1" y="10" width="1" height="1" fill="#ffea00" />
+            <rect x="2" y="8" width="1" height="1" fill="#ffffff" />
+            <rect x="7" y="15" width="1" height="1" fill="#ffea00" />
+          </g>
+        );
+
+      // skill-try (Dwarven Vault Safe)
+      case 'safe':
+        return (
+          <g>
+            <rect x="2" y="2" width="12" height="12" fill="#212529" rx="1" />
+            <rect x="3" y="3" width="10" height="10" fill="#495057" />
+            <rect x="3" y="3" width="1" height="1" fill="#ced4da" />
+            <rect x="12" y="3" width="1" height="1" fill="#ced4da" />
+            <rect x="3" y="12" width="1" height="1" fill="#ced4da" />
+            <rect x="12" y="12" width="1" height="1" fill="#ced4da" />
+            <circle cx="7" cy="8" r="2.8" fill="#ffd166" />
+            <circle cx="7" cy="8" r="2" fill="#853605" />
+            <rect x="6.5" y="6.5" width="1" height="1.5" fill="#ffd166" />
+            <rect x="10" y="7" width="2" height="2" fill="#adb5bd" />
+            <rect x="11" y="8" width="1" height="2" fill="#adb5bd" />
+          </g>
+        );
+
+      // skill-grilling (Sizzling BBQ Skewer Grill)
+      case 'grill':
+        return (
+          <g>
+            <path d="M2 10 Q8 15 14 10 Z" fill="#212529" />
+            <rect x="2" y="9" width="12" height="2" fill="#495057" />
+            <line x1="4" y1="12" x2="2" y2="15" stroke="#212529" strokeWidth="1.2" />
+            <line x1="12" y1="12" x2="14" y2="15" stroke="#212529" strokeWidth="1.2" />
+            <rect x="4" y="10" width="8" height="1" fill="#d90429" />
+            <rect x="6" y="11" width="4" height="1" fill="#ff5400" />
+            <line x1="3" y1="9" x2="13" y2="9" stroke="#dee2e6" strokeWidth="0.8" />
+            <polygon points="6,9 7,4 8,8" fill="#ff9e00" />
+            <polygon points="8,8 9,3 10,9" fill="#ff0054" />
+            <polygon points="7,8 8,5 9,8" fill="#ffea00" />
+          </g>
+        );
+
+      // skill-cross-check (Golden Scales of Justice)
+      case 'scale':
+        return (
+          <g>
+            <rect x="4" y="14" width="8" height="2" fill="#853605" />
+            <rect x="7" y="3" width="2" height="11" fill="#ffd166" />
+            <circle cx="8" cy="3" r="1.5" fill="#e9c46a" />
+            <line x1="2" y1="4" x2="14" y2="4" stroke="#ffd166" strokeWidth="1.5" />
+            <line x1="3" y1="4" x2="2" y2="8" stroke="#b45309" strokeWidth="0.8" />
+            <line x1="3" y1="4" x2="4" y2="8" stroke="#b45309" strokeWidth="0.8" />
+            <path d="M1 8 Q3 10 5 8 Z" fill="#e76f51" />
+            <rect x="2" y="7" width="2" height="1" fill="#3a86ff" />
+            <line x1="13" y1="4" x2="12" y2="8" stroke="#b45309" strokeWidth="0.8" />
+            <line x1="13" y1="4" x2="14" y2="8" stroke="#b45309" strokeWidth="0.8" />
+            <path d="M11 8 Q13 10 15 8 Z" fill="#e76f51" />
+            <rect x="12" y="7" width="2" height="1" fill="#06d6a0" />
+          </g>
+        );
+
+      // skill-spawn-reviewer (Detective Monocle)
+      case 'monocle':
+        return (
+          <g>
+            <circle cx="7" cy="7" r="5" fill="#5b2b2a" />
+            <circle cx="7" cy="7" r="4.2" fill="#ffd166" />
+            <circle cx="7" cy="7" r="3.4" fill="#a2d2ff" opacity="0.85" />
+            <polygon points="5,5 7,4 6,7 4,7" fill="#ffffff" />
+            <rect x="8" y="8" width="1.5" height="1.5" fill="#ffffff" />
+            <rect x="11" y="7" width="2" height="1" fill="#b45309" />
+            <circle cx="13" cy="9" r="1" fill="#ffd166" />
+            <circle cx="12" cy="11" r="1" fill="#ffd166" />
+            <circle cx="10" cy="13" r="1" fill="#ffd166" />
+          </g>
+        );
+
+      // skill-spawn-deep-researcher (Stardew Brass Telescope)
+      case 'telescope':
+        return (
+          <g>
+            <line x1="7" y1="9" x2="2" y2="15" stroke="#853605" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="8" y1="9" x2="8" y2="15" stroke="#5b2b2a" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="9" y1="9" x2="14" y2="15" stroke="#853605" strokeWidth="1.5" strokeLinecap="round" />
+            <rect x="7" y="8" width="2" height="2" fill="#2b2d42" />
+            <path d="M3 11 L12 4 L14 6 L5 13 Z" fill="#ffd166" />
+            <path d="M3 11 L12 4 L14 6 L5 13 Z" fill="none" stroke="#853605" strokeWidth="0.8" />
+            <rect x="12" y="3" width="3" height="3" fill="#48cae4" />
+            <rect x="2" y="11" width="2" height="2" fill="#5b2b2a" />
+            <rect x="14" y="1" width="1" height="1" fill="#ffea00" />
+          </g>
+        );
+
+      // skill-spawn-e2e-tester (Retro 8-bit Handheld Console)
+      case 'gamepad':
+        return (
+          <g>
+            <rect x="2" y="3" width="12" height="10" fill="#3a86ff" rx="1.5" />
+            <rect x="2" y="3" width="12" height="10" fill="none" stroke="#1d3557" strokeWidth="1" />
+            <rect x="4" y="4" width="8" height="5" fill="#212529" />
+            <rect x="5" y="5" width="6" height="3" fill="#90be6d" />
+            <rect x="7" y="6" width="2" height="1" fill="#4d908e" />
+            <rect x="4" y="10" width="3" height="1" fill="#1d3557" />
+            <rect x="5" y="9" width="1" height="3" fill="#1d3557" />
+            <circle cx="10" cy="11" r="0.8" fill="#e63946" />
+            <circle cx="11.5" cy="10" r="0.8" fill="#ffb703" />
+          </g>
+        );
+
+      // skill-max-effort (Prismatic Shard - Stardew Valley Legendary Gem)
+      case 'prismatic':
+        return (
+          <g>
+            <polygon points="8,1 13,4 14,9 10,14 6,14 2,9 3,4" fill="#5b2b2a" />
+            <polygon points="8,2 12,4 8,8 4,4" fill="#ff70a6" />
+            <polygon points="8,2 12,4 13,8 8,8" fill="#ffd670" />
+            <polygon points="13,8 10,13 8,8" fill="#70d6ff" />
+            <polygon points="10,13 6,13 8,8" fill="#06d6a0" />
+            <polygon points="6,13 3,8 8,8" fill="#9d4edd" />
+            <polygon points="3,8 4,4 8,8" fill="#ff9770" />
+            <polygon points="8,5 10,8 8,11 6,8" fill="#ffffff" opacity="0.9" />
+            <rect x="1" y="2" width="1" height="1" fill="#ffffff" />
+            <rect x="14" y="2" width="1" height="1" fill="#ffea00" />
+            <rect x="14" y="11" width="1" height="1" fill="#ffffff" />
+            <rect x="1" y="10" width="1" height="1" fill="#ffea00" />
+          </g>
+        );
+
+      // skill-chroot-devfs-pitfall (Hazard Warning Post)
+      case 'warning-sign':
+        return (
+          <g>
+            <rect x="7" y="8" width="2" height="7" fill="#853605" />
+            <rect x="5" y="14" width="6" height="1" fill="#5b2b2a" />
+            <polygon points="8,1 14,10 2,10" fill="#ffd166" />
+            <polygon points="8,1 14,10 2,10" fill="none" stroke="#d90429" strokeWidth="1.2" />
+            <rect x="7.5" y="4" width="1" height="3" fill="#212529" />
+            <rect x="7.5" y="8" width="1" height="1" fill="#212529" />
+          </g>
+        );
+
+      // skill-dev-tunnel & skill-named-cf-tunnel (Cloudflare Wormhole Portal)
+      case 'wormhole':
+        return (
+          <g>
+            <ellipse cx="8" cy="8" rx="6.5" ry="6.5" fill="#f72585" />
+            <ellipse cx="8" cy="8" rx="5" ry="5" fill="#7209b7" />
+            <ellipse cx="8" cy="8" rx="3.5" ry="3.5" fill="#3a86ff" />
+            <ellipse cx="8" cy="8" rx="1.8" ry="1.8" fill="#4cc9f0" />
+            <circle cx="8" cy="8" r="0.8" fill="#ffffff" />
+            <rect x="2" y="4" width="1.5" height="1" fill="#ffd166" />
+            <rect x="13" y="11" width="1.5" height="1" fill="#ffd166" />
+            <rect x="12" y="3" width="1" height="1.5" fill="#ff006e" />
+            <rect x="3" y="12" width="1" height="1.5" fill="#4cc9f0" />
+          </g>
+        );
+
+      // skill-create-simulated-events (Isometric Destiny D6)
+      case 'dice':
+        return (
+          <g>
+            <polygon points="8,1 14,4.5 14,11.5 8,15 2,11.5 2,4.5" fill="#4a2113" />
+            <polygon points="8,2 13,5 8,8 3,5" fill="#ffffff" />
+            <circle cx="8" cy="5" r="1.2" fill="#d90429" />
+            <polygon points="3,5 8,8 8,14 3,11" fill="#e2e8f0" />
+            <circle cx="5" cy="8" r="0.8" fill="#212529" />
+            <circle cx="6" cy="11.5" r="0.8" fill="#212529" />
+            <polygon points="8,8 13,5 13,11 8,14" fill="#cbd5e1" />
+            <circle cx="10" cy="7" r="0.8" fill="#212529" />
+            <circle cx="10.5" cy="9.5" r="0.8" fill="#212529" />
+            <circle cx="11" cy="12" r="0.8" fill="#212529" />
+          </g>
+        );
+
+      // skill-full-auto (Cyber Auto Robot)
+      case 'robot':
+        return (
+          <g>
+            <rect x="7.5" y="1" width="1" height="3" fill="#adb5bd" />
+            <circle cx="8" cy="1" r="1" fill="#e63946" />
+            <rect x="3" y="4" width="10" height="9" fill="#457b9d" rx="1" />
+            <rect x="3" y="4" width="10" height="9" fill="none" stroke="#1d3557" strokeWidth="1" />
+            <rect x="1.5" y="7" width="1.5" height="3" fill="#ffd166" />
+            <rect x="13" y="7" width="1.5" height="3" fill="#ffd166" />
+            <rect x="4" y="6" width="8" height="3" fill="#1d3557" />
+            <rect x="5" y="7" width="2" height="1" fill="#00f5d4" />
+            <rect x="9" y="7" width="2" height="1" fill="#00f5d4" />
+            <rect x="6" y="10.5" width="4" height="1" fill="#a8dadc" />
+          </g>
+        );
+
+      // skill-handoff (Work Handoff Briefcase)
+      case 'briefcase':
+        return (
+          <g>
+            <path d="M6 3 H10 V5 H6 Z" fill="none" stroke="#5b2b2a" strokeWidth="1.2" />
+            <rect x="2" y="5" width="12" height="9" fill="#853605" rx="1" />
+            <rect x="2" y="5" width="12" height="4" fill="#a34805" />
+            <rect x="2" y="5" width="12" height="9" fill="none" stroke="#4a2113" strokeWidth="0.8" />
+            <rect x="4" y="8" width="1.5" height="2" fill="#ffd166" />
+            <rect x="10.5" y="8" width="1.5" height="2" fill="#ffd166" />
+            <rect x="7" y="8.5" width="2" height="1" fill="#fefae0" />
+          </g>
+        );
+
+      // container-devfs-rules (Red Hazard Defense Shield)
+      case 'shield-alert':
+        return (
+          <g>
+            <path d="M3 2 H13 V7 Q13 12 8 15 Q3 12 3 7 Z" fill="#5b2b2a" />
+            <path d="M4 3 H12 V7 Q12 11 8 14 Q4 11 4 7 Z" fill="#d90429" />
+            <path d="M5 4 H11 V7 Q11 10 8 13 Q5 10 5 7 Z" fill="#ef233c" />
+            <rect x="7" y="5" width="2" height="4" fill="#ffffff" />
+            <circle cx="8" cy="10.5" r="1" fill="#ffffff" />
+          </g>
+        );
+
+      // remote-tunnel-security (Golden Padlock)
+      case 'lock':
+        return (
+          <g>
+            <path d="M5 6 V3 Q5 1 8 1 Q11 1 11 3 V6" fill="none" stroke="#adb5bd" strokeWidth="2" />
+            <path d="M5 6 V3 Q5 1 8 1 Q11 1 11 3 V6" fill="none" stroke="#495057" strokeWidth="1" />
+            <rect x="3" y="6" width="10" height="9" fill="#853605" rx="1" />
+            <rect x="4" y="7" width="8" height="7" fill="#ffd166" />
+            <circle cx="8" cy="9.5" r="1.2" fill="#5b2b2a" />
+            <polygon points="7.5,9.5 8.5,9.5 9,12.5 7,12.5" fill="#5b2b2a" />
+          </g>
+        );
+
       // default ancient bag
       default:
         return (
