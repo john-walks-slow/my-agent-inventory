@@ -124,13 +124,12 @@ html, body {
   border-top: 2px solid #ffdeaa;
   border-left: 2px solid #ffdeaa;
   border-right: 2px solid #6e2e05;
-  border-bottom: 4px solid #4a2113;
+  border-bottom: 2px solid #6e2e05;
   color: #381503;
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
   cursor: pointer;
-  transition: background-color 0.1s ease;
+  transition: all 0.1s ease;
   user-select: none;
-  position: relative;
 }
 
 .sdv-tab-btn:hover {
@@ -139,8 +138,10 @@ html, body {
 
 .sdv-tab-btn.active {
   background-color: #fce2b8;
-  border-bottom: 4px solid #fce2b8;
-  z-index: 30;
+  border-bottom: 2px solid #fce2b8;
+  margin-bottom: -2px;
+  z-index: 20;
+  box-shadow: 0 -2px 0 #4a2113;
 }
 
 /* Stardew Action Button */
