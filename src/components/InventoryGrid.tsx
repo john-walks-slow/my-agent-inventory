@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { InventoryItem, SubCategory } from '../types/inventory';
-import { PixelIcon, QualityStar } from './PixelIcon';
+import { PixelArtIcon, PixelQualityBadge } from './PixelArtIcon';
 import { retroAudio } from '../audio/retroAudio';
 import { Search } from 'lucide-react';
 
@@ -25,7 +25,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
   subCategoryOptions,
   searchQuery,
   onSearchChange,
-  totalSlots = 36 // 3 rows of 12 (standard Stardew upgraded pack)
+  totalSlots = 36 // 3 rows of 12 standard Stardew backpack
 }) => {
   const [hoveredItem, setHoveredItem] = useState<InventoryItem | null>(null);
 
@@ -47,9 +47,9 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
   });
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Subcategory Filter Pills and Search Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-3 bg-[#e4ae6e] p-2 border-2 border-[#853605] rounded-sm">
+    <div className="flex flex-col h-full justify-between">
+      {/* Top Filter Bar: Subcategories & Search Input */}
+      <div className="flex flex-wrap items-center justify-between gap-1.5 mb-2 bg-[#ecd0a6] p-1.5 border-2 border-[#6e2e05] rounded-sm shadow-inner">
         <div className="flex flex-wrap gap-1">
           {subCategoryOptions.map((opt) => (
             <button
@@ -58,10 +58,10 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
                 retroAudio.playTab();
                 onSelectSubCategory(opt.id);
               }}
-              className={`px-2.5 py-1 text-xs font-bold transition-all ${
+              className={`px-2 py-0.5 text-xs font-bold transition-all ${
                 subCategory === opt.id
-                  ? 'bg-[#ffe4a1] text-[#5b2b2a] border-2 border-[#853605] shadow-[0_2px_0_#5b2b2a]'
-                  : 'bg-[#d68f54] text-[#3a1a06] border border-[#853605] hover:bg-[#eba867]'
+                  ? 'bg-[#fff1d0] text-[#381503] border border-[#6e2e05] shadow-[0_1px_0_#4a2113]'
+                  : 'bg-[#d98236] text-[#fff] border border-[#6e2e05] hover:bg-[#e59349]'
               }`}
             >
               {opt.label}
@@ -75,15 +75,15 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
             placeholder="搜索物品/标签..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-40 sm:w-48 text-xs px-2 py-1 pl-6 bg-[#ffc376] text-[#3a1a06] placeholder-[#853605]/70 border-2 border-[#853605] rounded-none focus:outline-none focus:bg-[#ffe4a1]"
+            className="w-36 text-xs px-2 py-0.5 pl-6 bg-[#fff6e0] text-[#381503] placeholder-[#78350f]/60 border border-[#6e2e05] rounded-none focus:outline-none focus:bg-[#fff]"
           />
-          <Search size={12} className="absolute left-2 text-[#853605] pointer-events-none" />
+          <Search size={12} className="absolute left-1.5 text-[#78350f] pointer-events-none" />
         </div>
       </div>
 
-      {/* Grid Container (12 columns per row in Stardew style) */}
-      <div className="bg-[#d68f54] border-4 border-[#853605] p-3 shadow-md">
-        <div className="grid grid-cols-6 sm:grid-cols-12 gap-1.5 sm:gap-2">
+      {/* Grid Container (6 columns on mobile, 12 columns on sm/pc, always strictly aspect-square) */}
+      <div className="bg-[#f0c38e] border-2 border-[#6e2e05] p-2 sm:p-2.5 shadow-md flex-1 flex flex-col justify-center">
+        <div className="grid grid-cols-6 sm:grid-cols-12 gap-1 sm:gap-1.5 w-full">
           {slots.map((item, idx) => {
             const isSelected = selectedItem?.id === item?.id;
             return (
@@ -102,53 +102,54 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
                     onSelectItem(item);
                   }
                 }}
-                className={`sdv-slot aspect-square flex items-center justify-center cursor-pointer transition-all ${
-                  item ? 'hover:scale-105 active:scale-95' : 'cursor-default opacity-85'
-                } ${isSelected ? 'active' : ''}`}
+                className={`sdv-cell aspect-square w-full flex items-center justify-center cursor-pointer relative overflow-hidden ${
+                  isSelected ? 'active' : ''
+                } ${!item ? 'opacity-80 cursor-default' : ''}`}
                 title={item ? `${item.name} (${item.chineseName})` : `空闲格子 [${idx + 1}]`}
               >
-                {/* Hotbar index badge for first row */}
+                {/* Hotbar index badge for the first 12 slots */}
                 {idx < 12 && (
-                  <span className="absolute top-0.5 left-1 text-[9px] font-mono font-bold text-[#853605]/50 pointer-events-none">
+                  <span className="absolute top-0.5 left-0.5 text-[8px] font-mono font-bold text-[#6e2e05]/60 pointer-events-none leading-none">
                     {(idx + 1) % 10}
                   </span>
                 )}
 
                 {item && (
-                  <>
-                    <PixelIcon name={item.iconType} size={26} color={item.customColor} />
-                    <QualityStar rarity={item.rarity} />
+                  <div className="w-full h-full flex items-center justify-center p-1">
+                    <PixelArtIcon name={item.iconType} size={28} className="max-w-full max-h-full" />
+                    <PixelQualityBadge rarity={item.rarity} />
                     {item.stackSize && item.stackSize > 1 && (
-                      <span className="absolute bottom-0.5 right-1 text-[10px] font-bold text-[#3a1a06] font-mono bg-[#ffe4a1]/80 px-0.5 rounded pointer-events-none">
+                      <span className="absolute bottom-0.5 right-0.5 text-[9px] font-bold text-[#381503] font-mono bg-[#fff1d0]/90 px-0.5 leading-none rounded-none border border-[#6e2e05]/50 pointer-events-none">
                         {item.stackSize}
                       </span>
                     )}
-                  </>
+                  </div>
                 )}
               </div>
             );
           })}
         </div>
 
-        {/* Backpack Capacity Status Footer */}
-        <div className="mt-2.5 pt-2 border-t-2 border-[#853605] flex items-center justify-between text-[11px] text-[#5b2b2a] font-bold px-1">
-          <span>
-            已收纳: {filteredItems.length} / {totalSlots} 件装备
-          </span>
-          <span className="text-[#853605]">🎒 豪华背包 (36 格已全解锁)</span>
+        {/* Footer Capacity Status */}
+        <div className="mt-2 pt-1.5 border-t border-[#6e2e05]/50 flex items-center justify-between text-[11px] text-[#421c08] font-bold px-0.5">
+          <span>收纳数: {filteredItems.length} / {totalSlots}</span>
         </div>
       </div>
 
-      {/* Floating Mini Hover Tooltip Preview */}
-      {hoveredItem && (
-        <div className="mt-2 p-2 bg-[#ffe4a1] border-2 border-[#853605] text-[#3a1a06] text-xs flex items-center justify-between shadow-md">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-[#853605]">{hoveredItem.name}</span>
-            <span className="opacity-75">[{hoveredItem.chineseName}]</span>
-          </div>
-          <span className="text-[10px] font-bold text-[#b14e05]">点击查看详细属性 ➔</span>
-        </div>
-      )}
+      {/* Item Quick Peek Bar */}
+      <div className="mt-1.5 h-7 px-2 bg-[#fdf5df] border border-[#6e2e05] flex items-center justify-between text-xs text-[#381503] shadow-inner">
+        {hoveredItem ? (
+          <>
+            <div className="flex items-center gap-1.5 font-bold truncate">
+              <span className="text-[#b45309]">{hoveredItem.name}</span>
+              <span className="text-[#421c08] opacity-80">[{hoveredItem.chineseName}]</span>
+            </div>
+            <span className="text-[10px] text-[#b45309] shrink-0">点击查看属性</span>
+          </>
+        ) : (
+          <span className="text-[10px] text-[#78350f]/70 italic">悬停在装备上可快速预览</span>
+        )}
+      </div>
     </div>
   );
 };

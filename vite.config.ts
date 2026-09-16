@@ -11,5 +11,11 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 5180,
+    allowedHosts: ['.trycloudflare.com'],
+  },
+  preview: {
+    host: '0.0.0.0',
+    port: 5180,
+    allowedHosts: ['.trycloudflare.com'],
   }
 })

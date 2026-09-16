@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { InventoryItem } from '../types/inventory';
-import { PixelIcon, QualityStar } from './PixelIcon';
+import { PixelArtIcon, PixelQualityBadge } from './PixelArtIcon';
 import { retroAudio } from '../audio/retroAudio';
 import { ExternalLink, Copy, Check, Terminal, BookOpen, Layers } from 'lucide-react';
 
@@ -14,12 +14,12 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item, onOpenDoc }) => 
 
   if (!item) {
     return (
-      <div className="h-full flex flex-col items-center justify-center p-6 text-center text-[#853605] border-4 border-[#853605] bg-[#e4ae6e] rounded-sm shadow-inner">
-        <div className="w-16 h-16 rounded-full border-4 border-[#853605] flex items-center justify-center mb-3 bg-[#f7cb88] opacity-60">
-          <Layers size={32} />
+      <div className="h-full flex flex-col items-center justify-center p-6 text-center text-[#78350f] border-2 border-[#6e2e05] bg-[#ecd0a6] rounded-sm shadow-inner">
+        <div className="w-12 h-12 rounded-full border-2 border-[#6e2e05] flex items-center justify-center mb-2 bg-[#f0c38e] opacity-60">
+          <Layers size={24} />
         </div>
-        <p className="font-bold text-lg">请点击左侧背包中的物品</p>
-        <p className="text-xs opacity-75 mt-1">查看详细介绍、配置示例、安装指令与关联避坑技巧</p>
+        <p className="font-bold text-sm">请点击背包中的装备</p>
+        <p className="text-xs opacity-75 mt-0.5">查看设计原理、配置与安装方式</p>
       </div>
     );
   }
@@ -48,151 +48,145 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item, onOpenDoc }) => 
     }
   };
 
-  const rarityText = {
-    normal: '普通品质 (Normal)',
-    silver: '银星品质 (Silver)',
-    gold: '金星品质 (Gold)',
-    iridium: '铱星品质 (Iridium ⭐)'
-  }[item.rarity];
-
-  const rarityColor = {
-    normal: '#5b2b2a',
-    silver: '#6b7280',
-    gold: '#d97706',
-    iridium: '#9333ea'
+  const rarityInfo = {
+    normal: { label: '普通品质', color: '#4a2113' },
+    silver: { label: '银星品质 (Silver)', color: '#64748b' },
+    gold: { label: '金星品质 (Gold)', color: '#b45309' },
+    iridium: { label: '铱星品质 (Iridium ★)', color: '#9333ea' }
   }[item.rarity];
 
   return (
-    <div className="flex flex-col h-full bg-[#fce8c5] border-4 border-[#853605] p-4 text-[#3a1a06] shadow-md overflow-y-auto">
-      {/* Top Header with Icon and Title */}
-      <div className="flex items-start gap-3 pb-3 border-b-2 border-[#d68f54]">
-        <div className="relative w-14 h-14 sdv-slot flex items-center justify-center shrink-0">
-          <PixelIcon name={item.iconType} size={34} color={item.customColor} />
-          <QualityStar rarity={item.rarity} />
+    <div className="flex flex-col h-full bg-[#fff6e0] border-2 border-[#6e2e05] shadow-md text-[#381503]">
+      {/* Top Header Card (Stardew Tooltip Header Style) */}
+      <div className="p-3 bg-[#ecd0a6] border-b-2 border-[#6e2e05] flex items-start gap-3 shrink-0">
+        <div className="relative w-12 h-12 sdv-cell flex items-center justify-center shrink-0">
+          <PixelArtIcon name={item.iconType} size={32} />
+          <PixelQualityBadge rarity={item.rarity} />
         </div>
 
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <h2 className="text-xl font-bold tracking-wide text-[#3a1a06] leading-tight">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <h2 className="text-base font-bold tracking-wide text-[#381503] leading-tight">
               {item.name}
             </h2>
             {item.version && (
-              <span className="px-1.5 py-0.5 text-[10px] bg-[#d68f54] text-[#fff] font-mono rounded border border-[#853605]">
+              <span className="px-1 py-0.2 text-[9px] bg-[#d98236] text-[#fff] font-mono rounded-none border border-[#6e2e05]">
                 v{item.version}
               </span>
             )}
           </div>
-          <p className="text-sm font-semibold text-[#853605] mt-0.5">{item.chineseName}</p>
-          <div className="flex items-center gap-2 mt-1 text-xs">
-            <span className="font-bold" style={{ color: rarityColor }}>
-              {rarityText}
+          <p className="text-xs font-semibold text-[#78350f] mt-0.5">{item.chineseName}</p>
+          <div className="flex items-center gap-2 mt-0.5 text-[11px]">
+            <span className="font-bold" style={{ color: rarityInfo.color }}>
+              {rarityInfo.label}
             </span>
-            <span className="text-[#853605] opacity-60">|</span>
-            <span className="text-[#853605]">作者: {item.author}</span>
+            <span className="text-[#6e2e05]/40">•</span>
+            <span className="text-[#6e2e05]/80">作者: {item.author}</span>
           </div>
         </div>
       </div>
 
-      {/* Description */}
-      <div className="my-3">
-        <p className="text-sm font-bold leading-relaxed text-[#4a2308] bg-[#fae0b2] p-2.5 rounded border border-[#d68f54]">
+      {/* Independent Scrollable Details Area */}
+      <div className="custom-scroll flex-1 p-3 space-y-2.5 overflow-y-auto">
+        {/* Short Summary Description */}
+        <p className="text-xs font-bold leading-relaxed text-[#421c08] bg-[#fdf5df] p-2 border border-[#d98236]/60 shadow-xs">
           {item.description}
         </p>
-      </div>
 
-      {/* Highlights / Features */}
-      {item.highlights && item.highlights.length > 0 && (
-        <div className="mb-3">
-          <h4 className="text-xs font-bold text-[#853605] uppercase tracking-wider mb-1.5 flex items-center gap-1">
-            <span>✨ 核心亮点 (Key Features)</span>
-          </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-            {item.highlights.map((h, i) => (
-              <div
-                key={i}
-                className="text-xs bg-[#f4d49e] px-2 py-1 border border-[#c98348] rounded flex items-center gap-1.5"
-              >
-                <span className="text-[#853605] font-bold">✔</span>
-                <span>{h}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Long Description */}
-      <div className="mb-3">
-        <h4 className="text-xs font-bold text-[#853605] uppercase tracking-wider mb-1">
-          📖 深度解析 (Deep Insight)
-        </h4>
-        <div className="text-xs leading-relaxed text-[#3a1a06] whitespace-pre-line bg-[#fbf0d9] p-2.5 rounded border border-[#d68f54]">
-          {item.longDescription}
-        </div>
-      </div>
-
-      {/* Installation Command */}
-      {item.installCommand && (
-        <div className="mb-3">
-          <div className="flex items-center justify-between mb-1">
-            <h4 className="text-xs font-bold text-[#853605] flex items-center gap-1">
-              <Terminal size={14} /> 安装与使用指令
+        {/* Core Highlights */}
+        {item.highlights && item.highlights.length > 0 && (
+          <div>
+            <h4 className="text-[11px] font-bold text-[#78350f] uppercase tracking-wider mb-1 flex items-center gap-1">
+              <span>✦ 核心亮点</span>
             </h4>
-            <button
-              onClick={() => handleCopy(item.installCommand!)}
-              className="sdv-btn !py-0.5 !px-2 !text-[10px]"
-              title="复制到剪贴板"
-            >
-              {copied ? <Check size={12} className="text-green-700" /> : <Copy size={12} />}
-              {copied ? '已复制！' : '复制命令'}
-            </button>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
+              {item.highlights.map((h, i) => (
+                <div
+                  key={i}
+                  className="text-[11px] bg-[#fdecd2] px-2 py-1 border border-[#e6a763] flex items-center gap-1"
+                >
+                  <span className="text-[#b45309] font-bold">✔</span>
+                  <span>{h}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <pre className="text-xs font-mono bg-[#2b1d14] text-[#ffe4a1] p-2 rounded border border-[#5b2b2a] overflow-x-auto whitespace-pre-wrap break-all selection:bg-[#ffc376] selection:text-[#2b1d14]">
-            <code>{item.installCommand}</code>
-          </pre>
-        </div>
-      )}
+        )}
 
-      {/* Configuration Example */}
-      {item.configExample && (
-        <div className="mb-3">
-          <h4 className="text-xs font-bold text-[#853605] mb-1">⚙ 配置示例 (cordis.yml)</h4>
-          <pre className="text-xs font-mono bg-[#2b1d14] text-[#a8dadc] p-2 rounded border border-[#5b2b2a] overflow-x-auto whitespace-pre-wrap break-all">
-            <code>{item.configExample}</code>
-          </pre>
+        {/* Deep Dive Long Description */}
+        <div>
+          <h4 className="text-[11px] font-bold text-[#78350f] uppercase tracking-wider mb-1">
+            📜 深度解析
+          </h4>
+          <div className="text-xs leading-relaxed text-[#381503] whitespace-pre-line bg-[#fdf5df] p-2 border border-[#d98236]/60 shadow-xs">
+            {item.longDescription}
+          </div>
         </div>
-      )}
 
-      {/* Tips */}
-      {item.tips && (
-        <div className="mb-3 p-2 bg-[#ffe4a1] border-2 border-[#b14e05] rounded text-xs text-[#5b2b2a]">
-          <span className="font-bold">💡 农场主秘笈: </span>
-          {item.tips}
-        </div>
-      )}
+        {/* Installation Command */}
+        {item.installCommand && (
+          <div>
+            <div className="flex items-center justify-between mb-1">
+              <h4 className="text-[11px] font-bold text-[#78350f] flex items-center gap-1">
+                <Terminal size={12} /> 安装与使用指令
+              </h4>
+              <button
+                onClick={() => handleCopy(item.installCommand!)}
+                className="sdv-action-btn !py-0.5 !px-1.5 !text-[10px]"
+                title="复制到剪贴板"
+              >
+                {copied ? <Check size={10} className="text-green-700" /> : <Copy size={10} />}
+                {copied ? '已复制！' : '复制命令'}
+              </button>
+            </div>
+            <pre className="text-[11px] font-mono bg-[#22160d] text-[#ffe4a1] p-2 border border-[#6e2e05] overflow-x-auto whitespace-pre-wrap break-all select-text">
+              <code>{item.installCommand}</code>
+            </pre>
+          </div>
+        )}
 
-      {/* Footer Tags & Links */}
-      <div className="mt-auto pt-3 border-t-2 border-[#d68f54] flex flex-wrap items-center justify-between gap-2">
+        {/* Configuration Example */}
+        {item.configExample && (
+          <div>
+            <h4 className="text-[11px] font-bold text-[#78350f] mb-1">⚙ 配置示例 (cordis.yml)</h4>
+            <pre className="text-[11px] font-mono bg-[#22160d] text-[#a8dadc] p-2 border border-[#6e2e05] overflow-x-auto whitespace-pre-wrap break-all select-text">
+              <code>{item.configExample}</code>
+            </pre>
+          </div>
+        )}
+
+        {/* Farm Tips */}
+        {item.tips && (
+          <div className="p-2 bg-[#ffebbe] border border-[#b45309] text-[11px] text-[#421c08]">
+            <span className="font-bold text-[#b45309]">💡 农场主秘笈: </span>
+            {item.tips}
+          </div>
+        )}
+      </div>
+
+      {/* Fixed Sticky Footer for Actions */}
+      <div className="p-2.5 bg-[#ecd0a6] border-t-2 border-[#6e2e05] flex flex-wrap items-center justify-between gap-1.5 shrink-0">
         <div className="flex flex-wrap gap-1">
           {item.tags.map((t) => (
             <span
               key={t}
-              className="text-[10px] px-1.5 py-0.5 bg-[#e4ae6e] text-[#5b2b2a] border border-[#853605] rounded"
+              className="text-[9px] px-1.5 py-0.2 bg-[#fdf5df] text-[#78350f] border border-[#d98236] font-bold"
             >
               #{t}
             </span>
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           {item.docId && onOpenDoc && (
             <button
               onClick={() => {
                 retroAudio.playPageTurn();
                 onOpenDoc(item.docId!);
               }}
-              className="sdv-btn !py-1 !px-2.5 !text-xs !bg-[#ffe4a1]"
+              className="sdv-action-btn !py-1 !px-2 !text-xs !bg-[#fff1d0]"
             >
-              <BookOpen size={14} /> 阅读关联秘籍
+              <BookOpen size={12} /> 翻阅典籍
             </button>
           )}
 
@@ -201,10 +195,10 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item, onOpenDoc }) => 
               href={item.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="sdv-btn !py-1 !px-2.5 !text-xs"
+              className="sdv-action-btn !py-1 !px-2 !text-xs"
               onClick={() => retroAudio.playSelect()}
             >
-              <ExternalLink size={14} /> 源码仓库
+              <ExternalLink size={12} /> 仓库
             </a>
           )}
         </div>
