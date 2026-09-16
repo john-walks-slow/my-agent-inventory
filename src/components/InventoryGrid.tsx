@@ -86,7 +86,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
 
       {/* Grid Container (Top-aligned, scrollable slots matrix) */}
       <div className="bg-[#f0c38e] border-2 border-[#6e2e05] p-2 sm:p-2.5 shadow-md flex flex-col flex-1 min-h-0 justify-between">
-        <div className="overflow-y-auto custom-scroll pr-1 flex-1 min-h-0 max-h-[290px] sm:max-h-[350px] lg:max-h-none">
+        <div className="overflow-y-auto custom-scroll p-1 sm:p-1.5 flex-1 min-h-0 max-h-[290px] sm:max-h-[350px] lg:max-h-none">
           <div className="grid grid-cols-6 sm:grid-cols-12 gap-1 sm:gap-1.5 w-full">
             {slots.map((item, idx) => {
               const isSelected = selectedItem?.id === item?.id;
@@ -106,7 +106,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
                       onSelectItem(item);
                     }
                   }}
-                  className={`sdv-cell aspect-square w-full flex items-center justify-center cursor-pointer relative overflow-hidden ${
+                  className={`sdv-cell aspect-square w-full flex items-center justify-center cursor-pointer relative ${
                     isSelected ? 'active' : ''
                   } ${!item ? 'opacity-80 cursor-default' : ''}`}
                   title={item ? `${item.name} (${item.chineseName})` : `空闲格子 [${idx + 1}]`}
