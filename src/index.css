@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: 'PixelCJK';
-  src: url('/fonts/DotGothic16.ttf') format('truetype');
+  src: url('./assets/fonts/DotGothic16.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: 'PixelLatin';
-  src: url('/fonts/Silkscreen.ttf') format('truetype');
+  src: url('./assets/fonts/Silkscreen.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

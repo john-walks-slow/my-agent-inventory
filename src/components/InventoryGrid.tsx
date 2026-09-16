@@ -47,9 +47,9 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
   });
 
   return (
-    <div className="flex flex-col h-full justify-between">
+    <div className="flex flex-col h-full">
       {/* Top Filter Bar: Subcategories & Search Input */}
-      <div className="flex flex-wrap items-center justify-between gap-1.5 mb-2 bg-[#ecd0a6] p-1.5 border-2 border-[#6e2e05] rounded-sm shadow-inner">
+      <div className="flex flex-wrap items-center justify-between gap-1.5 mb-2 bg-[#ecd0a6] p-1.5 border-2 border-[#6e2e05] rounded-sm shadow-inner shrink-0">
         <div className="flex flex-wrap gap-1">
           {subCategoryOptions.map((opt) => (
             <button
@@ -81,8 +81,8 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
         </div>
       </div>
 
-      {/* Grid Container (6 columns on mobile, 12 columns on sm/pc, always strictly aspect-square) */}
-      <div className="bg-[#f0c38e] border-2 border-[#6e2e05] p-2 sm:p-2.5 shadow-md flex-1 flex flex-col justify-center">
+      {/* Grid Container (Top-aligned, 6 cols on mobile, 12 cols on sm/pc) */}
+      <div className="bg-[#f0c38e] border-2 border-[#6e2e05] p-2 sm:p-2.5 shadow-md flex flex-col justify-start shrink-0">
         <div className="grid grid-cols-6 sm:grid-cols-12 gap-1 sm:gap-1.5 w-full">
           {slots.map((item, idx) => {
             const isSelected = selectedItem?.id === item?.id;
@@ -136,8 +136,8 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
         </div>
       </div>
 
-      {/* Item Quick Peek Bar */}
-      <div className="mt-1.5 h-7 px-2 bg-[#fdf5df] border border-[#6e2e05] flex items-center justify-between text-xs text-[#381503] shadow-inner">
+      {/* Item Quick Peek Bar (Fixed at top right below grid) */}
+      <div className="mt-1.5 h-7 px-2 bg-[#fdf5df] border border-[#6e2e05] flex items-center justify-between text-xs text-[#381503] shadow-inner shrink-0">
         {hoveredItem ? (
           <>
             <div className="flex items-center gap-1.5 font-bold truncate">
