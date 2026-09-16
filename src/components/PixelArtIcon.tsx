@@ -287,6 +287,124 @@ export const PixelArtIcon: React.FC<PixelArtIconProps> = ({
           </g>
         );
 
+      // dsh-hybrid-notify (Brass Bell / Alert Charm)
+      case 'bell':
+        return (
+          <g>
+            {/* Top knob */}
+            <rect x="7" y="1" width="2" height="2" fill="#5b2b2a" />
+            {/* Bell body */}
+            <path d="M5 3 H11 V8 Q11 10 8 10 Q5 10 5 8 Z" fill="#f4a261" />
+            <path d="M6 4 H10 V8 Q10 9 8 9 Q6 9 6 8 Z" fill="#ffba08" />
+            {/* Rim */}
+            <rect x="4" y="8" width="8" height="2" fill="#853605" />
+            <rect x="4" y="9" width="8" height="1" fill="#5b2b2a" />
+            {/* Clapper */}
+            <circle cx="8" cy="12" r="1.5" fill="#5b2b2a" />
+            <rect x="7" y="10" width="2" height="1" fill="#d68f54" />
+            {/* Sparkle */}
+            <rect x="11" y="2" width="1" height="1" fill="#ffea00" />
+          </g>
+        );
+
+      // dsh-message-datetime (Pocket Calendar / Day Tracker)
+      case 'calendar':
+        return (
+          <g>
+            {/* Binding rings */}
+            <rect x="4" y="1" width="1" height="3" fill="#5b2b2a" />
+            <rect x="11" y="1" width="1" height="3" fill="#5b2b2a" />
+            {/* Page body */}
+            <rect x="3" y="2" width="10" height="12" fill="#fefae0" rx="1" />
+            {/* Header strip */}
+            <rect x="3" y="2" width="10" height="3" fill="#e63946" />
+            <rect x="3" y="4" width="10" height="1" fill="#9d0208" />
+            {/* Date grid dots */}
+            <rect x="5" y="7" width="1" height="1" fill="#5b2b2a" />
+            <rect x="7" y="7" width="1" height="1" fill="#5b2b2a" />
+            <rect x="9" y="7" width="1" height="1" fill="#e63946" />
+            <rect x="5" y="9" width="1" height="1" fill="#5b2b2a" />
+            <rect x="7" y="9" width="1" height="1" fill="#5b2b2a" />
+            <rect x="9" y="9" width="1" height="1" fill="#5b2b2a" />
+            <rect x="11" y="9" width="1" height="1" fill="#5b2b2a" />
+            <rect x="5" y="11" width="1" height="1" fill="#5b2b2a" />
+            <rect x="7" y="11" width="1" height="1" fill="#5b2b2a" />
+            <rect x="9" y="11" width="1" height="1" fill="#5b2b2a" />
+          </g>
+        );
+
+      // dsh-im-humanize (Crystal Chat Bubble / Message Stone)
+      case 'chat-bubble':
+        return (
+          <g>
+            {/* Bubble outline */}
+            <path d="M3 3 H13 V10 H8 L5 13 V10 H3 Z" fill="#3a86ff" />
+            <path d="M4 4 H12 V9 H8 L6 11 V9 H4 Z" fill="#90e0ef" />
+            {/* Text dots */}
+            <rect x="5" y="5" width="2" height="1" fill="#0077b6" />
+            <rect x="8" y="5" width="3" height="1" fill="#0077b6" />
+            <rect x="5" y="7" width="5" height="1" fill="#0077b6" />
+            {/* Heart accent */}
+            <rect x="11" y="2" width="1" height="1" fill="#ff006e" />
+          </g>
+        );
+
+      // dsh-anti-addiction (Pixel Heart / Life Charm)
+      case 'heart':
+        return (
+          <g>
+            {/* Heart outline */}
+            <path d="M8 14 C8 14 3 10 3 7 C3 4 5 3 8 5 C11 3 13 4 13 7 C13 10 8 14 8 14 Z" fill="#d00000" />
+            <path d="M8 13 C8 13 4 9 4 7 C4 5 5 4 8 6 C11 4 12 5 12 7 C12 9 8 13 8 13 Z" fill="#e63946" />
+            <path d="M7 6 Q6 5 5 6 Q5 7 8 8 Q11 7 11 6 Q10 5 9 6" fill="#ffccd5" />
+            {/* Shield cross */}
+            <rect x="7" y="8" width="2" height="4" fill="#ffffff" opacity="0.6" />
+            <rect x="6" y="9" width="4" height="2" fill="#ffffff" opacity="0.6" />
+          </g>
+        );
+
+      // dsh-mobile-qol (Ancient Smartphone / Slate Tablet)
+      case 'smartphone':
+        return (
+          <g>
+            {/* Phone body */}
+            <rect x="4" y="1" width="8" height="14" fill="#264653" rx="1" />
+            <rect x="5" y="2" width="6" height="11" fill="#1b263b" />
+            {/* Screen content */}
+            <rect x="5" y="2" width="6" height="1" fill="#48cae4" />
+            <rect x="5" y="4" width="4" height="1" fill="#52b788" />
+            <rect x="5" y="6" width="5" height="1" fill="#52b788" />
+            <rect x="5" y="8" width="3" height="1" fill="#52b788" />
+            {/* Home button */}
+            <circle cx="8" cy="14" r="1" fill="#5b2b2a" />
+            <circle cx="8" cy="14" r="0.5" fill="#264653" />
+          </g>
+        );
+
+      // Documentation skills (Ancient Scroll / Parchment Roll)
+      case 'scroll':
+        return (
+          <g>
+            {/* Top roll */}
+            <ellipse cx="8" cy="2" rx="5" ry="1.5" fill="#853605" />
+            <ellipse cx="8" cy="2" rx="4" ry="1" fill="#d68f54" />
+            {/* Body */}
+            <rect x="3" y="2" width="10" height="11" fill="#fefae0" />
+            <rect x="3" y="2" width="2" height="11" fill="#e9d8a6" />
+            <rect x="11" y="2" width="2" height="11" fill="#e9d8a6" />
+            {/* Text lines */}
+            <rect x="4" y="4" width="7" height="1" fill="#916132" />
+            <rect x="4" y="6" width="8" height="1" fill="#916132" />
+            <rect x="4" y="8" width="5" height="1" fill="#916132" />
+            <rect x="4" y="10" width="7" height="1" fill="#916132" />
+            {/* Bottom roll */}
+            <ellipse cx="8" cy="13" rx="5" ry="1.5" fill="#853605" />
+            <ellipse cx="8" cy="13" rx="4" ry="1" fill="#d68f54" />
+            {/* Wax seal */}
+            <circle cx="12" cy="8" r="1.5" fill="#e63946" />
+          </g>
+        );
+
       // default ancient bag
       default:
         return (

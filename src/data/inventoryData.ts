@@ -219,6 +219,161 @@ plugins:
     highlights: ['因果闭环演算', '真随机命运投掷', '真实情感持久化'],
     tips: '与星露谷物语的沉浸感不谋而合，是构建数字伴侣的绝佳底层。',
     createdDate: '2026-09-01'
+  },
+  {
+    id: 'dsh-anti-addiction',
+    name: 'dsh-anti-addiction',
+    chineseName: '防沉迷护盾',
+    category: 'plugins',
+    subCategory: 'experiment',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'heart',
+    customColor: '#e63946',
+    description: '限制每日前台使用时长与深夜时段访问，守护健康作息的自律守护者。',
+    longDescription: `【痛点】
+AI Agent 全自动运行时，用户容易沉迷于持续监控与交互，深夜不舍得关掉，长期影响健康。
+
+【核心机制】
+- 按日累计前台使用时间，超过 maxDailyMinutes 后自动进入锁定冷却；
+- 夜间 blockedStartHour ~ blockedEndHour 全局静默，Agent 不再响应非紧急请求；
+- 空闲超过 idleThresholdMs 自动断开，heartbeatIntervalMs 心跳保活；
+- unlockGraceMinutes 宽容期机制，防止误触锁定后无法紧急解锁。`,
+    version: '0.1.0',
+    author: 'John Ren',
+    repoUrl: 'https://github.com/johnren/dsh-anti-addiction',
+    installCommand: 'cd ~/projects/dsh-anti-addiction && pnpm link --global',
+    configExample: `anti-addiction:
+  enabled: false
+  maxDailyMinutes: 120
+  blockedStartHour: 23
+  blockedEndHour: 7`,
+    tags: ['Health', 'Self-Control', 'Automation', 'Experiment'],
+    highlights: ['日时长限额', '深夜静默', '心跳保活', '宽容期解锁'],
+    tips: '默认关闭，建议在深夜长链路任务中启用，让 Agent 也能好好"睡觉"。',
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'dsh-mobile-qol',
+    name: 'dsh-mobile-qol',
+    chineseName: '移动端体验增强',
+    category: 'plugins',
+    subCategory: 'tools',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'smartphone',
+    customColor: '#264653',
+    description: '专为手机/平板触屏优化的 Web UI 增强套件：侧边栏滑动手势、输入法适配等。',
+    longDescription: `【诞生背景】
+DSH Web GUI 原本针对桌面端设计，在手机浏览器上存在触控目标过小、侧边栏难以展开、输入法弹起遮挡输入框等一系列体验痛点。
+
+【特性】
+- 侧边栏左滑手势呼出，右滑收回，无需精准点击汉堡菜单；
+- 输入法弹出时自动滚动视口到输入框位置，防止遮挡；
+- 触控目标自适应放大，符合 Material Design 48dp 最小命中区域；
+- 长按消息体复制内容，减少移动端选词困难。`,
+    version: '0.1.0',
+    author: 'John Ren',
+    repoUrl: 'https://github.com/johnren/dsh-mobile-qol',
+    installCommand: 'cd ~/projects/dsh-mobile-qol && pnpm link --global',
+    tags: ['Mobile', 'UX', 'Touch', 'Web UI'],
+    highlights: ['侧滑手势呼出侧栏', '输入法防遮挡', '触控目标放大', '长按复制'],
+    tips: '在 Termux 浏览器或 iPad Safari 上使用 DSH 时必备，体验从"能用"变"好用"。',
+    createdDate: '2026-09-08'
+  },
+  {
+    id: 'dsh-message-datetime',
+    name: 'dsh-message-datetime',
+    chineseName: '每轮时钟注入',
+    category: 'plugins',
+    subCategory: 'core',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'calendar',
+    customColor: '#e63946',
+    description: '在每轮对话的 Runtime Context 中注入一行精确的当前日期时间与时区。',
+    longDescription: `【为什么需要】
+LLM 默认不知道"现在几点"。在涉及定时任务、日志排查、"明天发提醒"等场景时，Agent 经常给出错误的时间判断。
+
+【机制】
+- 每轮请求前，向 Runtime Context 注入格式化时间戳：\`[Current time: Wed 2026-09-16 19:38:09 +08:00 (Asia/Shanghai)]\`；
+- 自动感知系统时区，无需手动配置；
+- 极低开销：仅一行文本注入，不消耗额外 token 配额。`,
+    version: '0.1.0',
+    author: 'John Ren',
+    repoUrl: 'https://github.com/johnren/dsh-message-datetime',
+    installCommand: 'cd ~/projects/dsh-message-datetime && pnpm link --global',
+    tags: ['Time', 'Context', 'Core', 'Low-Overhead'],
+    highlights: ['每轮自动注入', '时区自适应', '极低 token 开销', '定时任务基石'],
+    tips: '与 dsh-proactive 配合使用，Agent 才能正确判断"再过 2 小时"是几点。',
+    createdDate: '2026-09-05'
+  },
+  {
+    id: 'dsh-hybrid-notify',
+    name: 'dsh-hybrid-notify',
+    chineseName: '多通道混合通知',
+    category: 'plugins',
+    subCategory: 'tools',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'bell',
+    customColor: '#f4a261',
+    description: '多通道通知插件：页面 Toast 提醒、PWA 系统推送通知与自定义提示音三合一。',
+    longDescription: `【痛点】
+Agent 在后台长任务完成、遇到错误或需要用户介入时，如果没有主动通知机制，用户只能不断切回页面查看。
+
+【三通道融合】
+1. In-page Toast：页面内的浮动通知气泡，支持点击跳转到对应消息；
+2. PWA Push：浏览器系统级推送通知，即使页面在后台或最小化也能收到；
+3. Sound：可自定义的 8-bit 提示音，区分消息/完成/错误三种事件类型。
+
+【与 proactive 配合】
+dsh-proactive 的 cron 唤醒结果可通过本插件的三通道之一送达用户。`,
+    version: '0.1.0',
+    author: 'John Ren',
+    repoUrl: 'https://github.com/johnren/dsh-hybrid-notify',
+    installCommand: 'cd ~/projects/dsh-notify && pnpm link --global',
+    tags: ['Notification', 'Toast', 'PWA', 'Sound'],
+    highlights: ['三通道融合', 'PWA 系统推送', '自定义提示音', '点击跳转消息'],
+    tips: '在手机上开启 PWA 通知权限，长任务完成后手机会震动提醒，再不用盯着看了！',
+    createdDate: '2026-08-28'
+  },
+  {
+    id: 'dsh-im-humanize',
+    name: 'dsh-im-humanize',
+    chineseName: '九合一 IM 即时消息桥接',
+    category: 'plugins',
+    subCategory: 'core',
+    rarity: 'iridium',
+    stackSize: 1,
+    iconType: 'chat-bubble',
+    customColor: '#3a86ff',
+    description: '将九种 IM 机器人（微信/QQ/Telegram/飞书/Discord/Slack 等）接入 DSH，实现全平台消息收发。',
+    longDescription: `【能力全景】
+一个插件桥接九大主流 IM 平台：微信（企业微信/个人微信）、QQ、Telegram、飞书/Lark、DingTalk、Slack、Discord、WhatsApp。
+
+【核心特性】
+1. 多 Bot 管理：每个平台支持多个 Bot 实例，统一配置面板；
+2. 消息人性化渲染：将 Agent 的 Markdown 输出转换为各平台原生格式（Telegram HTML、飞书卡片消息等）；
+3. 双向通信：IM 消息自动转发给 Agent，Agent 回复自动推送到 IM；
+4. 会话隔离：不同 IM 来源的会话独立追踪，互不干扰；
+5. AI Office 集成：将 IM 消息桥接到公网 AI Office 入口。`,
+    version: '4.13.0',
+    author: 'John Ren',
+    repoUrl: 'https://github.com/johnren/dsh-im-humanize',
+    installCommand: 'cd ~/projects/dsh-im-humanize && pnpm link --global',
+    configExample: `dsh-im:
+  platforms:
+    telegram:
+      bots:
+        - botId: "telegram_xxx"
+          tokenRef: "DSH_TELEGRAM_BOT_TOKEN"
+    weixin:
+      accounts: []`,
+    tags: ['IM', 'Telegram', 'WeChat', 'Feishu', 'Core', 'Must-Have'],
+    highlights: ['九平台全覆盖', '消息人性化渲染', '双向通信', '多 Bot 管理'],
+    tips: '与 dsh-proactive 组合，Agent 可以在每天早上通过 Telegram 给你推送昨日工作简报！',
+    createdDate: '2026-08-15'
   }
 ];
 
@@ -254,7 +409,7 @@ export const SKILLS_DATA: InventoryItem[] = [
     name: 'workflow-implement-review',
     chineseName: '交付铁三角工作流',
     category: 'skills',
-    subCategory: 'workflow',
+    subCategory: 'rabbit-skills',
     rarity: 'iridium',
     stackSize: 1,
     iconType: 'check-circle-2',
@@ -317,7 +472,7 @@ export const SKILLS_DATA: InventoryItem[] = [
     name: 'code-deep-dive',
     chineseName: 'Vibe Coding 碎片化深度学习篇',
     category: 'skills',
-    subCategory: 'office',
+    subCategory: 'rabbit-skills',
     rarity: 'iridium',
     stackSize: 1,
     iconType: 'book-open',
@@ -345,6 +500,936 @@ export const SKILLS_DATA: InventoryItem[] = [
     tags: ['ImageGen', 'AI Art', 'Multimodal'],
     highlights: ['高保真画风', '参数防呆校验', 'IM 自动交付'],
     createdDate: '2026-09-05'
+  },
+  {
+    id: 'skill-bad-smell',
+    name: 'bad-smell',
+    chineseName: '代码异味感知雷达',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'flame',
+    customColor: '#ef4444',
+    description: '当 Agent 觉得代码难于理解、设计混乱或不易维护时主动触发，进行代码质量自审。',
+    longDescription: `【嗅觉训练】
+好代码不仅要跑得通，更要读得懂。本技能让 Agent 在编码过程中主动感知"坏味道"：
+- 过长函数、过深嵌套、过多参数；
+- 重复代码、魔法数字、命名歧义；
+- 上帝类、特性依恋、散弹式修改。
+
+感知到异味后，Agent 会主动建议重构方案并解释理由，而不是闷头写完就交。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/bad-smell <your-agent-dir>/',
+    tags: ['Code Quality', 'Refactoring', 'Self-Review'],
+    highlights: ['主动感知坏味道', '重构建议', '设计原则内化'],
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-chroot-devfs-pitfall',
+    name: 'chroot-devfs-pitfall',
+    chineseName: 'Devfs 安全铁律索引',
+    category: 'skills',
+    subCategory: 'ops',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'terminal',
+    customColor: '#e63946',
+    description: '容器 rootfs /dev /proc /sys 安全规范的故障排查入口与索引技能。',
+    longDescription: `【触发条件】
+当出现以下症状时自动触发本技能索引：
+- 写 /dev/null 失败、/proc/self/fd/N 打不开；
+- git/apt 报 urandom/null EACCES 错误；
+- multiprocessing/sem_open 裸 ENOENT（/dev/shm 缺失）；
+- os.ttyname 报 Inappropriate ioctl（devpts 挂载异常）；
+- browser_install 报 'python' ENOENT。
+
+本技能只做触发与索引，故障细节、命令与完整逻辑一律见 container-ops 技能。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/chroot-devfs-pitfall <your-agent-dir>/',
+    tags: ['Devfs', 'Chroot', 'SELinux', 'Troubleshooting'],
+    highlights: ['症状速查', '自动索引', '防止毁灭性误操作'],
+    tips: '在容器环境写脚本前必读，一个 echo > /dev/null 就能让系统挂掉！',
+    createdDate: '2026-08-31'
+  },
+  {
+    id: 'skill-coding',
+    name: 'coding',
+    chineseName: '编码开发核心规范',
+    category: 'skills',
+    subCategory: 'ai-core',
+    rarity: 'iridium',
+    stackSize: 1,
+    iconType: 'puzzle',
+    customColor: '#8338ec',
+    description: '在本机进行任何编程或软件开发前必须立刻读取并严格遵循的核心规范。',
+    longDescription: `【三大原则】
+1. 降低认知负荷：代码不需要注释就能读懂；单一职责；及时拆分。
+2. 童子军法则：离开时比来时更干净；随手重构；不轻易 hack。
+3. 实用主义：简单直接；项目由独立开发者管理；不过度防御。
+
+【文档规范】
+极简文档策略：AGENTS.md 项目指引、模块级 AGENTS.md、需求/问题/参考文档分目录管理。
+
+【多 Agent 协作】
+总是假定有其他 Agent 在同时工作，不处理改动范围之外的变化。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/coding <your-agent-dir>/',
+    tags: ['Coding', 'Best Practice', 'Core', 'Must-Read'],
+    highlights: ['三大核心原则', '极简文档策略', '多 Agent 协作'],
+    tips: '这是所有编码任务的入口技能，写第一行代码前必读！',
+    createdDate: '2026-08-20'
+  },
+  {
+    id: 'skill-commit-own-changes',
+    name: 'commit-own-changes',
+    chineseName: '安全原子提交术',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'shield-check',
+    customColor: '#2a9d8f',
+    description: '基于 git-hunk 提交改动，防止带入其他无关的未提交修改，事关安全。',
+    longDescription: `【为什么需要】
+在多 Agent 同时工作的环境中，\`git add .\` 会把其他 Agent 的改动一起提交，造成混乱。
+
+【核心规则】
+- 执行任何 \`git add\` 或 \`git commit\` 前必须使用本技能；
+- 基于 git diff 逐 hunk 选择性添加，只提交属于当前任务的改动；
+- 例外：若当前在单独 worktree 中工作，则无需使用本技能。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/commit-own-changes <your-agent-dir>/',
+    tags: ['Git', 'Commit', 'Safety', 'Multi-Agent'],
+    highlights: ['hunk 级精准提交', '防止误提交他人改动', '多 Agent 安全'],
+    tips: '多 Agent 并行工作时，没有这个技能就是定时炸弹！',
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-create-simulated-events',
+    name: 'create-simulated-events',
+    chineseName: '虚拟世界事件演算',
+    category: 'skills',
+    subCategory: 'workflow',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'compass',
+    customColor: '#e9c46a',
+    description: '模拟与演化虚拟世界、环境及 Living Agent 的每日生活事件，执行因果与反应结算。',
+    longDescription: `【世界引擎】
+每日为虚拟世界演算周边环境事件：天气变化、邻居互动、集市见闻、意外惊喜。
+使用系统真随机数投掷命运骰子，确保每天的事件流不可预测。
+
+【因果闭环】
+Agent 通过 \`life_react\` 记录对事件的情感、思考与行动反应，
+这些反应会持久化到明天的世界状态中，形成真实的因果链条。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/create-simulated-events <your-agent-dir>/',
+    tags: ['Simulation', 'RPG', 'Living Agent', 'Emergence'],
+    highlights: ['真随机命运投骰', '因果持久化', '每日事件演算'],
+    createdDate: '2026-09-15'
+  },
+  {
+    id: 'skill-cross-check',
+    name: 'cross-check',
+    chineseName: '批判性子代理审查',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'search',
+    customColor: '#7209b7',
+    description: '使用子代理对当前的想法、结论、计划或决策进行批判性检查和核实。',
+    longDescription: `【触发时机】
+- 对计划感到不踏实时；
+- 感觉某个结论"可能有问题但说不清"时；
+- 决策证据不充足时；
+- 决策判断失误代价高、希望二次确保准确性时。
+
+【机制】
+拉起一个独立的子代理，将当前结论/计划/决策完整传递，
+要求其从反面立场进行批判性分析，寻找漏洞和反例，
+输出"确认通过"或"发现以下问题"的明确判断。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/cross-check <your-agent-dir>/',
+    tags: ['Verification', 'Critical Thinking', 'Subagent', 'Safety'],
+    highlights: ['独立子代理审查', '反面立场批判', '防止确认偏误'],
+    tips: '架构决策和高风险方案设计后务必 cross-check 一次！',
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-deep-auto',
+    name: 'deep-auto',
+    chineseName: '深度自动模式',
+    category: 'skills',
+    subCategory: 'workflow',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'cpu',
+    customColor: '#457b9d',
+    description: 'deep auto 模式：Agent 在极深层级自主运行，适合超长链路复杂工程。',
+    longDescription: `【与 full-auto 的区别】
+full-auto 替代所有用户交互，而 deep-auto 进一步提升推理深度：
+- 自动启用更深层的 reasoning effort；
+- 适合需要数十步连续推理、多子代理协作的复杂工程；
+- 在不确定时自动拉起 cross-check 和 deep-researcher。
+
+适用于夜间无人值守的大型重构或复杂调研任务。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/deep-auto <your-agent-dir>/',
+    tags: ['Automation', 'Deep Reasoning', 'Unattended'],
+    highlights: ['极深推理深度', '自动拉起子代理', '无人值守'],
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-delay-validation',
+    name: 'delay-validation',
+    chineseName: '延迟验证模式',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'check-circle-2',
+    customColor: '#fbbf24',
+    description: '原本需要用户确认的步骤由模型自行判断并记录待验证项，用户事后审阅。',
+    longDescription: `【设计理念】
+在全自动流程中，频繁的用户确认是最大瓶颈。本模式将确认推迟到事后：
+
+1. 高风险项仍然暂停等待用户；
+2. 低风险项由模型采取最佳判断后继续推进；
+3. 所有决策与待确认项记录到指定文档；
+4. 用户事后审阅文档，一次性确认或修正。
+
+可选 stopBefore 参数指定自动推进的截止阶段。计划将来替换 full-auto。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/delay-validation <your-agent-dir>/',
+    tags: ['Automation', 'Validation', 'Workflow', 'Future'],
+    highlights: ['事后审阅代替实时中断', '高风险项仍暂停', '决策留痕'],
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-dev-tunnel',
+    name: 'dev-tunnel',
+    chineseName: '临时 Cloudflare 隧道',
+    category: 'skills',
+    subCategory: 'ops',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'globe',
+    customColor: '#4361ee',
+    description: '一行命令给本地开发服务器开临时 Cloudflare 隧道（免登录 quick tunnel）。',
+    longDescription: `【用途】
+- 给用户展示本地 dev/preview 站点；
+- 外部回调（webhook）调试；
+- 手机真机访问本地服务。
+
+【实现】
+使用 cloudflared quick tunnel（trycloudflare.com），免登录即用即走。
+
+【本机坑】
+本机有系统级 cloudflared 配置会静默覆盖 --url 参数，
+导致隧道指向错误的后端。本技能含绕开方法与症状速查。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/dev-tunnel <your-agent-dir>/',
+    tags: ['Cloudflare', 'Tunnel', 'DevOps', 'Quick'],
+    highlights: ['一行命令开隧道', '免登录即用', '含本机坑绕开'],
+    tips: '隧道地址是临时的，重启就变。要持久暴露用 named-cf-tunnel 技能！',
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-full-auto',
+    name: 'full-auto',
+    chineseName: '全自动模式',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'cpu',
+    customColor: '#06d6a0',
+    description: '所有需要向用户提问、决策、授权的地方，替换为询问 auto_human 子代理。',
+    longDescription: `【全自动哲学】
+将所有需要用户判断的决策点（方案选择、参数确认、风险授权）交给一个扮演人类用户的 auto_human 子代理。
+
+【适用场景】
+- 夜间无人值守的批量工程；
+- 用户信任 Agent 判断力的快速迭代；
+- 多步骤流水线式开发。
+
+【局限】
+auto_human 子代理的判断力仍受模型限制，极高风险操作建议用 delay-validation 模式。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/full-auto <your-agent-dir>/',
+    tags: ['Automation', 'Auto-Human', 'Unattended'],
+    highlights: ['决策全自动', 'auto_human 代理', '流水线开发'],
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-gemini-imagegen',
+    name: 'gemini-imagegen',
+    chineseName: 'Gemini 旗舰生图',
+    category: 'skills',
+    subCategory: 'multimodal',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'palette',
+    customColor: '#3a86ff',
+    description: '基于 cpa 网关的 gemini-3.1-flash-image 模生图，走 chat/completions 流式接口。',
+    longDescription: `【接口规范】
+- 走 cpa 网关的 OpenAI 兼容 chat/completions 接口；
+- 图片以 base64 JPEG 在 delta.images 返回；
+- 含流式解析脚本，自动提取图片并保存。
+
+【与 seedream 的区别】
+Gemini 生图风格偏真实照片质感，seedream 更偏插画/动漫风格。
+两者互补，可根据场景选用。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/gemini-imagegen <your-agent-dir>/',
+    tags: ['ImageGen', 'Gemini', 'Multimodal', 'CPA'],
+    highlights: ['流式接口生图', 'base64 自动解析', '真实照片质感'],
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-grilling',
+    name: 'grilling',
+    chineseName: '刨根问底追问术',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'flame',
+    customColor: '#ff006e',
+    description: '围绕计划对用户进行刨根问底的追问，厘清计划的疑点和模糊地带。',
+    longDescription: `【场景】
+当用户给出一个模糊的需求或计划，直接开始做大概率会跑偏。
+本技能让 Agent 围绕计划的核心疑点，系统性地质问用户：
+- 目标优先级？
+- 边界在哪里？
+- 什么算成功？什么算失败？
+- 有哪些隐性约束？
+
+直到所有疑点都被消除，才进入实施阶段。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/grilling <your-agent-dir>/',
+    tags: ['Planning', 'Questioning', 'Requirements'],
+    highlights: ['系统性追问', '消除模糊地带', '防止跑偏'],
+    tips: '用户说"随便做"或需求只有一句话时，先 grill 一轮！',
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-handoff',
+    name: 'handoff',
+    chineseName: '交接文档生成',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'book-open',
+    customColor: '#f4a261',
+    description: '编写交接文档，将工作上下文传递给另一个 agent、同事、检视者或 oncall。',
+    longDescription: `【功能】
+生成结构化的交接文档，包含：
+- 当前任务进度与状态；
+- 已完成的工作与未完成的待办；
+- 关键决策与原因；
+- 环境信息与注意事项；
+- 下一步行动建议。
+
+可选参数指定目标受众（如 "to reviewer"、"给 QA"、"for oncall"），
+文档措辞会据此调整技术深度。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/handoff <your-agent-dir>/',
+    tags: ['Handoff', 'Documentation', 'Collaboration'],
+    highlights: ['结构化交接', '受众适配', '上下文无损传递'],
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-named-cf-tunnel',
+    name: 'named-cf-tunnel',
+    chineseName: '永久命名隧道',
+    category: 'skills',
+    subCategory: 'ops',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'shield-check',
+    customColor: '#06d6a0',
+    description: '将本机某个端口以固定自定义域名（*.<your-domain>）永久暴露到公网。',
+    longDescription: `【与临时隧道的区别】
+- 域名固定不变，重启不变；
+- 通过系统 Named Tunnel 实现，走 Cloudflare Edge CDN；
+- 可配合 Cloudflare Access 规则阻拦恶意扫描；
+- 适合持久部署站点、新增服务入口。
+
+【前置条件】
+需要已配置的 Cloudflare Named Tunnel（cloudflared 守护进程）和自持域名。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/named-cf-tunnel <your-agent-dir>/',
+    tags: ['Cloudflare', 'Tunnel', 'Domain', 'DevOps'],
+    highlights: ['域名固定不变', 'CDN 加速', '配合 Access 防护'],
+    tips: '新增持久服务时用这个，临时演示用 dev-tunnel。',
+    createdDate: '2026-09-15'
+  },
+  {
+    id: 'skill-officecli',
+    name: 'officecli',
+    chineseName: 'Office 文档 CLI 工具',
+    category: 'skills',
+    subCategory: 'office',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'scroll',
+    customColor: '#4361ee',
+    description: '使用 officecli CLI 工具创建、分析、校对和修改 Office 文档（.docx/.xlsx/.pptx）。',
+    longDescription: `【能力】
+- 创建 .docx/.xlsx/.pptx 文档；
+- 检查格式问题、查找内容问题；
+- 添加图表和数据可视化；
+- 校对与修改已有文档。
+
+通过命令行操作 Office 文档，无需安装桌面 Office 套件，
+特别适合在 Termux/容器环境中由 Agent 驱动自动化文档生成。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/officecli <your-agent-dir>/',
+    tags: ['Office', 'CLI', 'Document', 'Automation'],
+    highlights: ['三格式全覆盖', '无需桌面套件', 'Agent 友好接口'],
+    createdDate: '2026-08-20'
+  },
+  {
+    id: 'skill-restart-dsh',
+    name: 'restart-dsh',
+    chineseName: '安全重启 DSH',
+    category: 'skills',
+    subCategory: 'ops',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'zap',
+    customColor: '#e76f51',
+    description: '安全重启 dsh 服务——Agent 跑在 dsh 内部，直接 restart 会杀掉自己。',
+    longDescription: `【核心难题】
+Agent 的进程本身运行在 DSH 内部。直接 \`supervisorctl restart dsh\` 会杀掉 Agent 连同 bash 命令一起终止。
+
+【安全方案】
+1. 用 setsid 延迟 detach 重启，让自己先脱钩；
+2. 重启前必须先在单独端口验证 DSH 能稳定运行；
+3. 验证通过才重启线上实例；
+4. 重启线上实例前必须先征求用户书面同意。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/restart-dsh <your-agent-dir>/',
+    tags: ['DSH', 'Restart', 'Safety', 'Ops'],
+    highlights: ['自杀式重启安全方案', '验证先行', '用户书面同意'],
+    tips: '修改了 cordis.patch.yml 后需要重启 DSH 生效，务必用这个技能！',
+    createdDate: '2026-09-15'
+  },
+  {
+    id: 'skill-spawn-deep-researcher',
+    name: 'spawn-deep-researcher',
+    chineseName: '深度调研子代理调度',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'search',
+    customColor: '#4361ee',
+    description: '使用 deep-researcher 子代理对特定主题进行深度、广泛、准确的网络调研。',
+    longDescription: `【使用时机】
+当需要对特定主题进行高质量调研时优先使用本技能，
+而不是让主 Agent 自己进行零散搜索。
+
+【流程】
+1. 阅读本技能了解调度规范；
+2. 拉起 deep-researcher 子代理；
+3. 传递调研主题、深度要求和输出格式；
+4. 子代理返回全面、准确、包含来源的调研报告。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/spawn-deep-researcher <your-agent-dir>/',
+    tags: ['Research', 'Subagent', 'Web Search', 'Report'],
+    highlights: ['独立子代理深度调研', '来源可靠', '结构化报告'],
+    tips: '拉起 deep-researcher 前必须先阅读本技能！',
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-spawn-reviewer',
+    name: 'spawn-reviewer',
+    chineseName: '代码审查子代理调度',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'check-circle-2',
+    customColor: '#2a9d8f',
+    description: '使用 reviewer 子代理进行高质量的代码审查，拉起前必须阅读本技能。',
+    longDescription: `【审查标准】
+reviewer 子代理从设计、实现、用户体验多方面进行审查，输出：
+- 阻塞问题（P0/P1）；
+- 建议改进（P2）；
+- 非阻塞问题（P3）；
+- 准入结论（通过/不通过）。
+
+【准入门槛】
+不达到准入标准坚决不交付。这是 workflow-implement-review 铁三角的审查环节基石。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/spawn-reviewer <your-agent-dir>/',
+    tags: ['Code Review', 'Subagent', 'Quality', 'Gate'],
+    highlights: ['多维度审查', '问题分级', '准入结论'],
+    tips: '拉起 reviewer 前必须先阅读本技能了解审查范围与输出格式！',
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-teach-me',
+    name: 'teach-me',
+    chineseName: '技术深度长文生成',
+    category: 'skills',
+    subCategory: 'office',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'book-open',
+    customColor: '#ffb703',
+    description: '围绕当前需求、设计或问题，为独立开发者写一篇技术深度长文。',
+    longDescription: `【与 code-deep-dive 的区别】
+code-deep-dive 为 vibe coding 项目生成学习长文（偏补课性质）；
+teach-me 则围绕当前正在做的需求/设计/问题，把核心设计、关键路径、实现细节讲透。
+
+【输出规范】
+- 附原始代码节选与 \`路径:行号\` 链接；
+- 面向独立开发者（懂技术但可能不熟悉这个特定领域）；
+- 可选参数指定要学习的主题。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/teach-me <your-agent-dir>/',
+    tags: ['Learning', 'Documentation', 'Deep Dive', 'Teaching'],
+    highlights: ['围绕当前需求', '代码节选带行号', '面向独立开发者'],
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-tidy',
+    name: 'tidy',
+    chineseName: '冗余修改清理',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'normal',
+    stackSize: 1,
+    iconType: 'sparkles',
+    customColor: '#90e0ef',
+    description: '清理无用/冗余的修改，保持工作区干净。',
+    longDescription: `【场景】
+在多轮迭代开发中，Agent 可能留下：
+- 废弃的注释代码；
+- 临时调试用的 console.log/print；
+- 不再使用的导入语句；
+- 半完成然后放弃的函数桩。
+
+本技能让 Agent 主动扫描并清理这些垃圾，保持代码库整洁。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/tidy <your-agent-dir>/',
+    tags: ['Cleanup', 'Code Quality', 'Hygiene'],
+    highlights: ['主动清理垃圾', '保持工作区整洁', '童子军法则'],
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-try',
+    name: 'try',
+    chineseName: '可回退文件备份',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'database',
+    customColor: '#2a9d8f',
+    description: '为目标文件创建可回退的备份，在对文件做不确定的破坏性修改前必须使用。',
+    longDescription: `【核心理念】
+不确定的修改，先备份再动手。
+
+【机制】
+- 为目标文件创建带时间戳的备份副本；
+- 修改后如果效果不对，可以一键回退到备份版本；
+- 备份文件放在固定位置，便于管理。
+
+【触发条件】
+- 要对特定文件做不确定的破坏性修改时；
+- 用户希望可以轻松回退时。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/try <your-agent-dir>/',
+    tags: ['Backup', 'Safety', 'Rollback', 'File'],
+    highlights: ['一键回退', '时间戳备份', '破坏性修改前置'],
+    tips: '不确定的改动先 try 一下，比 git stash 更精准！',
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-unstuck',
+    name: 'unstuck',
+    chineseName: '脱困退一步分析',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'sparkles',
+    customColor: '#ff6000',
+    description: '对同一问题连续修改两次都未达预期时，立刻暂停并退一步重新分析。',
+    longDescription: `【反模式】
+继续试错只会引入更多不确定性。当连续两次修改都没达到预期效果时，
+说明 Agent 对问题的理解有误，继续在同一方向上发力只是浪费资源。
+
+【正确做法】
+1. 立刻暂停手上的工作；
+2. 使用本技能；
+3. 退一步重新分析问题根因；
+4. 考虑是否需要换个方向或拉起 deep-researcher 调研。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/unstuck <your-agent-dir>/',
+    tags: ['Troubleshooting', 'Mindset', 'Anti-Pattern', 'Safety'],
+    highlights: ['两次失败即停', '退一步重分析', '防止越改越乱'],
+    tips: '两次修改没修好？停下！不是你不努力，是方向有问题。',
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-update-ive-learned',
+    name: 'update-ive-learned',
+    chineseName: 'What I\'ve Learned 站点更新',
+    category: 'skills',
+    subCategory: 'office',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'scroll',
+    customColor: '#52b788',
+    description: '更新 What I\'ve Learned 个人学习记录站：新增条目、backlog 晋升、发布到 GitHub Pages。',
+    longDescription: `【站点功能】
+个人学习记录站，记录已学知识和想学清单。
+
+【操作类型】
+- 新增 learned 条目（已学过的东西）；
+- 新增 backlog 条目（想学的东西）；
+- backlog 晋升为 learned（学完了）；
+- 发布更新到 GitHub Pages。
+
+本技能只讲更新方法，不含写作风格建议。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/update-ive-learned <your-agent-dir>/',
+    tags: ['Learning', 'GitHub Pages', 'Personal', 'Site'],
+    highlights: ['条目增删改', 'backlog 晋升', '一键发布'],
+    createdDate: '2026-09-15'
+  },
+  {
+    id: 'skill-update-module-instruction',
+    name: 'update-module-instruction',
+    chineseName: '模块级 AGENTS.md 规范',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'normal',
+    stackSize: 1,
+    iconType: 'book-open',
+    customColor: '#f4a261',
+    description: '模块/子模块级 AGENTS.md 更新规范，记录对该模块后续开发有明确收益的经验。',
+    longDescription: `【触发时机】
+- 新建目录时；
+- 新需求开发结束时；
+- 重构结束时；
+- 记录对该模块后续开发有明确收益的经验时。
+
+【原则】
+只记录对后续开发有明确收益的信息，不记流水账。
+内容包括：模块职责、关键约束、常见陷阱、测试命令。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/update-module-instruction <your-agent-dir>/',
+    tags: ['AGENTS.md', 'Module', 'Documentation', 'Convention'],
+    highlights: ['模块级指引', '经验沉淀', '非流水账'],
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-update-project-instruction',
+    name: 'update-project-instruction',
+    chineseName: '项目级 AGENTS.md 规范',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'normal',
+    stackSize: 1,
+    iconType: 'book-open',
+    customColor: '#e76f51',
+    description: '项目级 AGENTS.md 更新规范，更新必须了解的工作流程、测调命令、开发规范。',
+    longDescription: `【触发时机】
+- 新建项目时；
+- 新建或重构模块时；
+- 更新必须了解的工作流程、测调命令、开发规范时。
+
+【与模块级的区别】
+项目级 AGENTS.md 是整个项目的入口指引，
+包含：项目目标、目录地图、开发与调试命令、全局规范。
+模块级是具体子目录的局部指引。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/update-project-instruction <your-agent-dir>/',
+    tags: ['AGENTS.md', 'Project', 'Documentation', 'Convention'],
+    highlights: ['项目入口指引', '目录地图', '全局规范'],
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-update-references',
+    name: 'update-references',
+    chineseName: '通用参考文档规范',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'normal',
+    stackSize: 1,
+    iconType: 'book-open',
+    customColor: '#916132',
+    description: 'project_root/references 目录的更新规范，用于不隶属于特定功能的通用规范。',
+    longDescription: `【用途】
+当需要更新不隶属于特定功能的通用规范时使用。
+如：代码提交规范、测试用例规范、文档规范、版本管理等。
+
+【与 docs/references 的区别】
+references/ 存放的是"规则"（该怎么做），
+docs/references/ 存放的是"参考"（可以怎么查）。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/update-references <your-agent-dir>/',
+    tags: ['References', 'Convention', 'Documentation'],
+    highlights: ['通用规范维护', '不隶属特定功能', '规则而非参考'],
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-update-validation-requirements',
+    name: 'update-validation-requirements',
+    chineseName: '用户验收要求文档',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'normal',
+    stackSize: 1,
+    iconType: 'check-circle-2',
+    customColor: '#2a9d8f',
+    description: '创建或更新需求、问题的用户验证要求文档，尤其需要真实设备/环境验证时使用。',
+    longDescription: `【场景】
+实施内容需要用户验收时，尤其需要：
+- 真实设备验证（如手机端体验）；
+- 真实环境验证（如公网隧道连通性）；
+- 真实交互验证（如 IM 消息收发）。
+
+生成文档明确列出：
+- 需要验证的场景清单；
+- 预期结果；
+- 实际操作步骤；
+- 回归测试要点。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/update-validation-requirements <your-agent-dir>/',
+    tags: ['Validation', 'User Acceptance', 'Testing', 'Document'],
+    highlights: ['场景清单化', '操作步骤明确', '回归测试要点'],
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-update-yaagb',
+    name: 'update-yaagb',
+    chineseName: 'AI 自生成博客更新',
+    category: 'skills',
+    subCategory: 'office',
+    rarity: 'silver',
+    stackSize: 1,
+    iconType: 'scroll',
+    customColor: '#f72585',
+    description: '更新 yet-another-ai-generated-blog（AI 自生成博客），涉及该博客任何更新时使用。',
+    longDescription: `【操作范围】
+- 新增/修改文章；
+- 改站点配置；
+- 发布到 GitHub Pages。
+
+【站点性质】
+yet-another-ai-generated-blog 是一个由 AI 自主生成内容的博客站点，
+文章内容由 Agent 撰写，站点配置和发布流程由本技能规范。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/update-yaagb <your-agent-dir>/',
+    tags: ['Blog', 'GitHub Pages', 'Content', 'Site'],
+    highlights: ['文章增改', '站点配置', '一键发布'],
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-web-search-best-practice',
+    name: 'web-search-best-practice',
+    chineseName: '网络搜索方法论',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'search',
+    customColor: '#4361ee',
+    description: '网络搜索的方法论和最佳实践，进行网络搜索前必须使用本技能。',
+    longDescription: `【核心理念】
+充分的搜索和调研能帮助避免误区、了解 best practice 和事实基准。
+
+【方法论】
+1. 先搜索再行动：任何与外部事实相关的活动和任何疑虑，先搜索到 95%+ 把握才继续；
+2. 简单搜索在父会话进行；
+3. 对特定主题的深入调研使用 spawn-deep-researcher 子代理；
+4. 搜索后用 web_fetch 获取全文内容；
+5. 引用来源 URL 作为 markdown 链接。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/web-search-best-practice <your-agent-dir>/',
+    tags: ['Search', 'Methodology', 'Best Practice', 'Must-Read'],
+    highlights: ['搜索先行', '95% 把握阈值', '父会话 vs 子代理'],
+    tips: '进行任何网络搜索前必须先读这个技能！',
+    createdDate: '2026-08-26'
+  },
+  {
+    id: 'skill-workflow-leader',
+    name: 'workflow-leader',
+    chineseName: '项目领导工作流',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'check-circle-2',
+    customColor: '#e76f51',
+    description: '项目领导工作流，当用户给出愿景希望 AI 自主、持续推进项目方向时使用。',
+    longDescription: `【适用场景】
+用户给出一个宏观愿景（如"做一个像素游戏背包展示系统"），
+希望 Agent 自主规划方向、拆解任务、持续推进。
+
+【与 manage-tasks 的区别】
+- workflow-leader：从愿景出发，自主规划方向和优先级；
+- workflow-manage-tasks：一次给出多条任务，协调多个子代理并行执行。
+
+leader 是"想做什么"，manage-tasks 是"怎么分配做"。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/workflow-leader <your-agent-dir>/',
+    tags: ['Leadership', 'Vision', 'Autonomous', 'Workflow'],
+    highlights: ['愿景驱动', '自主规划', '持续推进'],
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-workflow-manage-tasks',
+    name: 'workflow-manage-tasks',
+    chineseName: '任务分派工作流',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'check-circle-2',
+    customColor: '#457b9d',
+    description: '任务分派工作流，当用户一次提出多条任务、需要协调多个子代理时使用。',
+    longDescription: `【核心流程】
+1. 接收用户一次提出的多个任务；
+2. 分析任务间的依赖关系；
+3. 将独立任务分派给不同子代理并行执行；
+4. 有依赖的任务按序串行；
+5. 汇总各子代理结果。
+
+【与 leader 的区别】
+manage-tasks 是执行层的任务分配，leader 是方向层的愿景规划。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/workflow-manage-tasks <your-agent-dir>/',
+    tags: ['Task Management', 'Multi-Agent', 'Coordination', 'Workflow'],
+    highlights: ['多任务并行', '依赖分析', '子代理协调'],
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-workflow-research-plan',
+    name: 'workflow-research-plan',
+    chineseName: '调研设计工作流',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'search',
+    customColor: '#7209b7',
+    description: '需求调研设计工作流，进行中等以上规模需求开发、架构设计和重构前必须遵守。',
+    longDescription: `【前置门槛】
+任何中等以上规模的需求开发、架构设计和重构，
+必须先走完本工作流的调研与设计阶段，才能进入实施。
+
+【流程】
+1. Research：调研现状、best practice、技术选型；
+2. Plan：输出结构化设计文档，包含架构图、数据流、关键决策；
+3. Review：cross-check 设计合理性；
+4. 才进入 implement-review 流程。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/workflow-research-plan <your-agent-dir>/',
+    tags: ['Research', 'Planning', 'Architecture', 'Must-Read'],
+    highlights: ['调研先行', '结构化设计', 'cross-check 把关'],
+    tips: '中等以上规模开发前必须走这个流程，先想清楚再动手！',
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-workflow-troubleshoot',
+    name: 'workflow-troubleshoot',
+    chineseName: '根因分析工作流',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'flame',
+    customColor: '#d00000',
+    description: '根因分析工作流，排查复杂问题时必须遵守此流程分析原因。',
+    longDescription: `【流程】
+1. 现象收集：完整记录故障现象、触发条件、环境信息；
+2. 假设生成：基于现象列出所有可能的根因假设；
+3. 假设验证：逐个设计验证实验，排除或确认假设；
+4. 根因确认：定位到唯一根因；
+5. 修复方案：针对根因而非症状给出修复；
+6. 验证回归：修复后验证不再复现。
+
+【与 unstuck 的关系】
+unstuck 是"两次失败就停"，troubleshoot 是"停下来后的系统分析方法"。`,
+    author: 'John Ren',
+    installCommand: 'cp -r ~/.agents/skills/workflow-troubleshoot <your-agent-dir>/',
+    tags: ['Troubleshooting', 'Root Cause', 'Workflow', 'Must-Read'],
+    highlights: ['假设驱动分析', '根因而非症状', '验证回归'],
+    tips: '复杂问题排查必须走这个流程，别凭直觉乱改！',
+    createdDate: '2026-09-10'
+  },
+  {
+    id: 'skill-max-effort',
+    name: 'max-effort',
+    chineseName: '极致交付模式',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'iridium',
+    stackSize: 1,
+    iconType: 'cpu',
+    customColor: '#e63946',
+    description: '在对用户精力消耗最少的情况下，将简略 idea 转变为极致体验的完整可交付产物。',
+    longDescription: `【核心理念】
+用户给一个 idea，Agent 自主完成从设计到交付的全链路：
+- 自主调研、规划、实施、测试、文档化；
+- 端到端测试子代理验证功能与体验；
+- 决策台账留痕，交付时输出审计包。
+
+【与 full-auto 的区别】
+full-auto 只是把决策交给 auto_human 子代理；
+max-effort 进一步追求极致质量，自动拉起 e2e-tester 子代理进行端到端测试，
+确保不只是"能跑"而是"好用"。
+
+【推荐用法】
+/max-effort autoplay
+夜间无人值守，一次性交付完整功能。`,
+    author: 'john-walks-slow',
+    installCommand: 'apm install -g john-walks-slow/rabbit-skills',
+    tags: ['Automation', 'Quality', 'E2E', 'Max-Effort'],
+    highlights: ['极致质量', '端到端测试', '审计包输出', '用户精力最小化'],
+    tips: 'full-auto 的进化版，推荐替代 full-auto 使用。',
+    createdDate: '2026-09-15'
+  },
+  {
+    id: 'skill-spawn-e2e-tester',
+    name: 'spawn-e2e-tester',
+    chineseName: '端到端测试子代理调度',
+    category: 'skills',
+    subCategory: 'rabbit-skills',
+    rarity: 'gold',
+    stackSize: 1,
+    iconType: 'check-circle-2',
+    customColor: '#06d6a0',
+    description: '使用 e2e-tester 子代理对指定功能/修复执行端到端测试，输出含证据的测试报告。',
+    longDescription: `【子代理能力】
+e2e-tester 子代理执行两类测试：
+1. 功能类测试：验证功能是否按预期工作；
+2. 体验类测试：验证用户交互体验是否流畅。
+
+输出结构化测试报告，包含：
+- 测试项清单；
+- 每项的结论（通过/失败/警告）；
+- 支撑证据（截图、日志、实际行为描述）。
+
+【与 spawn-reviewer 的区别】
+spawn-reviewer 审查代码质量（静态）；
+spawn-e2e-tester 验证运行行为（动态）。`,
+    author: 'john-walks-slow',
+    installCommand: 'apm install -g john-walks-slow/rabbit-skills',
+    tags: ['E2E', 'Testing', 'Subagent', 'Quality'],
+    highlights: ['功能+体验双测', '证据驱动', '结构化报告'],
+    createdDate: '2026-09-15'
   }
 ];
 

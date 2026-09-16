@@ -1,7 +1,7 @@
 export type CategoryId = 'plugins' | 'skills' | 'mcp' | 'books';
 
 export type PluginSubCategory = 'core' | 'tools' | 'workflow' | 'experiment';
-export type SkillSubCategory = 'workflow' | 'ops' | 'ai-core' | 'multimodal' | 'office';
+export type SkillSubCategory = 'workflow' | 'ops' | 'ai-core' | 'multimodal' | 'office' | 'rabbit-skills';
 export type McpSubCategory = 'search' | 'research' | 'browser' | 'system';
 export type BookSubCategory = 'pitfalls' | 'architecture' | 'agent-tricks' | 'container';
 

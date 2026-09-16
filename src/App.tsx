@@ -81,7 +81,8 @@ export const App: React.FC = () => {
           { id: 'workflow' as SubCategory, label: '交付' },
           { id: 'ai-core' as SubCategory, label: '核心AI' },
           { id: 'office' as SubCategory, label: '研习' },
-          { id: 'multimodal' as SubCategory, label: '生图' }
+          { id: 'multimodal' as SubCategory, label: '生图' },
+          { id: 'rabbit-skills' as SubCategory, label: '🐰兔包' }
         ];
       case 'mcp':
         return [
