@@ -151,34 +151,34 @@ export const App: React.FC = () => {
         </div>
       </header>
 
-      {/* Main Inventory Menu Frame */}
-      <main className="sdv-menu-frame mt-7 p-3 sm:p-4 flex-1 flex flex-col relative min-h-0">
-        {/* Top Category Tabs (Authentic Stardew Style - sits on the top border, horizontally scrollable on small screens) */}
-        <div className="flex items-end gap-1 -mt-9 sm:-mt-10 mb-2 px-0.5 z-30 overflow-x-auto no-scrollbar shrink-0">
-          {[
-            { id: 'plugins', label: '插件', icon: 'puzzle', count: PLUGINS_DATA.length },
-            { id: 'skills', label: '技能', icon: 'terminal', count: SKILLS_DATA.length },
-            { id: 'mcp', label: 'MCP', icon: 'search', count: MCP_DATA.length },
-            { id: 'books', label: '秘籍', icon: 'book-open', count: BOOKS_DATA.length }
-          ].map((tab) => {
-            const isActive = activeCategory === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => handleCategoryChange(tab.id as CategoryId)}
-                onMouseEnter={() => retroAudio.playHover()}
-                className={`sdv-tab-btn px-3 py-1 text-xs font-bold flex items-center gap-1 shrink-0 ${
-                  isActive ? 'active' : ''
-                }`}
-              >
-                <PixelArtIcon name={tab.icon} size={14} />
-                <span>{tab.label}</span>
-                <span className="text-[10px] px-1 bg-[#4a2113]/20 rounded-none">{tab.count}</span>
-              </button>
-            );
-          })}
-        </div>
+      {/* Top Category Tabs (Authentic Stardew Style - sits directly on top of the menu frame) */}
+      <div className="flex items-end gap-1.5 px-3 z-30 shrink-0 mt-3 -mb-[4px] overflow-visible">
+        {[
+          { id: 'plugins', label: '插件', icon: 'puzzle', count: PLUGINS_DATA.length },
+          { id: 'skills', label: '技能', icon: 'terminal', count: SKILLS_DATA.length },
+          { id: 'mcp', label: 'MCP', icon: 'search', count: MCP_DATA.length },
+          { id: 'books', label: '秘籍', icon: 'book-open', count: BOOKS_DATA.length }
+        ].map((tab) => {
+          const isActive = activeCategory === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => handleCategoryChange(tab.id as CategoryId)}
+              onMouseEnter={() => retroAudio.playHover()}
+              className={`sdv-tab-btn px-3.5 py-1 text-xs font-bold flex items-center gap-1.5 shrink-0 ${
+                isActive ? 'active' : ''
+              }`}
+            >
+              <PixelArtIcon name={tab.icon} size={14} />
+              <span>{tab.label}</span>
+              <span className="text-[10px] px-1 bg-[#4a2113]/20 rounded-none">{tab.count}</span>
+            </button>
+          );
+        })}
+      </div>
 
+      {/* Main Inventory Menu Frame */}
+      <main className="sdv-menu-frame p-3 sm:p-4 flex-1 flex flex-col relative min-h-0">
         {/* Interior Container: Grid on Left (60%), Details on Right (40%) */}
         <div className="flex-1 min-h-0 flex flex-col lg:block">
           {activeCategory === 'books' ? (
