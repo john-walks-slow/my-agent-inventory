@@ -151,8 +151,8 @@ export const App: React.FC = () => {
         </div>
       </header>
 
-      {/* Top Category Tabs (Authentic Stardew Style - sits directly on top of the menu frame) */}
-      <div className="flex items-end gap-1.5 px-3 z-30 shrink-0 mt-3 -mb-[4px] overflow-visible">
+      {/* Top Category Tabs (Authentic Stardew Style - horizontal scrollable on mobile, strictly no vertical overflow) */}
+      <div className="h-10 flex items-end gap-1.5 px-2 z-30 shrink-0 mt-2 -mb-[4px] overflow-x-auto overflow-y-hidden no-scrollbar">
         {[
           { id: 'plugins', label: '插件', icon: 'puzzle', count: PLUGINS_DATA.length },
           { id: 'skills', label: '技能', icon: 'terminal', count: SKILLS_DATA.length },

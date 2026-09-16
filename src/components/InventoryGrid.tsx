@@ -48,9 +48,9 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
 
   return (
     <div className="flex flex-col h-full">
-      {/* Top Filter Bar: Subcategories & Search Input */}
-      <div className="flex flex-wrap items-center justify-between gap-1.5 mb-2 bg-[#ecd0a6] p-1.5 border-2 border-[#6e2e05] rounded-sm shadow-inner shrink-0">
-        <div className="flex flex-wrap gap-1">
+      {/* Top Filter Bar: Subcategories (horizontal scroll) & Search Input */}
+      <div className="flex items-center justify-between gap-1.5 mb-2 bg-[#ecd0a6] p-1.5 border-2 border-[#6e2e05] rounded-sm shadow-inner shrink-0">
+        <div className="flex items-center gap-1 overflow-x-auto overflow-y-hidden no-scrollbar py-0.5 flex-1 min-w-0 mr-1">
           {subCategoryOptions.map((opt) => (
             <button
               key={opt.id}
@@ -58,7 +58,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
                 retroAudio.playTab();
                 onSelectSubCategory(opt.id);
               }}
-              className={`px-2 py-0.5 text-xs font-bold transition-all ${
+              className={`px-2 py-0.5 text-xs font-bold transition-all shrink-0 ${
                 subCategory === opt.id
                   ? 'bg-[#fff1d0] text-[#381503] border border-[#6e2e05] shadow-[0_1px_0_#4a2113]'
                   : 'bg-[#d98236] text-[#fff] border border-[#6e2e05] hover:bg-[#e59349]'
@@ -69,15 +69,15 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
           ))}
         </div>
 
-        <div className="relative flex items-center">
+        <div className="relative flex items-center shrink-0">
           <input
             type="text"
-            placeholder="搜索物品/标签..."
+            placeholder="搜索..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-36 text-xs px-2 py-0.5 pl-6 bg-[#fff6e0] text-[#381503] placeholder-[#78350f]/60 border border-[#6e2e05] rounded-none focus:outline-none focus:bg-[#fff]"
+            className="w-24 sm:w-32 text-xs px-1.5 py-0.5 pl-5 bg-[#fff6e0] text-[#381503] placeholder-[#78350f]/60 border border-[#6e2e05] rounded-none focus:outline-none focus:bg-[#fff]"
           />
-          <Search size={12} className="absolute left-1.5 text-[#78350f] pointer-events-none" />
+          <Search size={11} className="absolute left-1 text-[#78350f] pointer-events-none" />
         </div>
       </div>
 

@@ -202,13 +202,14 @@ html, body {
   background: #fff4d1;
 }
 
-/* Hide scrollbars for clean tabs */
+/* Hide scrollbars for clean tabs and filters */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 /* Stardew Parchment Reader */
 .sdv-parchment-sheet {
