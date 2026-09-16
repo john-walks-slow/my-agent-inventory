@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'PixelFont';
+  src: url('/fonts/Silkscreen.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PixelCJK';
+  src: url('/fonts/DotGothic16.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PixelRetro';
+  src: url('/fonts/VT323.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --sdv-wood-outer: #5b2b2a;
+  --sdv-wood-border: #853605;
+  --sdv-wood-highlight: #b14e05;
+  --sdv-wood-bg: #d68f54;
+  --sdv-wood-inner: #f3b46c;
+  --sdv-wood-slot-bg: #e4ae6e;
+  --sdv-wood-slot-inset: #853605;
+  --sdv-wood-slot-highlight: #ffe4a1;
+  --sdv-text-dark: #3a1a06;
+  --sdv-text-title: #4d2208;
+  --sdv-gold: #ffcc00;
+  --sdv-gold-shadow: #996600;
+  
+  --parchment-bg: #f7e8c3;
+  --parchment-border: #916132;
+  --parchment-inset: #e0cca2;
+}
+
+* {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  box-sizing: border-box;
+}
+
+button, .sdv-slot, .sdv-tab, .sdv-btn {
+  user-select: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #2b1d14;
+  background-image: 
+    radial-gradient(#4a3321 15%, transparent 16%),
+    radial-gradient(#3a2517 15%, transparent 16%);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+  color: var(--sdv-text-dark);
+  font-family: 'PixelCJK', 'PixelFont', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Stardew Valley 9-Slice Menu Box */
+.sdv-box {
+  background-color: #ffc376;
+  border-style: solid;
+  border-width: 16px;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23ffc376'/%3E%3C!-- Outer dark border --%3E%3Cpath d='M8 0h32v4h8v8h-4v28h-4v8H8v-4H4v-8H0V12h4V4h4V0z' fill='%235b2b2a'/%3E%3C!-- Inner brown border --%3E%3Cpath d='M8 4h32v4h4v32h-4v4H8v-4H4V8h4V4z' fill='%23853605'/%3E%3C!-- Warm highlight edge --%3E%3Cpath d='M8 8h32v4h-4v24h-4v4H12v-4H8V8z' fill='%23b14e05'/%3E%3Crect x='12' y='12' width='24' height='24' fill='%23ffc376'/%3E%3C!-- Corner details --%3E%3Crect x='4' y='4' width='4' height='4' fill='%23e4ae6e'/%3E%3Crect x='40' y='4' width='4' height='4' fill='%23e4ae6e'/%3E%3Crect x='4' y='40' width='4' height='4' fill='%23b14e05'/%3E%3Crect x='40' y='40' width='4' height='4' fill='%23b14e05'/%3E%3C/svg%3E") 16 repeat;
+  box-shadow: 0 12px 0 rgba(0, 0, 0, 0.45);
+}
+
+/* Slot Grid Inset Cell */
+.sdv-slot {
+  background-color: #e4ae6e;
+  box-shadow: 
+    inset 3px 3px 0px #853605,
+    inset -3px -3px 0px #ffe4a1,
+    inset 0 0 0 1px #5b2b2a;
+  position: relative;
+  transition: transform 0.05s ease;
+}
+
+.sdv-slot:hover {
+  background-color: #f7cb88;
+  box-shadow: 
+    inset 3px 3px 0px #b14e05,
+    inset -3px -3px 0px #fff4d1,
+    0 0 0 2px #ffcc00;
+}
+
+.sdv-slot.active {
+  background-color: #ffe4a1;
+  box-shadow: 
+    inset 3px 3px 0px #b14e05,
+    inset -3px -3px 0px #ffffff,
+    0 0 0 3px #ff3300,
+    0 0 8px rgba(255, 204, 0, 0.8);
+}
+
+/* Tab Button Style */
+.sdv-tab {
+  background-color: #d68f54;
+  border-top: 4px solid #ffe4a1;
+  border-left: 4px solid #ffe4a1;
+  border-right: 4px solid #853605;
+  border-bottom: 4px solid #5b2b2a;
+  color: #3a1a06;
+  text-shadow: 1px 1px 0px #ffe4a1;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.sdv-tab:hover {
+  background-color: #eba867;
+  transform: translateY(-2px);
+}
+
+.sdv-tab.active {
+  background-color: #ffc376;
+  border-bottom: 4px solid #ffc376;
+  margin-bottom: -4px;
+  z-index: 10;
+  box-shadow: 0 -4px 0 #5b2b2a;
+}
+
+/* SDV Button */
+.sdv-btn {
+  background-color: #d68f54;
+  border-top: 3px solid #ffe4a1;
+  border-left: 3px solid #ffe4a1;
+  border-right: 3px solid #853605;
+  border-bottom: 3px solid #5b2b2a;
+  color: #3a1a06;
+  font-family: 'PixelCJK', 'PixelFont', sans-serif;
+  text-shadow: 1px 1px 0px #ffe4a1;
+  padding: 6px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 4px 0 #2a1205;
+}
+
+.sdv-btn:hover {
+  background-color: #eba867;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #2a1205;
+}
+
+.sdv-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #2a1205;
+  border-top: 3px solid #853605;
+  border-left: 3px solid #853605;
+  border-right: 3px solid #ffe4a1;
+  border-bottom: 3px solid #ffe4a1;
+}
+
+/* Parchment / Book Style */
+.sdv-parchment {
+  background-color: #f7e8c3;
+  border: 8px solid #916132;
+  box-shadow: 
+    inset 0 0 16px rgba(145, 97, 50, 0.4),
+    0 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 14px;
+}
+::-webkit-scrollbar-track {
+  background: #d68f54;
+  border-left: 2px solid #853605;
+  border-right: 2px solid #5b2b2a;
+}
+::-webkit-scrollbar-thumb {
+  background: #ffc376;
+  border: 3px solid #853605;
+  box-shadow: inset 1px 1px 0 #ffe4a1;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffe4a1;
+}
