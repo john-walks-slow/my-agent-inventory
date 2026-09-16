@@ -107,13 +107,6 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
                 } ${!item ? 'opacity-80 cursor-default' : ''}`}
                 title={item ? `${item.name} (${item.chineseName})` : `空闲格子 [${idx + 1}]`}
               >
-                {/* Hotbar index badge for the first 12 slots */}
-                {idx < 12 && (
-                  <span className="absolute top-0.5 left-0.5 text-[8px] font-mono font-bold text-[#6e2e05]/60 pointer-events-none leading-none">
-                    {(idx + 1) % 10}
-                  </span>
-                )}
-
                 {item && (
                   <div className="w-full h-full flex items-center justify-center p-1">
                     <PixelArtIcon name={item.iconType} size={28} className="max-w-full max-h-full" />
