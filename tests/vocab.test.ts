@@ -19,7 +19,7 @@ function assertAllNonEmpty(obj: object, path: string) {
   }
 }
 
-test('四主题词汇表：rarity/detail/hud/reader 全键非空', () => {
+test('四主题词汇表：rarity/detail/hud/reader/jobs/since 全键非空', () => {
   for (const t of THEMES) {
     const v: ThemeVocab = THEME_VOCAB[t];
     for (const r of RARITIES) {
@@ -28,6 +28,10 @@ test('四主题词汇表：rarity/detail/hud/reader 全键非空', () => {
     assertAllNonEmpty(v.detail, `${t}.detail`);
     assertAllNonEmpty(v.hud, `${t}.hud`);
     assertAllNonEmpty(v.reader, `${t}.reader`);
+    assert.ok(v.since.length > 0, `${t}.since`);
+    for (const sec of ['plugins', 'skills', 'mcp', 'tools', 'tomes'] as const) {
+      assert.ok(v.jobs[sec]?.length, `${t}.jobs.${sec} 缺失`);
+    }
     // currency.glyph 必填；unit 允许空串（如 ₽ 无单位后缀）
     assert.ok(v.currency.glyph.length > 0, `${t}.currency.glyph`);
     assert.equal(typeof v.currency.unit, 'string', `${t}.currency.unit 应为字符串`);
@@ -46,7 +50,7 @@ test('四主题词汇表：rarity/detail/hud/reader 全键非空', () => {
 test('getVocab：未知/缺省主题回退 stardew', () => {
   assert.equal(getVocab(undefined).bagLabel, THEME_VOCAB.stardew.bagLabel);
   assert.equal(getVocab('nope').bagLabel, THEME_VOCAB.stardew.bagLabel);
-  assert.equal(getVocab('diablo').reader.title, THEME_VOCAB.diablo.reader.title);
+  assert.equal(getVocab('diablo').reader.empty, THEME_VOCAB.diablo.reader.empty);
 });
 
 test('sectionLabel：显式 label > 主题词汇 > id 兜底', () => {

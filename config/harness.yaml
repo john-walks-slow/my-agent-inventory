@@ -32,7 +32,7 @@ sections:
         name: dsh-wait-subagent
         title: 子代理收敛同步器
         icon: hourglass
-        rarity: iridium
+        rarity: legendary
         category: tools
         description: 阻塞等待指定后台子代理（continuable subagent）执行完毕并提取其终结输出。
         version: 1.0.0
@@ -62,7 +62,7 @@ sections:
         name: dsh-clear-mind
         title: 思维蒸馏与上下文收敛
         icon: sparkles
-        rarity: iridium
+        rarity: legendary
         category: core
         description: Agent 自主上下文剪枝与压缩检查点工具，把长会话蒸馏成精简快照。
         stack: 99
@@ -89,7 +89,7 @@ sections:
         name: dsh-web-transport-trust
         title: Web 传输宿主鉴权解锁
         icon: shield-check
-        rarity: gold
+        rarity: epic
         category: core
         description: 突破浏览器同源与 loopback 限制，使公网命名隧道等远程环境享有完整宿主管理权限。
         version: 0.1.0
@@ -110,7 +110,7 @@ sections:
         name: dsh-whip
         title: 鞭策者 (Agent PUA 驱动器)
         icon: zap
-        rarity: silver
+        rarity: rare
         category: experiment
         description: 在 Agent 出现懈怠、循环思考或停滞时注入随机的激情鼓励和幽默催促。
         version: 1.0.0
@@ -131,7 +131,7 @@ sections:
         name: dsh-proactive
         title: 宿主级主动闹钟与心跳唤醒
         icon: alarm-clock
-        rarity: iridium
+        rarity: legendary
         category: core
         description: 提供精准 Cron 定时器、延时唤醒与静默免打扰机制，赋予 Agent 真正的时间自主意识。
         version: 1.4.2
@@ -161,7 +161,7 @@ sections:
         name: dsh-set-model
         title: 多模型动态路由调控
         icon: cpu
-        rarity: gold
+        rarity: epic
         category: tools
         description: 在会话中根据任务复杂度动态切换 Provider、Model 与思考深度（Reasoning Effort）。
         version: 1.1.0
@@ -181,7 +181,7 @@ sections:
         name: dsh-mini-memory
         title: 轻量本地持久记忆
         icon: database
-        rarity: silver
+        rarity: rare
         category: experiment
         description: 无需繁重向量数据库，基于纯 JSON/Markdown 的敏捷用户偏好与项目约定持久化。
         stack: 16
@@ -202,7 +202,7 @@ sections:
         name: dsh-simulated-life
         title: 虚拟生活每日演算系统
         icon: compass
-        rarity: iridium
+        rarity: legendary
         category: workflow
         description: 模拟虚拟世界与 Living Agent 的每日生活事件、因果结算与命运投骰。
         version: 1.0.3
@@ -223,7 +223,7 @@ sections:
         name: dsh-anti-addiction
         title: 防沉迷护盾
         icon: heart
-        rarity: silver
+        rarity: rare
         category: experiment
         description: 限制每日前台使用时长与深夜时段访问，守护健康作息的自律守护者。
         version: 0.1.0
@@ -251,7 +251,7 @@ sections:
         name: dsh-mobile-qol
         title: 移动端体验增强
         icon: smartphone
-        rarity: gold
+        rarity: epic
         category: tools
         description: 专为手机/平板触屏优化的 Web UI 增强套件：侧边栏滑动手势、输入法适配等。
         version: 0.1.0
@@ -273,7 +273,7 @@ sections:
         name: dsh-message-datetime
         title: 每轮时钟注入
         icon: calendar
-        rarity: silver
+        rarity: rare
         category: core
         description: 在每轮对话的 Runtime Context 中注入一行精确的当前日期时间与时区。
         version: 0.1.0
@@ -295,7 +295,7 @@ sections:
         name: dsh-hybrid-notify
         title: 多通道混合通知
         icon: bell
-        rarity: gold
+        rarity: epic
         category: tools
         description: 多通道通知插件：页面 Toast 提醒、PWA 系统推送通知与自定义提示音三合一。
         version: 0.1.0
@@ -317,7 +317,7 @@ sections:
         name: dsh-im-humanize
         title: 九合一 IM 即时消息桥接
         icon: chat-bubble
-        rarity: iridium
+        rarity: legendary
         category: core
         description: 将九种 IM 机器人（微信/QQ/Telegram/飞书/Discord/Slack 等）接入 DSH，实现全平台消息收发。
         version: 4.13.0
@@ -366,7 +366,7 @@ sections:
         name: container-ops
         title: 容器环境运维与避坑规范
         icon: terminal
-        rarity: iridium
+        rarity: legendary
         category: ops
         description: 红米 K30S Ultra 容器启动链、canonical 挂载树、服务规范及 /dev /proc /sys 铁律。
         author: John Ren
@@ -386,7 +386,7 @@ sections:
         name: workflow-implement-review
         title: 交付铁三角工作流
         icon: check-circle-2
-        rarity: iridium
+        rarity: legendary
         category: rabbit-skills
         description: 规范化的 6 步交付流水线：实施 -> 静态/单元测试 -> 独立审查 -> 验收 -> 总结 -> 提交。
         author: John Ren
@@ -404,7 +404,7 @@ sections:
         name: dev-dsh-plugin
         title: DSH 插件开发指南
         icon: puzzle
-        rarity: gold
+        rarity: epic
         category: ai-core
         description: Cordis 架构插件开发全攻略：依赖链接陷阱、服务注入协议与 Web Client 热重载规范。
         author: John Ren
@@ -421,7 +421,7 @@ sections:
         name: camoufox-cli
         title: 指纹伪装反反爬自动化
         icon: globe
-        rarity: gold
+        rarity: epic
         category: ops
         description: 基于 Camoufox 浏览器的反指纹爬虫与 Web 自动化，轻松绕过 Cloudflare 验证。
         author: John Ren
@@ -439,7 +439,7 @@ sections:
         name: code-deep-dive
         title: Vibe Coding 碎片化深度学习篇
         icon: book-open
-        rarity: iridium
+        rarity: legendary
         category: rabbit-skills
         description: 为快速原型项目生成 1.5 小时深度解析长文，利用碎片时间把代码原理彻底学透。
         author: John Ren
@@ -457,7 +457,7 @@ sections:
         name: seedream-imagegen
         title: Doubao 旗舰生图接入
         icon: palette
-        rarity: silver
+        rarity: rare
         category: multimodal
         description: 通过网关调用 doubao-seedream-5.0-lite 模型，实现高清角色头像与场景概念生图。
         author: John Ren
@@ -474,7 +474,7 @@ sections:
         name: bad-smell
         title: 代码异味感知雷达
         icon: potion
-        rarity: silver
+        rarity: rare
         category: rabbit-skills
         description: 当 Agent 觉得代码难于理解、设计混乱或不易维护时主动触发，进行代码质量自审。
         author: John Ren
@@ -491,7 +491,7 @@ sections:
         name: chroot-devfs-pitfall
         title: Devfs 安全铁律索引
         icon: warning-sign
-        rarity: gold
+        rarity: epic
         category: ops
         description: 容器 rootfs /dev /proc /sys 安全规范的故障排查入口与索引技能。
         author: John Ren
@@ -509,7 +509,7 @@ sections:
         name: coding
         title: 编码开发核心规范
         icon: anvil
-        rarity: iridium
+        rarity: legendary
         category: ai-core
         description: 在本机进行任何编程或软件开发前必须立刻读取并严格遵循的核心规范。
         author: John Ren
@@ -527,7 +527,7 @@ sections:
         name: commit-own-changes
         title: 安全原子提交术
         icon: git-branch
-        rarity: gold
+        rarity: epic
         category: rabbit-skills
         description: 基于 git-hunk 提交改动，防止带入其他无关的未提交修改，事关安全。
         author: John Ren
@@ -545,7 +545,7 @@ sections:
         name: create-simulated-events
         title: 虚拟世界事件演算
         icon: dice
-        rarity: silver
+        rarity: rare
         category: workflow
         description: 模拟与演化虚拟世界、环境及 Living Agent 的每日生活事件，执行因果与反应结算。
         author: John Ren
@@ -563,7 +563,7 @@ sections:
         name: cross-check
         title: 批判性子代理审查
         icon: scale
-        rarity: gold
+        rarity: epic
         category: rabbit-skills
         description: 使用子代理对当前的想法、结论、计划或决策进行批判性检查和核实。
         author: John Ren
@@ -581,7 +581,7 @@ sections:
         name: deep-auto
         title: 深度自动模式
         icon: cpu
-        rarity: silver
+        rarity: rare
         category: workflow
         description: deep auto 模式：Agent 在极深层级自主运行，适合超长链路复杂工程。
         author: John Ren
@@ -598,7 +598,7 @@ sections:
         name: delay-validation
         title: 延迟验证模式
         icon: check-circle-2
-        rarity: silver
+        rarity: rare
         category: rabbit-skills
         description: 原本需要用户确认的步骤由模型自行判断并记录待验证项，用户事后审阅。
         author: John Ren
@@ -616,7 +616,7 @@ sections:
         name: dev-tunnel
         title: 临时 Cloudflare 隧道
         icon: wormhole
-        rarity: silver
+        rarity: rare
         category: ops
         description: 一行命令给本地开发服务器开临时 Cloudflare 隧道（免登录 quick tunnel）。
         author: John Ren
@@ -634,7 +634,7 @@ sections:
         name: full-auto
         title: 全自动模式
         icon: robot
-        rarity: silver
+        rarity: rare
         category: rabbit-skills
         description: 所有需要向用户提问、决策、授权的地方，替换为询问 auto_human 子代理。
         author: John Ren
@@ -651,7 +651,7 @@ sections:
         name: gemini-imagegen
         title: Gemini 旗舰生图
         icon: palette
-        rarity: silver
+        rarity: rare
         category: multimodal
         description: 基于 cpa 网关的 gemini-3.1-flash-image 模生图，走 chat/completions 流式接口。
         author: John Ren
@@ -669,7 +669,7 @@ sections:
         name: grilling
         title: 刨根问底追问术
         icon: grill
-        rarity: silver
+        rarity: rare
         category: rabbit-skills
         description: 围绕计划对用户进行刨根问底的追问，厘清计划的疑点和模糊地带。
         author: John Ren
@@ -686,7 +686,7 @@ sections:
         name: handoff
         title: 交接文档生成
         icon: briefcase
-        rarity: silver
+        rarity: rare
         category: rabbit-skills
         description: 编写交接文档，将工作上下文传递给另一个 agent、同事、检视者或 oncall。
         author: John Ren
@@ -703,7 +703,7 @@ sections:
         name: named-cf-tunnel
         title: 永久命名隧道
         icon: wormhole
-        rarity: gold
+        rarity: epic
         category: ops
         description: 将本机某个端口以固定自定义域名（如 *.example.com）永久暴露到公网。
         author: John Ren
@@ -721,7 +721,7 @@ sections:
         name: officecli
         title: Office 文档 CLI 工具
         icon: scroll
-        rarity: gold
+        rarity: epic
         category: office
         description: 使用 officecli CLI 工具创建、分析、校对和修改 Office 文档（.docx/.xlsx/.pptx）。
         author: John Ren
@@ -739,7 +739,7 @@ sections:
         name: restart-dsh
         title: 安全重启 DSH
         icon: zap
-        rarity: gold
+        rarity: epic
         category: ops
         description: 安全重启 dsh 服务——Agent 跑在 dsh 内部，直接 restart 会杀掉自己。
         author: John Ren
@@ -757,7 +757,7 @@ sections:
         name: spawn-deep-researcher
         title: 深度调研子代理调度
         icon: telescope
-        rarity: gold
+        rarity: epic
         category: rabbit-skills
         description: 使用 deep-researcher 子代理对特定主题进行深度、广泛、准确的网络调研。
         author: John Ren
@@ -775,7 +775,7 @@ sections:
         name: spawn-reviewer
         title: 代码审查子代理调度
         icon: monocle
-        rarity: gold
+        rarity: epic
         category: rabbit-skills
         description: 使用 reviewer 子代理进行高质量的代码审查，拉起前必须阅读本技能。
         author: John Ren
@@ -793,7 +793,7 @@ sections:
         name: teach-me
         title: 技术深度长文生成
         icon: book-open
-        rarity: gold
+        rarity: epic
         category: office
         description: 围绕当前需求、设计或问题，为独立开发者写一篇技术深度长文。
         author: John Ren
@@ -811,7 +811,7 @@ sections:
         name: tidy
         title: 冗余修改清理
         icon: broom
-        rarity: normal
+        rarity: common
         category: rabbit-skills
         description: 清理无用/冗余的修改，保持工作区干净。
         author: John Ren
@@ -828,7 +828,7 @@ sections:
         name: try
         title: 可回退文件备份
         icon: safe
-        rarity: silver
+        rarity: rare
         category: rabbit-skills
         description: 为目标文件创建可回退的备份，在对文件做不确定的破坏性修改前必须使用。
         author: John Ren
@@ -846,7 +846,7 @@ sections:
         name: unstuck
         title: 脱困退一步分析
         icon: lifebuoy
-        rarity: gold
+        rarity: epic
         category: rabbit-skills
         description: 对同一问题连续修改两次都未达预期时，立刻暂停并退一步重新分析。
         author: John Ren
@@ -864,7 +864,7 @@ sections:
         name: update-ive-learned
         title: What I've Learned 站点更新
         icon: scroll
-        rarity: silver
+        rarity: rare
         category: office
         description: 更新 What I've Learned 个人学习记录站：新增条目、backlog 晋升、发布到 GitHub Pages。
         author: John Ren
@@ -882,7 +882,7 @@ sections:
         name: update-module-instruction
         title: 模块级 AGENTS.md 规范
         icon: book-open
-        rarity: normal
+        rarity: common
         category: rabbit-skills
         description: 模块/子模块级 AGENTS.md 更新规范，记录对该模块后续开发有明确收益的经验。
         author: John Ren
@@ -900,7 +900,7 @@ sections:
         name: update-project-instruction
         title: 项目级 AGENTS.md 规范
         icon: book-open
-        rarity: normal
+        rarity: common
         category: rabbit-skills
         description: 项目级 AGENTS.md 更新规范，更新必须了解的工作流程、测调命令、开发规范。
         author: John Ren
@@ -918,7 +918,7 @@ sections:
         name: update-references
         title: 通用参考文档规范
         icon: book-open
-        rarity: normal
+        rarity: common
         category: rabbit-skills
         description: project_root/references 目录的更新规范，用于不隶属于特定功能的通用规范。
         author: John Ren
@@ -935,7 +935,7 @@ sections:
         name: update-validation-requirements
         title: 用户验收要求文档
         icon: check-circle-2
-        rarity: normal
+        rarity: common
         category: rabbit-skills
         description: 创建或更新需求、问题的用户验证要求文档，尤其需要真实设备/环境验证时使用。
         author: John Ren
@@ -953,7 +953,7 @@ sections:
         name: update-yaagb
         title: AI 自生成博客更新
         icon: scroll
-        rarity: silver
+        rarity: rare
         category: office
         description: 更新 yet-another-ai-generated-blog（AI 自生成博客），涉及该博客任何更新时使用。
         author: John Ren
@@ -971,7 +971,7 @@ sections:
         name: web-search-best-practice
         title: 网络搜索方法论
         icon: search
-        rarity: gold
+        rarity: epic
         category: rabbit-skills
         description: 网络搜索的方法论和最佳实践，进行网络搜索前必须使用本技能。
         author: John Ren
@@ -989,7 +989,7 @@ sections:
         name: workflow-leader
         title: 项目领导工作流
         icon: crown
-        rarity: gold
+        rarity: epic
         category: rabbit-skills
         description: 项目领导工作流，当用户给出愿景希望 AI 自主、持续推进项目方向时使用。
         author: John Ren
@@ -1007,7 +1007,7 @@ sections:
         name: workflow-manage-tasks
         title: 任务分派工作流
         icon: clipboard
-        rarity: gold
+        rarity: epic
         category: rabbit-skills
         description: 任务分派工作流，当用户一次提出多条任务、需要协调多个子代理时使用。
         author: John Ren
@@ -1025,7 +1025,7 @@ sections:
         name: workflow-research-plan
         title: 调研设计工作流
         icon: search
-        rarity: gold
+        rarity: epic
         category: rabbit-skills
         description: 需求调研设计工作流，进行中等以上规模需求开发、架构设计和重构前必须遵守。
         author: John Ren
@@ -1043,7 +1043,7 @@ sections:
         name: workflow-troubleshoot
         title: 根因分析工作流
         icon: wrench
-        rarity: gold
+        rarity: epic
         category: rabbit-skills
         description: 根因分析工作流，排查复杂问题时必须遵守此流程分析原因。
         author: John Ren
@@ -1061,7 +1061,7 @@ sections:
         name: max-effort
         title: 极致交付模式
         icon: prismatic
-        rarity: iridium
+        rarity: legendary
         category: rabbit-skills
         description: 在对用户精力消耗最少的情况下，将简略 idea 转变为极致体验的完整可交付产物。
         author: john-walks-slow
@@ -1080,7 +1080,7 @@ sections:
         name: spawn-e2e-tester
         title: 端到端测试子代理调度
         icon: gamepad
-        rarity: gold
+        rarity: epic
         category: rabbit-skills
         description: 使用 e2e-tester 子代理对指定功能/修复执行端到端测试，输出含证据的测试报告。
         author: john-walks-slow
@@ -1106,7 +1106,7 @@ sections:
         name: degoog
         title: Degoog 隐私聚合元搜索引擎
         icon: search
-        rarity: iridium
+        rarity: legendary
         category: search
         description: 本地私有化部署的多源搜索聚合 MCP 服务器，一键汇总 Google、DuckDuckGo 与 Brave 结果。
         version: 2.4.0
@@ -1136,7 +1136,7 @@ sections:
         name: exa
         title: Exa 语义神经搜索与网页阅读
         icon: compass
-        rarity: gold
+        rarity: epic
         category: research
         description: 基于 Embedding 语义匹配的新一代 AI 原生搜索引擎，搜技术博客和论文的利器。
         version: 1.2.0
@@ -1166,7 +1166,7 @@ sections:
         name: notebooklm
         title: Google NotebookLM 知识库桥接
         icon: book-marked
-        rarity: gold
+        rarity: epic
         category: research
         description: 连接 Google NotebookLM 专属笔记本，进行高质量长文档研读与播客式总结。
         version: 0.9.4
@@ -1370,7 +1370,7 @@ sections:
         name: 宿主环境志
         title: 全局指令 · 基础环境概况
         icon: smartphone
-        rarity: gold
+        rarity: epic
         category: env
         tags:
           - AGENTS.md
@@ -1380,7 +1380,7 @@ sections:
         name: 编码心法
         title: 全局指令 · 输出风格与核心编码实践
         icon: wrench
-        rarity: gold
+        rarity: epic
         category: coding
         tags:
           - AGENTS.md
@@ -1390,7 +1390,7 @@ sections:
         name: 协作与文档规约
         title: 全局指令 · 多 Agent 协作与文档规范
         icon: flame
-        rarity: silver
+        rarity: rare
         category: collab
         tags:
           - AGENTS.md
@@ -1400,7 +1400,7 @@ sections:
         name: 安全铁律
         title: 全局指令 · 敏感信息与安全防护规范
         icon: shield-alert
-        rarity: iridium
+        rarity: legendary
         category: security
         tags:
           - AGENTS.md

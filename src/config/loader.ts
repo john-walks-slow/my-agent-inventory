@@ -7,6 +7,7 @@ import { KIT_ICONS } from '../iconkit/registry';
 import { resolveIconRef, type CustomIcon, type IconRef } from '../iconkit/resolve';
 import { resolveAvatar } from '../brands';
 import { computeLevel, daysSince, type LevelResult } from '../stats/level';
+import { deriveJobSection } from '../stats/job';
 
 export type { CustomIcon, IconRef } from '../iconkit/resolve';
 
@@ -32,11 +33,19 @@ const imgIconModules = import.meta.glob('/config/icons/*.{png,gif,webp,jpg,jpeg}
   eager: true,
 }) as Record<string, string>;
 
+const schemaModules = import.meta.glob('/config/schemas/*.json', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+
 // ---- 装载结果类型 ----
 
 export interface ItemView extends ItemConfig {
   /** 完整正文 Markdown（约定路径 config/content/<section>/<id>.md，缺省为空串） */
   content: string;
+  /** 输入参数 schema（config/schemas/<id>.json 自动挂接，缺省无） */
+  schema?: Record<string, unknown>;
   iconRef: IconRef;
 }
 
@@ -58,6 +67,8 @@ export interface HarnessProfileView {
   /** sectionId → 物品数（装备计数） */
   gear: Record<string, number>;
   gearTotal: number;
+  /** 装备构成主导 section（职业自动判定，见 stats/job.ts；空背包为 null） */
+  jobSection: string | null;
   level: LevelResult;
 }
 
@@ -109,6 +120,18 @@ function loadCustomIcons(): Record<string, CustomIcon> {
   return map;
 }
 
+function loadSchemas(): Record<string, Record<string, unknown>> {
+  const map: Record<string, Record<string, unknown>> = {};
+  for (const [path, raw] of Object.entries(schemaModules)) {
+    try {
+      map[fileName(path).replace(/\.json$/, '')] = JSON.parse(raw);
+    } catch {
+      throw new Error(`config/schemas/${fileName(path)} 不是合法 JSON`);
+    }
+  }
+  return map;
+}
+
 function resolveIcon(name: string | undefined, customIcons: Record<string, CustomIcon>): IconRef {
   return resolveIconRef(name, customIcons, KIT_ICONS);
 }
@@ -143,6 +166,7 @@ function buildProfile(config: SiteConfig, sections: SectionView[], customIcons: 
     },
     gear,
     gearTotal,
+    jobSection: deriveJobSection(gear, sections.map((s) => s.id)),
     level,
   };
 }
@@ -151,6 +175,7 @@ export function buildInventoryModel(): InventoryModel {
   const config = loadSiteConfig();
   const contents = loadContents();
   const customIcons = loadCustomIcons();
+  const schemas = loadSchemas();
 
   const sections: SectionView[] = config.sections.map((sec) => ({
     ...sec,
@@ -158,6 +183,7 @@ export function buildInventoryModel(): InventoryModel {
     items: sec.items.map((item) => ({
       ...item,
       content: contents[`${sec.id}/${item.id}`] ?? '',
+      schema: schemas[item.id],
       iconRef: resolveIcon(item.icon, customIcons),
     })),
   }));

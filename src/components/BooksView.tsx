@@ -125,7 +125,7 @@ export const BooksView: React.FC<BooksViewProps> = ({
             <div className="flex items-center justify-between pb-2 mb-2 border-b border-ui-wood-mid/40 shrink-0">
               <div className="flex items-center gap-1.5 text-xs font-bold text-ui-wood-mid">
                 <Bookmark size={14} />
-                <span>{vocab.reader.title} • {currentBook.title ?? currentBook.name}</span>
+                <span>{currentBook.title ?? currentBook.name}</span>
               </div>
               <div className="text-[11px] font-bold text-ui-ink-muted flex items-center gap-2">
                 {currentBook.category && <span>{categoryLabel(currentBook.category)}</span>}

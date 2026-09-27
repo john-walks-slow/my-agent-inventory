@@ -4,7 +4,7 @@
 import { z } from 'zod';
 
 export const THEMES = ['stardew', 'pokemon', 'jrpg', 'diablo'] as const;
-export const RARITIES = ['normal', 'silver', 'gold', 'iridium'] as const;
+export const RARITIES = ['common', 'rare', 'epic', 'legendary'] as const;
 export const SECTION_VIEWS = ['grid', 'reader'] as const;
 
 export type ThemeId = (typeof THEMES)[number];
@@ -49,7 +49,7 @@ export const itemSchema = z.strictObject({
   title: z.string().optional(),
   /** 图标：config/icons/<icon>.svg|png → kit id → 兜底 */
   icon: z.string().optional(),
-  rarity: z.enum(RARITIES).default('normal'),
+  rarity: z.enum(RARITIES).default('common'),
   /** section 内筛选分类，必须出现在所属 section 的 categories 中 */
   category: z.string().optional(),
   stack: z.number().int().min(1).optional(),

@@ -55,7 +55,7 @@ sections:
         name: my-plugin
         title: 一句话称号
         icon: sword-1      # 同 section.icon 解析链；不填继承兜底
-        rarity: gold       # normal | silver | gold | iridium（品质边框+星级）
+        rarity: legendary  # common | rare | epic | legendary（品质边框+星级）
         category: core     # 可选；须在上方 categories 中定义
         version: "1.0.0"   # 可选（记得引号）
         author: your-name  # 可选
@@ -98,7 +98,7 @@ sections:
     items:
       - id: my-rules
         name: 我的编码规则
-        rarity: iridium
+        rarity: epic
         category: rules
         description: 沉淀自全局指令的规则精编
         tags: [rules]

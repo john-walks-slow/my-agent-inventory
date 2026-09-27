@@ -15,14 +15,14 @@ export interface ThemeVocab {
   bagLabel: string;
   /** 档案弹窗 EXP 构成行的四项措辞 */
   expTerms: { sessions: string; tokens: string; days: string; gear: string };
-  /** 品质命名（normal → iridium 升序，详情卡品质徽标） */
+  /** 品质命名（common → legendary 升序，详情卡品质徽标） */
   rarity: Record<Rarity, string>;
-  /** 详情卡章节标题与操作按钮 */
+  /** 详情卡章节标题与操作按钮（正文无标题直渲，无 content 字样） */
   detail: {
     highlights: string;
-    content: string;
     install: string;
     config: string;
+    schema: string;
     note: string;
     repo: string;
     copy: string;
@@ -50,11 +50,15 @@ export interface ThemeVocab {
     sectionEmpty: string;
   };
   /** 阅读器（tomes）用语 */
-  reader: { title: string; empty: string; sign: string };
+  reader: { empty: string; sign: string };
+  /** 档案「安装日期」行标签 */
+  since: string;
+  /** 职业命名：装备构成主导的 section → 职业称号（自动判定，见 stats/job.ts） */
+  jobs: Record<string, string>;
 }
 
 const stardew: ThemeVocab = {
-  sections: { plugins: '插件', skills: '技能', mcp: 'MCP', tools: '工具', tomes: '秘籍' },
+  sections: { plugins: '插件', skills: '技能', mcp: 'MCP', tools: '工具', tomes: '指令' },
   levelTitles: [
     [1, '见习农场主'],
     [4, '锄地学徒'],
@@ -75,16 +79,18 @@ const stardew: ThemeVocab = {
   bagLabel: '豪华大背包',
   expTerms: { sessions: '会话', tokens: 'Token', days: '工龄', gear: '装备' },
   rarity: {
-    normal: '普通品质',
-    silver: '银星品质 (Silver)',
-    gold: '金星品质 (Gold)',
-    iridium: '铱星品质 (Iridium ★)',
+    common: '普通 (Common)',
+    rare: '稀有 (Rare)',
+    epic: '史诗 (Epic)',
+    legendary: '传说 (Legendary)',
   },
+  jobs: { plugins: '工匠', skills: '学者', mcp: '驯兽师', tools: '农夫', tomes: '藏书家' },
+  since: '安装日期',
   detail: {
     highlights: '✦ 核心亮点',
-    content: '📜 深度解析',
     install: '安装与使用指令',
     config: '⚙ 配置示例',
+    schema: '⚙ 输入参数',
     note: '💡 装备备注',
     repo: '仓库',
     copy: '复制命令',
@@ -110,8 +116,7 @@ const stardew: ThemeVocab = {
     sectionEmpty: '这一栏还空着',
   },
   reader: {
-    title: '秘籍阁',
-    empty: '从左侧书架挑选一卷秘籍开始研读',
+    empty: '从左侧书架挑选一份指令开始研读',
     sign: '—— 沉淀自全局指令与真机实战',
   },
 };
@@ -138,16 +143,18 @@ const pokemon: ThemeVocab = {
   bagLabel: '道具背包',
   expTerms: { sessions: '对战', tokens: '经验', days: '旅程', gear: '徽章' },
   rarity: {
-    normal: '普通品质',
-    silver: '精灵球品质',
-    gold: '超级球品质',
-    iridium: '大师球品质 (Master ★)',
+    common: '普通',
+    rare: '稀有',
+    epic: '史诗',
+    legendary: '传说',
   },
+  jobs: { plugins: '工程师', skills: '道场师傅', mcp: '设施管理员', tools: '背包客', tomes: '图鉴博士' },
+  since: '安装日期',
   detail: {
     highlights: '✦ 特性',
-    content: '📖 图鉴说明',
     install: '获取方式',
     config: '⚙ 设置方法',
+    schema: '⚙ 输入参数',
     note: '📒 训练笔记',
     repo: '交换所',
     copy: '抄录',
@@ -173,7 +180,6 @@ const pokemon: ThemeVocab = {
     sectionEmpty: '这里还是空的…',
   },
   reader: {
-    title: '图鉴馆',
     empty: '从左侧图鉴架挑选一页开始查阅',
     sign: '—— 收录自训练师的冒险实录',
   },
@@ -201,16 +207,18 @@ const jrpg: ThemeVocab = {
   bagLabel: '道具袋',
   expTerms: { sessions: '冒险', tokens: '经验', days: '旅程', gear: '装备' },
   rarity: {
-    normal: '铜之品质',
-    silver: '银之品质',
-    gold: '金之品质',
-    iridium: '虹之品质 (Rainbow ★)',
+    common: '普通',
+    rare: '稀有',
+    epic: '史诗',
+    legendary: '传说',
   },
+  jobs: { plugins: '锻造师', skills: '咒文师', mcp: '召唤士', tools: '道具师', tomes: '贤者' },
+  since: '安装日期',
   detail: {
     highlights: '✦ 特技',
-    content: '📖 记载',
     install: '入手方法',
     config: '⚙ 调整设定',
+    schema: '⚙ 输入参数',
     note: '📜 冒险手记',
     repo: '武器屋',
     copy: '誊写',
@@ -236,7 +244,6 @@ const jrpg: ThemeVocab = {
     sectionEmpty: '此栏尚未放入任何物品',
   },
   reader: {
-    title: '贤者书阁',
     empty: '从左侧书架挑选一卷贤者之书开始研读',
     sign: '—— 抄录自贤者的旅行手记',
   },
@@ -264,16 +271,18 @@ const diablo: ThemeVocab = {
   bagLabel: '储物箱',
   expTerms: { sessions: '征战', tokens: '经验', gear: '战利品', days: '流浪' },
   rarity: {
-    normal: '普通 (Common)',
-    silver: '魔法 (Magic)',
-    gold: '稀有 (Rare)',
-    iridium: '传奇 (Legendary ★)',
+    common: '普通 (Common)',
+    rare: '魔法 (Magic)',
+    epic: '稀有 (Rare)',
+    legendary: '传奇 (Legendary)',
   },
+  jobs: { plugins: '符文匠', skills: '狩魔人', mcp: '死灵法师', tools: '炼金师', tomes: '禁书看守' },
+  since: '安装日期',
   detail: {
     highlights: '✦ 威能',
-    content: '📜 传说',
     install: '获取途径',
     config: '⚙ 符文配置',
+    schema: '⚙ 输入参数',
     note: '🕯 流亡者批注',
     repo: '赌商',
     copy: '拓印',
@@ -299,7 +308,6 @@ const diablo: ThemeVocab = {
     sectionEmpty: '此处空无一物',
   },
   reader: {
-    title: '禁书馆',
     empty: '从左侧书堆挑选一册禁书开始翻阅',
     sign: '—— 誊写自流亡者的黑暗法典',
   },

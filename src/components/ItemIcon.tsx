@@ -66,14 +66,14 @@ export const ItemIcon: React.FC<ItemIconProps> = ({ iconRef, size = 28, classNam
   }
 };
 
-// Authentic Stardew Valley Quality Star
+// 品质星标：tier 色随主题 token（rare 银 / epic 紫 / legendary 金）
 export const PixelQualityBadge: React.FC<{ rarity: Rarity }> = ({ rarity }) => {
-  if (rarity === 'normal') return null;
+  if (rarity === 'common') return null;
 
   const starColors = {
-    silver: { fill: 'var(--color-quality-silver)', border: 'var(--color-quality-silver-edge)' },
-    gold: { fill: 'var(--color-quality-gold)', border: 'var(--color-quality-gold-edge)' },
-    iridium: { fill: 'var(--color-quality-iridium)', border: 'var(--color-quality-iridium-edge)' }
+    rare: { fill: 'var(--color-quality-rare)', border: 'var(--color-quality-rare-edge)' },
+    epic: { fill: 'var(--color-quality-epic)', border: 'var(--color-quality-epic-edge)' },
+    legendary: { fill: 'var(--color-quality-legendary)', border: 'var(--color-quality-legendary-edge)' }
   }[rarity];
 
   return (
