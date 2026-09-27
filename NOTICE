@@ -1,0 +1,36 @@
+# NOTICE
+
+本项目（代码与文档）以 MIT 许可发布（见 [LICENSE](./LICENSE)）。
+仓库内另包含以下第三方资产，各自随附许可文本，**再分发时须保留相应声明**：
+
+## 像素图标套件（`src/iconkit/assets/`）
+
+| 资产 | 许可 | 声明位置 |
+|---|---|---|
+| 496 Pixel Art Icons for Medieval/Fantasy RPG（Henrique Lazarini / 7Soul1，经 gnola14 整理重命名） | CC0 1.0 Universal | `src/iconkit/CREDITS.md` |
+
+- CC0 免署名，但本项目仍按惯例致谢（README / CREDITS / `#/icons` 图鉴页 / 站点页脚）。
+- 归属范围限定：作者本人声明置入公有领域的是其**免费 RPG 套件**（即 OGA Node 39455 所载内容）；其 DeviantArt 上的其他付费包不在本项目收录范围。
+
+## 字体（`src/assets/fonts/`，全部自托管随仓分发）
+
+| 字体 | 用途 | 许可 | 声明位置 |
+|---|---|---|---|
+| DotGothic16 | stardew 主题正文 | OFL 1.1 | `dotgothic16-OFL.txt` |
+| Silkscreen | Latin 备用 | OFL 1.1 | `silkscreen-OFL.txt` |
+| Fusion Pixel 12px（zh_hans 比例版） | pokemon / jrpg / diablo 正文 | OFL 1.1（部件许可另附） | `fusion-pixel-OFL.txt` + `fusion-pixel-LICENSES/` |
+| Cinzel | jrpg 主题展示 | OFL 1.1 | `cinzel-OFL.txt` |
+| Pirata One | diablo 主题展示 | OFL 1.1 | `pirataone-OFL.txt` |
+| PKMN（nue-of-k，三字重） | pokemon 主题展示 | MIT | `pkmn-LICENSE.txt` |
+
+- `src/badge/fonts/` 内为上述字体的 ASCII 拉丁子集（badge SVG 内嵌用），许可同源字体。
+- OFL 字体按许可要求随附完整许可文本；Fusion Pixel 为多字型合成项目，各部件许可见 `fusion-pixel-LICENSES/`。
+
+## 品牌头像（`src/brands/`）
+
+`tools/gen-brands.mjs` 字符画生成的 16×16 像素头像，仅取各产品名的文字意象，不使用任何官方商标图形。
+
+## 商标与非附属声明
+
+- 本项目受《星露谷物语》(Stardew Valley) 的 UI 风格启发，为粉丝性质的非官方作品，**与 ConcernedApe 无任何附属或授权关系**；未使用任何星露谷原始素材（调色板为按色值独立重制的近似配色）。
+- DSH / Claude Code / Codex / Cursor 等名称为各自所有者的商标，仅用于描述性展示。

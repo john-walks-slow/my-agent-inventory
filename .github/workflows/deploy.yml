@@ -35,6 +35,19 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
+      # 发布前质检：lint / 单测 / 配置校验 / 隐私扫描（硬命中即阻断部署）
+      - name: Lint
+        run: pnpm lint
+      - name: Test
+        run: pnpm test
+      - name: Validate config
+        run: pnpm validate
+      - name: Privacy scan
+        run: pnpm privacy:scan
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
       - name: Build
         run: pnpm build
 

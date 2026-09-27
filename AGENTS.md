@@ -11,6 +11,8 @@
 - `config/content/<section>/<id>.md`: 物品深度解析正文（Markdown）；`config/icons/*.svg`: 自定义 16×16 像素图腾
 - `skills/harness-inventory/`: 配套 agent skill（SKILL.md 十步流程 + references/ 配置·隐私·图标·发布·各家 harness 采集指南 + scripts/collect-stats.mjs 统一采集器（dsh/claude-code/codex 全量，其余探测指引；重测后回填 harness.yaml））
 - `docs/essays/`: 已归档的长文典籍（不在站内展示）
+- `references/content-maintenance.md`: 内容扩展与维护规范（新增装备/Tab/图标的标准流程）
+- `LICENSE` / `NOTICE` / `CREDITS.md`: 代码 MIT 许可与第三方资产归属（字体 OFL/MIT 随仓分发、7Soul 图标 CC0，声明位置见 NOTICE）
 - `src/config/loader.ts`: 浏览器侧装载（YAML + 正文 glob + IconRef 解析链 custom-svg → custom-img → kit → fallback + harness 档案派生）
 - `src/components/ItemIcon.tsx`: 统一图腾渲染器与品质星级徽章
 - `src/components/InventoryGrid.tsx`: 36 格豪华背包凹陷槽位网格、筛选栏与悬停预览条
@@ -46,6 +48,9 @@ pnpm build
 
 # 预览构建产物
 pnpm preview --host 0.0.0.0 --port 5180
+
+# 单测（等级锚点/图标链/词汇表/badge 布局）与 lint
+pnpm test && pnpm lint
 
 # 临时公网穿透演示 (开隧道给用户体验)
 bash ~/.agents/skills/dev-tunnel/scripts/dev-tunnel.sh 5180
