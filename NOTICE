@@ -21,14 +21,18 @@
 | Fusion Pixel 12px（zh_hans 比例版） | pokemon / jrpg / diablo 正文 | OFL 1.1（部件许可另附） | `fusion-pixel-OFL.txt` + `fusion-pixel-LICENSES/` |
 | Cinzel | jrpg 主题展示 | OFL 1.1 | `cinzel-OFL.txt` |
 | Pirata One | diablo 主题展示 | OFL 1.1 | `pirataone-OFL.txt` |
-| PKMN（nue-of-k，三字重） | pokemon 主题展示 | MIT | `pkmn-LICENSE.txt` |
+| PKMN（nue-of-k，w/Western 字重，经修复） | pokemon 主题展示 | MIT | `pkmn-LICENSE.txt` |
 
 - `src/badge/fonts/` 内为上述字体的 ASCII 拉丁子集（badge SVG 内嵌用），许可同源字体。
 - OFL 字体按许可要求随附完整许可文本；Fusion Pixel 为多字型合成项目，各部件许可见 `fusion-pixel-LICENSES/`。
 
 ## 品牌头像（`src/brands/`）
 
-`tools/gen-brands.mjs` 字符画生成的 16×16 像素头像，仅取各产品名的文字意象，不使用任何官方商标图形。
+`tools/gen-brands.mjs` 生成的 16×16 像素头像，两种来源：
+- **simple-icons 像素化**（claude-code / copilot / cursor / gemini-cli / opencode）：取 CC0 的 Simple Icons v16 矢量底稿，160×160 栅格化后降采样重绘（非官方商标文件的直接复制）；
+- **手绘字符画**（dsh / generic / codex / goose / amp / aider）：仅取产品名的文字意象。
+
+Simple Icons 本体以 CC0 1.0 发布（根目录 `simple-icons-LICENSE.txt`），像素化产物同 CC0。
 
 ## 商标与非附属声明
 
