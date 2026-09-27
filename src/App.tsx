@@ -71,14 +71,14 @@ export const App: React.FC = () => {
 
   // Subcategory filters（从 section.categories 派生）
   const subCategoryOptions = [
-    { id: 'all', label: '全部' },
+    { id: 'all', label: vocab.hud.allFilter },
     ...(activeSection?.categories ?? []).map((c) => ({ id: c.id, label: c.label }))
   ];
 
   const totalItemCount = sections.reduce((n, s) => n + s.items.length, 0);
 
   if (route === '#/icons') {
-    return <IconsCodex onExit={() => { window.location.hash = ''; }} />;
+    return <IconsCodex onExit={() => { window.location.hash = ''; }} theme={theme} />;
   }
 
   return (
@@ -110,7 +110,7 @@ export const App: React.FC = () => {
               setShowProfileModal(true);
             }}
             className="flex items-center gap-1 bg-ui-frame-border px-2 py-0.5 text-ui-ink-gold cursor-pointer hover:bg-ui-wood-dark border-b border-ui-shadow-deep shadow-xs active:translate-y-0.5"
-            title={`${profile.info.name} 档案`}
+            title={`${profile.info.name} ${vocab.hud.profile}`}
           >
             <span className="text-ui-gold leading-none">★</span>
             <span className="font-mono text-xs leading-none">Lv.{profile.level.level}</span>
@@ -124,7 +124,7 @@ export const App: React.FC = () => {
               setGoldCount((g) => g + 500);
             }}
             className="flex items-center gap-1 bg-ui-panel-light px-2 py-0.5 text-ui-ink cursor-pointer hover:bg-white border-b border-ui-ink-amber shadow-xs active:translate-y-0.5"
-            title="点击收成金币！"
+            title={vocab.hud.goldHint}
           >
             <span className="text-ui-gold-soft text-xs leading-none">{vocab.currency.glyph}</span>
             <span className="font-mono text-xs leading-none text-ui-ink-muted">{goldCount.toLocaleString()}{vocab.currency.unit}</span>
@@ -147,7 +147,7 @@ export const App: React.FC = () => {
             }}
             className="sdv-action-btn !py-0.5 !px-2 text-xs"
           >
-            <User size={12} /> 档案
+            <User size={12} /> {vocab.hud.profile}
           </button>
         </div>
       </header>
@@ -180,6 +180,7 @@ export const App: React.FC = () => {
           {isReaderView && activeSection ? (
             <BooksView
               section={activeSection}
+              theme={theme}
               activeBookId={selectedReaderId}
               onSelectBook={(id) => setSelectedReaderId(id)}
             />
@@ -203,7 +204,7 @@ export const App: React.FC = () => {
 
               {/* Right Column: Independent Scrollable Details Panel (5 cols) */}
               <div className="lg:col-span-5 h-[420px] lg:h-full min-h-0 mt-3 lg:mt-0">
-                <DetailPanel item={selectedItem} />
+                <DetailPanel item={selectedItem} theme={theme} />
               </div>
             </div>
           )}
@@ -213,7 +214,7 @@ export const App: React.FC = () => {
       {/* Footer Info HUD */}
       <footer className="mt-2 text-center text-[11px] text-ui-ink-gold flex items-center justify-between gap-2 px-1 shrink-0">
         <span className="opacity-80">
-          收纳总数: {totalItemCount} 项
+          {vocab.hud.totalLabel}: {totalItemCount} {vocab.hud.totalUnit}
         </span>
         <a
           href="#/icons"
@@ -221,7 +222,7 @@ export const App: React.FC = () => {
           className="opacity-80 hover:opacity-100 underline underline-offset-2"
           title="内置图标套件图鉴"
         >
-          图标图鉴 · 7Soul (CC0)
+          {vocab.hud.codexLink} · 7Soul (CC0)
         </a>
       </footer>
 

@@ -2,20 +2,24 @@ import React, { useState, useMemo } from 'react';
 import type { SectionView, ItemView } from '../config/loader';
 import { ItemIcon, PixelQualityBadge } from './ItemIcon';
 import { retroAudio } from '../audio/retroAudio';
+import { getVocab } from '../theme/vocab';
 import { marked } from 'marked';
 import { BookOpen, Bookmark } from 'lucide-react';
 
 interface BooksViewProps {
   section: SectionView;
+  theme?: string;
   activeBookId?: string | null;
   onSelectBook?: (id: string | null) => void;
 }
 
 export const BooksView: React.FC<BooksViewProps> = ({
   section,
+  theme,
   activeBookId,
   onSelectBook
 }) => {
+  const vocab = getVocab(theme);
   const books = section.items;
   const [selectedSub, setSelectedSub] = useState<string>('all');
   const [internalSelectedId, setInternalSelectedId] = useState<string | null>(
@@ -59,7 +63,7 @@ export const BooksView: React.FC<BooksViewProps> = ({
         {/* Subcategory Filter Pills */}
         {section.categories && section.categories.length > 0 && (
           <div className="flex flex-wrap gap-1 bg-ui-panel p-1.5 border-2 border-ui-wood-dark rounded-sm mb-2 shrink-0 shadow-inner">
-            {[{ id: 'all', label: '全部' }, ...section.categories].map((tab) => (
+            {[{ id: 'all', label: vocab.hud.allFilter }, ...section.categories].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => {
@@ -127,7 +131,7 @@ export const BooksView: React.FC<BooksViewProps> = ({
             <div className="flex items-center justify-between pb-2 mb-2 border-b border-ui-wood-mid/40 shrink-0">
               <div className="flex items-center gap-1.5 text-xs font-bold text-ui-wood-mid">
                 <Bookmark size={14} />
-                <span>秘籍阁 • {currentBook.title ?? currentBook.name}</span>
+                <span>{vocab.reader.title} • {currentBook.title ?? currentBook.name}</span>
               </div>
               <div className="text-[11px] font-bold text-ui-ink-muted flex items-center gap-2">
                 {currentBook.category && <span>{categoryLabel(currentBook.category)}</span>}
@@ -142,7 +146,7 @@ export const BooksView: React.FC<BooksViewProps> = ({
 
             {/* Independent Scrollable Markdown Body */}
             <div
-              className="custom-scroll flex-1 overflow-y-auto pr-2 prose prose-stone max-w-none text-xs sm:text-sm leading-relaxed space-y-2 select-text
+              className="custom-scroll flex-1 overflow-y-auto pr-2 max-w-none text-xs sm:text-sm leading-relaxed space-y-2 select-text
                 [&_h1]:text-lg [&_h1]:font-bold [&_h1]:text-ui-frame-border [&_h1]:border-b [&_h1]:border-ui-wood-mid/50 [&_h1]:pb-1.5
                 [&_h2]:text-sm [&_h2]:font-bold [&_h2]:text-ui-wood-dark [&_h2]:mt-3
                 [&_h3]:text-xs [&_h3]:font-bold [&_h3]:text-ui-ink-amber
@@ -171,14 +175,14 @@ export const BooksView: React.FC<BooksViewProps> = ({
                 ))}
               </div>
               <span className="text-[10px] text-ui-wood-mid italic">
-                —— 沉淀自全局指令与真机实战
+                {vocab.reader.sign}
               </span>
             </div>
           </div>
         ) : (
           <div className="sdv-parchment-sheet h-full flex flex-col items-center justify-center p-8 text-center text-ui-ink-muted">
             <BookOpen size={40} className="opacity-40 mb-2" />
-            <p className="font-bold text-sm">从左侧书架挑选一卷秘籍开始研读</p>
+            <p className="font-bold text-sm">{vocab.reader.empty}</p>
           </div>
         )}
       </div>

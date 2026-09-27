@@ -2,15 +2,18 @@ import React, { useMemo, useState } from 'react';
 import type { ItemView } from '../config/loader';
 import { ItemIcon, PixelQualityBadge } from './ItemIcon';
 import { retroAudio } from '../audio/retroAudio';
+import { getVocab } from '../theme/vocab';
 import { marked } from 'marked';
 import { ExternalLink, Copy, Check, Terminal, Layers } from 'lucide-react';
 
 interface DetailPanelProps {
   item: ItemView | null;
+  theme?: string;
 }
 
-export const DetailPanel: React.FC<DetailPanelProps> = ({ item }) => {
+export const DetailPanel: React.FC<DetailPanelProps> = ({ item, theme }) => {
   const [copied, setCopied] = useState(false);
+  const vocab = getVocab(theme);
 
   const itemContent = item?.content;
   const renderedContent = useMemo(() => {
@@ -25,8 +28,8 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item }) => {
         <div className="w-12 h-12 rounded-full border-2 border-ui-wood-dark flex items-center justify-center mb-2 bg-ui-panel-warm opacity-60">
           <Layers size={24} />
         </div>
-        <p className="font-bold text-sm">请点击背包中的装备</p>
-        <p className="text-xs opacity-75 mt-0.5">查看设计原理、配置与安装方式</p>
+        <p className="font-bold text-sm">{vocab.hud.emptyDetailTitle}</p>
+        <p className="text-xs opacity-75 mt-0.5">{vocab.hud.emptyDetailHint}</p>
       </div>
     );
   }
@@ -56,10 +59,10 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item }) => {
   };
 
   const rarityInfo = {
-    normal: { label: '普通品质', color: 'var(--color-ui-frame-border)' },
-    silver: { label: '银星品质 (Silver)', color: 'var(--color-quality-silver-edge)' },
-    gold: { label: '金星品质 (Gold)', color: 'var(--color-quality-gold-edge)' },
-    iridium: { label: '铱星品质 (Iridium ★)', color: 'var(--color-quality-iridium-text)' }
+    normal: { label: vocab.rarity.normal, color: 'var(--color-ui-frame-border)' },
+    silver: { label: vocab.rarity.silver, color: 'var(--color-quality-silver-edge)' },
+    gold: { label: vocab.rarity.gold, color: 'var(--color-quality-gold-edge)' },
+    iridium: { label: vocab.rarity.iridium, color: 'var(--color-quality-iridium-text)' }
   }[item.rarity];
 
   return (
@@ -108,7 +111,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item }) => {
         {item.highlights && item.highlights.length > 0 && (
           <div>
             <h4 className="text-[11px] font-bold text-ui-ink-muted uppercase tracking-wider mb-1 flex items-center gap-1">
-              <span>✦ 核心亮点</span>
+              <span>{vocab.detail.highlights}</span>
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
               {item.highlights.map((h, i) => (
@@ -128,7 +131,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item }) => {
         {renderedContent && (
           <div>
             <h4 className="text-[11px] font-bold text-ui-ink-muted uppercase tracking-wider mb-1">
-              📜 深度解析
+              {vocab.detail.content}
             </h4>
             <div
               className="text-xs leading-relaxed text-ui-ink bg-ui-highlight p-2 border border-ui-accent/60 shadow-xs select-text
@@ -155,7 +158,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item }) => {
           <div>
             <div className="flex items-center justify-between mb-1">
               <h4 className="text-[11px] font-bold text-ui-ink-muted flex items-center gap-1">
-                <Terminal size={12} /> 安装与使用指令
+                <Terminal size={12} /> {vocab.detail.install}
               </h4>
               <button
                 onClick={() => handleCopy(item.install!)}
@@ -163,7 +166,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item }) => {
                 title="复制到剪贴板"
               >
                 {copied ? <Check size={10} className="text-green-700" /> : <Copy size={10} />}
-                {copied ? '已复制！' : '复制命令'}
+                {copied ? vocab.detail.copied : vocab.detail.copy}
               </button>
             </div>
             <pre className="text-[11px] font-mono bg-ui-bg-deep text-ui-ink-gold p-2 border border-ui-wood-dark overflow-x-auto whitespace-pre-wrap break-all select-text">
@@ -175,7 +178,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item }) => {
         {/* Configuration Example */}
         {item.config && (
           <div>
-            <h4 className="text-[11px] font-bold text-ui-ink-muted mb-1">⚙ 配置示例</h4>
+            <h4 className="text-[11px] font-bold text-ui-ink-muted mb-1">{vocab.detail.config}</h4>
             <pre className="text-[11px] font-mono bg-ui-bg-deep text-ui-code-ink p-2 border border-ui-wood-dark overflow-x-auto whitespace-pre-wrap break-all select-text">
               <code>{item.config}</code>
             </pre>
@@ -185,7 +188,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item }) => {
         {/* Owner Note */}
         {item.note && (
           <div className="p-2 bg-ui-cell-edge-light border border-ui-ink-amber text-[11px] text-ui-ink-body">
-            <span className="font-bold text-ui-ink-amber">💡 装备备注: </span>
+            <span className="font-bold text-ui-ink-amber">{vocab.detail.note}: </span>
             {item.note}
           </div>
         )}
@@ -213,7 +216,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item }) => {
               className="sdv-action-btn !py-1 !px-2 !text-xs"
               onClick={() => retroAudio.playSelect()}
             >
-              <ExternalLink size={12} /> 仓库
+              <ExternalLink size={12} /> {vocab.detail.repo}
             </a>
           )}
         </div>

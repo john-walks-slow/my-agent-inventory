@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { ItemView } from '../config/loader';
 import { ItemIcon, PixelQualityBadge } from './ItemIcon';
 import { retroAudio } from '../audio/retroAudio';
-import { getVocab } from '../theme/vocab';
+import { getVocab, fmt } from '../theme/vocab';
 import { Search } from 'lucide-react';
 
 export interface SubCategoryOption {
@@ -85,7 +85,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
         <div className="relative flex items-center shrink-0">
           <input
             type="text"
-            placeholder="搜索..."
+            placeholder={vocab.hud.search}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             className="w-24 sm:w-32 text-xs px-1.5 py-0.5 pl-5 bg-ui-panel-light text-ui-ink placeholder-ui-ink-muted/60 border border-ui-wood-dark rounded-none focus:outline-none focus:bg-white"
@@ -97,6 +97,16 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
       {/* Grid Container (Top-aligned, scrollable slots matrix) */}
       <div className="bg-ui-panel-warm border-2 border-ui-wood-dark p-2 sm:p-2.5 shadow-md flex flex-col flex-1 min-h-0 justify-between">
         <div className="overflow-y-auto custom-scroll p-1 sm:p-1.5 flex-1 min-h-0 max-h-[290px] sm:max-h-[350px] lg:max-h-none">
+          {items.length === 0 && (
+            <div className="text-center py-6 text-xs font-bold text-ui-ink-muted select-none">
+              {vocab.hud.sectionEmpty}
+            </div>
+          )}
+          {items.length > 0 && filteredItems.length === 0 && (
+            <div className="text-center py-6 text-xs font-bold text-ui-ink-muted select-none">
+              {vocab.hud.searchEmpty}
+            </div>
+          )}
           <div className="grid grid-cols-6 sm:grid-cols-12 gap-1 sm:gap-1.5 w-full">
             {slots.map((item, idx) => {
               const isSelected = selectedItem?.id === item?.id;
@@ -119,7 +129,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
                   className={`sdv-cell aspect-square w-full flex items-center justify-center cursor-pointer relative ${
                     isSelected ? 'active' : ''
                   } ${!item ? 'opacity-80 cursor-default' : ''}`}
-                  title={item ? `${item.name}${item.title ? ` (${item.title})` : ''}` : `空闲格子 [${idx + 1}]`}
+                  title={item ? `${item.name}${item.title ? ` (${item.title})` : ''}` : fmt(vocab.hud.emptySlot, { n: idx + 1 })}
                 >
                   {/* Hotbar index badge for standard numeric keys 1-9, 0 */}
                   {idx < 10 && (
@@ -147,9 +157,9 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
 
         {/* Footer Capacity Status */}
         <div className="mt-2 pt-1.5 border-t border-ui-wood-dark/50 flex items-center justify-between text-[11px] text-ui-ink-body font-bold px-0.5 shrink-0">
-          <span>收纳数: {filteredItems.length} / {capacity}</span>
+          <span>{vocab.hud.capacity}: {filteredItems.length} / {capacity}</span>
           <span className="text-[10px] text-ui-ink-muted opacity-80 font-normal">
-            {capacity > 36 ? `(已扩容至 ${capacity / 12} 行 / ${capacity} 格)` : `${vocab.bagLabel} (36格)`}
+            {capacity > 36 ? fmt(vocab.hud.expanded, { rows: capacity / 12, cells: capacity }) : `${vocab.bagLabel} (36格)`}
           </span>
         </div>
       </div>
@@ -162,10 +172,10 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
               <span className="text-ui-ink-amber">{hoveredItem.name}</span>
               {hoveredItem.title && <span className="text-ui-ink-body opacity-80">[{hoveredItem.title}]</span>}
             </div>
-            <span className="text-[10px] text-ui-ink-amber shrink-0">点击查看属性</span>
+            <span className="text-[10px] text-ui-ink-amber shrink-0">{vocab.hud.clickToView}</span>
           </>
         ) : (
-          <span className="text-[10px] text-ui-ink-muted/70 italic">悬停在装备上可快速预览</span>
+          <span className="text-[10px] text-ui-ink-muted/70 italic">{vocab.hud.hoverHint}</span>
         )}
       </div>
     </div>

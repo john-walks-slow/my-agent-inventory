@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { KIT_ICONS, KIT_GROUPS } from '../iconkit/registry';
 import { KIT_ASSET_URLS } from '../iconkit/assets';
 import { retroAudio } from '../audio/retroAudio';
+import { getVocab } from '../theme/vocab';
 import { Search, Check, ArrowLeft, ExternalLink } from 'lucide-react';
 
 const ATTRIBUTION = {
@@ -13,12 +14,14 @@ const ATTRIBUTION = {
 
 interface IconsCodexProps {
   onExit: () => void;
+  theme?: string;
 }
 
-export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit }) => {
+export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit, theme }) => {
   const [query, setQuery] = useState('');
   const [group, setGroup] = useState<string>('all');
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const vocab = getVocab(theme);
 
   const allIds = useMemo(() => Object.keys(KIT_ICONS).sort(), []);
 
@@ -69,7 +72,7 @@ export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit }) => {
           </button>
           <div>
             <h1 className="text-base sm:text-lg font-bold tracking-wide text-ui-ink leading-none">
-              图标图鉴
+              {vocab.hud.codexLink}
             </h1>
             <p className="text-[10px] text-ui-ink-muted font-semibold mt-0.5">
               内置套件 {allIds.length} 枚 · 点击复制 id · item.icon 直接引用
@@ -93,7 +96,7 @@ export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit }) => {
         {/* Group pills */}
         <div className="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5 mb-2 shrink-0">
           {[
-            { label: '全部', count: allIds.length },
+            { label: vocab.hud.allFilter, count: allIds.length },
             ...KIT_GROUPS.map((g) => ({ label: g.label, count: g.ids.filter((id) => id in KIT_ICONS).length }))
           ].map((g) => {
             const isActive = group === g.label;
