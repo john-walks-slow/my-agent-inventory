@@ -42,6 +42,7 @@ export interface ThemeVocab {
     totalLabel: string;
     totalUnit: string;
     codexLink: string;
+    badgeLink: string;
     goldHint: string;
     emptyDetailTitle: string;
     emptyDetailHint: string;
@@ -101,6 +102,7 @@ const stardew: ThemeVocab = {
     totalLabel: '收纳总数',
     totalUnit: '项',
     codexLink: '图标图鉴',
+    badgeLink: '装备名片',
     goldHint: '点击收成金币！',
     emptyDetailTitle: '请点击背包中的装备',
     emptyDetailHint: '查看设计原理、配置与安装方式',
@@ -163,6 +165,7 @@ const pokemon: ThemeVocab = {
     totalLabel: '持有总数',
     totalUnit: '件',
     codexLink: '图鉴全览',
+    badgeLink: '训练家卡',
     goldHint: '点击获得金币！',
     emptyDetailTitle: '请选择一件道具',
     emptyDetailHint: '查看图鉴说明、设置与获取方式',
@@ -225,6 +228,7 @@ const jrpg: ThemeVocab = {
     totalLabel: '所持总数',
     totalUnit: '种',
     codexLink: '纹章图鉴',
+    badgeLink: '冒险纹章',
     goldHint: '点击获取金币！',
     emptyDetailTitle: '请选择要查看的装备',
     emptyDetailHint: '查看来历、设定与入手方法',
@@ -287,6 +291,7 @@ const diablo: ThemeVocab = {
     totalLabel: '战利品总数',
     totalUnit: '件',
     codexLink: '符文图鉴',
+    badgeLink: '英雄石板',
     goldHint: '点击搜刮金币！',
     emptyDetailTitle: '请选中一件战利品',
     emptyDetailHint: '查看属性、符文与获取途径',

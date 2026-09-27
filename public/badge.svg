@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="160" viewBox="0 0 480 160" role="img" aria-label="大肥鱼 harness badge">
+  <defs>
+    <style>@font-face{font-family:'BadgeSilkscreen';src:url(data:font/woff2;base64,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) format('woff2');}</style>
+  </defs>
+  <!-- 外框 -->
+  <rect x="0" y="0" width="480" height="160" rx="6" fill="#4a2113"/>
+  <!-- 内底 -->
+  <rect x="5" y="5" width="470" height="150" rx="3" fill="#ecd0a6"/>
+  <!-- 内衬线 -->
+  <rect x="9" y="9" width="462" height="142" rx="2" fill="none" stroke="#fff6e0" stroke-width="1.5" opacity="0.6"/>
+  <!-- 品牌头像 -->
+  <svg x="26" y="34" width="72" height="72" viewBox="0 0 16 16" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+  <!-- generated by tools/gen-brands.mjs -->
+  <g>
+    <rect x="10" y="2" width="1" height="1" fill="#dff3fb"/>
+    <rect x="9" y="3" width="1" height="1" fill="#dff3fb"/>
+    <rect x="10" y="3" width="1" height="1" fill="#dff3fb"/>
+    <rect x="11" y="3" width="1" height="1" fill="#dff3fb"/>
+    <rect x="9" y="4" width="1" height="1" fill="#dff3fb"/>
+    <rect x="11" y="4" width="1" height="1" fill="#dff3fb"/>
+    <rect x="3" y="5" width="1" height="1" fill="#123a5c"/>
+    <rect x="4" y="5" width="1" height="1" fill="#123a5c"/>
+    <rect x="5" y="5" width="1" height="1" fill="#123a5c"/>
+    <rect x="6" y="5" width="1" height="1" fill="#123a5c"/>
+    <rect x="7" y="5" width="1" height="1" fill="#123a5c"/>
+    <rect x="8" y="5" width="1" height="1" fill="#123a5c"/>
+    <rect x="9" y="5" width="1" height="1" fill="#123a5c"/>
+    <rect x="10" y="5" width="1" height="1" fill="#123a5c"/>
+    <rect x="11" y="5" width="1" height="1" fill="#123a5c"/>
+    <rect x="2" y="6" width="1" height="1" fill="#123a5c"/>
+    <rect x="3" y="6" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="4" y="6" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="5" y="6" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="6" y="6" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="7" y="6" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="8" y="6" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="9" y="6" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="10" y="6" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="11" y="6" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="12" y="6" width="1" height="1" fill="#123a5c"/>
+    <rect x="1" y="7" width="1" height="1" fill="#123a5c"/>
+    <rect x="2" y="7" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="3" y="7" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="4" y="7" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="5" y="7" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="6" y="7" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="7" y="7" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="8" y="7" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="9" y="7" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="10" y="7" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="11" y="7" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="12" y="7" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="13" y="7" width="1" height="1" fill="#123a5c"/>
+    <rect x="0" y="8" width="1" height="1" fill="#123a5c"/>
+    <rect x="1" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="2" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="3" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="4" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="5" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="6" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="7" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="8" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="9" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="10" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="11" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="12" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="13" y="8" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="14" y="8" width="1" height="1" fill="#123a5c"/>
+    <rect x="0" y="9" width="1" height="1" fill="#123a5c"/>
+    <rect x="1" y="9" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="2" y="9" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="3" y="9" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="4" y="9" width="1" height="1" fill="#cfe8f7"/>
+    <rect x="5" y="9" width="1" height="1" fill="#cfe8f7"/>
+    <rect x="6" y="9" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="7" y="9" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="8" y="9" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="9" y="9" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="10" y="9" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="11" y="9" width="1" height="1" fill="#08263f"/>
+    <rect x="12" y="9" width="1" height="1" fill="#08263f"/>
+    <rect x="13" y="9" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="14" y="9" width="1" height="1" fill="#123a5c"/>
+    <rect x="0" y="10" width="1" height="1" fill="#123a5c"/>
+    <rect x="1" y="10" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="2" y="10" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="3" y="10" width="1" height="1" fill="#cfe8f7"/>
+    <rect x="4" y="10" width="1" height="1" fill="#cfe8f7"/>
+    <rect x="5" y="10" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="6" y="10" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="7" y="10" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="8" y="10" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="9" y="10" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="10" y="10" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="11" y="10" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="12" y="10" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="13" y="10" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="14" y="10" width="1" height="1" fill="#123a5c"/>
+    <rect x="0" y="11" width="1" height="1" fill="#123a5c"/>
+    <rect x="1" y="11" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="2" y="11" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="3" y="11" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="4" y="11" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="5" y="11" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="6" y="11" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="7" y="11" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="8" y="11" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="9" y="11" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="10" y="11" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="11" y="11" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="12" y="11" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="13" y="11" width="1" height="1" fill="#123a5c"/>
+    <rect x="0" y="12" width="1" height="1" fill="#123a5c"/>
+    <rect x="1" y="12" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="2" y="12" width="1" height="1" fill="#8ecae6"/>
+    <rect x="3" y="12" width="1" height="1" fill="#8ecae6"/>
+    <rect x="4" y="12" width="1" height="1" fill="#8ecae6"/>
+    <rect x="5" y="12" width="1" height="1" fill="#8ecae6"/>
+    <rect x="6" y="12" width="1" height="1" fill="#8ecae6"/>
+    <rect x="7" y="12" width="1" height="1" fill="#8ecae6"/>
+    <rect x="8" y="12" width="1" height="1" fill="#8ecae6"/>
+    <rect x="9" y="12" width="1" height="1" fill="#8ecae6"/>
+    <rect x="10" y="12" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="11" y="12" width="1" height="1" fill="#2d7ab8"/>
+    <rect x="12" y="12" width="1" height="1" fill="#123a5c"/>
+    <rect x="1" y="13" width="1" height="1" fill="#123a5c"/>
+    <rect x="2" y="13" width="1" height="1" fill="#8ecae6"/>
+    <rect x="3" y="13" width="1" height="1" fill="#8ecae6"/>
+    <rect x="4" y="13" width="1" height="1" fill="#8ecae6"/>
+    <rect x="5" y="13" width="1" height="1" fill="#8ecae6"/>
+    <rect x="6" y="13" width="1" height="1" fill="#8ecae6"/>
+    <rect x="7" y="13" width="1" height="1" fill="#8ecae6"/>
+    <rect x="8" y="13" width="1" height="1" fill="#8ecae6"/>
+    <rect x="9" y="13" width="1" height="1" fill="#8ecae6"/>
+    <rect x="10" y="13" width="1" height="1" fill="#8ecae6"/>
+    <rect x="11" y="13" width="1" height="1" fill="#123a5c"/>
+    <rect x="2" y="14" width="1" height="1" fill="#123a5c"/>
+    <rect x="3" y="14" width="1" height="1" fill="#123a5c"/>
+    <rect x="5" y="14" width="1" height="1" fill="#123a5c"/>
+    <rect x="6" y="14" width="1" height="1" fill="#123a5c"/>
+    <rect x="7" y="14" width="1" height="1" fill="#123a5c"/>
+    <rect x="9" y="14" width="1" height="1" fill="#123a5c"/>
+    <rect x="10" y="14" width="1" height="1" fill="#123a5c"/>
+    <rect x="1" y="15" width="1" height="1" fill="#123a5c"/>
+    <rect x="2" y="15" width="1" height="1" fill="#1b5680"/>
+    <rect x="3" y="15" width="1" height="1" fill="#123a5c"/>
+    <rect x="9" y="15" width="1" height="1" fill="#123a5c"/>
+    <rect x="10" y="15" width="1" height="1" fill="#1b5680"/>
+    <rect x="11" y="15" width="1" height="1" fill="#123a5c"/>
+  </g>
+</svg>
+  <!-- 昵称 / 副题 -->
+  <text x="116" y="62" font-family="'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif" font-size="24" font-weight="bold" fill="#381503">大肥鱼</text>
+  <text x="116" y="84" font-family="'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" fill="#78350f">DeepSeek Harness</text>
+  <!-- Lv 徽章 -->
+  <rect x="116" y="96" width="134" height="24" rx="4" fill="#d98236"/>
+  <text x="183" y="112.5" text-anchor="middle" font-family="'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif" font-size="13" font-weight="bold" fill="#fff6e0">★ Lv.16 渔夫大师</text>
+  <!-- EXP 条 -->
+  <text x="116" y="140" font-family="'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" font-weight="bold" fill="#78350f">EXP</text>
+  <rect x="146" y="131" width="180" height="10" rx="2" fill="#c89b62"/>
+  <rect x="146" y="131" width="159" height="10" rx="2" fill="#78c850"/>
+  <text x="334" y="140" font-family="'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" font-weight="bold" fill="#78350f">88%</text>
+  <!-- 数据 chips -->
+  
+    <g transform="translate(328 26)">
+      <rect width="128" height="24" rx="4" fill="#fdf5df" stroke="#8d562b" stroke-width="1"/>
+      <text x="8" y="16.5" font-family="'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" fill="#78350f">会话</text>
+      <text x="120" y="16.5" text-anchor="end" font-family="'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#381503">482</text>
+    </g>
+    <g transform="translate(328 58)">
+      <rect width="128" height="24" rx="4" fill="#fdf5df" stroke="#8d562b" stroke-width="1"/>
+      <text x="8" y="16.5" font-family="'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" fill="#78350f">Token</text>
+      <text x="120" y="16.5" text-anchor="end" font-family="'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#381503">43.6亿</text>
+    </g>
+    <g transform="translate(328 90)">
+      <rect width="128" height="24" rx="4" fill="#fdf5df" stroke="#8d562b" stroke-width="1"/>
+      <text x="8" y="16.5" font-family="'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" fill="#78350f">装备</text>
+      <text x="120" y="16.5" text-anchor="end" font-family="'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#381503">85</text>
+    </g>
+</svg>

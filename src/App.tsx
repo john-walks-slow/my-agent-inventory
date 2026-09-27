@@ -6,6 +6,7 @@ import { InventoryGrid } from './components/InventoryGrid';
 import { DetailPanel } from './components/DetailPanel';
 import { BooksView } from './components/BooksView';
 import { IconsCodex } from './components/IconsCodex';
+import { BadgeView } from './components/BadgeView';
 import { ItemIcon } from './components/ItemIcon';
 import { HarnessProfileModal } from './components/HarnessProfileModal';
 import { retroAudio } from './audio/retroAudio';
@@ -79,6 +80,10 @@ export const App: React.FC = () => {
 
   if (route === '#/icons') {
     return <IconsCodex onExit={() => { window.location.hash = ''; }} theme={theme} />;
+  }
+
+  if (route === '#/badge') {
+    return <BadgeView onExit={() => { window.location.hash = ''; }} theme={theme} />;
   }
 
   return (
@@ -216,6 +221,13 @@ export const App: React.FC = () => {
         <span className="opacity-80">
           {vocab.hud.totalLabel}: {totalItemCount} {vocab.hud.totalUnit}
         </span>
+        <a
+          href="#/badge"
+          onClick={() => retroAudio.playTab()}
+          className="opacity-80 hover:opacity-100 underline underline-offset-2"
+        >
+          {vocab.hud.badgeLink}
+        </a>
         <a
           href="#/icons"
           onClick={() => retroAudio.playTab()}

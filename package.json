@@ -9,7 +9,9 @@
     "lint": "oxlint",
     "test": "tsx --test tests/*.test.ts",
     "preview": "vite preview",
-    "validate": "tsx scripts/validate.ts"
+    "validate": "tsx scripts/validate.ts",
+    "predev": "tsx scripts/gen-badges.ts",
+    "prebuild": "tsx scripts/gen-badges.ts"
   },
   "dependencies": {
     "react": "^19.2.8",

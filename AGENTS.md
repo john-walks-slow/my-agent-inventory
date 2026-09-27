@@ -16,9 +16,12 @@
 - `src/components/DetailPanel.tsx`: 独立滚动的装备属性卡片、Markdown 深度解析、一键复制安装/配置
 - `src/components/BooksView.tsx`: 秘籍书架与羊皮纸（Parchment）Markdown 阅览器（reader 型 section）
 - `src/components/HarnessProfileModal.tsx`: harness 档案弹窗（头像/昵称/Lv/EXP 条/统计行）
+- `src/components/BadgeView.tsx`: `#/badge` 名片页（四主题预览 + URL/Markdown/HTML 嵌入片段复制）
 - `src/theme/vocab.ts`: 主题词汇表（section 展示名、等级称号、品质命名、详情卡章节标题、HUD/空态、阅读器用语全量按主题变化；`fmt()` 占位插值）
 - `src/iconkit/`: 内置 7Soul 496 枚 CC0 像素图标套件（`registry.ts` id→文件 + 分组速查；`#/icons` 图鉴页）
 - `src/assets/fonts/`: 主题像素字体（DotGothic16/PKMN/Fusion Pixel/Cinzel/Pirata One，许可文本与清单见其 README.md）
+- `src/badge/`: 游戏名片纯函数与四主题规格（480×160 SVG；fonts/ 为 ASCII 拉丁字体子集，data-URI 内嵌进 badge）
+- `scripts/gen-badges.ts`: badge/favicon 生成器（predev/prebuild 钩子 → `public/badges/*.svg` + `badge.svg`（随 site.theme）+ `favicon.svg`（品牌头像））
 - `src/stats/level.ts`: 等级与经验纯函数（对数压缩公式，5 锚点校准，`tests/level.test.ts`）
 - `src/brands/`: 品牌 16×16 像素头像（`tools/gen-brands.mjs` 字符画生成；dsh/claude-code/... /generic 兜底）
 - `src/audio/retroAudio.ts`: 纯原生 Web Audio API 8-bit 声效合成器（木击、拾取、金币、翻书）
