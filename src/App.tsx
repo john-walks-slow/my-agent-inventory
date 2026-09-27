@@ -23,6 +23,11 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
+  // 主题挂钩：site.theme → <html data-theme>（P5b 主题表按此切换 token 集）
+  useEffect(() => {
+    document.documentElement.dataset.theme = model.config.site.theme;
+  }, [model.config.site.theme]);
+
   const [activeSectionId, setActiveSectionId] = useState<string>(sections[0]?.id ?? '');
   const [subCategory, setSubCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -76,17 +81,17 @@ export const App: React.FC = () => {
   return (
     <div className="min-h-screen lg:h-screen w-screen p-2 sm:p-4 max-w-6xl mx-auto flex flex-col justify-between overflow-x-hidden lg:overflow-hidden">
       {/* Top Banner / HUD Header */}
-      <header className="flex items-center justify-between gap-2 px-3 py-1.5 bg-[#ecd0a6] border-2 border-[#4a2113] shadow-sm shrink-0">
+      <header className="flex items-center justify-between gap-2 px-3 py-1.5 bg-ui-panel border-2 border-ui-frame-border shadow-sm shrink-0">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 sdv-cell flex items-center justify-center bg-[#fff1d0]">
-            <Backpack size={18} className="text-[#6e2e05]" />
+          <div className="w-8 h-8 sdv-cell flex items-center justify-center bg-ui-cell-active">
+            <Backpack size={18} className="text-ui-wood-dark" />
           </div>
           <div>
-            <h1 className="text-base sm:text-lg font-bold tracking-wide text-[#381503] flex items-center gap-1.5 leading-none">
+            <h1 className="text-base sm:text-lg font-bold tracking-wide text-ui-ink flex items-center gap-1.5 leading-none">
               <span>{model.config.site.title}</span>
             </h1>
             {model.config.site.subtitle && (
-              <p className="text-[10px] text-[#78350f] font-semibold mt-0.5">
+              <p className="text-[10px] text-ui-ink-muted font-semibold mt-0.5">
                 {model.config.site.subtitle}
               </p>
             )}
@@ -101,10 +106,10 @@ export const App: React.FC = () => {
               retroAudio.playSelect();
               setShowProfileModal(true);
             }}
-            className="flex items-center gap-1 bg-[#4a2113] px-2 py-0.5 text-[#ffe4a1] cursor-pointer hover:bg-[#6e2e05] border-b border-[#1f0d05] shadow-xs active:translate-y-0.5"
+            className="flex items-center gap-1 bg-ui-frame-border px-2 py-0.5 text-ui-ink-gold cursor-pointer hover:bg-ui-wood-dark border-b border-ui-shadow-deep shadow-xs active:translate-y-0.5"
             title={`${profile.info.name} 档案`}
           >
-            <span className="text-[#fbbf24] leading-none">★</span>
+            <span className="text-ui-gold leading-none">★</span>
             <span className="font-mono text-xs leading-none">Lv.{profile.level.level}</span>
             <span className="hidden sm:inline text-[10px] opacity-90">{levelTitle(profile.level.level)}</span>
           </button>
@@ -115,11 +120,11 @@ export const App: React.FC = () => {
               retroAudio.playCoin();
               setGoldCount((g) => g + 500);
             }}
-            className="flex items-center gap-1 bg-[#fff6e0] px-2 py-0.5 text-[#381503] cursor-pointer hover:bg-[#fff] border-b border-[#b45309] shadow-xs active:translate-y-0.5"
+            className="flex items-center gap-1 bg-ui-panel-light px-2 py-0.5 text-ui-ink cursor-pointer hover:bg-white border-b border-ui-ink-amber shadow-xs active:translate-y-0.5"
             title="点击收成金币！"
           >
-            <span className="text-[#f59e0b] text-xs leading-none">🪙</span>
-            <span className="font-mono text-xs leading-none text-[#78350f]">{goldCount.toLocaleString()}g</span>
+            <span className="text-ui-gold-soft text-xs leading-none">🪙</span>
+            <span className="font-mono text-xs leading-none text-ui-ink-muted">{goldCount.toLocaleString()}g</span>
           </div>
 
           {/* Sound Toggle */}
@@ -161,7 +166,7 @@ export const App: React.FC = () => {
               >
                 <ItemIcon iconRef={sec.iconRef} size={14} />
                 <span>{sectionLabel(sec)}</span>
-                <span className="text-[10px] px-1 bg-[#4a2113]/20 rounded-none">{sec.items.length}</span>
+                <span className="text-[10px] px-1 bg-ui-frame-border/20 rounded-none">{sec.items.length}</span>
               </button>
             );
           })}
@@ -202,7 +207,7 @@ export const App: React.FC = () => {
       </main>
 
       {/* Footer Info HUD */}
-      <footer className="mt-2 text-center text-[11px] text-[#ffe4a1] flex items-center justify-between gap-2 px-1 shrink-0">
+      <footer className="mt-2 text-center text-[11px] text-ui-ink-gold flex items-center justify-between gap-2 px-1 shrink-0">
         <span className="opacity-80">
           收纳总数: {totalItemCount} 项
         </span>

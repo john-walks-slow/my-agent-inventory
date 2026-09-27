@@ -56,7 +56,7 @@ export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit }) => {
   return (
     <div className="min-h-screen w-screen p-2 sm:p-4 max-w-6xl mx-auto flex flex-col overflow-x-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between gap-2 px-3 py-1.5 bg-[#ecd0a6] border-2 border-[#4a2113] shadow-sm shrink-0">
+      <header className="flex items-center justify-between gap-2 px-3 py-1.5 bg-ui-panel border-2 border-ui-frame-border shadow-sm shrink-0">
         <div className="flex items-center gap-2.5">
           <button
             onClick={() => {
@@ -68,10 +68,10 @@ export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit }) => {
             <ArrowLeft size={12} /> 返回背包
           </button>
           <div>
-            <h1 className="text-base sm:text-lg font-bold tracking-wide text-[#381503] leading-none">
+            <h1 className="text-base sm:text-lg font-bold tracking-wide text-ui-ink leading-none">
               图标图鉴
             </h1>
-            <p className="text-[10px] text-[#78350f] font-semibold mt-0.5">
+            <p className="text-[10px] text-ui-ink-muted font-semibold mt-0.5">
               内置套件 {allIds.length} 枚 · 点击复制 id · item.icon 直接引用
             </p>
           </div>
@@ -82,9 +82,9 @@ export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit }) => {
             placeholder="搜索 id..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-28 sm:w-40 text-xs px-1.5 py-0.5 pl-5 bg-[#fff6e0] text-[#381503] placeholder-[#78350f]/60 border border-[#6e2e05] rounded-none focus:outline-none focus:bg-[#fff]"
+            className="w-28 sm:w-40 text-xs px-1.5 py-0.5 pl-5 bg-ui-panel-light text-ui-ink placeholder-ui-ink-muted/60 border border-ui-wood-dark rounded-none focus:outline-none focus:bg-white"
           />
-          <Search size={11} className="absolute left-1 text-[#78350f] pointer-events-none" />
+          <Search size={11} className="absolute left-1 text-ui-ink-muted pointer-events-none" />
         </div>
       </header>
 
@@ -106,8 +106,8 @@ export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit }) => {
                 }}
                 className={`px-2 py-0.5 text-xs font-bold transition-all shrink-0 ${
                   isActive
-                    ? 'bg-[#fff1d0] text-[#381503] border border-[#6e2e05] shadow-[0_1px_0_#4a2113]'
-                    : 'bg-[#d98236] text-[#fff] border border-[#6e2e05] hover:bg-[#e59349]'
+                    ? 'bg-ui-cell-active text-ui-ink border border-ui-wood-dark shadow-[0_1px_0_var(--color-ui-frame-border)]'
+                    : 'bg-ui-accent text-white border border-ui-wood-dark hover:bg-ui-accent-hover'
                 }`}
               >
                 {g.label}
@@ -118,7 +118,7 @@ export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit }) => {
         </div>
 
         {/* Icons grid */}
-        <div className="custom-scroll flex-1 min-h-0 overflow-y-auto bg-[#f0c38e] border-2 border-[#6e2e05] p-2 sm:p-3 shadow-md">
+        <div className="custom-scroll flex-1 min-h-0 overflow-y-auto bg-ui-panel-warm border-2 border-ui-wood-dark p-2 sm:p-3 shadow-md">
           <div className="grid gap-1.5" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(64px, 1fr))' }}>
             {shownIds.map((id) => {
               const url = KIT_ASSET_URLS[id];
@@ -143,14 +143,14 @@ export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit }) => {
                   ) : (
                     <span className="text-[9px] text-red-700 font-bold">缺失</span>
                   )}
-                  <span className="text-[8px] font-mono font-bold text-[#421c08]/80 leading-none truncate w-full text-center">
+                  <span className="text-[8px] font-mono font-bold text-ui-ink-body/80 leading-none truncate w-full text-center">
                     {isCopied ? <Check size={10} className="inline text-green-700" /> : id}
                   </span>
                 </button>
               );
             })}
             {shownIds.length === 0 && (
-              <p className="col-span-full text-center text-xs text-[#78350f] font-bold py-6">
+              <p className="col-span-full text-center text-xs text-ui-ink-muted font-bold py-6">
                 没有匹配的图标 id
               </p>
             )}
@@ -158,7 +158,7 @@ export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit }) => {
         </div>
 
         {/* Attribution footer */}
-        <div className="mt-2 text-[10px] text-[#421c08] flex flex-wrap items-center justify-between gap-1 shrink-0">
+        <div className="mt-2 text-[10px] text-ui-ink-body flex flex-wrap items-center justify-between gap-1 shrink-0">
           <span>
             套件：{ATTRIBUTION.title} · {ATTRIBUTION.author} · {ATTRIBUTION.license}
           </span>
@@ -166,7 +166,7 @@ export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit }) => {
             href={ATTRIBUTION.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-0.5 text-[#b45309] underline font-bold"
+            className="flex items-center gap-0.5 text-ui-ink-amber underline font-bold"
             onClick={() => retroAudio.playSelect()}
           >
             OpenGameArt <ExternalLink size={9} />

@@ -13,7 +13,7 @@ function fmtTokens(n: number): string {
 }
 
 const Row: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
-  <div className="bg-[#ecd0a6] p-1.5 border border-[#6e2e05] flex justify-between gap-2">
+  <div className="bg-ui-panel p-1.5 border border-ui-wood-dark flex justify-between gap-2">
     <span className="font-bold shrink-0">{label}</span>
     <span className="text-right">{children}</span>
   </div>
@@ -34,43 +34,43 @@ export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profil
   return (
     <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4" onClick={onClose}>
       <div
-        className="sdv-menu-frame max-w-sm w-full p-4 text-[#381503] relative bg-[#fff6e0]"
+        className="sdv-menu-frame max-w-sm w-full p-4 text-ui-ink relative bg-ui-panel-light"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 w-6 h-6 bg-[#ef4444] text-white font-bold flex items-center justify-center border border-[#4a2113] shadow-xs cursor-pointer hover:bg-[#dc2626]"
+          className="absolute top-2 right-2 w-6 h-6 bg-ui-danger text-white font-bold flex items-center justify-center border border-ui-frame-border shadow-xs cursor-pointer hover:bg-ui-danger-dark"
         >
           ✕
         </button>
 
         {/* 头部：头像 + 昵称 + 等级 */}
-        <div className="flex items-center gap-3 border-b-2 border-[#6e2e05] pb-3 mb-3">
+        <div className="flex items-center gap-3 border-b-2 border-ui-wood-dark pb-3 mb-3">
           <BrandAvatar avatar={avatar} size={48} />
           <div className="min-w-0">
-            <h3 className="text-base font-bold text-[#4a2113] leading-tight">
+            <h3 className="text-base font-bold text-ui-frame-border leading-tight">
               {info.nickname ?? info.name}
             </h3>
-            <p className="text-xs text-[#78350f] font-semibold mt-0.5">
+            <p className="text-xs text-ui-ink-muted font-semibold mt-0.5">
               {info.name}
               {info.version ? ` · v${info.version}` : ''}
             </p>
             <p className="text-[11px] mt-1 flex items-center gap-1.5 flex-wrap">
-              <span className="bg-[#4a2113] text-[#ffe4a1] px-1.5 py-px font-bold">Lv.{level.level}</span>
-              <span className="font-bold text-[#8a4b13]">{title}</span>
+              <span className="bg-ui-frame-border text-ui-ink-gold px-1.5 py-px font-bold">Lv.{level.level}</span>
+              <span className="font-bold text-ui-ink-muted">{title}</span>
             </p>
           </div>
         </div>
 
         {/* EXP 经验条 */}
         <div className="mb-3">
-          <div className="flex justify-between text-[10px] font-bold text-[#78350f] mb-1">
+          <div className="flex justify-between text-[10px] font-bold text-ui-ink-muted mb-1">
             <span>EXP</span>
             <span>{level.maxed ? 'MAX' : `距 Lv.${level.level + 1} 还差 ${100 - expPct}%`}</span>
           </div>
-          <div className="h-4 bg-[#3f2312] border-2 border-[#6e2e05] p-px box-border">
+          <div className="h-4 bg-ui-exp-track border-2 border-ui-wood-dark p-px box-border">
             <div
-              className="h-full bg-[linear-gradient(180deg,#a3e635_50%,#65a30d_50%)] transition-[width] duration-500"
+              className="h-full exp-bar-fill"
               style={{ width: `${Math.max(2, expPct)}%` }}
             />
           </div>
@@ -105,13 +105,13 @@ export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profil
         </div>
 
         {/* EXP 构成彩蛋（geeks 的浪漫） */}
-        <p className="mt-3 text-[10px] text-[#8a6b4a] leading-relaxed">
+        <p className="mt-3 text-[10px] text-ui-ink-faint leading-relaxed">
           EXP = 会话 {computeExp({ sessions: stats.sessions }).toFixed(1)} + Token{' '}
           {computeExp({ tokens: stats.tokens }).toFixed(1)} + 工龄 {computeExp({ days: stats.days }).toFixed(1)} +
           装备 {computeExp({ gear }).toFixed(1)} = {level.exp.toFixed(1)}
         </p>
 
-        <div className="mt-2 pt-2 border-t border-[#6e2e05] text-center">
+        <div className="mt-2 pt-2 border-t border-ui-wood-dark text-center">
           <button
             onClick={() => {
               retroAudio.playCoin();

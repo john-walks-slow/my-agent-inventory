@@ -18,10 +18,10 @@ const FallbackGlyph: React.FC<{ size: number }> = ({ size }) => (
     className="shape-pixel opacity-70"
     style={{ imageRendering: 'pixelated' }}
   >
-    <rect x="1" y="1" width="14" height="14" fill="#8d6a4a" />
-    <rect x="2" y="2" width="12" height="12" fill="#c49a6c" />
-    <rect x="7" y="4" width="2" height="2" fill="#4a2113" />
-    <rect x="7" y="8" width="2" height="4" fill="#4a2113" />
+    <rect x="1" y="1" width="14" height="14" fill="var(--color-ui-fallback-dark)" />
+    <rect x="2" y="2" width="12" height="12" fill="var(--color-ui-fallback-light)" />
+    <rect x="7" y="4" width="2" height="2" fill="var(--color-ui-frame-border)" />
+    <rect x="7" y="8" width="2" height="4" fill="var(--color-ui-frame-border)" />
   </svg>
 );
 
@@ -71,9 +71,9 @@ export const PixelQualityBadge: React.FC<{ rarity: Rarity }> = ({ rarity }) => {
   if (rarity === 'normal') return null;
 
   const starColors = {
-    silver: { fill: '#e2e8f0', border: '#64748b' },
-    gold: { fill: '#fbbf24', border: '#b45309' },
-    iridium: { fill: '#c084fc', border: '#6b21a8' }
+    silver: { fill: 'var(--color-quality-silver)', border: 'var(--color-quality-silver-edge)' },
+    gold: { fill: 'var(--color-quality-gold)', border: 'var(--color-quality-gold-edge)' },
+    iridium: { fill: 'var(--color-quality-iridium)', border: 'var(--color-quality-iridium-edge)' }
   }[rarity];
 
   return (

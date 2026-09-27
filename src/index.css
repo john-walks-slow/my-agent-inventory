@@ -16,22 +16,98 @@
   font-display: swap;
 }
 
-:root {
-  /* Authentic Stardew Valley UI Palette */
-  --sdv-frame-dark: #4a2113;
-  --sdv-frame-mid: #743310;
-  --sdv-frame-light: #b45309;
-  --sdv-wood-base: #f5b974;
-  --sdv-wood-inner: #ffd899;
-  --sdv-slot-bg: #e6a763;
-  --sdv-slot-dark: #6e2e05;
-  --sdv-slot-light: #ffebbe;
-  --sdv-text-title: #381503;
-  --sdv-text-body: #421c08;
-  --sdv-text-muted: #78350f;
-  --sdv-gold: #fbbf24;
-  --sdv-parchment-bg: #fdf5df;
-  --sdv-parchment-border: #8d562b;
+/*
+ * 主题 token 层（P5a）。
+ * - @theme 注册的 --color-ui-* / --color-quality-* 同时生成 Tailwind 工具类
+ *   （如 bg-ui-panel / text-ui-ink / border-ui-wood-dark），组件禁止再写硬编码色值。
+ * - 全部 sdv-* 皮肤类内部一律 var() 引用本层，单一事实源。
+ * - P5b 新主题 = html[data-theme='<id>'] 覆写同名变量，全站换肤零组件改动。
+ * - 当前基准值 = 星露谷（Stardew Valley）。
+ */
+@theme {
+  /* 墨色（文本） */
+  --color-ui-ink: #381503;
+  --color-ui-ink-body: #421c08;
+  --color-ui-ink-muted: #78350f;
+  --color-ui-ink-amber: #b45309;
+  --color-ui-ink-gold: #ffe4a1;
+  --color-ui-ink-faint: #8a6b4a;
+  --color-ui-code-ink: #a8dadc;
+
+  /* 木质结构 */
+  --color-ui-wood-dark: #6e2e05;
+  --color-ui-wood-mid: #8d562b;
+  --color-ui-frame-border: #4a2113;
+  --color-ui-shadow-deep: #1f0d05;
+
+  /* 面板 */
+  --color-ui-panel: #ecd0a6;
+  --color-ui-panel-warm: #f0c38e;
+  --color-ui-panel-light: #fff6e0;
+  --color-ui-highlight: #fdf5df;
+  --color-ui-highlight-warm: #fdecd2;
+
+  /* 背包格 */
+  --color-ui-cell: #e6a763;
+  --color-ui-cell-hover: #f8be7e;
+  --color-ui-cell-edge-light: #ffebbe;
+  --color-ui-cell-active: #fff1d0;
+  --color-ui-cell-active-glow: #ffd166;
+
+  /* 强调（tab / 按钮） */
+  --color-ui-accent: #d98236;
+  --color-ui-accent-hover: #e59349;
+  --color-ui-accent-edge: #ffdeaa;
+  --color-ui-btn-shadow: #2a1205;
+
+  /* 菜单框 */
+  --color-ui-frame: #fce2b8;
+  --color-ui-frame-bevel-light: #ffeccc;
+  --color-ui-frame-bevel-dark: #92400e;
+
+  /* 页面底与深色块 */
+  --color-ui-page: #1a110a;
+  --color-ui-page-dot-a: #2d1e12;
+  --color-ui-page-dot-b: #22160d;
+  --color-ui-bg-deep: #22160d;
+
+  /* 功能色 */
+  --color-ui-gold: #fbbf24;
+  --color-ui-gold-soft: #f59e0b;
+  --color-ui-danger: #ef4444;
+  --color-ui-danger-dark: #dc2626;
+  --color-ui-danger-darker: #b91c1c;
+
+  /* EXP 经验条 */
+  --color-ui-exp-track: #3f2312;
+  --color-ui-exp-fill: #a3e635;
+  --color-ui-exp-fill-dark: #65a30d;
+
+  /* 品质星 */
+  --color-quality-silver: #e2e8f0;
+  --color-quality-silver-edge: #64748b;
+  --color-quality-gold: #fbbf24;
+  --color-quality-gold-edge: #b45309;
+  --color-quality-iridium: #c084fc;
+  --color-quality-iridium-edge: #6b21a8;
+  --color-quality-iridium-text: #9333ea;
+
+  /* 兜底图腾（问号木牌） */
+  --color-ui-fallback-dark: #8d6a4a;
+  --color-ui-fallback-light: #c49a6c;
+
+  /* 羊皮纸阅读器 */
+  --color-ui-parchment: #fcf4de;
+  --color-ui-parchment-edge: #8d562b;
+
+  /* 滚动条 */
+  --color-ui-scroll-track: #e6a763;
+  --color-ui-scroll-thumb: #fce2b8;
+  --color-ui-scroll-thumb-edge: #743310;
+  --color-ui-scroll-hover: #fff4d1;
+
+  /* 木纹装饰 */
+  --color-ui-wood-base: #f7c385;
 }
 
 * {
@@ -45,13 +121,13 @@ html, body {
   min-height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #1a110a;
-  background-image: 
-    radial-gradient(#2d1e12 20%, transparent 20%),
-    radial-gradient(#22160d 20%, transparent 20%);
+  background-color: var(--color-ui-page);
+  background-image:
+    radial-gradient(var(--color-ui-page-dot-a) 20%, transparent 20%),
+    radial-gradient(var(--color-ui-page-dot-b) 20%, transparent 20%);
   background-size: 24px 24px;
   background-position: 0 0, 12px 12px;
-  color: var(--sdv-text-body);
+  color: var(--color-ui-ink-body);
   font-family: 'PixelCJK', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
@@ -71,7 +147,7 @@ html, body {
 
 /* Subtle Wooden Grain Background Overlay */
 .sdv-wood-texture {
-  background-color: #f7c385;
+  background-color: var(--color-ui-wood-base);
   background-image: repeating-linear-gradient(
     0deg,
     rgba(180, 83, 9, 0.05) 0px,
@@ -83,53 +159,53 @@ html, body {
 
 /* Authentic Stardew Menu Frame (Refined Pixel Bevel) */
 .sdv-menu-frame {
-  background-color: #fce2b8;
-  border: 4px solid #4a2113;
-  box-shadow: 
-    inset 2px 2px 0px #ffeccc,
-    inset -2px -2px 0px #92400e,
+  background-color: var(--color-ui-frame);
+  border: 4px solid var(--color-ui-frame-border);
+  box-shadow:
+    inset 2px 2px 0px var(--color-ui-frame-bevel-light),
+    inset -2px -2px 0px var(--color-ui-frame-bevel-dark),
     0 8px 0px rgba(0, 0, 0, 0.5);
   position: relative;
 }
 
 /* Authentic Stardew Slot Cell */
 .sdv-cell {
-  background-color: #e6a763;
-  border-top: 2px solid #6e2e05;
-  border-left: 2px solid #6e2e05;
-  border-right: 2px solid #ffebbe;
-  border-bottom: 2px solid #ffebbe;
+  background-color: var(--color-ui-cell);
+  border-top: 2px solid var(--color-ui-wood-dark);
+  border-left: 2px solid var(--color-ui-wood-dark);
+  border-right: 2px solid var(--color-ui-cell-edge-light);
+  border-bottom: 2px solid var(--color-ui-cell-edge-light);
   box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.2);
   transition: all 0.08s ease;
 }
 
 .sdv-cell:hover {
-  background-color: #f8be7e;
-  border-color: #b45309;
+  background-color: var(--color-ui-cell-hover);
+  border-color: var(--color-ui-ink-amber);
   transform: scale(1.04);
   z-index: 10;
 }
 
 .sdv-cell.active {
-  background-color: #fff1d0;
-  border: 3px solid #dc2626 !important;
-  box-shadow: inset 0 0 0 1px #ffd166;
+  background-color: var(--color-ui-cell-active);
+  border: 3px solid var(--color-ui-danger-dark) !important;
+  box-shadow: inset 0 0 0 1px var(--color-ui-cell-active-glow);
   z-index: 20;
 }
 
 .sdv-cell.active:hover {
-  background-color: #fff6e0;
-  border-color: #b91c1c !important;
+  background-color: var(--color-ui-panel-light);
+  border-color: var(--color-ui-danger-darker) !important;
 }
 
 /* Authentic Stardew Tab Button */
 .sdv-tab-btn {
-  background-color: #d98236;
-  border-top: 2px solid #ffdeaa;
-  border-left: 2px solid #ffdeaa;
-  border-right: 2px solid #6e2e05;
-  border-bottom: 2px solid #6e2e05;
-  color: #381503;
+  background-color: var(--color-ui-accent);
+  border-top: 2px solid var(--color-ui-accent-edge);
+  border-left: 2px solid var(--color-ui-accent-edge);
+  border-right: 2px solid var(--color-ui-wood-dark);
+  border-bottom: 2px solid var(--color-ui-wood-dark);
+  color: var(--color-ui-ink);
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
   cursor: pointer;
   transition: all 0.1s ease;
@@ -137,25 +213,25 @@ html, body {
 }
 
 .sdv-tab-btn:hover {
-  background-color: #e59349;
+  background-color: var(--color-ui-accent-hover);
 }
 
 .sdv-tab-btn.active {
-  background-color: #fce2b8;
-  border-bottom: 2px solid #fce2b8;
+  background-color: var(--color-ui-frame);
+  border-bottom: 2px solid var(--color-ui-frame);
   margin-bottom: -2px;
   z-index: 20;
-  box-shadow: 0 -2px 0 #4a2113;
+  box-shadow: 0 -2px 0 var(--color-ui-frame-border);
 }
 
 /* Stardew Action Button */
 .sdv-action-btn {
-  background-color: #d98236;
-  border-top: 2px solid #ffdeaa;
-  border-left: 2px solid #ffdeaa;
-  border-right: 2px solid #6e2e05;
-  border-bottom: 2px solid #4a2113;
-  color: #381503;
+  background-color: var(--color-ui-accent);
+  border-top: 2px solid var(--color-ui-accent-edge);
+  border-left: 2px solid var(--color-ui-accent-edge);
+  border-right: 2px solid var(--color-ui-wood-dark);
+  border-bottom: 2px solid var(--color-ui-frame-border);
+  color: var(--color-ui-ink);
   font-family: 'PixelCJK', sans-serif;
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
   padding: 4px 10px;
@@ -165,46 +241,49 @@ html, body {
   justify-content: center;
   gap: 4px;
   user-select: none;
-  box-shadow: 0 2px 0 #2a1205;
+  box-shadow: 0 2px 0 var(--color-ui-btn-shadow);
   transition: all 0.05s ease;
 }
 
 .sdv-action-btn:hover {
-  background-color: #e59349;
+  background-color: var(--color-ui-accent-hover);
   transform: translateY(-1px);
-  box-shadow: 0 3px 0 #2a1205;
+  box-shadow: 0 3px 0 var(--color-ui-btn-shadow);
 }
 
 .sdv-action-btn:active {
   transform: translateY(2px);
-  box-shadow: 0 0 0 #2a1205;
-  border-top: 2px solid #6e2e05;
-  border-left: 2px solid #6e2e05;
-  border-right: 2px solid #ffdeaa;
-  border-bottom: 2px solid #ffdeaa;
+  box-shadow: 0 0 0 var(--color-ui-btn-shadow);
+  border-top: 2px solid var(--color-ui-wood-dark);
+  border-left: 2px solid var(--color-ui-wood-dark);
+  border-right: 2px solid var(--color-ui-accent-edge);
+  border-bottom: 2px solid var(--color-ui-accent-edge);
 }
 
 /* Smooth Custom Pixel Scrollbar for independent scroll areas */
 .custom-scroll {
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #d98236 #fce2b8;
+  scrollbar-color: var(--color-ui-accent) var(--color-ui-frame);
 }
 
 .custom-scroll::-webkit-scrollbar {
   width: 10px;
 }
+
 .custom-scroll::-webkit-scrollbar-track {
-  background: #e6a763;
-  border-left: 1px solid #6e2e05;
+  background: var(--color-ui-scroll-track);
+  border-left: 1px solid var(--color-ui-wood-dark);
 }
+
 .custom-scroll::-webkit-scrollbar-thumb {
-  background: #fce2b8;
-  border: 2px solid #743310;
-  box-shadow: inset 1px 1px 0 #ffebbe;
+  background: var(--color-ui-scroll-thumb);
+  border: 2px solid var(--color-ui-scroll-thumb-edge);
+  box-shadow: inset 1px 1px 0 var(--color-ui-cell-edge-light);
 }
+
 .custom-scroll::-webkit-scrollbar-thumb:hover {
-  background: #fff4d1;
+  background: var(--color-ui-scroll-hover);
 }
 
 /* Hide scrollbars for clean tabs and filters */
@@ -216,13 +295,20 @@ html, body {
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
+
 /* Stardew Parchment Reader */
 .sdv-parchment-sheet {
-  background-color: #fcf4de;
-  border: 3px solid #8d562b;
-  box-shadow: 
+  background-color: var(--color-ui-parchment);
+  border: 3px solid var(--color-ui-parchment-edge);
+  box-shadow:
     inset 0 0 12px rgba(141, 86, 43, 0.25),
     0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* EXP 经验条填充（像素双段色） */
+.exp-bar-fill {
+  background: linear-gradient(180deg, var(--color-ui-exp-fill) 50%, var(--color-ui-exp-fill-dark) 50%);
+  transition: width 0.5s ease;
 }
 
 /* ItemIcon: custom-svg 内联 SVG 撑满包装容器 */

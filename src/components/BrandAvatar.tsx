@@ -27,7 +27,7 @@ export const BrandAvatar: React.FC<BrandAvatarProps> = ({ avatar, size = 48, cla
 
   return (
     <span
-      className={`sdv-cell inline-flex items-center justify-center bg-[#fff1d0] shrink-0 ${className}`}
+      className={`sdv-cell inline-flex items-center justify-center bg-ui-cell-active shrink-0 ${className}`}
       style={{ width: size + 12, height: size + 12 }}
       title={avatar.key}
     >
