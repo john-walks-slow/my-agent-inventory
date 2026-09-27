@@ -1,16 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="480" height="160" viewBox="0 0 480 160" role="img" aria-label="大肥鱼 harness badge">
   <defs>
-    <style>@font-face{font-family:'BadgePKMN';src:url(data:font/woff2;base64,d09GMgABAAAAAAVsAAsAAAAAFFAAAAUcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlYANBEICqAIliMBNgIkA4FCC4FCAAQgBYFUByAb5A1RlFBOBcmXCdpl2e0DQyhYYyO0rCiYVtuivaiNiLtUtBJjtuQpFfklnv9afjuve+b/2SVHhVEUQlJo1ApJynMRLjuP0JQP0aKQS5/OVZKTiz81BgmPrADYfmqmjlqBk4ykjeN7gurL9gD9BCVg/wE+/Af1PNxJs37VSpv/96jz7vf7uqHWXCKHUAjphY6Hxp0iG6a+R9lFJXskZO9410TpnF/yD+mHFP46psEdcBf3UF7toGB9fwVqUm/MlsmE9s1N6Hcc21Go2VD/BTcf7gBy1X+bEdsICtB0hZOoXZzEXIVMJoVXY+DqML4rQA062IPwCa+ZPjJfgsBBAA00TJrZjNKUstWU0jSlK13TdEAzazrEeiPbOemSXUQ3gA125ObUlta/mfEzL3/oL919ca1XzyP2vR5WHcv93f3+fffDI8TDn7cdW7k/rq3iftX+dHl8vzzbvoz2eKtmzqvjyRbu23joAR5XL+Ed1Q/7T0QDSlg6tU4lJNsErWsh4MpHKUtJpURjmI8k0EQQgEp8Sw2mxvT8p4bcpv4mjAThhPk9STihvAFyqmEKBKfkmpZKqGF1jTDzetjz0fqEQt76bxO+x8S6EwNlyzWRmqZhIZU09Y50YltKR7QgPtZSaAXnAIBCqTdU1SzEIGNwXgb8dj/HWOAOFB8Jdd5t0fAzzpX2saNtaACghYbSeXWEBRsuEF2JkdcwQjDXnWVdsEq+JcsT+EYt8GIEgwFQJ0QvBvTLatZfKjszfTgpF7yLd+CSlLBiL0r3XCstJPAGtbKdAtNFgYhE7QiXub3l2jkeik6n5EmszHRXO9a0UcSuKEI8C6EfM6k0LmUVkuvSVAubWYzzUkS9d42SkCADQBeiFGy36klPU5LobGXaUhZAAkJcKAnZqHVac2pRAaN6OdcuUZYtyrQQoLXByvIUWaeJbFAwWaSjYjaA4YVrGVStVroU/B8iD+FlVNzZieHVk5KIN7AWCnFWKcQFLQvZPobZOqnEI+7ic1F9u4xECrStgfxwXwmdeGMpSds1ptJSad+WEraSmeA8wVmCNvT4H5AJWkpfg3Y1dabHJNR39afUTNRcS+E0114nduxoOtHrnmkWBHyvr3UwXvi7TjHOLfGldsddMzN7R3hOSKyZkEPTEjw2uRLtLIkCQyzIpQSOfHfe5zxI/Yct3aN8Ha5Fn76MV694fB3ujAHl8jpsXbHECm2GE9cW64PLyNfSYfMJ1IkmQJAqEEwlea5RlOrVBFXi5ALD4T4Q+6Vk8hWzmHsmeG3cvbjOCwIhUWOR0nRLkkmAAdRARHwJvWXg1Q32a8B8hAkn6EqzxHfOxOKld4aLMrx0in3UY9toHPgqHcoSv0MkCmsbHREmESZTkGkEXrAK247F0S2ugxKKUjdmgdcWpmUxwCPJ92mSJS+XCX4yRx+ROCGlxJW0VvanxsE2hoXQPOIhCDOvW4I6oGwetlGoONutVWCD7WkKqxNXvqjLoMIAbARl44EcWSG2JDyxKqCcv2O6dAx01dVgpl3Lv9C7o6m56/+WLODzrX/hz5e6nxabYNFAsc2IxT4fKdim6R8iX7IkoMep6hRWKlYOUI/ho+W4Alp+KOwFfWUU9kwJ2s8o2lMidBaCwtZtVE07uAaZkeUsKbI57EZkd1ZLn8IiZ6dtbTevV2yoQMfPjgF4HI5UTHWFepra4k+BgZ2Dn6uV953doTm1rGqsJTNzJmLm28fJwz0JtEoondx/sAQAAAA=) format('woff2');}</style>
+    <style>@font-face{font-family:'BadgePKMN';src:url(data:font/woff2;base64,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) format('woff2');}</style>
   </defs>
   <!-- 外框 -->
   <rect x="0" y="0" width="480" height="160" rx="14" fill="#ee1515"/>
   <!-- 内底 -->
-  <rect x="5" y="5" width="470" height="150" rx="11" fill="#f8f8e8"/>
+  <rect x="4" y="4" width="472" height="152" rx="11" fill="#f8f8e8"/>
   <!-- 内衬线 -->
-  <rect x="9" y="9" width="462" height="142" rx="9" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.6"/>
-  <!-- 品牌头像 -->
-  <svg x="26" y="34" width="72" height="72" viewBox="0 0 16 16" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
-  <!-- generated by tools/gen-brands.mjs -->
+  <rect x="8" y="8" width="464" height="144" rx="9" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.55"/>
+  <!-- 品牌头像（带框格） -->
+  <rect x="24" y="42" width="76" height="76" fill="#fffbe6" stroke="#5a5a5a" stroke-width="1.5"/>
+  <svg x="30" y="48" width="64" height="64" viewBox="0 0 16 16" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+  <!-- generated by tools/gen-brands.mjs (hand-drawn) -->
   <g>
     <rect x="10" y="2" width="1" height="1" fill="#dff3fb"/>
     <rect x="9" y="3" width="1" height="1" fill="#dff3fb"/>
@@ -150,31 +151,31 @@
   </g>
 </svg>
   <!-- 昵称 / 副题 -->
-  <text x="116" y="62" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="24" font-weight="bold" fill="#2a2a2a">大肥鱼</text>
-  <text x="116" y="84" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" fill="#6a6a6a">DeepSeek Harness</text>
+  <text x="116" y="63" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="23" font-weight="bold" fill="#2a2a2a">大肥鱼</text>
+  <text x="116" y="82" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="11" fill="#6a6a6a">DeepSeek Harness</text>
   <!-- Lv 徽章 -->
-  <rect x="116" y="96" width="106" height="24" rx="12" fill="#f8d030"/>
-  <text x="169" y="112.5" text-anchor="middle" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="13" font-weight="bold" fill="#2a2a2a">★ Lv.16 冠军</text>
-  <!-- EXP 条 -->
-  <text x="116" y="140" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" font-weight="bold" fill="#6a6a6a">EXP</text>
-  <rect x="146" y="131" width="180" height="10" rx="2" fill="#d0d0d0"/>
-  <rect x="146" y="131" width="160" height="10" rx="2" fill="#78c850"/>
-  <text x="334" y="140" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" font-weight="bold" fill="#6a6a6a">89%</text>
+  <rect x="116" y="94" width="77" height="21" rx="12" fill="#f8d030"/>
+  <text x="154.5" y="108.5" text-anchor="middle" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#2a2a2a">Lv.16</text>
+  <!-- EXP 条（带描边轨道） -->
+  <text x="116" y="139" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="9" font-weight="bold" fill="#6a6a6a" letter-spacing="1">EXP</text>
+  <rect x="144" y="130" width="164" height="10" rx="2" fill="#d0d0d0" stroke="#ffffff" stroke-width="1" opacity="0.9"/>
+  <rect x="145" y="131" width="145" height="8" rx="1" fill="#78c850"/>
+  <text x="316" y="139" text-anchor="end" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="9" font-weight="bold" fill="#6a6a6a">89%</text>
   <!-- 数据 chips -->
   
-    <g transform="translate(328 26)">
-      <rect width="128" height="24" rx="12" fill="#fffbe6" stroke="#5a5a5a" stroke-width="1"/>
-      <text x="8" y="16.5" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" fill="#6a6a6a">对战</text>
-      <text x="120" y="16.5" text-anchor="end" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#2a2a2a">487</text>
+    <g transform="translate(330 28)">
+      <rect width="126" height="26" rx="12" fill="#fffbe6" stroke="#5a5a5a" stroke-width="1"/>
+      <text x="9" y="17" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="9.5" fill="#6a6a6a">对战</text>
+      <text x="117" y="17.5" text-anchor="end" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#2a2a2a">487</text>
     </g>
-    <g transform="translate(328 58)">
-      <rect width="128" height="24" rx="12" fill="#fffbe6" stroke="#5a5a5a" stroke-width="1"/>
-      <text x="8" y="16.5" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" fill="#6a6a6a">经验</text>
-      <text x="120" y="16.5" text-anchor="end" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#2a2a2a">44.4亿</text>
+    <g transform="translate(330 62)">
+      <rect width="126" height="26" rx="12" fill="#fffbe6" stroke="#5a5a5a" stroke-width="1"/>
+      <text x="9" y="17" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="9.5" fill="#6a6a6a">经验</text>
+      <text x="117" y="17.5" text-anchor="end" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#2a2a2a">44.4亿</text>
     </g>
-    <g transform="translate(328 90)">
-      <rect width="128" height="24" rx="12" fill="#fffbe6" stroke="#5a5a5a" stroke-width="1"/>
-      <text x="8" y="16.5" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" fill="#6a6a6a">徽章</text>
-      <text x="120" y="16.5" text-anchor="end" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#2a2a2a">85</text>
+    <g transform="translate(330 96)">
+      <rect width="126" height="26" rx="12" fill="#fffbe6" stroke="#5a5a5a" stroke-width="1"/>
+      <text x="9" y="17" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="9.5" fill="#6a6a6a">徽章</text>
+      <text x="117" y="17.5" text-anchor="end" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#2a2a2a">85</text>
     </g>
 </svg>

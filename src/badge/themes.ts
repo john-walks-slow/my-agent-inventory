@@ -11,8 +11,10 @@ export interface BadgeThemeSpec {
   label: string;
   /** 外框 */
   frame: string;
-  /** 内底 */
+  /** 内底（单色） */
   bg: string;
+  /** 内底（垂直渐变，优先于 bg；FF 风格窗口用） */
+  bgGradient?: readonly [string, string];
   /** 内衬线（双线框主题；缺省不画） */
   innerLine?: string;
   /** 主文本 */
@@ -84,18 +86,20 @@ export const BADGE_THEMES: Record<ThemeId, BadgeThemeSpec> = {
   jrpg: {
     id: 'jrpg',
     label: 'JRPG',
-    frame: '#101830',
-    bg: '#182048',
-    innerLine: '#f8f8f8',
+    // FF 风格战斗窗口：夜蓝渐变底 + 近白描边 + 青色 EXP + 金色数字
+    frame: '#dce4ff',
+    bg: '#101a3e',
+    bgGradient: ['#1a2a5e', '#0e1636'],
+    innerLine: '#3a5ac0',
     ink: '#ffffff',
-    inkMuted: '#c8c8d8',
-    levelBg: '#4a5ac0',
-    levelInk: '#ffffff',
-    barTrack: '#0c1228',
-    barFill: '#6a8ae8',
-    chipBg: '#202a5a',
-    chipBorder: '#5068c0',
-    chipInk: '#f8d878',
+    inkMuted: '#9fb4e8',
+    levelBg: '#2a3e7e',
+    levelInk: '#ffe8a0',
+    barTrack: '#0c1434',
+    barFill: '#58b8f0',
+    chipBg: '#16244e',
+    chipBorder: '#3a5ac0',
+    chipInk: '#ffd868',
     radius: 4,
     fontDisplay: "'BadgeCinzel','Songti SC','SimSun',serif",
     fontBody: "'Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif",

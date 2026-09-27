@@ -21,7 +21,6 @@ const profile: BadgeProfile = {
   harnessName: 'DeepSeek Harness',
   siteTitle: '我的 DSH 背包',
   level: 16,
-  levelTitle: '渔夫大师',
   progress: 0.88,
   sessions: 482,
   tokens: 4_360_000_000,
@@ -36,16 +35,24 @@ test('buildBadge：结构完整（尺寸/头像/文本/EXP/chips）', () => {
   assert.ok(svg.includes(`width="${BADGE_WIDTH}"`) && svg.includes(`height="${BADGE_HEIGHT}"`));
   assert.ok(svg.includes('@font-face'), '应内嵌字体');
   assert.ok(svg.includes('viewBox="0 0 16 16"'), '应嵌入 16×16 品牌头像');
-  assert.ok(svg.includes('大肥鱼') && svg.includes('Lv.16') && svg.includes('渔夫大师'));
+  assert.ok(svg.includes('大肥鱼') && svg.includes('Lv.16'));
+  assert.ok(!svg.includes('★'), 'Lv 徽章不再渲染星星');
+  assert.ok(!svg.includes('渔夫大师'), 'Lv 徽章不再渲染等级称号');
   assert.ok(svg.includes('88%'));
   assert.ok(svg.includes('会话') && svg.includes('482'));
   assert.ok(svg.includes('43.6亿') && svg.includes('85'));
 });
 
+test('buildBadge：jrpg 主题用渐变内底', () => {
+  const svg = buildBadge(profile, BADGE_THEMES.jrpg);
+  assert.ok(svg.includes('linearGradient'), 'jrpg 应有渐变定义');
+  assert.ok(svg.includes('url(#bgGrad)'), 'jrpg 内底应引用渐变');
+});
+
 test('buildBadge：无字体参数则不内嵌 @font-face；progress 越界 clamp', () => {
   const svg = buildBadge({ ...profile, progress: 1.5 }, BADGE_THEMES.pokemon);
   assert.ok(!svg.includes('@font-face'));
-  assert.ok(svg.includes('width="180"'), '进度条满宽 180');
+  assert.ok(svg.includes('width="162"'), '进度条满宽 162');
   assert.ok(svg.includes('100%'));
   const under = buildBadge({ ...profile, progress: -0.2 }, BADGE_THEMES.pokemon);
   assert.ok(under.includes('width="0"'), '负进度钳为 0');
@@ -57,7 +64,7 @@ test('buildBadge：undefined 的 chip 不渲染；昵称 XSS 转义', () => {
     BADGE_THEMES.diablo
   );
   assert.ok(!svg.includes('会话'), 'sessions chip 应省略');
-  assert.equal((svg.match(/translate\(328 /g) ?? []).length, 2, '应只有 2 个 chip');
+  assert.equal((svg.match(/translate\(330 /g) ?? []).length, 2, '应只有 2 个 chip');
   assert.ok(!svg.includes('<script>'), 'script 标签必须被转义');
   assert.ok(svg.includes('&lt;script&gt;'));
 });

@@ -6,7 +6,7 @@ import { parse as parseYaml } from 'yaml';
 import { siteConfigSchema } from '../src/config/schema';
 import { THEMES } from '../src/config/schema';
 import { computeLevel, daysSince } from '../src/stats/level';
-import { getVocab, levelTitle } from '../src/theme/vocab';
+import { getVocab } from '../src/theme/vocab';
 import { buildBadge } from '../src/badge/build';
 import { BADGE_THEMES } from '../src/badge/themes';
 
@@ -55,7 +55,6 @@ for (const t of THEMES) {
       harnessName: h.name,
       siteTitle: config.site.title,
       level: level.level,
-      levelTitle: levelTitle(level.level, t),
       progress: level.progress,
       sessions: h.stats?.sessions,
       tokens: h.stats?.tokens,
@@ -79,3 +78,12 @@ for (const t of THEMES) {
 // favicon = 品牌头像本体（16×16 像素 SVG，浏览器原生支持）
 writeFileSync(ROOT + 'public/favicon.svg', brand.svg);
 console.log(`badge: favicon.svg (${brand.key})`);
+
+// index.html <title> 与配置同步（顶栏已不显示站点标题，浏览器标签页是标题唯一出口）
+const indexPath = ROOT + 'index.html';
+const indexHtml = readFileSync(indexPath, 'utf8');
+const nextHtml = indexHtml.replace(/<title>[^<]*<\/title>/, `<title>${config.site.title}</title>`);
+if (nextHtml !== indexHtml) {
+  writeFileSync(indexPath, nextHtml);
+  console.log(`index.html <title> → ${config.site.title}`);
+}
