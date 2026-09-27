@@ -25,9 +25,10 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
-  // 主题挂钩：site.theme → <html data-theme>（P5b 主题表按此切换 token 集）
+  // 主题挂钩：site.theme → <html data-theme>（P5b 主题表按此切换 token 集 + 音色）
   useEffect(() => {
     document.documentElement.dataset.theme = model.config.site.theme;
+    retroAudio.setTheme(model.config.site.theme);
   }, [model.config.site.theme]);
 
   const [activeSectionId, setActiveSectionId] = useState<string>(sections[0]?.id ?? '');
