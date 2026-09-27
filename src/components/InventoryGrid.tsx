@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { ItemView } from '../config/loader';
 import { ItemIcon, PixelQualityBadge } from './ItemIcon';
 import { retroAudio } from '../audio/retroAudio';
+import { getVocab } from '../theme/vocab';
 import { Search } from 'lucide-react';
 
 export interface SubCategoryOption {
@@ -19,6 +20,7 @@ interface InventoryGridProps {
   searchQuery: string;
   onSearchChange: (q: string) => void;
   totalSlots?: number;
+  theme?: string;
 }
 
 export const InventoryGrid: React.FC<InventoryGridProps> = ({
@@ -30,9 +32,11 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
   subCategoryOptions,
   searchQuery,
   onSearchChange,
-  totalSlots
+  totalSlots,
+  theme
 }) => {
   const [hoveredItem, setHoveredItem] = useState<ItemView | null>(null);
+  const vocab = getVocab(theme);
 
   // Filter items
   const filteredItems = items.filter((item) => {
@@ -145,7 +149,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
         <div className="mt-2 pt-1.5 border-t border-ui-wood-dark/50 flex items-center justify-between text-[11px] text-ui-ink-body font-bold px-0.5 shrink-0">
           <span>收纳数: {filteredItems.length} / {capacity}</span>
           <span className="text-[10px] text-ui-ink-muted opacity-80 font-normal">
-            {capacity > 36 ? `(已扩容至 ${capacity / 12} 行 / ${capacity} 格)` : '豪华大背包 (36格)'}
+            {capacity > 36 ? `(已扩容至 ${capacity / 12} 行 / ${capacity} 格)` : `${vocab.bagLabel} (36格)`}
           </span>
         </div>
       </div>

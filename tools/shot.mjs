@@ -18,10 +18,15 @@ const width = Number(flag('w', 1280));
 const height = Number(flag('h', 800));
 const out = flag('out', '/tmp/shot.png');
 const wait = Number(flag('wait', 600));
+const tab = flag('tab', null); // 点击第 N 个 .sdv-tab-btn（0 起，主题无关）
 
 const browser = await chromium.launch({ args: ['--no-sandbox', '--disable-dev-shm-usage'] });
 const page = await browser.newPage({ viewport: { width, height } });
 await page.goto(url, { waitUntil: 'networkidle' });
+if (tab !== null) {
+  await page.click(`.sdv-tab-btn >> nth=${tab}`, { timeout: 5000 });
+  await page.waitForTimeout(wait);
+}
 for (const action of clicks) {
   if (action.startsWith('#')) {
     await page.goto(`${url}${action}`, { waitUntil: 'networkidle' });

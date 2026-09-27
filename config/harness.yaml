@@ -17,7 +17,6 @@ harness:
     cacheTokens: 39715716101
 sections:
   - id: plugins
-    label: 插件
     icon: puzzle
     categories:
       - id: core
@@ -348,7 +347,6 @@ sections:
           - Must-Have
         added: 2026-08-15
   - id: skills
-    label: 技能
     icon: terminal
     categories:
       - id: ops
@@ -1097,7 +1095,6 @@ sections:
           - Quality
         added: 2026-09-15
   - id: mcp
-    label: MCP
     icon: search
     categories:
       - id: search
@@ -1197,7 +1194,6 @@ sections:
           - RAG
         added: 2026-08-05
   - id: tools
-    label: 工具
     icon: wrench
     categories:
       - id: files

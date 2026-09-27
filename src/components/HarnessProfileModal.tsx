@@ -1,7 +1,7 @@
 import React from 'react';
 import type { HarnessProfileView } from '../config/loader';
 import { BrandAvatar } from './BrandAvatar';
-import { levelTitle, sectionLabel } from '../theme/vocab';
+import { levelTitle, sectionLabel, getVocab } from '../theme/vocab';
 import { computeExp } from '../stats/level';
 import { retroAudio } from '../audio/retroAudio';
 
@@ -22,13 +22,15 @@ const Row: React.FC<{ label: string; children: React.ReactNode }> = ({ label, ch
 export interface HarnessProfileModalProps {
   profile: HarnessProfileView;
   sectionOrder: Array<{ id: string; label?: string }>;
+  theme?: string;
   onClose: () => void;
 }
 
 /** Harness 档案弹窗：品牌头像 + 昵称 + Lv/EXP + 统计数据行 */
-export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profile, sectionOrder, onClose }) => {
+export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profile, sectionOrder, theme, onClose }) => {
   const { info, avatar, stats, level, gear } = profile;
-  const title = levelTitle(level.level);
+  const vocab = getVocab(theme);
+  const title = levelTitle(level.level, theme);
   const expPct = Math.round(level.progress * 100);
 
   return (
@@ -97,7 +99,7 @@ export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profil
             <span className="inline-flex flex-wrap gap-x-2 justify-end">
               {sectionOrder.map((sec) => (
                 <span key={sec.id}>
-                  {sectionLabel(sec)} {gear[sec.id] ?? 0}
+                  {sectionLabel(sec, theme)} {gear[sec.id] ?? 0}
                 </span>
               ))}
             </span>
@@ -106,9 +108,10 @@ export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profil
 
         {/* EXP 构成彩蛋（geeks 的浪漫） */}
         <p className="mt-3 text-[10px] text-ui-ink-faint leading-relaxed">
-          EXP = 会话 {computeExp({ sessions: stats.sessions }).toFixed(1)} + Token{' '}
-          {computeExp({ tokens: stats.tokens }).toFixed(1)} + 工龄 {computeExp({ days: stats.days }).toFixed(1)} +
-          装备 {computeExp({ gear }).toFixed(1)} = {level.exp.toFixed(1)}
+          EXP = {vocab.expTerms.sessions} {computeExp({ sessions: stats.sessions }).toFixed(1)} +
+          {vocab.expTerms.tokens} {computeExp({ tokens: stats.tokens }).toFixed(1)} +
+          {vocab.expTerms.days} {computeExp({ days: stats.days }).toFixed(1)} +
+          {vocab.expTerms.gear} {computeExp({ gear }).toFixed(1)} = {level.exp.toFixed(1)}
         </p>
 
         <div className="mt-2 pt-2 border-t border-ui-wood-dark text-center">

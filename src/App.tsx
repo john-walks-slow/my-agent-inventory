@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { buildInventoryModel } from './config/loader';
 import type { ItemView, SectionView } from './config/loader';
-import { sectionLabel, levelTitle } from './theme/vocab';
+import { sectionLabel, levelTitle, getVocab } from './theme/vocab';
 import { InventoryGrid } from './components/InventoryGrid';
 import { DetailPanel } from './components/DetailPanel';
 import { BooksView } from './components/BooksView';
@@ -14,6 +14,8 @@ import { Volume2, VolumeX, User, Backpack } from 'lucide-react';
 export const App: React.FC = () => {
   const model = useMemo(() => buildInventoryModel(), []);
   const sections = model.sections;
+  const theme = model.config.site.theme;
+  const vocab = getVocab(theme);
 
   // hash 路由：#/icons → 图标图鉴
   const [route, setRoute] = useState(() => window.location.hash);
@@ -111,7 +113,7 @@ export const App: React.FC = () => {
           >
             <span className="text-ui-gold leading-none">★</span>
             <span className="font-mono text-xs leading-none">Lv.{profile.level.level}</span>
-            <span className="hidden sm:inline text-[10px] opacity-90">{levelTitle(profile.level.level)}</span>
+            <span className="hidden sm:inline text-[10px] opacity-90">{levelTitle(profile.level.level, theme)}</span>
           </button>
 
           {/* Gold Counter: Clean Retro Badge */}
@@ -123,8 +125,8 @@ export const App: React.FC = () => {
             className="flex items-center gap-1 bg-ui-panel-light px-2 py-0.5 text-ui-ink cursor-pointer hover:bg-white border-b border-ui-ink-amber shadow-xs active:translate-y-0.5"
             title="点击收成金币！"
           >
-            <span className="text-ui-gold-soft text-xs leading-none">🪙</span>
-            <span className="font-mono text-xs leading-none text-ui-ink-muted">{goldCount.toLocaleString()}g</span>
+            <span className="text-ui-gold-soft text-xs leading-none">{vocab.currency.glyph}</span>
+            <span className="font-mono text-xs leading-none text-ui-ink-muted">{goldCount.toLocaleString()}{vocab.currency.unit}</span>
           </div>
 
           {/* Sound Toggle */}
@@ -165,7 +167,7 @@ export const App: React.FC = () => {
                 }`}
               >
                 <ItemIcon iconRef={sec.iconRef} size={14} />
-                <span>{sectionLabel(sec)}</span>
+                <span>{sectionLabel(sec, theme)}</span>
                 <span className="text-[10px] px-1 bg-ui-frame-border/20 rounded-none">{sec.items.length}</span>
               </button>
             );
@@ -194,6 +196,7 @@ export const App: React.FC = () => {
                   searchQuery={searchQuery}
                   onSearchChange={setSearchQuery}
                   totalSlots={Math.max(36, Math.ceil(currentItems.length / 12) * 12)}
+                  theme={theme}
                 />
               </div>
 
@@ -226,6 +229,7 @@ export const App: React.FC = () => {
         <HarnessProfileModal
           profile={profile}
           sectionOrder={sections.map((s) => ({ id: s.id, label: s.label }))}
+          theme={theme}
           onClose={() => {
             retroAudio.playTab();
             setShowProfileModal(false);

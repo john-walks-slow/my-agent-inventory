@@ -317,3 +317,188 @@ html, body {
   width: 100%;
   height: 100%;
 }
+
+/* ============================================================
+ * 主题覆写层（P5b）：html[data-theme='<id>'] 换 token 值，全站换肤。
+ * 基准 stardew 定义在上方 @theme；此处只列差异（当前为全量覆写）。
+ * ============================================================ */
+
+/* 宝可梦：明快战斗 UI（白框黑描边、精灵球红、HP 绿） */
+html[data-theme='pokemon'] {
+  --color-ui-ink: #2a2a2a;
+  --color-ui-ink-body: #3a3a3a;
+  --color-ui-ink-muted: #6a6a6a;
+  --color-ui-ink-amber: #b04a2a;
+  --color-ui-ink-gold: #b8901a;
+  --color-ui-ink-faint: #8a8a8a;
+  --color-ui-code-ink: #4a90d9;
+  --color-ui-wood-dark: #5a5a5a;
+  --color-ui-wood-mid: #7a7a7a;
+  --color-ui-frame-border: #2a2a2a;
+  --color-ui-shadow-deep: #111111;
+  --color-ui-panel: #f0f0f0;
+  --color-ui-panel-warm: #e4e4e4;
+  --color-ui-panel-light: #ffffff;
+  --color-ui-highlight: #fffbe6;
+  --color-ui-highlight-warm: #fff3c8;
+  --color-ui-cell: #f4f4f4;
+  --color-ui-cell-hover: #ffffff;
+  --color-ui-cell-edge-light: #ffffff;
+  --color-ui-cell-active: #fff9e0;
+  --color-ui-cell-active-glow: #ffe680;
+  --color-ui-accent: #ee1515;
+  --color-ui-accent-hover: #ff3b30;
+  --color-ui-accent-edge: #ff8a80;
+  --color-ui-btn-shadow: #9a9a9a;
+  --color-ui-frame: #f8f8f8;
+  --color-ui-frame-bevel-light: #ffffff;
+  --color-ui-frame-bevel-dark: #b8b8b8;
+  --color-ui-page: #dff0f8;
+  --color-ui-page-dot-a: #c8e4f0;
+  --color-ui-page-dot-b: #d0e8f4;
+  --color-ui-bg-deep: #2a3a4a;
+  --color-ui-gold: #f8d030;
+  --color-ui-gold-soft: #f0c020;
+  --color-ui-danger: #ee1515;
+  --color-ui-danger-dark: #c41111;
+  --color-ui-danger-darker: #a00e0e;
+  --color-ui-exp-track: #d0d0d0;
+  --color-ui-exp-fill: #78c850;
+  --color-ui-exp-fill-dark: #5aa038;
+  --color-quality-silver: #e8e8e8;
+  --color-quality-silver-edge: #8a8a8a;
+  --color-quality-gold: #f8d030;
+  --color-quality-gold-edge: #b8901a;
+  --color-quality-iridium: #6890f0;
+  --color-quality-iridium-edge: #3a60b0;
+  --color-quality-iridium-text: #4a70c0;
+  --color-ui-fallback-dark: #a8a878;
+  --color-ui-fallback-light: #d8d8b0;
+  --color-ui-parchment: #fdfdf5;
+  --color-ui-parchment-edge: #5a5a5a;
+  --color-ui-scroll-track: #e4e4e4;
+  --color-ui-scroll-thumb: #f8f8f8;
+  --color-ui-scroll-thumb-edge: #7a7a7a;
+  --color-ui-scroll-hover: #ffffff;
+  --color-ui-wood-base: #e8e8e8;
+}
+
+/* JRPG：勇者斗恶龙式黑底白框（深蓝夜色 + 金字） */
+html[data-theme='jrpg'] {
+  --color-ui-ink: #ffffff;
+  --color-ui-ink-body: #f0f0f0;
+  --color-ui-ink-muted: #c8c8d8;
+  --color-ui-ink-amber: #f8c060;
+  --color-ui-ink-gold: #f8d878;
+  --color-ui-ink-faint: #9898a8;
+  --color-ui-code-ink: #8ad0e8;
+  --color-ui-wood-dark: #3848a0;
+  --color-ui-wood-mid: #5068c0;
+  --color-ui-frame-border: #f8f8f8;
+  --color-ui-shadow-deep: #000000;
+  --color-ui-panel: #182048;
+  --color-ui-panel-warm: #202a5a;
+  --color-ui-panel-light: #283260;
+  --color-ui-highlight: #303c70;
+  --color-ui-highlight-warm: #384480;
+  --color-ui-cell: #1a2450;
+  --color-ui-cell-hover: #26326a;
+  --color-ui-cell-edge-light: #4858a0;
+  --color-ui-cell-active: #30407a;
+  --color-ui-cell-active-glow: #6a8ae8;
+  --color-ui-accent: #4a5ac0;
+  --color-ui-accent-hover: #5a6ad0;
+  --color-ui-accent-edge: #8898e0;
+  --color-ui-btn-shadow: #06080f;
+  --color-ui-frame: #101830;
+  --color-ui-frame-bevel-light: #4858a0;
+  --color-ui-frame-bevel-dark: #080c18;
+  --color-ui-page: #0a0a14;
+  --color-ui-page-dot-a: #141428;
+  --color-ui-page-dot-b: #101020;
+  --color-ui-bg-deep: #0c0c1a;
+  --color-ui-gold: #f8d878;
+  --color-ui-gold-soft: #e8c860;
+  --color-ui-danger: #e04848;
+  --color-ui-danger-dark: #b83030;
+  --color-ui-danger-darker: #902020;
+  --color-ui-exp-track: #0c1228;
+  --color-ui-exp-fill: #6a8ae8;
+  --color-ui-exp-fill-dark: #4a6ac0;
+  --color-quality-silver: #c8c8d8;
+  --color-quality-silver-edge: #8888a0;
+  --color-quality-gold: #f8d878;
+  --color-quality-gold-edge: #b89840;
+  --color-quality-iridium: #b080f0;
+  --color-quality-iridium-edge: #7048b0;
+  --color-quality-iridium-text: #a070e0;
+  --color-ui-fallback-dark: #5060a0;
+  --color-ui-fallback-light: #8090d0;
+  --color-ui-parchment: #182048;
+  --color-ui-parchment-edge: #5068c0;
+  --color-ui-scroll-track: #182048;
+  --color-ui-scroll-thumb: #3848a0;
+  --color-ui-scroll-thumb-edge: #8898e0;
+  --color-ui-scroll-hover: #4858b0;
+  --color-ui-wood-base: #1a2450;
+}
+
+/* Diablo：哥特暗黑（黑曜石底、血红描边、古金文字） */
+html[data-theme='diablo'] {
+  --color-ui-ink: #e8d8b0;
+  --color-ui-ink-body: #d8c8a8;
+  --color-ui-ink-muted: #b8a078;
+  --color-ui-ink-amber: #c9a227;
+  --color-ui-ink-gold: #e8c860;
+  --color-ui-ink-faint: #887050;
+  --color-ui-code-ink: #7ab0c8;
+  --color-ui-wood-dark: #3a2818;
+  --color-ui-wood-mid: #5c4328;
+  --color-ui-frame-border: #5c1a10;
+  --color-ui-shadow-deep: #000000;
+  --color-ui-panel: #241a10;
+  --color-ui-panel-warm: #2c2014;
+  --color-ui-panel-light: #342818;
+  --color-ui-highlight: #3a2c1a;
+  --color-ui-highlight-warm: #443420;
+  --color-ui-cell: #2a1e12;
+  --color-ui-cell-hover: #3a2c1a;
+  --color-ui-cell-edge-light: #5c4830;
+  --color-ui-cell-active: #442f1a;
+  --color-ui-cell-active-glow: #c9a227;
+  --color-ui-accent: #8c2b1e;
+  --color-ui-accent-hover: #a03425;
+  --color-ui-accent-edge: #b05840;
+  --color-ui-btn-shadow: #050302;
+  --color-ui-frame: #1c130a;
+  --color-ui-frame-bevel-light: #5c4830;
+  --color-ui-frame-bevel-dark: #0a0604;
+  --color-ui-page: #0d0906;
+  --color-ui-page-dot-a: #1a120a;
+  --color-ui-page-dot-b: #140e08;
+  --color-ui-bg-deep: #120c08;
+  --color-ui-gold: #c9a227;
+  --color-ui-gold-soft: #b89020;
+  --color-ui-danger: #a83226;
+  --color-ui-danger-dark: #8c2218;
+  --color-ui-danger-darker: #6e1a12;
+  --color-ui-exp-track: #1a1208;
+  --color-ui-exp-fill: #8c2b1e;
+  --color-ui-exp-fill-dark: #6e2015;
+  --color-quality-silver: #7f8fa8;
+  --color-quality-silver-edge: #4a5a74;
+  --color-quality-gold: #c9a227;
+  --color-quality-gold-edge: #8a6d1a;
+  --color-quality-iridium: #9a7ab8;
+  --color-quality-iridium-edge: #5c4474;
+  --color-quality-iridium-text: #8a6aa8;
+  --color-ui-fallback-dark: #5c4328;
+  --color-ui-fallback-light: #8a7048;
+  --color-ui-parchment: #2a2014;
+  --color-ui-parchment-edge: #5c1a10;
+  --color-ui-scroll-track: #241a10;
+  --color-ui-scroll-thumb: #3a2c1a;
+  --color-ui-scroll-thumb-edge: #5c4328;
+  --color-ui-scroll-hover: #443420;
+  --color-ui-wood-base: #2c2014;
+}
