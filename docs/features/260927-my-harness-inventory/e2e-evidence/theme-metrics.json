@@ -1,0 +1,86 @@
+{
+ "stardew": {
+  "contrast": {
+   "detailMarkdown_vs_highlight": "15.12",
+   "descText_vs_highlight": "13.78",
+   "goldCounter_vs_panel": "15.28",
+   "muted_vs_panel": "2.31",
+   "tabLabel_vs_tab": "13.09"
+  },
+  "fonts": {
+   "h1": "PixelCJK",
+   "tab": "PixelCJK",
+   "detailBody": "PixelCJK"
+  },
+  "fontLoaded": {
+   "PixelCJK": true,
+   "PKMN": false,
+   "FusionPixel": false,
+   "Cinzel": false,
+   "PirataOne": false
+  }
+ },
+ "pokemon": {
+  "contrast": {
+   "detailMarkdown_vs_highlight": "13.80",
+   "descText_vs_highlight": "10.94",
+   "goldCounter_vs_panel": "14.35",
+   "muted_vs_panel": "3.88",
+   "tabLabel_vs_tab": "13.52"
+  },
+  "fonts": {
+   "h1": "PKMN",
+   "tab": "PKMN",
+   "detailBody": "\"Fusion Pixel\""
+  },
+  "fontLoaded": {
+   "PixelCJK": true,
+   "PKMN": true,
+   "FusionPixel": true,
+   "Cinzel": false,
+   "PirataOne": false
+  }
+ },
+ "jrpg": {
+  "contrast": {
+   "detailMarkdown_vs_highlight": "10.47",
+   "descText_vs_highlight": "9.19",
+   "goldCounter_vs_panel": "12.24",
+   "muted_vs_panel": "12.71",
+   "tabLabel_vs_tab": "17.57"
+  },
+  "fonts": {
+   "h1": "Cinzel",
+   "tab": "Cinzel",
+   "detailBody": "\"Fusion Pixel\""
+  },
+  "fontLoaded": {
+   "PixelCJK": true,
+   "PKMN": false,
+   "FusionPixel": true,
+   "Cinzel": true,
+   "PirataOne": false
+  }
+ },
+ "diablo": {
+  "contrast": {
+   "detailMarkdown_vs_highlight": "9.57",
+   "descText_vs_highlight": "8.20",
+   "goldCounter_vs_panel": "10.17",
+   "muted_vs_panel": "8.34",
+   "tabLabel_vs_tab": "12.97"
+  },
+  "fonts": {
+   "h1": "\"Pirata One\"",
+   "tab": "\"Pirata One\"",
+   "detailBody": "\"Fusion Pixel\""
+  },
+  "fontLoaded": {
+   "PixelCJK": true,
+   "PKMN": false,
+   "FusionPixel": true,
+   "Cinzel": false,
+   "PirataOne": true
+  }
+ }
+}

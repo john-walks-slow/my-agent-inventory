@@ -68,6 +68,14 @@ const GENERIC_SECRET =
 const PLACEHOLDER = /^(test|mock|example|sample|dummy|fake|xxx+|changeme|placeholder|redacted|your?|yours|<[^>]*>|\$\{[^}]*}|[A-Z_]+)$/i;
 
 const DOMAIN_RE = /https?:\/\/([a-z0-9.-]+\.[a-z]{2,})/gi;
+// 通配符域名（"*." 前缀 + 多级域名）几乎必是基础设施地址，无 http 前缀也要抓；
+// 但要排除文件 glob（*.jsonl / *.md 等——尾段是文件扩展名而非 TLD）
+const WILDCARD_DOMAIN_RE = /\*\.([a-z0-9.-]+\.[a-z]{2,})/g;
+const NOT_TLD = new Set([
+  'ts', 'tsx', 'js', 'mjs', 'cjs', 'json', 'yaml', 'yml', 'md', 'txt', 'html', 'css',
+  'svg', 'png', 'gif', 'jpg', 'jpeg', 'webp', 'jsonl', 'zstd', 'gz', 'zip', 'tar',
+  'woff', 'woff2', 'ttf', 'otf', 'bak', 'lock', 'log', 'tpl', 'gitkeep',
+]);
 const IP_RE = /\b(\d{1,3}(?:\.\d{1,3}){3})\b/g;
 const HOME_RE = /(?:\/home\/|\/Users\/)([A-Za-z0-9._-]+)/g;
 // root 家目录路径（agent 容器常态）：首段非通用工作目录即提醒
@@ -131,6 +139,18 @@ for (const file of walk(ROOT)) {
         host.endsWith('.github.io');
       if (!allowed) {
         soft.push({ rel, ln: ln + 1, label: `域名 ${m[1]}`, line: line.trim().slice(0, 120) });
+      }
+    }
+    WILDCARD_DOMAIN_RE.lastIndex = 0;
+    while ((m = WILDCARD_DOMAIN_RE.exec(line))) {
+      const host = m[1].toLowerCase();
+      if (NOT_TLD.has(host.split('.').pop())) continue; // 文件 glob，不是域名
+      const allowed =
+        suffixHit(DOMAIN_ALLOW, host) ||
+        suffixHit(allows, host) ||
+        host.endsWith('.github.io');
+      if (!allowed) {
+        soft.push({ rel, ln: ln + 1, label: `通配符域名 *.${m[1]}`, line: line.trim().slice(0, 120) });
       }
     }
     IP_RE.lastIndex = 0;

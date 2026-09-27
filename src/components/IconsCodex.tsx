@@ -85,7 +85,7 @@ export const IconsCodex: React.FC<IconsCodexProps> = ({ onExit, theme }) => {
             placeholder="搜索 id..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-28 sm:w-40 text-xs px-1.5 py-0.5 pl-5 bg-ui-panel-light text-ui-ink placeholder-ui-ink-muted/60 border border-ui-wood-dark rounded-none focus:outline-none focus:bg-white"
+            className="w-28 sm:w-40 text-xs px-1.5 py-0.5 pl-5 bg-ui-panel-light text-ui-ink placeholder-ui-ink-muted/85 border border-ui-wood-dark rounded-none focus:outline-none focus:bg-white"
           />
           <Search size={11} className="absolute left-1 text-ui-ink-muted pointer-events-none" />
         </div>

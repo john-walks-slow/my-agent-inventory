@@ -1,0 +1,470 @@
+[
+  {
+    "id": "T2[stardew]-1",
+    "name": "html[data-theme]=stardew 且页面有内容",
+    "status": "通过",
+    "details": "data-theme=stardew"
+  },
+  {
+    "id": "T2[stardew]-2",
+    "name": "HUD 货币 🪙+g",
+    "status": "通过",
+    "details": "🪙77,777g"
+  },
+  {
+    "id": "T2[stardew]-3",
+    "name": "HUD 等级称号「渔夫大师」",
+    "status": "通过",
+    "details": "★Lv.16渔夫大师"
+  },
+  {
+    "id": "T2[stardew]-4",
+    "name": "HUD 档案入口「档案」",
+    "status": "通过",
+    "details": "档案"
+  },
+  {
+    "id": "T2[stardew]-5",
+    "name": "搜索占位「搜索...」",
+    "status": "通过",
+    "details": "搜索..."
+  },
+  {
+    "id": "T2[stardew]-6",
+    "name": "Tab 命名（插件/技能/MCP/工具/秘籍）",
+    "status": "通过",
+    "details": "插件 | 技能 | MCP | 工具 | 秘籍"
+  },
+  {
+    "id": "T2[stardew]-7",
+    "name": "空格 title「空闲格子 [n]」",
+    "status": "通过",
+    "details": "空闲格子 [14]"
+  },
+  {
+    "id": "T2[stardew]-8",
+    "name": "详情卡品质命名「铱星品质 (Iridium ★)」",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[stardew]-9",
+    "name": "详情卡章节标题（✦ 核心亮点/📜 深度解析/安装与使用指令/⚙ 配置示例）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[stardew]-10",
+    "name": "仓库按钮「仓库」",
+    "status": "通过",
+    "details": "https://github.com/johnren/dsh-wait-subagent"
+  },
+  {
+    "id": "T2[stardew]-11",
+    "name": "复制按钮字样「复制命令」",
+    "status": "通过",
+    "details": "复制命令"
+  },
+  {
+    "id": "T2[stardew]-12",
+    "name": "复制反馈「已复制！」+ 载荷一致",
+    "status": "通过",
+    "details": "feedback=true payload=✓"
+  },
+  {
+    "id": "T2[stardew]-13",
+    "name": "铱星星标颜色=rgb(192, 132, 252)",
+    "status": "通过",
+    "details": "resolved=rgb(192, 132, 252)"
+  },
+  {
+    "id": "T2[stardew]-14",
+    "name": "阅读器标题「秘籍阁」与签名",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[stardew]-15",
+    "name": "弹窗称号「渔夫大师」",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[stardew]-16",
+    "name": "EXP 构成词（会话/Token/工龄/装备）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[stardew]-17",
+    "name": "背包装备行主题化（插件 13 等）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[stardew]-18",
+    "name": "/badge.svg 随 stardew 主题再生成（frame #4a2113）",
+    "status": "通过",
+    "details": "status=200 frame=true"
+  },
+  {
+    "id": "T2[stardew]-19",
+    "name": "主题切换后 console 无错误（0 条）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[pokemon]-1",
+    "name": "html[data-theme]=pokemon 且页面有内容",
+    "status": "通过",
+    "details": "data-theme=pokemon"
+  },
+  {
+    "id": "T2[pokemon]-2",
+    "name": "HUD 货币 ₽+(空)",
+    "status": "通过",
+    "details": "₽77,777"
+  },
+  {
+    "id": "T2[pokemon]-3",
+    "name": "HUD 等级称号「冠军」",
+    "status": "通过",
+    "details": "★Lv.16冠军"
+  },
+  {
+    "id": "T2[pokemon]-4",
+    "name": "HUD 档案入口「训练卡」",
+    "status": "通过",
+    "details": "训练卡"
+  },
+  {
+    "id": "T2[pokemon]-5",
+    "name": "搜索占位「寻找...」",
+    "status": "通过",
+    "details": "寻找..."
+  },
+  {
+    "id": "T2[pokemon]-6",
+    "name": "Tab 命名（精灵球/招式/设施/道具/图鉴）",
+    "status": "通过",
+    "details": "精灵球 | 招式 | 设施 | 道具 | 图鉴"
+  },
+  {
+    "id": "T2[pokemon]-7",
+    "name": "空格 title「空位 [n]」",
+    "status": "通过",
+    "details": "空位 [14]"
+  },
+  {
+    "id": "T2[pokemon]-8",
+    "name": "详情卡品质命名「大师球品质 (Master ★)」",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[pokemon]-9",
+    "name": "详情卡章节标题（✦ 特性/📖 图鉴说明/获取方式/⚙ 设置方法）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[pokemon]-10",
+    "name": "仓库按钮「交换所」",
+    "status": "通过",
+    "details": "https://github.com/johnren/dsh-wait-subagent"
+  },
+  {
+    "id": "T2[pokemon]-11",
+    "name": "复制按钮字样「抄录」",
+    "status": "通过",
+    "details": "抄录"
+  },
+  {
+    "id": "T2[pokemon]-12",
+    "name": "复制反馈「抄好了！」+ 载荷一致",
+    "status": "通过",
+    "details": "feedback=true payload=✓"
+  },
+  {
+    "id": "T2[pokemon]-13",
+    "name": "铱星星标颜色=rgb(104, 144, 240)",
+    "status": "通过",
+    "details": "resolved=rgb(104, 144, 240)"
+  },
+  {
+    "id": "T2[pokemon]-14",
+    "name": "阅读器标题「图鉴馆」与签名",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[pokemon]-15",
+    "name": "弹窗称号「冠军」",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[pokemon]-16",
+    "name": "EXP 构成词（对战/经验/旅程/徽章）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[pokemon]-17",
+    "name": "背包装备行主题化（精灵球 13 等）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[pokemon]-18",
+    "name": "/badge.svg 随 pokemon 主题再生成（frame #ee1515）",
+    "status": "通过",
+    "details": "status=200 frame=true"
+  },
+  {
+    "id": "T2[pokemon]-19",
+    "name": "主题切换后 console 无错误（0 条）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[jrpg]-1",
+    "name": "html[data-theme]=jrpg 且页面有内容",
+    "status": "通过",
+    "details": "data-theme=jrpg"
+  },
+  {
+    "id": "T2[jrpg]-2",
+    "name": "HUD 货币 ◎+G",
+    "status": "通过",
+    "details": "◎77,777G"
+  },
+  {
+    "id": "T2[jrpg]-3",
+    "name": "HUD 等级称号「勇者」",
+    "status": "通过",
+    "details": "★Lv.16勇者"
+  },
+  {
+    "id": "T2[jrpg]-4",
+    "name": "HUD 档案入口「冒险手账」",
+    "status": "通过",
+    "details": "冒险手账"
+  },
+  {
+    "id": "T2[jrpg]-5",
+    "name": "搜索占位「探索...」",
+    "status": "通过",
+    "details": "探索..."
+  },
+  {
+    "id": "T2[jrpg]-6",
+    "name": "Tab 命名（装备/咒文/召唤/道具/贤者之书）",
+    "status": "通过",
+    "details": "装备 | 咒文 | 召唤 | 道具 | 贤者之书"
+  },
+  {
+    "id": "T2[jrpg]-7",
+    "name": "空格 title「空栏 [n]」",
+    "status": "通过",
+    "details": "空栏 [14]"
+  },
+  {
+    "id": "T2[jrpg]-8",
+    "name": "详情卡品质命名「虹之品质 (Rainbow ★)」",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[jrpg]-9",
+    "name": "详情卡章节标题（✦ 特技/📖 记载/入手方法/⚙ 调整设定）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[jrpg]-10",
+    "name": "仓库按钮「武器屋」",
+    "status": "通过",
+    "details": "https://github.com/johnren/dsh-wait-subagent"
+  },
+  {
+    "id": "T2[jrpg]-11",
+    "name": "复制按钮字样「誊写」",
+    "status": "通过",
+    "details": "誊写"
+  },
+  {
+    "id": "T2[jrpg]-12",
+    "name": "复制反馈「誊好了！」+ 载荷一致",
+    "status": "通过",
+    "details": "feedback=true payload=✓"
+  },
+  {
+    "id": "T2[jrpg]-13",
+    "name": "铱星星标颜色=rgb(176, 128, 240)",
+    "status": "通过",
+    "details": "resolved=rgb(176, 128, 240)"
+  },
+  {
+    "id": "T2[jrpg]-14",
+    "name": "阅读器标题「贤者书阁」与签名",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[jrpg]-15",
+    "name": "弹窗称号「勇者」",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[jrpg]-16",
+    "name": "EXP 构成词（冒险/经验/旅程/装备）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[jrpg]-17",
+    "name": "背包装备行主题化（装备 13 等）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[jrpg]-18",
+    "name": "/badge.svg 随 jrpg 主题再生成（frame #101830）",
+    "status": "通过",
+    "details": "status=200 frame=true"
+  },
+  {
+    "id": "T2[jrpg]-19",
+    "name": "主题切换后 console 无错误（0 条）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[diablo]-1",
+    "name": "html[data-theme]=diablo 且页面有内容",
+    "status": "通过",
+    "details": "data-theme=diablo"
+  },
+  {
+    "id": "T2[diablo]-2",
+    "name": "HUD 货币 ◆+金",
+    "status": "通过",
+    "details": "◆77,777金"
+  },
+  {
+    "id": "T2[diablo]-3",
+    "name": "HUD 等级称号「奈非天」",
+    "status": "通过",
+    "details": "★Lv.16奈非天"
+  },
+  {
+    "id": "T2[diablo]-4",
+    "name": "HUD 档案入口「石碑」",
+    "status": "通过",
+    "details": "石碑"
+  },
+  {
+    "id": "T2[diablo]-5",
+    "name": "搜索占位「搜寻...」",
+    "status": "通过",
+    "details": "搜寻..."
+  },
+  {
+    "id": "T2[diablo]-6",
+    "name": "Tab 命名（符文/技能/仆从/药剂/禁书）",
+    "status": "通过",
+    "details": "符文 | 技能 | 仆从 | 药剂 | 禁书"
+  },
+  {
+    "id": "T2[diablo]-7",
+    "name": "空格 title「空槽 [n]」",
+    "status": "通过",
+    "details": "空槽 [14]"
+  },
+  {
+    "id": "T2[diablo]-8",
+    "name": "详情卡品质命名「传奇 (Legendary ★)」",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[diablo]-9",
+    "name": "详情卡章节标题（✦ 威能/📜 传说/获取途径/⚙ 符文配置）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[diablo]-10",
+    "name": "仓库按钮「赌商」",
+    "status": "通过",
+    "details": "https://github.com/johnren/dsh-wait-subagent"
+  },
+  {
+    "id": "T2[diablo]-11",
+    "name": "复制按钮字样「拓印」",
+    "status": "通过",
+    "details": "拓印"
+  },
+  {
+    "id": "T2[diablo]-12",
+    "name": "复制反馈「拓好了！」+ 载荷一致",
+    "status": "通过",
+    "details": "feedback=true payload=✓"
+  },
+  {
+    "id": "T2[diablo]-13",
+    "name": "铱星星标颜色=rgb(154, 122, 184)",
+    "status": "通过",
+    "details": "resolved=rgb(154, 122, 184)"
+  },
+  {
+    "id": "T2[diablo]-14",
+    "name": "阅读器标题「禁书馆」与签名",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[diablo]-15",
+    "name": "弹窗称号「奈非天」",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[diablo]-16",
+    "name": "EXP 构成词（征战/经验/流浪/战利品）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[diablo]-17",
+    "name": "背包装备行主题化（符文 13 等）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2[diablo]-18",
+    "name": "/badge.svg 随 diablo 主题再生成（frame #5c1a10）",
+    "status": "通过",
+    "details": "status=200 frame=true"
+  },
+  {
+    "id": "T2[diablo]-19",
+    "name": "主题切换后 console 无错误（0 条）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "T2-restore",
+    "name": "恢复 stardew 主题且 badge.svg 同步",
+    "status": "通过",
+    "details": "status=200"
+  },
+  {
+    "id": "T2-restore2",
+    "name": "config theme 恢复为 stardew",
+    "status": "通过",
+    "details": "stardew"
+  }
+]

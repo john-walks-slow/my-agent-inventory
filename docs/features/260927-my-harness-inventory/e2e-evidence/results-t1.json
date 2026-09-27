@@ -1,0 +1,344 @@
+[
+  {
+    "id": "F1a",
+    "name": "应用加载无白屏",
+    "status": "通过",
+    "details": "root 已渲染 HUD/背包结构"
+  },
+  {
+    "id": "F1b",
+    "name": "标题与副标题正确",
+    "status": "通过",
+    "details": "我的 DSH 背包 | 个人开发的 DSH 插件、技能与实战避坑百科全书"
+  },
+  {
+    "id": "F2a",
+    "name": "HUD 等级徽章 Lv.16 + 称号「渔夫大师」",
+    "status": "通过",
+    "details": "★Lv.16渔夫大师"
+  },
+  {
+    "id": "F2b",
+    "name": "HUD 货币 🪙+g 单位",
+    "status": "通过",
+    "details": "🪙77,777g"
+  },
+  {
+    "id": "F2c",
+    "name": "HUD 档案按钮存在",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F3",
+    "name": "Tab 栏五枚且名称/计数正确（插件 13 / 技能 41 / MCP 3 / 工具 24 / 秘籍 4）",
+    "status": "通过",
+    "details": "插件 | 技能 | MCP | 工具 | 秘籍 counts=13,41,3,24,4"
+  },
+  {
+    "id": "F4a",
+    "name": "背包格 36 格（plugins 13 件）",
+    "status": "通过",
+    "details": "cells=36"
+  },
+  {
+    "id": "F4b",
+    "name": "占用格 13 / 空格 23",
+    "status": "通过",
+    "details": "occupied=13"
+  },
+  {
+    "id": "F4c",
+    "name": "收纳数 13 / 36 与「豪华大背包 (36格)」文案",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F4d",
+    "name": "快捷栏序号 1-9,0 角标",
+    "status": "通过",
+    "details": "1234567890"
+  },
+  {
+    "id": "F4e",
+    "name": "空格子 title「空闲格子 [n]」",
+    "status": "通过",
+    "details": "空闲格子 [14]"
+  },
+  {
+    "id": "F5a",
+    "name": "品质星标（plugins 档）silver=4 gold=4 iridium=5",
+    "status": "通过",
+    "details": "DOM: silver=4 gold=4 iridium=5"
+  },
+  {
+    "id": "F5b",
+    "name": "normal 档（无星标）在技能页可见 5 例",
+    "status": "通过",
+    "details": "DOM normal=5"
+  },
+  {
+    "id": "F5c",
+    "name": "四档品质各见至少一例（normal/silver/gold/iridium）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F6a",
+    "name": "分类筛选「运维」→ 命中 6 件",
+    "status": "通过",
+    "details": "occupied=6"
+  },
+  {
+    "id": "F6b",
+    "name": "恢复「全部」→ 回到全量",
+    "status": "通过",
+    "details": "occupied=41"
+  },
+  {
+    "id": "F7a",
+    "name": "搜索「workflow」命中 6 件",
+    "status": "通过",
+    "details": "occupied=6"
+  },
+  {
+    "id": "F7b",
+    "name": "乱码搜索 → 空态文案「没有找到匹配的物品」",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F8a",
+    "name": "悬停出现预览条（名称+点击查看属性）",
+    "status": "通过",
+    "details": "dsh-wait-subagent[子代理收敛同步器]点击查看属性"
+  },
+  {
+    "id": "F8b",
+    "name": "移开后预览条回落为提示文案",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F9a",
+    "name": "详情卡头部：dsh-wait-subagent v1.0.0 / 子代理收敛同步器 / 铱星品质",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F9b",
+    "name": "章节标题：✦ 核心亮点 / 📜 深度解析 / 安装与使用指令 / ⚙ 配置示例",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F9c",
+    "name": "Markdown 渲染：H2 与有序列表",
+    "status": "通过",
+    "details": "h2=2 olLi=3"
+  },
+  {
+    "id": "F9d",
+    "name": "安装命令块内容完整（多行）",
+    "status": "通过",
+    "details": "dsh plugin install dsh-wait-subagent\n# 或本地链接开发:\ncd ~/plugins/dsh-wait-subagent &"
+  },
+  {
+    "id": "F9e",
+    "name": "仓库按钮（https://github.com/johnren/dsh-wait-subagent）",
+    "status": "通过",
+    "details": "https://github.com/johnren/dsh-wait-subagent"
+  },
+  {
+    "id": "F9f",
+    "name": "标签行（#Subagent 等 4 枚）",
+    "status": "通过",
+    "details": "#Subagent #Async #Workflow #Must-Have"
+  },
+  {
+    "id": "F10",
+    "name": "安装命令复制：按钮反馈「已复制！」且写入剪贴板内容一致",
+    "status": "通过",
+    "details": "按钮反馈正常；写入剪贴板载荷 与 install 完全一致"
+  },
+  {
+    "id": "F11",
+    "name": "Markdown 代码块/表格/列表/H2 渲染（临时注入正文验证渲染器）",
+    "status": "通过",
+    "details": "code=echo hello-inventory\n table=true ul=true h2=true"
+  },
+  {
+    "id": "F12a",
+    "name": "书架视图：4 册典籍条目",
+    "status": "通过",
+    "details": "books=4"
+  },
+  {
+    "id": "F12b",
+    "name": "羊皮纸正文：秘籍阁 • 全局指令 · 基础环境概况 + 多级标题/列表",
+    "status": "通过",
+    "details": "h1=1 h2=7 h3=0 li=2"
+  },
+  {
+    "id": "F12c",
+    "name": "点击第二册「编码心法」正文切换",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F12d",
+    "name": "切换 Tab 离开再返回，书架/阅读器状态正常",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F12e",
+    "name": "签名行「—— 沉淀自全局指令与真机实战」",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F12f",
+    "name": "典籍正文内部滚动（桌面）",
+    "status": "通过",
+    "details": "{\"scrollable\":true,\"moved\":true}"
+  },
+  {
+    "id": "F13a",
+    "name": "档案弹窗：昵称 大肥鱼 / DeepSeek Harness · v1.5.0",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F13b",
+    "name": "Lv 徽章 + 称号「渔夫大师」",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F13c",
+    "name": "EXP 进度条（track+fill 且宽度>0）",
+    "status": "通过",
+    "details": "89%"
+  },
+  {
+    "id": "F13d",
+    "name": "统计行：入坑日期 2026-08-27 / 主会话 487 场 / 累计 Token / 缓存命中",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F13e",
+    "name": "背包装备行按 section 命名（插件 13 技能 41 MCP 3 工具 24 秘籍 4）",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F13f",
+    "name": "EXP 构成行含 会话/Token/工龄/装备",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F13g",
+    "name": "弹窗关闭（✕ 与 收起档案 两条路径）",
+    "status": "通过",
+    "details": "x=true button=true"
+  },
+  {
+    "id": "F13h",
+    "name": "详情卡内部滚动（桌面）",
+    "status": "通过",
+    "details": "{\"scrollable\":true,\"moved\":true}"
+  },
+  {
+    "id": "F14a",
+    "name": "图鉴页打开：496 枚 + 分组胶囊",
+    "status": "通过",
+    "details": "pills=15"
+  },
+  {
+    "id": "F14b",
+    "name": "搜索过滤（sword）",
+    "status": "通过",
+    "details": "40 : gold-sword,spell-sword-1,spell-sword-10,spell-sword-15"
+  },
+  {
+    "id": "F14c",
+    "name": "点击图标复制 id",
+    "status": "通过",
+    "details": "clipboard写入=gold-sword"
+  },
+  {
+    "id": "F14d",
+    "name": "返回主界面",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F15a",
+    "name": "名片页：四主题卡片齐全",
+    "status": "通过",
+    "details": "imgs=4 labels=4"
+  },
+  {
+    "id": "F15b",
+    "name": "当前主题标记在星露谷卡片",
+    "status": "通过",
+    "details": "星露谷当前主题badges/stardew.svg链接Mar"
+  },
+  {
+    "id": "F15c",
+    "name": "URL/Markdown/HTML 三种片段复制",
+    "status": "通过",
+    "details": "url:✓ md:✓ html:✓"
+  },
+  {
+    "id": "F15d",
+    "name": "名片页返回主界面",
+    "status": "通过",
+    "details": ""
+  },
+  {
+    "id": "F17a",
+    "name": "移动端格子 6 列（实测 6 列）",
+    "status": "通过",
+    "details": "cells=36"
+  },
+  {
+    "id": "F17b",
+    "name": "36 格严格 1:1 正方形（最大宽高差 0.00px）",
+    "status": "通过",
+    "details": "square=36/36"
+  },
+  {
+    "id": "F17c",
+    "name": "外层视口无横向滚动条（水平溢出 0px）",
+    "status": "通过",
+    "details": "hOverflow=0px, 纵向溢出=344px"
+  },
+  {
+    "id": "F17d",
+    "name": "外层视口纵向滚动条（375×812）",
+    "status": "不通过",
+    "details": "doc 纵向溢出 344px（plugins 页）；代码为 lg 断点下才锁定视口 overflow-hidden，移动端为内容堆叠 + 页面整体滚动，内容可达性完整——按测试项字面预期判不通过，建议确认是否为有意设计"
+  },
+  {
+    "id": "F17e",
+    "name": "移动端详情卡内部滚动",
+    "status": "通过",
+    "details": "{\"scrollable\":true,\"moved\":true}"
+  },
+  {
+    "id": "F17f",
+    "name": "移动端典籍正文内部滚动",
+    "status": "不通过",
+    "details": "{\"scrollable\":false,\"moved\":false}"
+  },
+  {
+    "id": "F1c",
+    "name": "全程 console 无错误（共 0 条）",
+    "status": "通过",
+    "details": ""
+  }
+]

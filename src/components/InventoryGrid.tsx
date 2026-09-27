@@ -88,7 +88,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
             placeholder={vocab.hud.search}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-24 sm:w-32 text-xs px-1.5 py-0.5 pl-5 bg-ui-panel-light text-ui-ink placeholder-ui-ink-muted/60 border border-ui-wood-dark rounded-none focus:outline-none focus:bg-white"
+            className="w-24 sm:w-32 text-xs px-1.5 py-0.5 pl-5 bg-ui-panel-light text-ui-ink placeholder-ui-ink-muted/85 border border-ui-wood-dark rounded-none focus:outline-none focus:bg-white"
           />
           <Search size={11} className="absolute left-1 text-ui-ink-muted pointer-events-none" />
         </div>
@@ -158,7 +158,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
         {/* Footer Capacity Status */}
         <div className="mt-2 pt-1.5 border-t border-ui-wood-dark/50 flex items-center justify-between text-[11px] text-ui-ink-body font-bold px-0.5 shrink-0">
           <span>{vocab.hud.capacity}: {filteredItems.length} / {capacity}</span>
-          <span className="text-[10px] text-ui-ink-muted opacity-80 font-normal">
+          <span className="text-[10px] text-ui-ink-muted font-normal">
             {capacity > 36 ? fmt(vocab.hud.expanded, { rows: capacity / 12, cells: capacity }) : `${vocab.bagLabel} (36格)`}
           </span>
         </div>
@@ -175,7 +175,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
             <span className="text-[10px] text-ui-ink-amber shrink-0">{vocab.hud.clickToView}</span>
           </>
         ) : (
-          <span className="text-[10px] text-ui-ink-muted/70 italic">{vocab.hud.hoverHint}</span>
+          <span className="text-[10px] text-ui-ink-muted italic">{vocab.hud.hoverHint}</span>
         )}
       </div>
     </div>

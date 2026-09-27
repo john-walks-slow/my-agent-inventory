@@ -705,7 +705,7 @@ sections:
         icon: wormhole
         rarity: gold
         category: ops
-        description: 将本机某个端口以固定自定义域名（*.<your-domain>）永久暴露到公网。
+        description: 将本机某个端口以固定自定义域名（如 *.example.com）永久暴露到公网。
         author: John Ren
         highlights:
           - 域名固定不变

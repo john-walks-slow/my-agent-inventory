@@ -69,7 +69,9 @@ for (const sec of cfg.sections) {
     itemCount++;
     const p = resolve(root, 'config/content', sec.id, `${item.id}.md`);
     if (existsSync(p)) contentFound++;
-    else if (sec.view !== 'reader') push('warn', `缺少正文: config/content/${sec.id}/${item.id}.md（详情卡将只显示摘要）`);
+    else if (sec.view === 'reader')
+      push('warn', `缺少典籍正文: config/content/${sec.id}/${item.id}.md（阅读器将呈现空白正文）`);
+    else push('warn', `缺少正文: config/content/${sec.id}/${item.id}.md（详情卡将只显示摘要）`);
   }
 }
 push('ok', `物品 ${itemCount} 个，正文 ${contentFound} 篇`);

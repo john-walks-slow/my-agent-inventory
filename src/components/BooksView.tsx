@@ -22,23 +22,17 @@ export const BooksView: React.FC<BooksViewProps> = ({
   const vocab = getVocab(theme);
   const books = section.items;
   const [selectedSub, setSelectedSub] = useState<string>('all');
-  const [internalSelectedId, setInternalSelectedId] = useState<string | null>(
-    activeBookId || books[0]?.id || null
-  );
 
-  const currentBookId = activeBookId !== undefined ? activeBookId : internalSelectedId;
-  const currentBook: ItemView | null = books.find((b) => b.id === currentBookId) || null;
+  // 完全受控：activeBookId 命中当前 section 才用；null/未命中/跨 section 残留一律回退首册
+  const currentBook: ItemView | null = books.find((b) => b.id === activeBookId) ?? books[0] ?? null;
+  const currentBookId = currentBook?.id ?? null;
 
   const categoryLabel = (id?: string) =>
     section.categories?.find((c) => c.id === id)?.label ?? '';
 
   const handleBookClick = (id: string) => {
     retroAudio.playPageTurn();
-    if (onSelectBook) {
-      onSelectBook(id);
-    } else {
-      setInternalSelectedId(id);
-    }
+    onSelectBook?.(id);
   };
 
   const filteredBooks = books.filter((b) => {

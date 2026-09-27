@@ -90,16 +90,16 @@ export const App: React.FC = () => {
     <div className="min-h-screen lg:h-screen w-screen p-2 sm:p-4 max-w-6xl mx-auto flex flex-col justify-between overflow-x-hidden lg:overflow-hidden">
       {/* Top Banner / HUD Header */}
       <header className="flex items-center justify-between gap-2 px-3 py-1.5 bg-ui-panel border-2 border-ui-frame-border shadow-sm shrink-0">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 sdv-cell flex items-center justify-center bg-ui-cell-active">
+        <div className="flex items-center gap-2.5 min-w-0 flex-1">
+          <div className="hidden sm:flex w-8 h-8 sdv-cell items-center justify-center bg-ui-cell-active shrink-0">
             <Backpack size={18} className="text-ui-wood-dark" />
           </div>
-          <div>
-            <h1 className="text-base sm:text-lg font-bold tracking-wide text-ui-ink flex items-center gap-1.5 leading-none">
-              <span>{model.config.site.title}</span>
+          <div className="min-w-0">
+            <h1 className="text-sm sm:text-lg font-bold tracking-wide text-ui-ink flex items-center gap-1.5 leading-none min-w-0">
+              <span className="truncate">{model.config.site.title}</span>
             </h1>
             {model.config.site.subtitle && (
-              <p className="text-[10px] text-ui-ink-muted font-semibold mt-0.5">
+              <p className="hidden sm:block text-[10px] text-ui-ink-muted font-semibold mt-0.5 truncate">
                 {model.config.site.subtitle}
               </p>
             )}
@@ -132,7 +132,7 @@ export const App: React.FC = () => {
             title={vocab.hud.goldHint}
           >
             <span className="text-ui-gold-soft text-xs leading-none">{vocab.currency.glyph}</span>
-            <span className="font-mono text-xs leading-none text-ui-ink-muted">{goldCount.toLocaleString()}{vocab.currency.unit}</span>
+            <span className="hidden sm:inline font-mono text-xs leading-none text-ui-ink-muted">{goldCount.toLocaleString()}{vocab.currency.unit}</span>
           </div>
 
           {/* Sound Toggle */}
