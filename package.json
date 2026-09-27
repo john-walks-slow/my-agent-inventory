@@ -1,9 +1,10 @@
 {
-  "name": "test-app",
+  "name": "my-dsh-inventory",
   "private": true,
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
+  "packageManager": "pnpm@11.24.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

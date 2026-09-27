@@ -1,0 +1,5 @@
+# pnpm 11 起所有设置集中在 pnpm-workspace.yaml（package.json 的 pnpm 字段不再读取）
+# allowBuilds：依赖构建脚本批准表（取代已废弃的 onlyBuiltDependencies 等旧字段）
+# esbuild 是 tsx 的传递依赖，postinstall 仅校验平台二进制，安全放行
+allowBuilds:
+  esbuild: true
