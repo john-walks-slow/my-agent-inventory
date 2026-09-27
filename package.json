@@ -10,6 +10,8 @@
     "test": "tsx --test tests/*.test.ts",
     "preview": "vite preview",
     "validate": "tsx scripts/validate.ts",
+    "init:harness": "node scripts/init-harness.mjs",
+    "privacy:scan": "node scripts/privacy-scan.mjs",
     "predev": "tsx scripts/gen-badges.ts",
     "prebuild": "tsx scripts/gen-badges.ts"
   },

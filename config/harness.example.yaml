@@ -1,0 +1,104 @@
+# ============================================================
+# my-harness-inventory 白板模板
+# 复制为 config/harness.yaml 后填写你自己的装备（本文件不会被构建读取）。
+# 完整字段文档见 skills/harness-inventory/references/schema.md
+# 随时校验：pnpm validate
+# ============================================================
+
+site:
+  # 站点标题：header h1 + 浏览器标签 title + OG 分享卡
+  title: 我的 Harness 背包
+  subtitle: 展示我的 AI coding agent 装备
+  # 四选一：stardew | pokemon | jrpg | diablo（文案与配色整套切换）
+  theme: stardew
+
+harness:
+  # 你的 harness 标识名（badge 副标题、档案弹窗）
+  name: My Agent Harness
+  # 可选昵称：badge 与档案优先展示；不填则用 name
+  nickname: ""
+  # 内置品牌头像 key（见 skills/harness-inventory/references/harnesses/
+  # 各指南开头的 brand 值）：dsh / claude-code / codex / gemini-cli /
+  # cursor / opencode / goose / amp / copilot / aider / generic
+  brand: generic
+  # 可选自定义头像：config/icons/<名字>.svg|.png 覆盖内置品牌
+  # customAvatar: my-avatar
+  # 可选版本号 —— 注意加引号，否则 1.5 会被 YAML 解析成数字
+  version: "1.0.0"
+  # 首次安装日期（等级公式的"工龄"项）—— 记得加引号
+  since: "2026-01-01"
+  # 统计（全部可选）。采集口径见 references/harnesses/<你的harness>.md：
+  #   sessions = root 主会话数（不含子代理）
+  #   tokens   = 非缓存 input+output 累计
+  # 一键采集：node skills/harness-inventory/scripts/collect-stats.mjs
+  stats:
+    sessions: 0
+    # subagentSessions: 0   # 可选：档案弹窗彩蛋行
+    tokens: 0
+    # cacheTokens: 0        # 可选：缓存命中量（展示用）
+  # 可选：显式覆盖等级（1-99）。缺省由锚点公式自动计算
+  # level: 16
+
+# ------------------------------------------------------------
+# sections：背包的 Tab 页。可增删、可换顺序；id 随意（小写-数字-_）。
+# view: grid（默认，背包格子）| reader（典籍阅读器，适合规则/长文）
+# 每个物品的深度解析正文放 config/content/<section id>/<item id>.md
+# ------------------------------------------------------------
+sections:
+  - id: plugins
+    # label: 插件          # 可选；缺省用主题词汇表的默认名
+    icon: sword-1          # 图标：config/icons/<名>.svg → 套件 id（#/icons 图鉴页）→ 兜底
+    categories:            # 可选：section 内筛选 chips
+      - { id: core, label: 核心 }
+    items:
+      - id: my-plugin
+        name: my-plugin
+        title: 一句话称号
+        icon: sword-1      # 同 section.icon 解析链；不填继承兜底
+        rarity: gold       # normal | silver | gold | iridium（品质边框+星级）
+        category: core     # 可选；须在上方 categories 中定义
+        version: "1.0.0"   # 可选（记得引号）
+        author: your-name  # 可选
+        # repo: https://github.com/you/my-plugin   # 可选 → 详情卡「仓库」按钮
+        # 安装块：仅插件 / MCP / 有仓库的 skill 填写 → 详情卡命令块 + 复制按钮
+        # install: |
+        #   npm install -g my-plugin
+        # 配置示例：插件给 cordis.yml；MCP 给 mcpServers JSON
+        # config: |
+        #   plugins:
+        #     - my-plugin
+        description: 一句话摘要（悬停预览条 + 详情卡首行）
+        highlights:        # 可选：核心亮点 2-4 条
+          - 亮点一
+          - 亮点二
+        tags: [tooling]    # 可选
+        # note: 人类真实备注（默认不出现，详情卡底部）
+        stack: 1           # 可选：格子里右下角叠加数
+        added: "2026-09-27" # 可选：收录日期
+
+  - id: skills
+    icon: book-1
+    items: []
+
+  - id: mcp
+    icon: crystal-1
+    items: []
+
+  # 可选 tab 示例（删掉即不展示）：
+  # - id: tools
+  #   icon: metal-1
+  #   items: []
+
+  # 典籍/规则卷：reader 视图（书架 + 羊皮纸阅读器）
+  - id: tomes
+    view: reader
+    icon: scroll
+    categories:
+      - { id: rules, label: 规则 }
+    items:
+      - id: my-rules
+        name: 我的编码规则
+        rarity: iridium
+        category: rules
+        description: 沉淀自全局指令的规则精编
+        tags: [rules]

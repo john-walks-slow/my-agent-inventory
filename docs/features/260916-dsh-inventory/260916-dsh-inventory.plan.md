@@ -124,11 +124,11 @@ export interface BookEntry {
 ```
 
 ### 2.3 数据源与真实路径对应（已核对）
-- **DSH Plugins**（涵盖 `/root/projects/dsh-*` 与 `/root/plugins/*`）：
+- **DSH Plugins**（涵盖 `/root/projects/dsh-*` 与 `~/plugins/*`）：
   - `dsh-wait-subagent`, `dsh-clear-mind`, `dsh-set-model`, `dsh-proactive`, `@xmanrui/dsh-im`, `dsh-anti-addiction`, `dsh-simulated-life`, `dsh-hybrid-notify`, `dsh-stickers`, `dsh-mobile-qol`, `dsh-message-datetime`, `dsh-web-transport-trust`, `dsh-whip`, `dsh-remote-unlock`, `dsh-patch`。
-- **Agent Skills**（涵盖 `/root/.agents/skills/*` 真实存在的 40+ 个技能）：
+- **Agent Skills**（涵盖 `~/.agents/skills/*` 真实存在的 40+ 个技能）：
   - 提取其实际 `SKILL.md` 的核心用途与风味定位。
-- **MCP Servers**（来自 `/root/.dsh/mcp.json`）：
+- **MCP Servers**（来自 `~/.dsh/mcp.json`）：
   - `degoog`, `fetch`, `notebooklm`, `exa`。
 - **Books 深度文档**（作为独立的 `.md` 文件编写在 `src/content/books/`）：
   - `01-dsh-plugin-dev-guide.md`

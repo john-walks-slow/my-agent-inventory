@@ -57,7 +57,7 @@
 
 1. **fork 会带走全部 git 历史。** GitHub 官方文档：*"A new fork includes the entire commit history of the parent repository, while a repository created from a template starts with a single commit."* 也就是说用 fork 路径的人，仓库里永远留着我们的 commit 历史（含 260916/260927 的研究与计划文档、我们的真实数据迭代过程）。而 skill 里写的是"fork 本仓或使用模板"——把两条后果完全不同的路径并列了。
 2. **我们的内容就是他的初始内容**：`config/` 装的是 8 插件 / 35 技能 / 6 MCP / 4 篇长文 + 我们的昵称、token 数、私有仓链接；`docs/`、`references/`、`AGENTS.md` 也在。`init:harness` 只能"重置 config"，重置不了 `docs/`、`references/`、git 历史、以及他们仓库里那份"我的 DSH 背包"的 README。
-3. **脱敏面被低估**：计划只安排了 `pnpm privacy:scan`（扫 `config/`）。实测**已公开的树里就有真实自持域名与内网 IP**：`src/data/inventoryData.ts:855,1729` 的 `*.<your-domain>`、`docs/features/260916-.../..validation.md:5` 的 `192.168.71.34`。按全局规范，这类真实公网隧道域名/内网细节**不应出现在对外仓库与文档中**；而 P2 恰好要把这些内容迁移到 `config/content/**`。
+3. **脱敏面被低估**：计划只安排了 `pnpm privacy:scan`（扫 `config/`）。实测**已公开的树里就有真实自持域名与内网 IP**：`src/data/inventoryData.ts:855,1729` 的 `*.<your-domain>`、`docs/features/260916-.../..validation.md:5` 的 `192.168.x.x`。按全局规范，这类真实公网隧道域名/内网细节**不应出现在对外仓库与文档中**；而 P2 恰好要把这些内容迁移到 `config/content/**`。
 
 **建议行动（择一，但必须在本轮内落定）**：
 - **A（最小代价）**：把本仓标记为 GitHub **template repository**，并在 skill/README 里**只写 "Use this template"（历史被压成单 commit）**，显式劝阻 fork；`docs/`/`references/` 里的过程文档在模板分支或 `.gitignore`/`.templateignore` 层面处理。（注意：模板仓本身仍然是我们的私货仓，只是历史不外带。）

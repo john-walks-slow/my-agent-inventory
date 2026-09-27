@@ -158,19 +158,19 @@
   <!-- EXP 条 -->
   <text x="116" y="140" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" font-weight="bold" fill="#6a6a6a">EXP</text>
   <rect x="146" y="131" width="180" height="10" rx="2" fill="#d0d0d0"/>
-  <rect x="146" y="131" width="159" height="10" rx="2" fill="#78c850"/>
-  <text x="334" y="140" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" font-weight="bold" fill="#6a6a6a">88%</text>
+  <rect x="146" y="131" width="160" height="10" rx="2" fill="#78c850"/>
+  <text x="334" y="140" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" font-weight="bold" fill="#6a6a6a">89%</text>
   <!-- 数据 chips -->
   
     <g transform="translate(328 26)">
       <rect width="128" height="24" rx="12" fill="#fffbe6" stroke="#5a5a5a" stroke-width="1"/>
       <text x="8" y="16.5" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" fill="#6a6a6a">对战</text>
-      <text x="120" y="16.5" text-anchor="end" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#2a2a2a">482</text>
+      <text x="120" y="16.5" text-anchor="end" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#2a2a2a">487</text>
     </g>
     <g transform="translate(328 58)">
       <rect width="128" height="24" rx="12" fill="#fffbe6" stroke="#5a5a5a" stroke-width="1"/>
       <text x="8" y="16.5" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="10" fill="#6a6a6a">经验</text>
-      <text x="120" y="16.5" text-anchor="end" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#2a2a2a">43.6亿</text>
+      <text x="120" y="16.5" text-anchor="end" font-family="'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="bold" fill="#2a2a2a">44.4亿</text>
     </g>
     <g transform="translate(328 90)">
       <rect width="128" height="24" rx="12" fill="#fffbe6" stroke="#5a5a5a" stroke-width="1"/>

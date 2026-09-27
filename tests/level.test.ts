@@ -42,7 +42,7 @@ test('锚点：离谱人设 → Lv.20', () => {
   assert.equal(lv, 20);
 });
 
-test('锚点：DSH 真机数据（collect-dsh-stats.mjs 2026-09-27 实测）→ Lv.16 大肥鱼', () => {
+test('锚点：DSH 真机数据（skills/harness-inventory/scripts/collect-stats.mjs 2026-09-27 实测）→ Lv.16 大肥鱼', () => {
   const lv = computeFormulaLevel(
     anchor({ sessions: 482, tokens: 4_356_590_671, days: 31, gear: { plugins: 13, skills: 41, mcp: 3, tools: 24, tomes: 4 } })
   );

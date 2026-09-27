@@ -7,8 +7,9 @@
 
 ## 地图
 
-- `config/harness.yaml`: 站点唯一事实源（站点信息、harness 档案、sections/物品全量数据），schema 见 `src/config/schema.ts`
+- `config/harness.yaml`: 站点唯一事实源（站点信息、harness 档案、sections/物品全量数据），schema 见 `src/config/schema.ts`；`config/harness.example.yaml`: 白板模板（全注释，init-harness 的替换源）
 - `config/content/<section>/<id>.md`: 物品深度解析正文（Markdown）；`config/icons/*.svg`: 自定义 16×16 像素图腾
+- `skills/harness-inventory/`: 配套 agent skill（SKILL.md 十步流程 + references/ 配置·隐私·图标·发布·各家 harness 采集指南 + scripts/collect-stats.mjs 统一采集器（dsh/claude-code/codex 全量，其余探测指引；重测后回填 harness.yaml））
 - `docs/essays/`: 已归档的长文典籍（不在站内展示）
 - `src/config/loader.ts`: 浏览器侧装载（YAML + 正文 glob + IconRef 解析链 custom-svg → custom-img → kit → fallback + harness 档案派生）
 - `src/components/ItemIcon.tsx`: 统一图腾渲染器与品质星级徽章
@@ -28,7 +29,8 @@
 - `src/index.css`: 星露谷调色板、像素微阴影系统与独立滚动条样式
 - `src/App.tsx`: 顶层 HUD 框架（Lv 徽章/金币/音效/档案入口）、Tab 导航（由 sections 驱动）与 hash 路由
 - `scripts/validate.ts` / `pnpm validate`: 配置校验（schema + 正文/图标引用完整性）
-- `scripts/collect-dsh-stats.mjs`: DSH 会话统计采集器（root/subagent 会话数、非缓存 Token、since 核实；重测后回填 harness.yaml）
+- `scripts/init-harness.mjs` / `pnpm init:harness`: 白板初始化（清空 config 内容、重置 harness.yaml/package.json name/index.html/README 标题）
+- `scripts/privacy-scan.mjs` / `pnpm privacy:scan`: 全仓隐私扫描（硬模式密钥阻断 exit 1，软模式域名/IP/路径警告；豁免清单 `.privacy-allow`）
 
 ## 开发与调试
 
@@ -46,7 +48,7 @@ pnpm build
 pnpm preview --host 0.0.0.0 --port 5180
 
 # 临时公网穿透演示 (开隧道给用户体验)
-bash /root/.agents/skills/dev-tunnel/scripts/dev-tunnel.sh 5180
+bash ~/.agents/skills/dev-tunnel/scripts/dev-tunnel.sh 5180
 ```
 
 ## 规范
