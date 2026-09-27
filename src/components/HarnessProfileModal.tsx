@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { HarnessProfileView } from '../config/loader';
 import { BrandAvatar } from './BrandAvatar';
 import { levelTitle, sectionLabel, getVocab } from '../theme/vocab';
 import { computeExp } from '../stats/level';
 import { retroAudio } from '../audio/retroAudio';
+import { Share2, Check } from 'lucide-react';
 
 /** 中文单位格式化 Token：4356590671 → 43.6 亿 */
 function fmtTokens(n: number): string {
@@ -28,10 +29,34 @@ export interface HarnessProfileModalProps {
 
 /** Harness 档案弹窗：品牌头像 + 昵称 + Lv/EXP + 统计数据行 */
 export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profile, sectionOrder, theme, onClose }) => {
-  const { info, avatar, stats, level, gear } = profile;
+  const { info, avatar, stats, level, gear, jobSection } = profile;
   const vocab = getVocab(theme);
   const title = levelTitle(level.level, theme);
   const expPct = Math.round(level.progress * 100);
+  const [shared, setShared] = useState(false);
+
+  const shareBadge = async () => {
+    const url = `${window.location.origin}${window.location.pathname}#/badge`;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = url;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        textArea.remove();
+      }
+      retroAudio.playCoin();
+    } catch {
+      // ignore
+    }
+    setShared(true);
+    setTimeout(() => setShared(false), 2000);
+  };
 
   return (
     <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4" onClick={onClose}>
@@ -80,8 +105,13 @@ export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profil
 
         {/* 统计数据行 */}
         <div className="space-y-1.5 text-xs">
+          {jobSection && (
+            <Row label="职业:">
+              {vocab.jobs[jobSection] ?? sectionLabel({ id: jobSection }, theme)}
+            </Row>
+          )}
           {info.since && (
-            <Row label="入坑日期:">
+            <Row label={`${vocab.since}:`}>
               {info.since}
               {stats.days > 0 && <span className="opacity-70">（{stats.days} 天）</span>}
             </Row>
@@ -114,13 +144,21 @@ export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profil
           {vocab.expTerms.gear} {computeExp({ gear }).toFixed(1)} = {level.exp.toFixed(1)}
         </p>
 
-        <div className="mt-2 pt-2 border-t border-ui-wood-dark text-center">
+        <div className="mt-2 pt-2 border-t border-ui-wood-dark flex gap-1.5">
+          <button
+            onClick={shareBadge}
+            className="sdv-action-btn flex-1 !py-1.5 flex items-center justify-center gap-1"
+            title="复制名片页链接"
+          >
+            {shared ? <Check size={12} className="text-green-700" /> : <Share2 size={12} />}
+            {shared ? '链接已复制！' : '分享名片'}
+          </button>
           <button
             onClick={() => {
               retroAudio.playCoin();
               onClose();
             }}
-            className="sdv-action-btn w-full !py-1.5"
+            className="sdv-action-btn flex-1 !py-1.5"
           >
             收起档案
           </button>

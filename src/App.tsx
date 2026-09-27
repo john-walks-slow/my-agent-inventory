@@ -9,8 +9,9 @@ import { IconsCodex } from './components/IconsCodex';
 import { BadgeView } from './components/BadgeView';
 import { ItemIcon } from './components/ItemIcon';
 import { HarnessProfileModal } from './components/HarnessProfileModal';
+import { BrandAvatar } from './components/BrandAvatar';
 import { retroAudio } from './audio/retroAudio';
-import { Volume2, VolumeX, User, Backpack } from 'lucide-react';
+import { Volume2, VolumeX } from 'lucide-react';
 
 export const App: React.FC = () => {
   const model = useMemo(() => buildInventoryModel(), []);
@@ -88,40 +89,36 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen lg:h-screen w-screen p-2 sm:p-4 max-w-6xl mx-auto flex flex-col justify-between overflow-x-hidden lg:overflow-hidden">
-      {/* Top Banner / HUD Header */}
+      {/* Top Banner / HUD Header：角色状态卡（点头像看档案） */}
       <header className="flex items-center justify-between gap-2 px-3 py-1.5 bg-ui-panel border-2 border-ui-frame-border shadow-sm shrink-0">
-        <div className="flex items-center gap-2.5 min-w-0 flex-1">
-          <div className="hidden sm:flex w-8 h-8 sdv-cell items-center justify-center bg-ui-cell-active shrink-0">
-            <Backpack size={18} className="text-ui-wood-dark" />
+        <button
+          onClick={() => {
+            retroAudio.playSelect();
+            setShowProfileModal(true);
+          }}
+          className="flex items-center gap-2.5 min-w-0 flex-1 text-left cursor-pointer group"
+          title={`${profile.info.nickname ?? profile.info.name} · ${vocab.hud.profile}`}
+        >
+          <div className="w-10 h-10 sdv-cell flex items-center justify-center bg-ui-cell-active shrink-0 group-hover:brightness-110">
+            <BrandAvatar avatar={profile.avatar} size={34} />
           </div>
-          <div className="min-w-0">
-            <h1 className="text-sm sm:text-lg font-bold tracking-wide text-ui-ink flex items-center gap-1.5 leading-none min-w-0">
-              <span className="truncate">{model.config.site.title}</span>
+          <div className="min-w-0 flex-1">
+            <h1 className="text-sm sm:text-base font-bold tracking-wide text-ui-ink leading-none truncate font-display">
+              {profile.info.nickname ?? profile.info.name}
             </h1>
-            {model.config.site.subtitle && (
-              <p className="hidden sm:block text-[10px] text-ui-ink-muted font-semibold mt-0.5 truncate">
-                {model.config.site.subtitle}
-              </p>
-            )}
+            <div className="flex items-center gap-1.5 mt-1 text-[10px] font-bold leading-none">
+              <span className="bg-ui-frame-border text-ui-ink-gold px-1.5 py-0.5 font-mono">Lv.{profile.level.level}</span>
+              <span className="text-ui-ink-muted truncate">{levelTitle(profile.level.level, theme)}</span>
+              <span className="text-ui-ink-faint shrink-0">{Math.round(profile.level.progress * 100)}%</span>
+            </div>
+            <div className="h-1.5 bg-ui-exp-track border border-ui-wood-dark mt-1 max-w-44">
+              <div className="h-full exp-bar-fill" style={{ width: `${Math.max(2, Math.round(profile.level.progress * 100))}%` }} />
+            </div>
           </div>
-        </div>
+        </button>
 
-        {/* HUD Widgets: Level, Money, Sound, Profile */}
-        <div className="flex items-center gap-2 text-xs font-bold">
-          {/* Level Badge: opens harness profile */}
-          <button
-            onClick={() => {
-              retroAudio.playSelect();
-              setShowProfileModal(true);
-            }}
-            className="flex items-center gap-1 bg-ui-frame-border px-2 py-0.5 text-ui-ink-gold cursor-pointer hover:bg-ui-wood-dark border-b border-ui-shadow-deep shadow-xs active:translate-y-0.5"
-            title={`${profile.info.name} ${vocab.hud.profile}`}
-          >
-            <span className="text-ui-gold leading-none">★</span>
-            <span className="font-mono text-xs leading-none">Lv.{profile.level.level}</span>
-            <span className="hidden sm:inline text-[10px] opacity-90">{levelTitle(profile.level.level, theme)}</span>
-          </button>
-
+        {/* HUD Widgets: Money, Sound */}
+        <div className="flex items-center gap-2 text-xs font-bold shrink-0">
           {/* Gold Counter: Clean Retro Badge */}
           <div
             onClick={() => {
@@ -142,17 +139,6 @@ export const App: React.FC = () => {
             title={soundEnabled ? '关闭 8-bit 音效' : '开启 8-bit 音效'}
           >
             {soundEnabled ? <Volume2 size={14} /> : <VolumeX size={14} className="text-red-700" />}
-          </button>
-
-          {/* Farmer Profile Button */}
-          <button
-            onClick={() => {
-              retroAudio.playSelect();
-              setShowProfileModal(true);
-            }}
-            className="sdv-action-btn !py-0.5 !px-2 text-xs"
-          >
-            <User size={12} /> {vocab.hud.profile}
           </button>
         </div>
       </header>
