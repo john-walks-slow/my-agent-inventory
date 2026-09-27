@@ -1,0 +1,5 @@
+records=238850 dropped_outliers=0
+totalTokens=15,444,442,154
+inputTokens=1,580,907,460
+outputTokens=31,518,591
+cacheReadTokens=13,832,022,057
