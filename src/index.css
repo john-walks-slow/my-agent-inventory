@@ -3,7 +3,7 @@
 /*
  * 字体注册（自托管，清单与许可见 src/assets/fonts/README.md）。
  * - 各主题经 --font-display / --font-body（@theme）引用，仅激活主题用到的字体会被下载。
- * - PKMN 为 GB 初代字形（Latin），中文落 Fusion Pixel；
+ * - PKMN 为 GB 初代字形（Latin 子集，经 tools/prep-pkmn-font.py 修复 OS/2 与空字形映射），中文落 Fusion Pixel；
  *   Cinzel / Pirata One 只做 jrpg / diablo 展示字，中文回退系统 serif。
  */
 @font-face {
@@ -24,7 +24,7 @@
 
 @font-face {
   font-family: 'PKMN';
-  src: url('./assets/fonts/pkmn-r.woff2') format('woff2');
+  src: url('./assets/fonts/pkmn.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
