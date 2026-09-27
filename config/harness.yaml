@@ -1,0 +1,36 @@
+# harness-inventory 主配置
+# P1 阶段的最小样例：P2 迁移脚本会用全量数据替换本文件。
+# 完整字段文档见 references/schema.md（随 P8 交付）与 README。
+
+site:
+  title: 我的 DSH 背包
+  subtitle: 个人开发的 DSH 插件、技能与实战避坑百科全书
+  theme: stardew
+
+harness:
+  name: DeepSeek Harness
+  nickname: 大肥鱼
+  brand: dsh
+  version: "1.5.0"
+  since: "2026-05-01"
+  stats:
+    sessions: 586
+    tokens: 1611000000
+
+sections:
+  - id: plugins
+    label: 插件
+    categories:
+      - { id: core, label: 核心 }
+      - { id: tools, label: 效能 }
+    items:
+      - id: dsh-wait-subagent
+        name: dsh-wait-subagent
+        title: 子代理收敛同步器
+        icon: hourglass
+        rarity: iridium
+        category: tools
+        version: "1.0.0"
+        author: John Ren
+        description: 阻塞等待指定后台子代理执行完毕并提取其终结输出。
+        tags: [Subagent, Async]
