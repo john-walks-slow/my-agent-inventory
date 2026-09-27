@@ -1,22 +1,32 @@
-import React, { useState } from 'react';
-import type { CategoryId, SubCategory, InventoryItem } from './types/inventory';
-import { PLUGINS_DATA, SKILLS_DATA, MCP_DATA, BOOKS_DATA } from './data/inventoryData';
+import React, { useMemo, useState } from 'react';
+import { buildInventoryModel } from './config/loader';
+import type { ItemView, SectionView } from './config/loader';
+import { sectionLabel } from './theme/vocab';
 import { InventoryGrid } from './components/InventoryGrid';
 import { DetailPanel } from './components/DetailPanel';
 import { BooksView } from './components/BooksView';
-import { PixelArtIcon } from './components/PixelArtIcon';
+import { ItemIcon } from './components/ItemIcon';
 import { retroAudio } from './audio/retroAudio';
 import { Volume2, VolumeX, User, Backpack } from 'lucide-react';
 
 export const App: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<CategoryId>('plugins');
-  const [subCategory, setSubCategory] = useState<SubCategory>('all');
+  const model = useMemo(() => buildInventoryModel(), []);
+  const sections = model.sections;
+
+  const [activeSectionId, setActiveSectionId] = useState<string>(sections[0]?.id ?? '');
+  const [subCategory, setSubCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedItemId, setSelectedItemId] = useState<string | null>(PLUGINS_DATA[0].id);
-  const [selectedBookId, setSelectedBookId] = useState<string | null>(null);
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(sections[0]?.items[0]?.id ?? null);
+  const [selectedReaderId, setSelectedReaderId] = useState<string | null>(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [goldCount, setGoldCount] = useState(77777);
   const [showProfileModal, setShowProfileModal] = useState(false);
+
+  const activeSection: SectionView | null = sections.find((s) => s.id === activeSectionId) ?? sections[0] ?? null;
+  const isReaderView = activeSection?.view === 'reader';
+  const currentItems: ItemView[] = isReaderView ? [] : (activeSection?.items ?? []);
+  const selectedItem =
+    currentItems.find((i) => i.id === selectedItemId) || currentItems[0] || null;
 
   const toggleSound = () => {
     retroAudio.enabled = !soundEnabled;
@@ -26,76 +36,27 @@ export const App: React.FC = () => {
     }
   };
 
-  const handleCategoryChange = (cat: CategoryId) => {
+  const handleCategoryChange = (secId: string) => {
     retroAudio.playTab();
-    setActiveCategory(cat);
+    setActiveSectionId(secId);
     setSubCategory('all');
     setSearchQuery('');
-    if (cat === 'plugins') {
-      setSelectedItemId(PLUGINS_DATA[0]?.id || null);
-    } else if (cat === 'skills') {
-      setSelectedItemId(SKILLS_DATA[0]?.id || null);
-    } else if (cat === 'mcp') {
-      setSelectedItemId(MCP_DATA[0]?.id || null);
-    } else if (cat === 'books') {
-      setSelectedBookId(BOOKS_DATA[0]?.id || null);
+    const target = sections.find((s) => s.id === secId);
+    if (target?.view === 'reader') {
+      setSelectedReaderId(target.items[0]?.id ?? null);
+    } else {
+      setSelectedItemId(target?.items[0]?.id ?? null);
     }
   };
 
-  const handleOpenDoc = (docId: string) => {
-    setActiveCategory('books');
-    setSelectedBookId(docId);
-  };
+  // Subcategory filters（从 section.categories 派生）
+  const subCategoryOptions = [
+    { id: 'all', label: '全部' },
+    ...(activeSection?.categories ?? []).map((c) => ({ id: c.id, label: c.label }))
+  ];
 
-  // Get current dataset based on category
-  const currentItems: InventoryItem[] = (() => {
-    switch (activeCategory) {
-      case 'plugins':
-        return PLUGINS_DATA;
-      case 'skills':
-        return SKILLS_DATA;
-      case 'mcp':
-        return MCP_DATA;
-      default:
-        return [];
-    }
-  })();
-
-  const selectedItem = currentItems.find((i) => i.id === selectedItemId) || currentItems[0] || null;
-
-  // Subcategory filters
-  const subCategoryOptions = (() => {
-    switch (activeCategory) {
-      case 'plugins':
-        return [
-          { id: 'all' as SubCategory, label: '全部' },
-          { id: 'core' as SubCategory, label: '核心' },
-          { id: 'tools' as SubCategory, label: '效能' },
-          { id: 'workflow' as SubCategory, label: '工作流' },
-          { id: 'experiment' as SubCategory, label: '实验' }
-        ];
-      case 'skills':
-        return [
-          { id: 'all' as SubCategory, label: '全部' },
-          { id: 'ops' as SubCategory, label: '运维' },
-          { id: 'workflow' as SubCategory, label: '交付' },
-          { id: 'ai-core' as SubCategory, label: '核心AI' },
-          { id: 'office' as SubCategory, label: '研习' },
-          { id: 'multimodal' as SubCategory, label: '生图' },
-          { id: 'rabbit-skills' as SubCategory, label: '工作方式' }
-        ];
-      case 'mcp':
-        return [
-          { id: 'all' as SubCategory, label: '全部' },
-          { id: 'search' as SubCategory, label: '搜索发现' },
-          { id: 'research' as SubCategory, label: '深度调研' }
-        ];
-      default:
-        return [{ id: 'all' as SubCategory, label: '全部' }];
-    }
-  })();
-
-  const totalItemCount = PLUGINS_DATA.length + SKILLS_DATA.length + MCP_DATA.length + BOOKS_DATA.length;
+  const sectionCount = (id: string) => sections.find((s) => s.id === id)?.items.length ?? 0;
+  const totalItemCount = sections.reduce((n, s) => n + s.items.length, 0);
 
   return (
     <div className="min-h-screen lg:h-screen w-screen p-2 sm:p-4 max-w-6xl mx-auto flex flex-col justify-between overflow-x-hidden lg:overflow-hidden">
@@ -107,11 +68,13 @@ export const App: React.FC = () => {
           </div>
           <div>
             <h1 className="text-base sm:text-lg font-bold tracking-wide text-[#381503] flex items-center gap-1.5 leading-none">
-              <span>我的 DSH 背包</span>
+              <span>{model.config.site.title}</span>
             </h1>
-            <p className="text-[10px] text-[#78350f] font-semibold mt-0.5">
-              个人开发的 DSH 插件、技能与实战避坑百科全书
-            </p>
+            {model.config.site.subtitle && (
+              <p className="text-[10px] text-[#78350f] font-semibold mt-0.5">
+                {model.config.site.subtitle}
+              </p>
+            )}
           </div>
         </div>
 
@@ -156,25 +119,20 @@ export const App: React.FC = () => {
       <main className="sdv-menu-frame mt-6 p-3 sm:p-4 flex-1 flex flex-col relative min-h-0">
         {/* Top Category Tabs (Authentic Stardew Style - sits on the top border, horizontally scrollable on mobile) */}
         <div className="flex items-end gap-1.5 -mt-9 sm:-mt-10 mb-2 px-1 py-0.5 z-30 overflow-x-auto no-scrollbar shrink-0">
-          {[
-            { id: 'plugins', label: '插件', icon: 'puzzle', count: PLUGINS_DATA.length },
-            { id: 'skills', label: '技能', icon: 'terminal', count: SKILLS_DATA.length },
-            { id: 'mcp', label: 'MCP', icon: 'search', count: MCP_DATA.length },
-            { id: 'books', label: '秘籍', icon: 'book-open', count: BOOKS_DATA.length }
-          ].map((tab) => {
-            const isActive = activeCategory === tab.id;
+          {sections.map((sec) => {
+            const isActive = activeSection?.id === sec.id;
             return (
               <button
-                key={tab.id}
-                onClick={() => handleCategoryChange(tab.id as CategoryId)}
+                key={sec.id}
+                onClick={() => handleCategoryChange(sec.id)}
                 onMouseEnter={() => retroAudio.playHover()}
                 className={`sdv-tab-btn px-3.5 py-1 text-xs font-bold flex items-center gap-1.5 shrink-0 ${
                   isActive ? 'active' : ''
                 }`}
               >
-                <PixelArtIcon name={tab.icon} size={14} />
-                <span>{tab.label}</span>
-                <span className="text-[10px] px-1 bg-[#4a2113]/20 rounded-none">{tab.count}</span>
+                <ItemIcon iconRef={sec.iconRef} size={14} />
+                <span>{sectionLabel(sec)}</span>
+                <span className="text-[10px] px-1 bg-[#4a2113]/20 rounded-none">{sec.items.length}</span>
               </button>
             );
           })}
@@ -182,11 +140,11 @@ export const App: React.FC = () => {
 
         {/* Interior Container: Grid on Left (60%), Details on Right (40%) */}
         <div className="flex-1 min-h-0 flex flex-col lg:block">
-          {activeCategory === 'books' ? (
+          {isReaderView && activeSection ? (
             <BooksView
-              books={BOOKS_DATA}
-              activeBookId={selectedBookId}
-              onSelectBook={(id) => setSelectedBookId(id)}
+              section={activeSection}
+              activeBookId={selectedReaderId}
+              onSelectBook={(id) => setSelectedReaderId(id)}
             />
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 h-full">
@@ -207,7 +165,7 @@ export const App: React.FC = () => {
 
               {/* Right Column: Independent Scrollable Details Panel (5 cols) */}
               <div className="lg:col-span-5 h-[420px] lg:h-full min-h-0 mt-3 lg:mt-0">
-                <DetailPanel item={selectedItem} onOpenDoc={handleOpenDoc} />
+                <DetailPanel item={selectedItem} />
               </div>
             </div>
           )}
@@ -257,15 +215,15 @@ export const App: React.FC = () => {
               </div>
               <div className="bg-[#ecd0a6] p-1.5 border border-[#6e2e05] flex justify-between">
                 <span className="font-bold">自研插件:</span>
-                <span>{PLUGINS_DATA.length} 个</span>
+                <span>{sectionCount('plugins')} 个</span>
               </div>
               <div className="bg-[#ecd0a6] p-1.5 border border-[#6e2e05] flex justify-between">
                 <span className="font-bold">全域技能:</span>
-                <span>{SKILLS_DATA.length} 个</span>
+                <span>{sectionCount('skills')} 个</span>
               </div>
               <div className="bg-[#ecd0a6] p-1.5 border border-[#6e2e05] flex justify-between">
-                <span className="font-bold">实战典籍:</span>
-                <span>{BOOKS_DATA.length} 篇</span>
+                <span className="font-bold">实战秘籍:</span>
+                <span>{sectionCount('tomes')} 卷</span>
               </div>
             </div>
 

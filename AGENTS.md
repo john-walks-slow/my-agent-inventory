@@ -7,21 +7,28 @@
 
 ## 地图
 
-- `src/data/inventoryData.ts`: 核心静态数据源（插件、技能、MCP、典籍全量数据）
-- `src/components/PixelArtIcon.tsx`: 16×16 纯手绘 SVG 像素道具图腾库与品质星级徽章
+- `config/harness.yaml`: 站点唯一事实源（站点信息、harness 档案、sections/物品全量数据），schema 见 `src/config/schema.ts`
+- `config/content/<section>/<id>.md`: 物品深度解析正文（Markdown）；`config/icons/*.svg`: 自定义 16×16 像素图腾
+- `docs/essays/`: 已归档的长文典籍（不在站内展示）
+- `src/config/loader.ts`: 浏览器侧装载（YAML + 正文 glob + IconRef 解析链 custom-svg → custom-img → kit → fallback）
+- `src/components/ItemIcon.tsx`: 统一图腾渲染器与品质星级徽章
 - `src/components/InventoryGrid.tsx`: 36 格豪华背包凹陷槽位网格、筛选栏与悬停预览条
-- `src/components/DetailPanel.tsx`: 独立滚动的装备属性卡片、痛点亮点、一键复制安装命令
-- `src/components/BooksView.tsx`: 书架与羊皮纸（Parchment）Markdown 深度长文阅览器
+- `src/components/DetailPanel.tsx`: 独立滚动的装备属性卡片、Markdown 深度解析、一键复制安装/配置
+- `src/components/BooksView.tsx`: 秘籍书架与羊皮纸（Parchment）Markdown 阅览器（reader 型 section）
+- `src/theme/vocab.ts`: 主题词汇表（section id → 展示名兜底）
 - `src/audio/retroAudio.ts`: 纯原生 Web Audio API 8-bit 声效合成器（木击、拾取、金币、翻书）
 - `src/index.css`: 星露谷调色板、像素微阴影系统与独立滚动条样式
-- `src/App.tsx`: 顶层 HUD 框架、Tab 导航与农场主档案彩蛋
-- `references/content-maintenance.md`: 以后新增插件/技能/典籍/图标的规范指南
+- `src/App.tsx`: 顶层 HUD 框架、Tab 导航（由 sections 驱动）与档案彩蛋
+- `scripts/validate.ts` / `pnpm validate`: 配置校验（schema + 正文/图标引用完整性）
 
 ## 开发与调试
 
 ```bash
-# 启动本地开发服务 (支持 HMR)
+# 启动本地开发服务 (支持 HMR，配置改动热校验)
 pnpm dev --host 0.0.0.0 --port 5180
+
+# 配置校验（改 harness.yaml / content / icons 后必跑；build 也会跑）
+pnpm validate
 
 # 生产级编译构建与静态类型校验 (新增内容后必跑)
 pnpm build
@@ -35,8 +42,8 @@ bash /root/.agents/skills/dev-tunnel/scripts/dev-tunnel.sh 5180
 
 ## 规范
 
-1. **内容扩展准则**：任何新增插件、技能或文章，必须遵循 `references/content-maintenance.md`。
-2. **像素一致性**：杜绝引入外部矢量图标库（如 Lucide、FontAwesome）作为物品道具图腾，一律在 `PixelArtIcon.tsx` 编写 16×16 纯像素图形。
+1. **内容扩展准则**：新增插件/技能/物品 = 在 `config/harness.yaml` 对应 section 加条目 + `config/content/<section>/<id>.md` 写正文 + 需要新图腾时在 `config/icons/` 放 16×16 SVG（或引用 `src/iconkit/` 内置套件 id）。
+2. **像素一致性**：杜绝引入外部矢量图标库（如 Lucide、FontAwesome）作为物品道具图腾，一律使用 16×16 像素 SVG 或内置套件。
 3. **视口与响应式约束**：
    - PC 端必须保持外层视口固定（`overflow: hidden`），详情与长文各自独立滚动；
    - 移动端格子自适应 6 列，必须保持严格 1:1 几何正方形（`aspect-square`）。

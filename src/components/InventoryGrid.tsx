@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-import type { InventoryItem, SubCategory } from '../types/inventory';
-import { PixelArtIcon, PixelQualityBadge } from './PixelArtIcon';
+import type { ItemView } from '../config/loader';
+import { ItemIcon, PixelQualityBadge } from './ItemIcon';
 import { retroAudio } from '../audio/retroAudio';
 import { Search } from 'lucide-react';
 
+export interface SubCategoryOption {
+  id: string;
+  label: string;
+}
+
 interface InventoryGridProps {
-  items: InventoryItem[];
-  selectedItem: InventoryItem | null;
-  onSelectItem: (item: InventoryItem) => void;
-  subCategory: SubCategory;
-  onSelectSubCategory: (sub: SubCategory) => void;
-  subCategoryOptions: { id: SubCategory; label: string }[];
+  items: ItemView[];
+  selectedItem: ItemView | null;
+  onSelectItem: (item: ItemView) => void;
+  subCategory: string;
+  onSelectSubCategory: (sub: string) => void;
+  subCategoryOptions: SubCategoryOption[];
   searchQuery: string;
   onSearchChange: (q: string) => void;
   totalSlots?: number;
@@ -27,17 +32,18 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
   onSearchChange,
   totalSlots
 }) => {
-  const [hoveredItem, setHoveredItem] = useState<InventoryItem | null>(null);
+  const [hoveredItem, setHoveredItem] = useState<ItemView | null>(null);
 
   // Filter items
   const filteredItems = items.filter((item) => {
-    const matchesSub = subCategory === 'all' || item.subCategory === subCategory;
+    const matchesSub = subCategory === 'all' || !item.category || item.category === subCategory;
+    const q = searchQuery.toLowerCase();
     const matchesSearch =
       !searchQuery ||
-      item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.chineseName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
+      item.name.toLowerCase().includes(q) ||
+      (item.title ?? '').toLowerCase().includes(q) ||
+      item.description.toLowerCase().includes(q) ||
+      (item.tags ?? []).some((t) => t.toLowerCase().includes(q));
     return matchesSub && matchesSearch;
   });
 
@@ -45,7 +51,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
   const capacity = totalSlots || Math.max(36, Math.ceil(Math.max(items.length, filteredItems.length) / 12) * 12);
 
   // Build grid array with capacity slots
-  const slots: (InventoryItem | null)[] = Array.from({ length: capacity }, (_, i) => {
+  const slots: (ItemView | null)[] = Array.from({ length: capacity }, (_, i) => {
     return filteredItems[i] || null;
   });
 
@@ -109,7 +115,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
                   className={`sdv-cell aspect-square w-full flex items-center justify-center cursor-pointer relative ${
                     isSelected ? 'active' : ''
                   } ${!item ? 'opacity-80 cursor-default' : ''}`}
-                  title={item ? `${item.name} (${item.chineseName})` : `空闲格子 [${idx + 1}]`}
+                  title={item ? `${item.name}${item.title ? ` (${item.title})` : ''}` : `空闲格子 [${idx + 1}]`}
                 >
                   {/* Hotbar index badge for standard numeric keys 1-9, 0 */}
                   {idx < 10 && (
@@ -120,11 +126,11 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
 
                   {item && (
                     <div className="w-full h-full flex items-center justify-center p-1">
-                      <PixelArtIcon name={item.iconType} size={28} className="max-w-full max-h-full" />
+                      <ItemIcon iconRef={item.iconRef} size={28} className="max-w-full max-h-full" />
                       <PixelQualityBadge rarity={item.rarity} />
-                      {item.stackSize && item.stackSize > 1 && (
+                      {item.stack && item.stack > 1 && (
                         <span className="absolute bottom-1 right-1 text-[9px] font-bold text-[#381503] font-mono bg-[#fff1d0]/90 px-0.5 leading-none rounded-none border border-[#6e2e05]/50 pointer-events-none">
-                          {item.stackSize}
+                          {item.stack}
                         </span>
                       )}
                     </div>
@@ -150,7 +156,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
           <>
             <div className="flex items-center gap-1.5 font-bold truncate">
               <span className="text-[#b45309]">{hoveredItem.name}</span>
-              <span className="text-[#421c08] opacity-80">[{hoveredItem.chineseName}]</span>
+              {hoveredItem.title && <span className="text-[#421c08] opacity-80">[{hoveredItem.title}]</span>}
             </div>
             <span className="text-[10px] text-[#b45309] shrink-0">点击查看属性</span>
           </>

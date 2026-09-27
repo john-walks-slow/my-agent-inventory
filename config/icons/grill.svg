@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+<g>
+            <path d="M2 10 Q8 15 14 10 Z" fill="#212529" />
+            <rect x="2" y="9" width="12" height="2" fill="#495057" />
+            <line x1="4" y1="12" x2="2" y2="15" stroke="#212529" strokeWidth="1.2" />
+            <line x1="12" y1="12" x2="14" y2="15" stroke="#212529" strokeWidth="1.2" />
+            <rect x="4" y="10" width="8" height="1" fill="#d90429" />
+            <rect x="6" y="11" width="4" height="1" fill="#ff5400" />
+            <line x1="3" y1="9" x2="13" y2="9" stroke="#dee2e6" strokeWidth="0.8" />
+            <polygon points="6,9 7,4 8,8" fill="#ff9e00" />
+            <polygon points="8,8 9,3 10,9" fill="#ff0054" />
+            <polygon points="7,8 8,5 9,8" fill="#ffea00" />
+          </g>
+</svg>

@@ -224,3 +224,10 @@ html, body {
     inset 0 0 12px rgba(141, 86, 43, 0.25),
     0 4px 0 rgba(0, 0, 0, 0.25);
 }
+
+/* ItemIcon: custom-svg 内联 SVG 撑满包装容器 */
+.item-icon-svg svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

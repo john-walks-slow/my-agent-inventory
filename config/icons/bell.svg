@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+<g>
+            
+            <rect x="7" y="1" width="2" height="2" fill="#5b2b2a" />
+            
+            <path d="M5 3 H11 V8 Q11 10 8 10 Q5 10 5 8 Z" fill="#f4a261" />
+            <path d="M6 4 H10 V8 Q10 9 8 9 Q6 9 6 8 Z" fill="#ffba08" />
+            
+            <rect x="4" y="8" width="8" height="2" fill="#853605" />
+            <rect x="4" y="9" width="8" height="1" fill="#5b2b2a" />
+            
+            <circle cx="8" cy="12" r="1.5" fill="#5b2b2a" />
+            <rect x="7" y="10" width="2" height="1" fill="#d68f54" />
+            
+            <rect x="11" y="2" width="1" height="1" fill="#ffea00" />
+          </g>
+</svg>

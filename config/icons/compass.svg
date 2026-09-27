@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+<g>
+            
+            <ellipse cx="8" cy="13" rx="5" ry="2" fill="#853605" />
+            <ellipse cx="8" cy="13" rx="4" ry="1" fill="#5b2b2a" />
+            
+            <rect x="7" y="7" width="2" height="6" fill="#38b000" />
+            
+            <path d="M7 8 Q4 6 3 9 Q6 10 7 8 Z" fill="#70e000" />
+            <path d="M9 7 Q12 5 13 8 Q10 9 9 7 Z" fill="#70e000" />
+            
+            <circle cx="8" cy="6" r="1.5" fill="#48cae4" />
+          </g>
+</svg>

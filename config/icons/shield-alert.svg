@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+<g>
+            <path d="M3 2 H13 V7 Q13 12 8 15 Q3 12 3 7 Z" fill="#5b2b2a" />
+            <path d="M4 3 H12 V7 Q12 11 8 14 Q4 11 4 7 Z" fill="#d90429" />
+            <path d="M5 4 H11 V7 Q11 10 8 13 Q5 10 5 7 Z" fill="#ef233c" />
+            <rect x="7" y="5" width="2" height="4" fill="#ffffff" />
+            <circle cx="8" cy="10.5" r="1" fill="#ffffff" />
+          </g>
+</svg>

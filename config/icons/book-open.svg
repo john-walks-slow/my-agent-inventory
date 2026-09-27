@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+<g>
+            
+            <path d="M2 5 Q5 4 8 6 Q11 4 14 5 L14 13 Q11 12 8 13 Q5 12 2 13 Z" fill="#853605" />
+            <path d="M3 6 Q5 5 8 7 L8 12 Q5 11 3 12 Z" fill="#fff1d0" />
+            <path d="M13 6 Q11 5 8 7 L8 12 Q11 11 13 12 Z" fill="#fff1d0" />
+            
+            <line x1="4" y1="8" x2="7" y2="8.5" stroke="#916132" strokeWidth="0.8" />
+            <line x1="4" y1="10" x2="7" y2="10.5" stroke="#916132" strokeWidth="0.8" />
+            <line x1="9" y1="8.5" x2="12" y2="8" stroke="#916132" strokeWidth="0.8" />
+            <line x1="9" y1="10.5" x2="12" y2="10" stroke="#916132" strokeWidth="0.8" />
+            
+            <polygon points="7,5 9,5 8.5,8 8,7.5 7.5,8" fill="#e63946" />
+          </g>
+</svg>

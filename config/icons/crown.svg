@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+<g>
+            <rect x="2" y="11" width="12" height="3" fill="#b45309" rx="0.5" />
+            <rect x="3" y="11" width="10" height="2" fill="#ffd166" />
+            <polygon points="2,11 2,6 5,9 8,3 11,9 14,6 14,11" fill="#ffd166" />
+            <polygon points="2,11 2,6 5,9 8,3 11,9 14,6 14,11" fill="none" stroke="#b45309" strokeWidth="0.8" />
+            <circle cx="2" cy="5" r="1" fill="#ffffff" />
+            <circle cx="8" cy="3" r="1.2" fill="#ffffff" />
+            <circle cx="14" cy="5" r="1" fill="#ffffff" />
+            <rect x="7" y="7" width="2" height="3" fill="#d90429" />
+            <rect x="7" y="7" width="1" height="1" fill="#ff758f" />
+            <circle cx="4" cy="12" r="1" fill="#3a86ff" />
+            <circle cx="8" cy="12" r="1" fill="#38b000" />
+            <circle cx="12" cy="12" r="1" fill="#3a86ff" />
+          </g>
+</svg>

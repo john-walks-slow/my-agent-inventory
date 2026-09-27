@@ -45,6 +45,7 @@ export interface ItemView extends ItemConfig {
 
 export interface SectionView extends SectionConfig {
   items: ItemView[];
+  iconRef: IconRef;
 }
 
 export interface InventoryModel {
@@ -110,6 +111,7 @@ export function buildInventoryModel(): InventoryModel {
 
   const sections: SectionView[] = config.sections.map((sec) => ({
     ...sec,
+    iconRef: resolveIcon(sec.icon, customIcons),
     items: sec.items.map((item) => ({
       ...item,
       content: contents[`${sec.id}/${item.id}`] ?? '',

@@ -1,28 +1,29 @@
-# harness-inventory 主配置
-# P1 阶段的最小样例：P2 迁移脚本会用全量数据替换本文件。
-# 完整字段文档见 references/schema.md（随 P8 交付）与 README。
-
 site:
   title: 我的 DSH 背包
   subtitle: 个人开发的 DSH 插件、技能与实战避坑百科全书
   theme: stardew
-
 harness:
   name: DeepSeek Harness
   nickname: 大肥鱼
   brand: dsh
-  version: "1.5.0"
-  since: "2026-05-01"
+  version: 1.5.0
+  since: 2026-05-01
   stats:
     sessions: 586
     tokens: 1611000000
-
 sections:
   - id: plugins
     label: 插件
+    icon: puzzle
     categories:
-      - { id: core, label: 核心 }
-      - { id: tools, label: 效能 }
+      - id: core
+        label: 核心
+      - id: tools
+        label: 效能
+      - id: workflow
+        label: 工作流
+      - id: experiment
+        label: 实验
     items:
       - id: dsh-wait-subagent
         name: dsh-wait-subagent
@@ -30,7 +31,1378 @@ sections:
         icon: hourglass
         rarity: iridium
         category: tools
-        version: "1.0.0"
+        description: 阻塞等待指定后台子代理（continuable subagent）执行完毕并提取其终结输出。
+        version: 1.0.0
         author: John Ren
-        description: 阻塞等待指定后台子代理执行完毕并提取其终结输出。
-        tags: [Subagent, Async]
+        repo: https://github.com/johnren/dsh-wait-subagent
+        install: |-
+          dsh plugin install dsh-wait-subagent
+          # 或本地链接开发:
+          cd ~/plugins/dsh-wait-subagent && pnpm link --global
+        config: |-
+          // cordis.yml 注入配置
+          plugins:
+            dsh-wait-subagent:
+              timeout_ms: 180000 # 默认超时 3 分钟
+        highlights:
+          - 告别愚蠢轮询
+          - 支持毫秒超时保护
+          - 精准提取 closing message
+          - 多 Agent 流水线基石
+        tags:
+          - Subagent
+          - Async
+          - Workflow
+          - Must-Have
+        added: 2026-08-12
+      - id: dsh-clear-mind
+        name: dsh-clear-mind
+        title: 思维蒸馏与上下文收敛
+        icon: sparkles
+        rarity: iridium
+        category: core
+        description: Agent 自主上下文剪枝与压缩检查点工具，把长会话蒸馏成精简快照。
+        stack: 99
+        version: 2.1.0
+        author: John Ren
+        repo: https://github.com/johnren/dsh-clear-mind
+        install: dsh plugin install dsh-clear-mind
+        config: |-
+          clear_mind:
+            auto_threshold_steps: 50
+            default_compaction: minimal
+        highlights:
+          - Agent 自主压缩
+          - 保留结构化检查点
+          - 降低 70% Token 消耗
+          - 杜绝注意力涣散
+        tags:
+          - Context Management
+          - KV Cache
+          - Cost Saver
+          - Core Architecture
+        added: 2026-07-20
+      - id: dsh-web-transport-trust
+        name: dsh-web-transport-trust
+        title: Web 传输宿主鉴权解锁
+        icon: shield-check
+        rarity: gold
+        category: core
+        description: 突破浏览器同源与 loopback 限制，使公网命名隧道等远程环境享有完整宿主管理权限。
+        version: 0.1.0
+        author: John Ren
+        repo: https://github.com/johnren/dsh-web-transport-trust
+        install: cd ~/plugins/dsh-web-transport-trust && pnpm link --global
+        highlights:
+          - 全域远程写权限
+          - 适配 Cloudflare Tunnel
+          - 零破坏侵入
+        tags:
+          - Remote Access
+          - Auth
+          - Tunnel
+          - DevOps
+        added: 2026-08-01
+      - id: dsh-whip
+        name: dsh-whip
+        title: 鞭策者 (Agent PUA 驱动器)
+        icon: zap
+        rarity: silver
+        category: experiment
+        description: 在 Agent 出现懈怠、循环思考或停滞时注入随机的激情鼓励和幽默催促。
+        version: 1.0.0
+        author: John Ren
+        repo: https://github.com/johnren/dsh-whip
+        install: cd ~/plugins/dsh-whip && pnpm link --global
+        highlights:
+          - 打破死循环
+          - 幽默诙谐
+          - 自动化催进度
+        tags:
+          - Fun
+          - Experiment
+          - Heartbeat
+          - Prompt Hack
+        added: 2026-08-18
+      - id: dsh-proactive
+        name: dsh-proactive
+        title: 宿主级主动闹钟与心跳唤醒
+        icon: alarm-clock
+        rarity: iridium
+        category: core
+        description: 提供精准 Cron 定时器、延时唤醒与静默免打扰机制，赋予 Agent 真正的时间自主意识。
+        version: 1.4.2
+        author: John Ren
+        repo: https://github.com/johnren/dsh-proactive
+        install: dsh plugin install dsh-proactive
+        config: |-
+          proactive:
+            enabled: true
+            max_deliveries_per_day: 30
+            quiet_hours:
+              start: "23:00"
+              end: "08:00"
+              time_zone: "Asia/Shanghai"
+        highlights:
+          - 自主定时调度
+          - 静默唤醒与免打扰
+          - Cron 与相对延时
+          - 与 IM 无缝桥接
+        tags:
+          - Cron
+          - Proactive
+          - Autonomous
+          - Scheduler
+        added: 2026-06-15
+      - id: dsh-set-model
+        name: dsh-set-model
+        title: 多模型动态路由调控
+        icon: cpu
+        rarity: gold
+        category: tools
+        description: 在会话中根据任务复杂度动态切换 Provider、Model 与思考深度（Reasoning Effort）。
+        version: 1.1.0
+        author: John Ren
+        repo: https://github.com/johnren/dsh-set-model
+        install: dsh plugin install dsh-set-model
+        highlights:
+          - 会话内平滑切模型
+          - 动态调节思维链深度
+          - 全流程能效比最优
+        tags:
+          - Model Routing
+          - Reasoning
+          - Cost Optimization
+        added: 2026-07-10
+      - id: dsh-mini-memory
+        name: dsh-mini-memory
+        title: 轻量本地持久记忆
+        icon: database
+        rarity: silver
+        category: experiment
+        description: 无需繁重向量数据库，基于纯 JSON/Markdown 的敏捷用户偏好与项目约定持久化。
+        stack: 16
+        version: 0.2.1
+        author: John Ren
+        repo: https://github.com/johnren/dsh-mini-memory
+        install: cd ~/plugins/dsh-mini-memory && pnpm link --global
+        highlights:
+          - 零额外守护进程
+          - 纯纯文本透明可见
+          - 手机友好
+        tags:
+          - Memory
+          - Low-Resource
+          - Local-First
+        added: 2026-08-25
+      - id: dsh-simulated-life
+        name: dsh-simulated-life
+        title: 虚拟生活每日演算系统
+        icon: compass
+        rarity: iridium
+        category: workflow
+        description: 模拟虚拟世界与 Living Agent 的每日生活事件、因果结算与命运投骰。
+        version: 1.0.3
+        author: John Ren
+        repo: https://github.com/johnren/dsh-simulated-life
+        install: dsh plugin install dsh-simulated-life
+        highlights:
+          - 因果闭环演算
+          - 真随机命运投掷
+          - 真实情感持久化
+        tags:
+          - Simulated Life
+          - RPG
+          - Emergence
+          - Living Agent
+        added: 2026-09-01
+      - id: dsh-anti-addiction
+        name: dsh-anti-addiction
+        title: 防沉迷护盾
+        icon: heart
+        rarity: silver
+        category: experiment
+        description: 限制每日前台使用时长与深夜时段访问，守护健康作息的自律守护者。
+        version: 0.1.0
+        author: John Ren
+        repo: https://github.com/johnren/dsh-anti-addiction
+        install: cd ~/projects/dsh-anti-addiction && pnpm link --global
+        config: |-
+          anti-addiction:
+            enabled: false
+            maxDailyMinutes: 120
+            blockedStartHour: 23
+            blockedEndHour: 7
+        highlights:
+          - 日时长限额
+          - 深夜静默
+          - 心跳保活
+          - 宽容期解锁
+        tags:
+          - Health
+          - Self-Control
+          - Automation
+          - Experiment
+        added: 2026-09-10
+      - id: dsh-mobile-qol
+        name: dsh-mobile-qol
+        title: 移动端体验增强
+        icon: smartphone
+        rarity: gold
+        category: tools
+        description: 专为手机/平板触屏优化的 Web UI 增强套件：侧边栏滑动手势、输入法适配等。
+        version: 0.1.0
+        author: John Ren
+        repo: https://github.com/johnren/dsh-mobile-qol
+        install: cd ~/projects/dsh-mobile-qol && pnpm link --global
+        highlights:
+          - 侧滑手势呼出侧栏
+          - 输入法防遮挡
+          - 触控目标放大
+          - 长按复制
+        tags:
+          - Mobile
+          - UX
+          - Touch
+          - Web UI
+        added: 2026-09-08
+      - id: dsh-message-datetime
+        name: dsh-message-datetime
+        title: 每轮时钟注入
+        icon: calendar
+        rarity: silver
+        category: core
+        description: 在每轮对话的 Runtime Context 中注入一行精确的当前日期时间与时区。
+        version: 0.1.0
+        author: John Ren
+        repo: https://github.com/johnren/dsh-message-datetime
+        install: cd ~/projects/dsh-message-datetime && pnpm link --global
+        highlights:
+          - 每轮自动注入
+          - 时区自适应
+          - 极低 token 开销
+          - 定时任务基石
+        tags:
+          - Time
+          - Context
+          - Core
+          - Low-Overhead
+        added: 2026-09-05
+      - id: dsh-hybrid-notify
+        name: dsh-hybrid-notify
+        title: 多通道混合通知
+        icon: bell
+        rarity: gold
+        category: tools
+        description: 多通道通知插件：页面 Toast 提醒、PWA 系统推送通知与自定义提示音三合一。
+        version: 0.1.0
+        author: John Ren
+        repo: https://github.com/johnren/dsh-hybrid-notify
+        install: cd ~/projects/dsh-notify && pnpm link --global
+        highlights:
+          - 三通道融合
+          - PWA 系统推送
+          - 自定义提示音
+          - 点击跳转消息
+        tags:
+          - Notification
+          - Toast
+          - PWA
+          - Sound
+        added: 2026-08-28
+      - id: dsh-im-humanize
+        name: dsh-im-humanize
+        title: 九合一 IM 即时消息桥接
+        icon: chat-bubble
+        rarity: iridium
+        category: core
+        description: 将九种 IM 机器人（微信/QQ/Telegram/飞书/Discord/Slack 等）接入 DSH，实现全平台消息收发。
+        version: 4.13.0
+        author: John Ren
+        repo: https://github.com/johnren/dsh-im-humanize
+        install: cd ~/projects/dsh-im-humanize && pnpm link --global
+        config: |-
+          dsh-im:
+            platforms:
+              telegram:
+                bots:
+                  - botId: "telegram_xxx"
+                    tokenRef: "DSH_TELEGRAM_BOT_TOKEN"
+              weixin:
+                accounts: []
+        highlights:
+          - 九平台全覆盖
+          - 消息人性化渲染
+          - 双向通信
+          - 多 Bot 管理
+        tags:
+          - IM
+          - Telegram
+          - WeChat
+          - Feishu
+          - Core
+          - Must-Have
+        added: 2026-08-15
+  - id: skills
+    label: 技能
+    icon: terminal
+    categories:
+      - id: ops
+        label: 运维
+      - id: workflow
+        label: 交付
+      - id: ai-core
+        label: 核心AI
+      - id: office
+        label: 研习
+      - id: multimodal
+        label: 生图
+      - id: rabbit-skills
+        label: 工作方式
+    items:
+      - id: skill-container-ops
+        name: container-ops
+        title: 容器环境运维与避坑规范
+        icon: terminal
+        rarity: iridium
+        category: ops
+        description: 红米 K30S Ultra 容器启动链、canonical 挂载树、服务规范及 /dev /proc /sys 铁律。
+        author: John Ren
+        highlights:
+          - 真机实测踩坑
+          - 避免系统级崩溃
+          - Devfs 铁律详解
+          - Supervisor 服务全家桶
+        tags:
+          - Termux
+          - Chroot
+          - Linux Ops
+          - Kernel
+          - Must-Read
+        added: 2026-05-10
+      - id: skill-workflow-implement-review
+        name: workflow-implement-review
+        title: 交付铁三角工作流
+        icon: check-circle-2
+        rarity: iridium
+        category: rabbit-skills
+        description: 规范化的 6 步交付流水线：实施 -> 静态/单元测试 -> 独立审查 -> 验收 -> 总结 -> 提交。
+        author: John Ren
+        highlights:
+          - 独立 Reviewer 把关
+          - 闭环验证
+          - 标准化产出
+        tags:
+          - Best Practice
+          - Workflow
+          - Code Quality
+          - Review
+        added: 2026-06-01
+      - id: skill-dev-dsh-plugin
+        name: dev-dsh-plugin
+        title: DSH 插件开发指南
+        icon: puzzle
+        rarity: gold
+        category: ai-core
+        description: Cordis 架构插件开发全攻略：依赖链接陷阱、服务注入协议与 Web Client 热重载规范。
+        author: John Ren
+        highlights:
+          - Cordis 机制透视
+          - 避免死锁与启动失败
+          - Client HMR 打包技巧
+        tags:
+          - Cordis
+          - Plugin API
+          - Architecture
+        added: 2026-07-05
+      - id: skill-camoufox-cli
+        name: camoufox-cli
+        title: 指纹伪装反反爬自动化
+        icon: globe
+        rarity: gold
+        category: ops
+        description: 基于 Camoufox 浏览器的反指纹爬虫与 Web 自动化，轻松绕过 Cloudflare 验证。
+        author: John Ren
+        highlights:
+          - 过盾能力强
+          - ARM64 兼容
+          - Agent 友好接口
+        tags:
+          - Anti-Detect
+          - Browser
+          - Scraping
+          - Bypass
+        added: 2026-08-10
+      - id: skill-code-deep-dive
+        name: code-deep-dive
+        title: Vibe Coding 碎片化深度学习篇
+        icon: book-open
+        rarity: iridium
+        category: rabbit-skills
+        description: 为快速原型项目生成 1.5 小时深度解析长文，利用碎片时间把代码原理彻底学透。
+        author: John Ren
+        highlights:
+          - 1.5h 自包含长文
+          - 手机排版极佳
+          - 带交互测验与架构图
+        tags:
+          - Learning
+          - Deep Dive
+          - Education
+          - Mobile Friendly
+        added: 2026-08-20
+      - id: skill-seedream-imagegen
+        name: seedream-imagegen
+        title: Doubao 旗舰生图接入
+        icon: palette
+        rarity: silver
+        category: multimodal
+        description: 通过网关调用 doubao-seedream-5.0-lite 模型，实现高清角色头像与场景概念生图。
+        author: John Ren
+        highlights:
+          - 高保真画风
+          - 参数防呆校验
+          - IM 自动交付
+        tags:
+          - ImageGen
+          - AI Art
+          - Multimodal
+        added: 2026-09-05
+      - id: skill-bad-smell
+        name: bad-smell
+        title: 代码异味感知雷达
+        icon: potion
+        rarity: silver
+        category: rabbit-skills
+        description: 当 Agent 觉得代码难于理解、设计混乱或不易维护时主动触发，进行代码质量自审。
+        author: John Ren
+        highlights:
+          - 主动感知坏味道
+          - 重构建议
+          - 设计原则内化
+        tags:
+          - Code Quality
+          - Refactoring
+          - Self-Review
+        added: 2026-09-10
+      - id: skill-chroot-devfs-pitfall
+        name: chroot-devfs-pitfall
+        title: Devfs 安全铁律索引
+        icon: warning-sign
+        rarity: gold
+        category: ops
+        description: 容器 rootfs /dev /proc /sys 安全规范的故障排查入口与索引技能。
+        author: John Ren
+        highlights:
+          - 症状速查
+          - 自动索引
+          - 防止毁灭性误操作
+        tags:
+          - Devfs
+          - Chroot
+          - SELinux
+          - Troubleshooting
+        added: 2026-08-31
+      - id: skill-coding
+        name: coding
+        title: 编码开发核心规范
+        icon: anvil
+        rarity: iridium
+        category: ai-core
+        description: 在本机进行任何编程或软件开发前必须立刻读取并严格遵循的核心规范。
+        author: John Ren
+        highlights:
+          - 三大核心原则
+          - 极简文档策略
+          - 多 Agent 协作
+        tags:
+          - Coding
+          - Best Practice
+          - Core
+          - Must-Read
+        added: 2026-08-20
+      - id: skill-commit-own-changes
+        name: commit-own-changes
+        title: 安全原子提交术
+        icon: git-branch
+        rarity: gold
+        category: rabbit-skills
+        description: 基于 git-hunk 提交改动，防止带入其他无关的未提交修改，事关安全。
+        author: John Ren
+        highlights:
+          - hunk 级精准提交
+          - 防止误提交他人改动
+          - 多 Agent 安全
+        tags:
+          - Git
+          - Commit
+          - Safety
+          - Multi-Agent
+        added: 2026-09-10
+      - id: skill-create-simulated-events
+        name: create-simulated-events
+        title: 虚拟世界事件演算
+        icon: dice
+        rarity: silver
+        category: workflow
+        description: 模拟与演化虚拟世界、环境及 Living Agent 的每日生活事件，执行因果与反应结算。
+        author: John Ren
+        highlights:
+          - 真随机命运投骰
+          - 因果持久化
+          - 每日事件演算
+        tags:
+          - Simulation
+          - RPG
+          - Living Agent
+          - Emergence
+        added: 2026-09-15
+      - id: skill-cross-check
+        name: cross-check
+        title: 批判性子代理审查
+        icon: scale
+        rarity: gold
+        category: rabbit-skills
+        description: 使用子代理对当前的想法、结论、计划或决策进行批判性检查和核实。
+        author: John Ren
+        highlights:
+          - 独立子代理审查
+          - 反面立场批判
+          - 防止确认偏误
+        tags:
+          - Verification
+          - Critical Thinking
+          - Subagent
+          - Safety
+        added: 2026-08-26
+      - id: skill-deep-auto
+        name: deep-auto
+        title: 深度自动模式
+        icon: cpu
+        rarity: silver
+        category: workflow
+        description: deep auto 模式：Agent 在极深层级自主运行，适合超长链路复杂工程。
+        author: John Ren
+        highlights:
+          - 极深推理深度
+          - 自动拉起子代理
+          - 无人值守
+        tags:
+          - Automation
+          - Deep Reasoning
+          - Unattended
+        added: 2026-08-26
+      - id: skill-delay-validation
+        name: delay-validation
+        title: 延迟验证模式
+        icon: check-circle-2
+        rarity: silver
+        category: rabbit-skills
+        description: 原本需要用户确认的步骤由模型自行判断并记录待验证项，用户事后审阅。
+        author: John Ren
+        highlights:
+          - 事后审阅代替实时中断
+          - 高风险项仍暂停
+          - 决策留痕
+        tags:
+          - Automation
+          - Validation
+          - Workflow
+          - Future
+        added: 2026-09-10
+      - id: skill-dev-tunnel
+        name: dev-tunnel
+        title: 临时 Cloudflare 隧道
+        icon: wormhole
+        rarity: silver
+        category: ops
+        description: 一行命令给本地开发服务器开临时 Cloudflare 隧道（免登录 quick tunnel）。
+        author: John Ren
+        highlights:
+          - 一行命令开隧道
+          - 免登录即用
+          - 含本机坑绕开
+        tags:
+          - Cloudflare
+          - Tunnel
+          - DevOps
+          - Quick
+        added: 2026-09-10
+      - id: skill-full-auto
+        name: full-auto
+        title: 全自动模式
+        icon: robot
+        rarity: silver
+        category: rabbit-skills
+        description: 所有需要向用户提问、决策、授权的地方，替换为询问 auto_human 子代理。
+        author: John Ren
+        highlights:
+          - 决策全自动
+          - auto_human 代理
+          - 流水线开发
+        tags:
+          - Automation
+          - Auto-Human
+          - Unattended
+        added: 2026-08-26
+      - id: skill-gemini-imagegen
+        name: gemini-imagegen
+        title: Gemini 旗舰生图
+        icon: palette
+        rarity: silver
+        category: multimodal
+        description: 基于 cpa 网关的 gemini-3.1-flash-image 模生图，走 chat/completions 流式接口。
+        author: John Ren
+        highlights:
+          - 流式接口生图
+          - base64 自动解析
+          - 真实照片质感
+        tags:
+          - ImageGen
+          - Gemini
+          - Multimodal
+          - CPA
+        added: 2026-09-10
+      - id: skill-grilling
+        name: grilling
+        title: 刨根问底追问术
+        icon: grill
+        rarity: silver
+        category: rabbit-skills
+        description: 围绕计划对用户进行刨根问底的追问，厘清计划的疑点和模糊地带。
+        author: John Ren
+        highlights:
+          - 系统性追问
+          - 消除模糊地带
+          - 防止跑偏
+        tags:
+          - Planning
+          - Questioning
+          - Requirements
+        added: 2026-08-26
+      - id: skill-handoff
+        name: handoff
+        title: 交接文档生成
+        icon: briefcase
+        rarity: silver
+        category: rabbit-skills
+        description: 编写交接文档，将工作上下文传递给另一个 agent、同事、检视者或 oncall。
+        author: John Ren
+        highlights:
+          - 结构化交接
+          - 受众适配
+          - 上下文无损传递
+        tags:
+          - Handoff
+          - Documentation
+          - Collaboration
+        added: 2026-08-26
+      - id: skill-named-cf-tunnel
+        name: named-cf-tunnel
+        title: 永久命名隧道
+        icon: wormhole
+        rarity: gold
+        category: ops
+        description: 将本机某个端口以固定自定义域名（*.<your-domain>）永久暴露到公网。
+        author: John Ren
+        highlights:
+          - 域名固定不变
+          - CDN 加速
+          - 配合 Access 防护
+        tags:
+          - Cloudflare
+          - Tunnel
+          - Domain
+          - DevOps
+        added: 2026-09-15
+      - id: skill-officecli
+        name: officecli
+        title: Office 文档 CLI 工具
+        icon: scroll
+        rarity: gold
+        category: office
+        description: 使用 officecli CLI 工具创建、分析、校对和修改 Office 文档（.docx/.xlsx/.pptx）。
+        author: John Ren
+        highlights:
+          - 三格式全覆盖
+          - 无需桌面套件
+          - Agent 友好接口
+        tags:
+          - Office
+          - CLI
+          - Document
+          - Automation
+        added: 2026-08-20
+      - id: skill-restart-dsh
+        name: restart-dsh
+        title: 安全重启 DSH
+        icon: zap
+        rarity: gold
+        category: ops
+        description: 安全重启 dsh 服务——Agent 跑在 dsh 内部，直接 restart 会杀掉自己。
+        author: John Ren
+        highlights:
+          - 自杀式重启安全方案
+          - 验证先行
+          - 用户书面同意
+        tags:
+          - DSH
+          - Restart
+          - Safety
+          - Ops
+        added: 2026-09-15
+      - id: skill-spawn-deep-researcher
+        name: spawn-deep-researcher
+        title: 深度调研子代理调度
+        icon: telescope
+        rarity: gold
+        category: rabbit-skills
+        description: 使用 deep-researcher 子代理对特定主题进行深度、广泛、准确的网络调研。
+        author: John Ren
+        highlights:
+          - 独立子代理深度调研
+          - 来源可靠
+          - 结构化报告
+        tags:
+          - Research
+          - Subagent
+          - Web Search
+          - Report
+        added: 2026-08-26
+      - id: skill-spawn-reviewer
+        name: spawn-reviewer
+        title: 代码审查子代理调度
+        icon: monocle
+        rarity: gold
+        category: rabbit-skills
+        description: 使用 reviewer 子代理进行高质量的代码审查，拉起前必须阅读本技能。
+        author: John Ren
+        highlights:
+          - 多维度审查
+          - 问题分级
+          - 准入结论
+        tags:
+          - Code Review
+          - Subagent
+          - Quality
+          - Gate
+        added: 2026-08-26
+      - id: skill-teach-me
+        name: teach-me
+        title: 技术深度长文生成
+        icon: book-open
+        rarity: gold
+        category: office
+        description: 围绕当前需求、设计或问题，为独立开发者写一篇技术深度长文。
+        author: John Ren
+        highlights:
+          - 围绕当前需求
+          - 代码节选带行号
+          - 面向独立开发者
+        tags:
+          - Learning
+          - Documentation
+          - Deep Dive
+          - Teaching
+        added: 2026-08-26
+      - id: skill-tidy
+        name: tidy
+        title: 冗余修改清理
+        icon: broom
+        rarity: normal
+        category: rabbit-skills
+        description: 清理无用/冗余的修改，保持工作区干净。
+        author: John Ren
+        highlights:
+          - 主动清理垃圾
+          - 保持工作区整洁
+          - 童子军法则
+        tags:
+          - Cleanup
+          - Code Quality
+          - Hygiene
+        added: 2026-09-10
+      - id: skill-try
+        name: try
+        title: 可回退文件备份
+        icon: safe
+        rarity: silver
+        category: rabbit-skills
+        description: 为目标文件创建可回退的备份，在对文件做不确定的破坏性修改前必须使用。
+        author: John Ren
+        highlights:
+          - 一键回退
+          - 时间戳备份
+          - 破坏性修改前置
+        tags:
+          - Backup
+          - Safety
+          - Rollback
+          - File
+        added: 2026-09-10
+      - id: skill-unstuck
+        name: unstuck
+        title: 脱困退一步分析
+        icon: lifebuoy
+        rarity: gold
+        category: rabbit-skills
+        description: 对同一问题连续修改两次都未达预期时，立刻暂停并退一步重新分析。
+        author: John Ren
+        highlights:
+          - 两次失败即停
+          - 退一步重分析
+          - 防止越改越乱
+        tags:
+          - Troubleshooting
+          - Mindset
+          - Anti-Pattern
+          - Safety
+        added: 2026-08-26
+      - id: skill-update-ive-learned
+        name: update-ive-learned
+        title: What I've Learned 站点更新
+        icon: scroll
+        rarity: silver
+        category: office
+        description: 更新 What I've Learned 个人学习记录站：新增条目、backlog 晋升、发布到 GitHub Pages。
+        author: John Ren
+        highlights:
+          - 条目增删改
+          - backlog 晋升
+          - 一键发布
+        tags:
+          - Learning
+          - GitHub Pages
+          - Personal
+          - Site
+        added: 2026-09-15
+      - id: skill-update-module-instruction
+        name: update-module-instruction
+        title: 模块级 AGENTS.md 规范
+        icon: book-open
+        rarity: normal
+        category: rabbit-skills
+        description: 模块/子模块级 AGENTS.md 更新规范，记录对该模块后续开发有明确收益的经验。
+        author: John Ren
+        highlights:
+          - 模块级指引
+          - 经验沉淀
+          - 非流水账
+        tags:
+          - AGENTS.md
+          - Module
+          - Documentation
+          - Convention
+        added: 2026-08-26
+      - id: skill-update-project-instruction
+        name: update-project-instruction
+        title: 项目级 AGENTS.md 规范
+        icon: book-open
+        rarity: normal
+        category: rabbit-skills
+        description: 项目级 AGENTS.md 更新规范，更新必须了解的工作流程、测调命令、开发规范。
+        author: John Ren
+        highlights:
+          - 项目入口指引
+          - 目录地图
+          - 全局规范
+        tags:
+          - AGENTS.md
+          - Project
+          - Documentation
+          - Convention
+        added: 2026-08-26
+      - id: skill-update-references
+        name: update-references
+        title: 通用参考文档规范
+        icon: book-open
+        rarity: normal
+        category: rabbit-skills
+        description: project_root/references 目录的更新规范，用于不隶属于特定功能的通用规范。
+        author: John Ren
+        highlights:
+          - 通用规范维护
+          - 不隶属特定功能
+          - 规则而非参考
+        tags:
+          - References
+          - Convention
+          - Documentation
+        added: 2026-08-26
+      - id: skill-update-validation-requirements
+        name: update-validation-requirements
+        title: 用户验收要求文档
+        icon: check-circle-2
+        rarity: normal
+        category: rabbit-skills
+        description: 创建或更新需求、问题的用户验证要求文档，尤其需要真实设备/环境验证时使用。
+        author: John Ren
+        highlights:
+          - 场景清单化
+          - 操作步骤明确
+          - 回归测试要点
+        tags:
+          - Validation
+          - User Acceptance
+          - Testing
+          - Document
+        added: 2026-09-10
+      - id: skill-update-yaagb
+        name: update-yaagb
+        title: AI 自生成博客更新
+        icon: scroll
+        rarity: silver
+        category: office
+        description: 更新 yet-another-ai-generated-blog（AI 自生成博客），涉及该博客任何更新时使用。
+        author: John Ren
+        highlights:
+          - 文章增改
+          - 站点配置
+          - 一键发布
+        tags:
+          - Blog
+          - GitHub Pages
+          - Content
+          - Site
+        added: 2026-09-10
+      - id: skill-web-search-best-practice
+        name: web-search-best-practice
+        title: 网络搜索方法论
+        icon: search
+        rarity: gold
+        category: rabbit-skills
+        description: 网络搜索的方法论和最佳实践，进行网络搜索前必须使用本技能。
+        author: John Ren
+        highlights:
+          - 搜索先行
+          - 95% 把握阈值
+          - 父会话 vs 子代理
+        tags:
+          - Search
+          - Methodology
+          - Best Practice
+          - Must-Read
+        added: 2026-08-26
+      - id: skill-workflow-leader
+        name: workflow-leader
+        title: 项目领导工作流
+        icon: crown
+        rarity: gold
+        category: rabbit-skills
+        description: 项目领导工作流，当用户给出愿景希望 AI 自主、持续推进项目方向时使用。
+        author: John Ren
+        highlights:
+          - 愿景驱动
+          - 自主规划
+          - 持续推进
+        tags:
+          - Leadership
+          - Vision
+          - Autonomous
+          - Workflow
+        added: 2026-09-10
+      - id: skill-workflow-manage-tasks
+        name: workflow-manage-tasks
+        title: 任务分派工作流
+        icon: clipboard
+        rarity: gold
+        category: rabbit-skills
+        description: 任务分派工作流，当用户一次提出多条任务、需要协调多个子代理时使用。
+        author: John Ren
+        highlights:
+          - 多任务并行
+          - 依赖分析
+          - 子代理协调
+        tags:
+          - Task Management
+          - Multi-Agent
+          - Coordination
+          - Workflow
+        added: 2026-09-10
+      - id: skill-workflow-research-plan
+        name: workflow-research-plan
+        title: 调研设计工作流
+        icon: search
+        rarity: gold
+        category: rabbit-skills
+        description: 需求调研设计工作流，进行中等以上规模需求开发、架构设计和重构前必须遵守。
+        author: John Ren
+        highlights:
+          - 调研先行
+          - 结构化设计
+          - cross-check 把关
+        tags:
+          - Research
+          - Planning
+          - Architecture
+          - Must-Read
+        added: 2026-09-10
+      - id: skill-workflow-troubleshoot
+        name: workflow-troubleshoot
+        title: 根因分析工作流
+        icon: wrench
+        rarity: gold
+        category: rabbit-skills
+        description: 根因分析工作流，排查复杂问题时必须遵守此流程分析原因。
+        author: John Ren
+        highlights:
+          - 假设驱动分析
+          - 根因而非症状
+          - 验证回归
+        tags:
+          - Troubleshooting
+          - Root Cause
+          - Workflow
+          - Must-Read
+        added: 2026-09-10
+      - id: skill-max-effort
+        name: max-effort
+        title: 极致交付模式
+        icon: prismatic
+        rarity: iridium
+        category: rabbit-skills
+        description: 在对用户精力消耗最少的情况下，将简略 idea 转变为极致体验的完整可交付产物。
+        author: john-walks-slow
+        highlights:
+          - 极致质量
+          - 端到端测试
+          - 审计包输出
+          - 用户精力最小化
+        tags:
+          - Automation
+          - Quality
+          - E2E
+          - Max-Effort
+        added: 2026-09-15
+      - id: skill-spawn-e2e-tester
+        name: spawn-e2e-tester
+        title: 端到端测试子代理调度
+        icon: gamepad
+        rarity: gold
+        category: rabbit-skills
+        description: 使用 e2e-tester 子代理对指定功能/修复执行端到端测试，输出含证据的测试报告。
+        author: john-walks-slow
+        highlights:
+          - 功能+体验双测
+          - 证据驱动
+          - 结构化报告
+        tags:
+          - E2E
+          - Testing
+          - Subagent
+          - Quality
+        added: 2026-09-15
+  - id: mcp
+    label: MCP
+    icon: search
+    categories:
+      - id: search
+        label: 搜索发现
+      - id: research
+        label: 深度调研
+    items:
+      - id: mcp-degoog
+        name: degoog
+        title: Degoog 隐私聚合元搜索引擎
+        icon: search
+        rarity: iridium
+        category: search
+        description: 本地私有化部署的多源搜索聚合 MCP 服务器，一键汇总 Google、DuckDuckGo 与 Brave 结果。
+        version: 2.4.0
+        author: Degoog Community / Modded by John
+        config: |-
+          // dsh mcp 配置
+          {
+            "mcpServers": {
+              "degoog": {
+                "command": "node",
+                "args": ["/root/mcp/degoog-mcp/dist/index.js"],
+                "env": { "DEGOOG_URL": "http://127.0.0.1:8080" }
+              }
+            }
+          }
+        highlights:
+          - 多引擎并发融合
+          - 本地免费调用
+          - 支持一键 Markdown Scrape
+        tags:
+          - Search
+          - Privacy
+          - Aggregator
+          - High-Speed
+        added: 2026-06-20
+      - id: mcp-exa
+        name: exa
+        title: Exa 语义神经搜索与网页阅读
+        icon: compass
+        rarity: gold
+        category: research
+        description: 基于 Embedding 语义匹配的新一代 AI 原生搜索引擎，搜技术博客和论文的利器。
+        version: 1.2.0
+        author: Exa AI
+        config: |-
+          // dsh mcp 配置（多 Key 轮询版）
+          {
+            "mcpServers": {
+              "exa": {
+                "command": "npx",
+                "args": ["-y", "exa-multi-mcp"],
+                "type": "stdio",
+                "env": { "EXA_API_KEYS": "<your-api-key>,<your-api-key-2>" }
+              }
+            }
+          }
+        highlights:
+          - 语义联想超强
+          - 直接返回干净正文
+          - 支持企业与人员维度过滤
+        tags:
+          - Neural Search
+          - Semantic
+          - Markdown Extraction
+        added: 2026-07-15
+      - id: mcp-notebooklm
+        name: notebooklm
+        title: Google NotebookLM 知识库桥接
+        icon: book-marked
+        rarity: gold
+        category: research
+        description: 连接 Google NotebookLM 专属笔记本，进行高质量长文档研读与播客式总结。
+        version: 0.9.4
+        author: Community
+        config: |-
+          // dsh mcp 配置
+          {
+            "mcpServers": {
+              "notebooklm": {
+                "command": "npx",
+                "args": ["-y", "notebooklm-mcp"],
+                "type": "stdio",
+                "env": { "NOTEBOOKLM_ACCESS_TOKEN": "<your-access-token>" }
+              }
+            }
+          }
+        highlights:
+          - 百万 Token 文档检索
+          - 精确事实溯源
+          - 支持生成音频讨论草稿
+        tags:
+          - Knowledge Base
+          - NotebookLM
+          - Research
+          - RAG
+        added: 2026-08-05
+  - id: tools
+    label: 工具
+    icon: wrench
+    categories:
+      - id: files
+        label: 文件
+      - id: exec
+        label: 执行
+      - id: web
+        label: 网络
+      - id: agents
+        label: 编排
+      - id: memory
+        label: 记忆
+      - id: ui
+        label: 界面
+    items:
+      - id: bash
+        name: bash
+        title: 命令执行
+        icon: terminal
+        category: exec
+        description: 在沙箱中执行 bash 命令，长任务可后台运行。
+      - id: read
+        name: read
+        title: 文件读取
+        icon: book-open
+        category: files
+        description: 带行号读取 UTF-8 文本文件，大文件分段续读。
+      - id: write
+        name: write
+        title: 文件写入
+        icon: scroll
+        category: files
+        description: 创建或整体替换 UTF-8 文本文件。
+      - id: edit
+        name: edit
+        title: 精准编辑
+        icon: anvil
+        category: files
+        description: 按字面匹配替换文本片段，唯一命中才生效。
+      - id: glob
+        name: glob
+        title: 路径匹配
+        icon: briefcase
+        category: files
+        description: 按 glob 模式发现文件路径，含隐藏文件。
+      - id: grep
+        name: grep
+        title: 内容检索
+        icon: monocle
+        category: files
+        description: ripgrep 正则检索文件内容，返回行号与上下文。
+      - id: todo-write
+        name: todo_write
+        title: 任务清单
+        icon: clipboard
+        category: exec
+        description: 维护结构化任务列表，全程展示进度。
+      - id: set-model
+        name: set_model
+        title: 模型切换
+        icon: prismatic
+        category: exec
+        description: 运行中切换模型、供应商与推理深度。
+      - id: workflow
+        name: workflow
+        title: 多代理工作流
+        icon: git-branch
+        category: exec
+        description: 以 JS 脚本编排大规模子代理并发与汇聚。
+      - id: web-search
+        name: web_search
+        title: 网络搜索
+        icon: telescope
+        category: web
+        description: 多查询并发网络检索，返回来源链接。
+      - id: web-fetch
+        name: web_fetch
+        title: 网页抓取
+        icon: globe
+        category: web
+        description: 抓取 URL 全文并解码为文本。
+      - id: mcp-probe
+        name: mcp_probe
+        title: MCP 探活
+        icon: wormhole
+        category: web
+        description: 对 MCP 服务器发起一次性连通性探测。
+      - id: subagent
+        name: subagent
+        title: 子代理派遣
+        icon: robot
+        category: agents
+        description: 自包含任务委托给独立上下文的子代理。
+      - id: subagent-fork
+        name: subagent_fork
+        title: 上下文分叉
+        icon: dice
+        category: agents
+        description: 继承当前会话历史的子代理分叉。
+      - id: ask-agent
+        name: ask_agent
+        title: 子代理问询
+        icon: chat-bubble
+        category: agents
+        description: 向后台子代理发送跟进并阻塞等待回复。
+      - id: wait-subagent
+        name: wait_subagent
+        title: 收敛等待
+        icon: hourglass
+        category: agents
+        description: 阻塞等待后台子代理 settle 并取回结果。
+      - id: list-agents
+        name: list_agents
+        title: 子代理清点
+        icon: compass
+        category: agents
+        description: 列出可续行后台子代理及其实时状态。
+      - id: interrupt-agent
+        name: interrupt_agent
+        title: 子代理打断
+        icon: warning-sign
+        category: agents
+        description: 请求取消某个运行中子代理的当前轮次。
+      - id: mind-map
+        name: mind_map
+        title: 上下文测绘
+        icon: scale
+        category: memory
+        description: 审视会话表面结构，为思维蒸馏定位边界。
+      - id: clear-mind
+        name: clear_mind
+        title: 思维蒸馏
+        icon: sparkles
+        category: memory
+        description: 把一段历史折叠为结构化检查点，重获上下文。
+      - id: mnemon-recall
+        name: mnemon_recall
+        title: 记忆召回
+        icon: book-marked
+        category: memory
+        description: 从持久记忆空间检索历史证据。
+      - id: mnemon-remember
+        name: mnemon_remember
+        title: 记忆归档
+        icon: safe
+        category: memory
+        description: 把耐久洞察写入所选记忆空间。
+      - id: render-ui
+        name: render_ui
+        title: 界面渲染
+        icon: palette
+        category: ui
+        description: 在工具行渲染交互式 GenUI 卡片。
+      - id: validate-dsh-ui
+        name: validate_dsh_ui
+        title: 界面校验
+        icon: check-circle-2
+        category: ui
+        description: 发出前校验 dsh-ui 组件树并返回诊断。
+  - id: tomes
+    icon: book-open
+    view: reader
+    categories:
+      - id: env
+        label: 环境志
+      - id: coding
+        label: 心法
+      - id: collab
+        label: 协作
+      - id: security
+        label: 安全
+    items:
+      - id: host-environment
+        name: 宿主环境志
+        title: 全局指令 · 基础环境概况
+        icon: smartphone
+        rarity: gold
+        category: env
+        tags:
+          - AGENTS.md
+          - Rules
+        description: 宿主硬件、容器形态与服务治理的全局约定（脱敏精编）。
+      - id: coding-style
+        name: 编码心法
+        title: 全局指令 · 输出风格与核心编码实践
+        icon: wrench
+        rarity: gold
+        category: coding
+        tags:
+          - AGENTS.md
+          - Rules
+        description: 简洁执行、Research First 与童子军法则。
+      - id: collab-docs
+        name: 协作与文档规约
+        title: 全局指令 · 多 Agent 协作与文档规范
+        icon: flame
+        rarity: silver
+        category: collab
+        tags:
+          - AGENTS.md
+          - Rules
+        description: 多 Agent 并行的边界纪律与极简文档策略。
+      - id: security-ironlaw
+        name: 安全铁律
+        title: 全局指令 · 敏感信息与安全防护规范
+        icon: shield-alert
+        rarity: iridium
+        category: security
+        tags:
+          - AGENTS.md
+          - Rules
+        description: 凭据隔离、文档脱敏与测试 Mock 的红线。

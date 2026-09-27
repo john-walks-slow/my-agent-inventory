@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+<g>
+            
+            <polygon points="8,1 14,4 14,11 8,15 2,11 2,4" fill="#3a1505" />
+            
+            <polygon points="8,2 13,4 8,7 3,4" fill="#ffffff" />
+            
+            <rect x="7" y="3" width="2" height="3" fill="#d90429" />
+            <rect x="6" y="4" width="4" height="1" fill="#d90429" />
+            <rect x="7" y="4" width="2" height="1" fill="#ff4d6d" />
+            
+            <polygon points="3,5 8,7 8,14 3,11" fill="#e2e8f0" />
+            
+            <rect x="4" y="7" width="2" height="1" fill="#212529" />
+            <rect x="5" y="7" width="1" height="1" fill="#495057" />
+            <rect x="6" y="11" width="2" height="1" fill="#212529" />
+            <rect x="7" y="11" width="1" height="1" fill="#495057" />
+            
+            <polygon points="8,7 13,5 13,11 8,14" fill="#94a3b8" />
+            
+            <rect x="11" y="6" width="2" height="1" fill="#0f172a" />
+            <rect x="10" y="9" width="2" height="1" fill="#0f172a" />
+            <rect x="9" y="12" width="2" height="1" fill="#0f172a" />
+            
+            <polyline points="3,4 8,7 13,4" fill="none" stroke="#f1f5f9" strokeWidth="0.8" />
+            <line x1="8" y1="7" x2="8" y2="14" stroke="#475569" strokeWidth="0.8" />
+          </g>
+</svg>

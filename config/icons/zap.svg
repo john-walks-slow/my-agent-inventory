@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+<g>
+            <polygon points="9,1 4,9 8,9 6,15 13,7 9,7" fill="#ffb703" />
+            <polygon points="9,2 5,9 8,9 7,13 12,7 9,7" fill="#ffe066" />
+            <polygon points="8,4 6,8 8,8 7,11 10,7 8,7" fill="#ffffff" />
+            <rect x="1" y="4" width="2" height="1" fill="#ff5400" />
+            <rect x="13" y="10" width="2" height="1" fill="#ff5400" />
+          </g>
+</svg>
