@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+    "todos": {
+      "type": "array",
+      "description": "The COMPLETE task list, replacing any previous list.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "What the task is — a short imperative line."
+          },
+          "status": {
+            "type": "string",
+            "description": "pending (not started) | in_progress (now) | completed (done).",
+            "enum": [
+              "pending",
+              "in_progress",
+              "completed"
+            ]
+          }
+        },
+        "required": [
+          "content",
+          "status"
+        ]
+      }
+    }
+  },
+  "required": [
+    "todos"
+  ]
+}

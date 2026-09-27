@@ -1,0 +1,54 @@
+{
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "description": "One concise, self-contained durable insight."
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "preference",
+        "decision",
+        "fact",
+        "insight",
+        "context",
+        "general"
+      ]
+    },
+    "importance": {
+      "type": "integer",
+      "description": "Durable value from 1 through 5."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "At most 20 concise tags."
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "At most 50 named entities."
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "user",
+        "agent",
+        "external"
+      ],
+      "description": "Defaults to agent for model-authored writeback."
+    },
+    "memoryBodyId": {
+      "type": "string",
+      "description": "Target Memory Space id. Required unless exactly one space is active."
+    }
+  },
+  "required": [
+    "content"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "provider": {
+      "type": "string",
+      "description": "Target provider ID (e.g. 'deepseek', 'anthropic', 'openai'). Omit to keep the current provider."
+    },
+    "model": {
+      "type": "string",
+      "description": "Target model ID (e.g. 'deepseek-reasoner', 'deepseek-chat', 'claude-3-7-sonnet'). Omit to keep the current model."
+    },
+    "reasoningEffort": {
+      "type": "string",
+      "description": "Target reasoning effort ('off' to disable thinking; 'low', 'high', 'max' to set thinking depth).",
+      "enum": [
+        "off",
+        "low",
+        "high",
+        "max"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "description": "Mandatory explanation of why this switch is needed (task phase change, difficulty, cost, etc.). Switching invalidates the session's KV cache, so justify that the switch is worth it and not frequent."
+    }
+  },
+  "required": [
+    "reason"
+  ]
+}

@@ -16,7 +16,7 @@ pnpm validate && pnpm dev   # 校验 + 预览
 - `id` 在 section 内唯一，且**决定正文文件名** `config/content/<section>/<id>.md`
 - `category` 必须先在本 section 的 `categories` 中定义，否则 validate 报错
 - `install` 只给插件 / MCP / 有仓库的 skill 填（详情卡渲染命令块 + 复制按钮）；纯技能类条目留空
-- `rarity` 决定品质边框与星级：`normal` / `silver` / `gold` / `iridium`
+- `rarity` 决定品质边框与星级：`common` / `rare` / `epic` / `legendary`
 - `section.label` 缺省时用主题词汇表默认名（四主题各自本地化），需要特殊命名时才显式填
 
 ## 2. 新增一个 Tab（section）
@@ -30,6 +30,17 @@ pnpm validate && pnpm dev   # 校验 + 预览
 - **内置套件**（496 枚，7Soul CC0）：站内 `#/icons` 图鉴页检索；常用 121 枚速查表见 [references/icons.md](../skills/harness-inventory/references/icons.md)
 - **自定义**：`config/icons/<name>.svg`，16×16 手绘像素风（禁止引入 Lucide/FontAwesome 等矢量库）
 - ⚠ kit id 拼错**静默兜底不报错**；引用了不存在的自定义文件名才会被 validate 抓住
+
+## 3b. 工具 inputSchema（tools section 专属）
+
+`config/schemas/<id>.json` 存标准 JSON Schema（`type: object` + `properties`），详情卡自动渲染参数表（参数/类型/必填/说明）+ 原始 JSON 折叠块 + 复制按钮。由本机 DSH 安装自动生成，不手写：
+
+```bash
+pnpm collect:schemas           # 重出全部（幂等，未变的文件不动）
+pnpm collect:schemas -- --check  # 只校验覆盖不写文件
+```
+
+新增工具条目后跑一次即可；`pnpm validate` 会校验 tools section 每个 id 的 schema 覆盖与形态。
 
 ## 4. harness 档案与统计
 

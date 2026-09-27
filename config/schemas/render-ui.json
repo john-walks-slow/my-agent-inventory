@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "object",
+      "description": "Render structured UI for the user (tool-row card). USE THIS whenever the answer contains ≥3 parallel points, a comparison, numbers/metrics, a step sequence, a flow, or a status/report — do NOT write those as markdown bullets or a markdown table. Same white-listed vocabulary as the ```dsh-ui fence (see the GenUI system-prompt section). Pick the fence when the UI belongs in the message body; pick this tool when the deliverable is a self-contained card. Deep-validated and repaired by the renderer. Pass the spec as a JSON OBJECT — never as a serialized JSON string (a string fails argument validation).",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Short title shown as the card banner."
+        },
+        "gap": {
+          "type": "number",
+          "description": "Vertical gap between root items in px."
+        },
+        "panel": {
+          "type": "boolean",
+          "description": "Panel-only: renders into the session panel dock instead of the message flow."
+        },
+        "items": {
+          "type": "array",
+          "description": "Root component list (white-listed vocabulary).",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "spec"
+  ],
+  "additionalProperties": false
+}

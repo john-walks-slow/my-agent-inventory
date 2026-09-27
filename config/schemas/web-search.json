@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "queries": {
+      "type": "array",
+      "description": "Required search queries; accepts 1–4 items and merges their results.",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "queries"
+  ]
+}

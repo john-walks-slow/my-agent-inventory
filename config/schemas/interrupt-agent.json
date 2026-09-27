@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "description": "The agent id of the running agent to interrupt."
+    }
+  },
+  "required": [
+    "agent_id"
+  ]
+}

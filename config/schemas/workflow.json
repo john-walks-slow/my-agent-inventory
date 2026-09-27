@@ -1,0 +1,70 @@
+{
+  "type": "object",
+  "properties": {
+    "script": {
+      "type": "string",
+      "description": "The plain-JS workflow script body (top-level await allowed; NO `export const meta` statement; end with `return <json-value>`)."
+    },
+    "meta": {
+      "type": "object",
+      "description": "The workflow identity block (plain JSON — never code).",
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Short kebab-case workflow name."
+        },
+        "description": {
+          "type": "string",
+          "description": "One-line description of what the workflow does."
+        },
+        "whenToUse": {
+          "type": "string",
+          "description": "Optional guidance on when this workflow applies."
+        },
+        "phases": {
+          "type": "array",
+          "description": "Optional phase declarations matched by phase() calls.",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "The phase title phase() calls match by exact string."
+              },
+              "detail": {
+                "type": "string",
+                "description": "Optional one-line description of the phase."
+              },
+              "provider": {
+                "type": "string",
+                "description": "Optional provider override this phase is expected to use."
+              },
+              "model": {
+                "type": "string",
+                "description": "Optional model override this phase is expected to use."
+              }
+            },
+            "required": [
+              "title"
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "description"
+      ]
+    },
+    "args": {
+      "type": "object",
+      "description": "Optional JSON input exposed to the script as the `args` global (wrap a bare list as a field, e.g. {\"files\": [...]}).",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "script",
+    "meta"
+  ]
+}

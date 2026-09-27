@@ -14,6 +14,7 @@
     "validate": "tsx scripts/validate.ts",
     "init:harness": "node scripts/init-harness.mjs",
     "privacy:scan": "node scripts/privacy-scan.mjs",
+    "collect:schemas": "node scripts/collect-dsh-tools.mjs",
     "predev": "tsx scripts/gen-badges.ts",
     "prebuild": "tsx scripts/gen-badges.ts"
   },

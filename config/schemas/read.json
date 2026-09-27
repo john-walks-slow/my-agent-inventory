@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "file_path": {
+      "type": "string",
+      "description": "Path to read, resolved by the filesystem backend."
+    },
+    "offset": {
+      "type": "number",
+      "description": "1-based first line to return. Defaults to 1."
+    },
+    "limit": {
+      "type": "number",
+      "description": "Maximum number of lines to return. Defaults to 2000."
+    }
+  },
+  "required": [
+    "file_path"
+  ]
+}

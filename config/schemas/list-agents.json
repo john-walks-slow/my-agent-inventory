@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "scope": {
+      "type": "string",
+      "description": "children (default) lists direct children only; descendants walks the complete tree below you.",
+      "enum": [
+        "children",
+        "descendants"
+      ]
+    }
+  }
+}

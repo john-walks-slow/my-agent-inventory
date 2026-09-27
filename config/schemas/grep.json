@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "pattern": {
+      "type": "string",
+      "description": "Regular expression to search for (ripgrep syntax)."
+    },
+    "path": {
+      "type": "string",
+      "description": "File or directory to search. Defaults to the session workspace; a relative path resolves against it."
+    },
+    "include": {
+      "type": "string",
+      "description": "One glob filter for which files to search (e.g. \"*.ts\", \"*.{js,jsx}\"). Not a list; negation is not supported."
+    }
+  },
+  "required": [
+    "pattern"
+  ]
+}

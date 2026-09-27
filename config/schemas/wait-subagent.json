@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "subagent_id": {
+      "type": "string",
+      "description": "The subagent id returned when the background subagent was started (the subagentId from the subagent tool's continuable result)."
+    },
+    "timeout_ms": {
+      "type": "integer",
+      "description": "Maximum milliseconds to wait before returning status 'timeout'. Omit to wait indefinitely — usually the best choice. If set, use a generous value (minutes, not seconds); polling a subagent with repeated short waits is an anti-pattern — you are notified the moment it settles."
+    }
+  },
+  "required": [
+    "subagent_id"
+  ]
+}

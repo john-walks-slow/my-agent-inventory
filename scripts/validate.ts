@@ -76,6 +76,33 @@ for (const sec of cfg.sections) {
 }
 push('ok', `物品 ${itemCount} 个，正文 ${contentFound} 篇`);
 
+// 5. 工具 inputSchema（tools section 专属；由 scripts/collect-dsh-tools.mjs 生成）
+const toolsSec = cfg.sections.find((sec) => sec.id === 'tools');
+if (toolsSec) {
+  let schemaFound = 0;
+  for (const item of toolsSec.items) {
+    const p = resolve(root, 'config/schemas', `${item.id}.json`);
+    if (!existsSync(p)) {
+      push('warn', `工具 ${item.id} 缺少 inputSchema: config/schemas/${item.id}.json（运行 node scripts/collect-dsh-tools.mjs 生成）`);
+      continue;
+    }
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(readFileSync(p, 'utf-8'));
+    } catch {
+      push('error', `config/schemas/${item.id}.json 不是合法 JSON`);
+      continue;
+    }
+    const s = parsed as { type?: string; properties?: unknown };
+    if (s.type !== 'object' || typeof s.properties !== 'object' || s.properties === null) {
+      push('error', `config/schemas/${item.id}.json 不是 object+properties 形态的 inputSchema`);
+      continue;
+    }
+    schemaFound++;
+  }
+  push('ok', `工具 inputSchema ${schemaFound}/${toolsSec.items.length} 个`);
+}
+
 // 汇总
 for (const l of lines) {
   if (l.level === 'warn') {

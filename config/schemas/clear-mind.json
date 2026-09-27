@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "start": {
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "description": "Range start: an integer surface seq from mind_map (e.g. 123), or 'first' (the earliest clearable node — the system prompt never clears)."
+    },
+    "end": {
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "description": "Range end: an integer surface seq from mind_map (e.g. 456), or 'latest' (everything before the current step)."
+    },
+    "notes": {
+      "type": "string",
+      "description": "The checkpoint notes future-you needs (guidance + self-check are in the mind_map result)."
+    }
+  },
+  "required": [
+    "start",
+    "end",
+    "notes"
+  ]
+}

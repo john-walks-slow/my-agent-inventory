@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "file_path": {
+      "type": "string",
+      "description": "Path to edit, resolved by the filesystem backend."
+    },
+    "old_string": {
+      "type": "string",
+      "description": "Literal text to replace. Must match exactly."
+    },
+    "new_string": {
+      "type": "string",
+      "description": "Literal replacement text. Use an empty string to delete the match."
+    },
+    "replace_all": {
+      "type": "boolean",
+      "description": "Replace all matches. Defaults to false; when false, old_string must appear exactly once."
+    },
+    "sandbox_permissions": {
+      "type": "string",
+      "description": "The wider sandbox mode this file operation needs. Only valid as a one-shot retry of an operation the sandbox just denied; requires justification and user approval.",
+      "enum": [
+        "workspace-write",
+        "danger-full-access"
+      ]
+    },
+    "justification": {
+      "type": "string",
+      "description": "Required with sandbox_permissions: one sentence for the user explaining why this exact file operation needs the wider access."
+    }
+  },
+  "required": [
+    "file_path",
+    "old_string",
+    "new_string"
+  ]
+}

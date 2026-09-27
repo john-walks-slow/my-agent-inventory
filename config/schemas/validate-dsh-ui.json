@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "spec": {
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "The exact JSON text of the fence body."
+        },
+        {
+          "type": "object",
+          "description": "The spec object (serialized before validation)."
+        }
+      ],
+      "description": "The dsh-ui fence body to validate: pass the JSON as a string for an exact check, or as the spec object."
+    }
+  },
+  "required": [
+    "spec"
+  ],
+  "additionalProperties": false
+}

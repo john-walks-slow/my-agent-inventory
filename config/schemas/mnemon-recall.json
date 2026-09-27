@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "Focused natural-language memory query."
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "smart",
+        "keyword",
+        "basic"
+      ],
+      "description": "smart=graph-enhanced default, keyword=token ranking, basic=SQL LIKE fallback."
+    },
+    "limit": {
+      "type": "integer",
+      "description": "Maximum number of results. The model path caps output at 6."
+    },
+    "memoryBodyIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Optional known active Memory Space ids to narrow recall. Omit this field to search every pinned active space; do not list the catalog only to populate it. The Host rejects ids outside the pinned Source."
+    }
+  },
+  "required": [
+    "query"
+  ]
+}

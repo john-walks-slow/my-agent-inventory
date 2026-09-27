@@ -62,7 +62,7 @@ sections:  # 背包分区（Tab）数组，至少 1 个
 | `name` | string | ✅ | 显示名 |
 | `title` | string |  | 副标题/中文称号 |
 | `icon` | string |  | 图标引用（解析链见 `icons.md`） |
-| `rarity` | `normal`\|`silver`\|`gold`\|`iridium` |  | 品质（星级+边框色），默认 `normal` |
+| `rarity` | `common`\|`rare`\|`epic`\|`legendary` |  | 品质（星级+边框色），默认 `common` |
 | `category` | string |  | 筛选分类 id，**必须已在本 section 的 categories 中定义** |
 | `stack` | int ≥1 |  | 堆叠数（格子上角数字） |
 | `version` | string |  | 该装备自身版本 |

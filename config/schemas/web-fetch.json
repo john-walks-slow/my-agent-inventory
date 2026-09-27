@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "description": "The HTTP(S) URL to fetch."
+    }
+  },
+  "required": [
+    "url"
+  ]
+}
