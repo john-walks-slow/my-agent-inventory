@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { buildInventoryModel } from './config/loader';
 import type { ItemView, SectionView } from './config/loader';
-import { sectionLabel } from './theme/vocab';
+import { sectionLabel, levelTitle } from './theme/vocab';
 import { InventoryGrid } from './components/InventoryGrid';
 import { DetailPanel } from './components/DetailPanel';
 import { BooksView } from './components/BooksView';
 import { IconsCodex } from './components/IconsCodex';
 import { ItemIcon } from './components/ItemIcon';
+import { HarnessProfileModal } from './components/HarnessProfileModal';
 import { retroAudio } from './audio/retroAudio';
 import { Volume2, VolumeX, User, Backpack } from 'lucide-react';
 
@@ -30,6 +31,8 @@ export const App: React.FC = () => {
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [goldCount, setGoldCount] = useState(77777);
   const [showProfileModal, setShowProfileModal] = useState(false);
+
+  const profile = model.profile;
 
   const activeSection: SectionView | null = sections.find((s) => s.id === activeSectionId) ?? sections[0] ?? null;
   const isReaderView = activeSection?.view === 'reader';
@@ -64,7 +67,6 @@ export const App: React.FC = () => {
     ...(activeSection?.categories ?? []).map((c) => ({ id: c.id, label: c.label }))
   ];
 
-  const sectionCount = (id: string) => sections.find((s) => s.id === id)?.items.length ?? 0;
   const totalItemCount = sections.reduce((n, s) => n + s.items.length, 0);
 
   if (route === '#/icons') {
@@ -91,8 +93,22 @@ export const App: React.FC = () => {
           </div>
         </div>
 
-        {/* HUD Widgets: Money, Sound, Profile */}
+        {/* HUD Widgets: Level, Money, Sound, Profile */}
         <div className="flex items-center gap-2 text-xs font-bold">
+          {/* Level Badge: opens harness profile */}
+          <button
+            onClick={() => {
+              retroAudio.playSelect();
+              setShowProfileModal(true);
+            }}
+            className="flex items-center gap-1 bg-[#4a2113] px-2 py-0.5 text-[#ffe4a1] cursor-pointer hover:bg-[#6e2e05] border-b border-[#1f0d05] shadow-xs active:translate-y-0.5"
+            title={`${profile.info.name} 档案`}
+          >
+            <span className="text-[#fbbf24] leading-none">★</span>
+            <span className="font-mono text-xs leading-none">Lv.{profile.level.level}</span>
+            <span className="hidden sm:inline text-[10px] opacity-90">{levelTitle(profile.level.level)}</span>
+          </button>
+
           {/* Gold Counter: Clean Retro Badge */}
           <div
             onClick={() => {
@@ -200,67 +216,16 @@ export const App: React.FC = () => {
         </a>
       </footer>
 
-      {/* Profile Modal */}
+      {/* Harness Profile Modal */}
       {showProfileModal && (
-        <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
-          <div className="sdv-menu-frame max-w-sm w-full p-4 text-[#381503] relative bg-[#fff6e0]">
-            <button
-              onClick={() => {
-                retroAudio.playTab();
-                setShowProfileModal(false);
-              }}
-              className="absolute top-2 right-2 w-6 h-6 bg-[#ef4444] text-white font-bold flex items-center justify-center border border-[#4a2113] shadow-xs cursor-pointer hover:bg-[#dc2626]"
-            >
-              ✕
-            </button>
-
-            <div className="flex items-center gap-3 border-b-2 border-[#6e2e05] pb-3 mb-3">
-              <div className="w-12 h-12 sdv-cell flex items-center justify-center bg-[#fff1d0]">
-                <span className="text-2xl">👨‍🌾</span>
-              </div>
-              <div>
-                <h3 className="text-base font-bold text-[#4a2113]">农场主：John Ren</h3>
-                <p className="text-xs text-[#78350f] font-semibold">全栈智能架构师 (Lv.10)</p>
-                <p className="text-[10px] text-[#421c08]">农场：DSH Eco Farm</p>
-              </div>
-            </div>
-
-            <div className="space-y-1.5 text-xs">
-              <div className="bg-[#ecd0a6] p-1.5 border border-[#6e2e05] flex justify-between">
-                <span className="font-bold">宿主硬件:</span>
-                <span>红米 K30S (骁龙 865)</span>
-              </div>
-              <div className="bg-[#ecd0a6] p-1.5 border border-[#6e2e05] flex justify-between">
-                <span className="font-bold">环境形态:</span>
-                <span>LineageOS 23.2 + chroot 24.04</span>
-              </div>
-              <div className="bg-[#ecd0a6] p-1.5 border border-[#6e2e05] flex justify-between">
-                <span className="font-bold">自研插件:</span>
-                <span>{sectionCount('plugins')} 个</span>
-              </div>
-              <div className="bg-[#ecd0a6] p-1.5 border border-[#6e2e05] flex justify-between">
-                <span className="font-bold">全域技能:</span>
-                <span>{sectionCount('skills')} 个</span>
-              </div>
-              <div className="bg-[#ecd0a6] p-1.5 border border-[#6e2e05] flex justify-between">
-                <span className="font-bold">实战秘籍:</span>
-                <span>{sectionCount('tomes')} 卷</span>
-              </div>
-            </div>
-
-            <div className="mt-3 pt-2 border-t border-[#6e2e05] text-center">
-              <button
-                onClick={() => {
-                  retroAudio.playCoin();
-                  setShowProfileModal(false);
-                }}
-                className="sdv-action-btn w-full !py-1.5"
-              >
-                收起档案
-              </button>
-            </div>
-          </div>
-        </div>
+        <HarnessProfileModal
+          profile={profile}
+          sectionOrder={sections.map((s) => ({ id: s.id, label: s.label }))}
+          onClose={() => {
+            retroAudio.playTab();
+            setShowProfileModal(false);
+          }}
+        />
       )}
     </div>
   );

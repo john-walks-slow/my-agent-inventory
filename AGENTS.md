@@ -10,16 +10,20 @@
 - `config/harness.yaml`: 站点唯一事实源（站点信息、harness 档案、sections/物品全量数据），schema 见 `src/config/schema.ts`
 - `config/content/<section>/<id>.md`: 物品深度解析正文（Markdown）；`config/icons/*.svg`: 自定义 16×16 像素图腾
 - `docs/essays/`: 已归档的长文典籍（不在站内展示）
-- `src/config/loader.ts`: 浏览器侧装载（YAML + 正文 glob + IconRef 解析链 custom-svg → custom-img → kit → fallback）
+- `src/config/loader.ts`: 浏览器侧装载（YAML + 正文 glob + IconRef 解析链 custom-svg → custom-img → kit → fallback + harness 档案派生）
 - `src/components/ItemIcon.tsx`: 统一图腾渲染器与品质星级徽章
 - `src/components/InventoryGrid.tsx`: 36 格豪华背包凹陷槽位网格、筛选栏与悬停预览条
 - `src/components/DetailPanel.tsx`: 独立滚动的装备属性卡片、Markdown 深度解析、一键复制安装/配置
 - `src/components/BooksView.tsx`: 秘籍书架与羊皮纸（Parchment）Markdown 阅览器（reader 型 section）
-- `src/theme/vocab.ts`: 主题词汇表（section id → 展示名兜底）
+- `src/components/HarnessProfileModal.tsx`: harness 档案弹窗（头像/昵称/Lv/EXP 条/统计行）
+- `src/theme/vocab.ts`: 主题词汇表（section 展示名兜底 + 等级称号阶梯）
+- `src/stats/level.ts`: 等级与经验纯函数（对数压缩公式，5 锚点校准，`tests/level.test.ts`）
+- `src/brands/`: 品牌 16×16 像素头像（`tools/gen-brands.mjs` 字符画生成；dsh/claude-code/... /generic 兜底）
 - `src/audio/retroAudio.ts`: 纯原生 Web Audio API 8-bit 声效合成器（木击、拾取、金币、翻书）
 - `src/index.css`: 星露谷调色板、像素微阴影系统与独立滚动条样式
-- `src/App.tsx`: 顶层 HUD 框架、Tab 导航（由 sections 驱动）与档案彩蛋
+- `src/App.tsx`: 顶层 HUD 框架（Lv 徽章/金币/音效/档案入口）、Tab 导航（由 sections 驱动）与 hash 路由
 - `scripts/validate.ts` / `pnpm validate`: 配置校验（schema + 正文/图标引用完整性）
+- `scripts/collect-dsh-stats.mjs`: DSH 会话统计采集器（root/subagent 会话数、非缓存 Token、since 核实；重测后回填 harness.yaml）
 
 ## 开发与调试
 

@@ -7,10 +7,14 @@ harness:
   nickname: 大肥鱼
   brand: dsh
   version: 1.5.0
-  since: 2026-05-01
+  # 会话记录可追溯的最早日期（scripts/collect-dsh-stats.mjs firstSessionDate）
+  since: '2026-08-27'
   stats:
-    sessions: 586
-    tokens: 1611000000
+    # 口径：root 主会话数 / 非缓存 input+output / 缓存命中（collect-dsh-stats.mjs 实测）
+    sessions: 482
+    subagentSessions: 1197
+    tokens: 4356590671
+    cacheTokens: 39715716101
 sections:
   - id: plugins
     label: 插件

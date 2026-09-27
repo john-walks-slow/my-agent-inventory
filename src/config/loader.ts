@@ -2,11 +2,15 @@
 // Node 侧校验请用 scripts/validate.ts（同一 schema）。
 import { parse } from 'yaml';
 import harnessYamlRaw from '../../config/harness.yaml?raw';
-import { siteConfigSchema, type SiteConfig, type ItemConfig, type SectionConfig } from './schema';
+import { siteConfigSchema, type SiteConfig, type ItemConfig, type SectionConfig, type HarnessInfo } from './schema';
 import { KIT_ICONS } from '../iconkit/registry';
 import { resolveIconRef, type CustomIcon, type IconRef } from '../iconkit/resolve';
+import { resolveAvatar } from '../brands';
+import { computeLevel, daysSince, type LevelResult } from '../stats/level';
 
 export type { CustomIcon, IconRef } from '../iconkit/resolve';
+
+export type AvatarRef = ReturnType<typeof resolveAvatar>;
 
 // ---- 静态资产 glob（构建期由 Vite 内联/拷贝） ----
 
@@ -41,12 +45,29 @@ export interface SectionView extends SectionConfig {
   iconRef: IconRef;
 }
 
+export interface HarnessProfileView {
+  info: HarnessInfo;
+  avatar: AvatarRef;
+  stats: {
+    sessions?: number;
+    subagentSessions?: number;
+    tokens?: number;
+    cacheTokens?: number;
+    days: number;
+  };
+  /** sectionId → 物品数（装备计数） */
+  gear: Record<string, number>;
+  gearTotal: number;
+  level: LevelResult;
+}
+
 export interface InventoryModel {
   config: SiteConfig;
   sections: SectionView[];
   /** key: '<sectionId>/<itemId>' */
   contents: Record<string, string>;
   customIcons: Record<string, CustomIcon>;
+  profile: HarnessProfileView;
 }
 
 // ---- 装载 ----
@@ -92,6 +113,40 @@ function resolveIcon(name: string | undefined, customIcons: Record<string, Custo
   return resolveIconRef(name, customIcons, KIT_ICONS);
 }
 
+function buildProfile(config: SiteConfig, sections: SectionView[], customIcons: Record<string, CustomIcon>): HarnessProfileView {
+  const h = config.harness;
+  const gear: Record<string, number> = {};
+  let gearTotal = 0;
+  for (const sec of sections) {
+    gear[sec.id] = sec.items.length;
+    gearTotal += sec.items.length;
+  }
+  const days = daysSince(h.since);
+  const level = computeLevel(
+    {
+      sessions: h.stats?.sessions,
+      tokens: h.stats?.tokens,
+      days,
+      gear,
+    },
+    h.level
+  );
+  return {
+    info: h,
+    avatar: resolveAvatar(h.brand, h.customAvatar, customIcons),
+    stats: {
+      sessions: h.stats?.sessions,
+      subagentSessions: h.stats?.subagentSessions,
+      tokens: h.stats?.tokens,
+      cacheTokens: h.stats?.cacheTokens,
+      days,
+    },
+    gear,
+    gearTotal,
+    level,
+  };
+}
+
 export function buildInventoryModel(): InventoryModel {
   const config = loadSiteConfig();
   const contents = loadContents();
@@ -107,5 +162,5 @@ export function buildInventoryModel(): InventoryModel {
     })),
   }));
 
-  return { config, sections, contents, customIcons };
+  return { config, sections, contents, customIcons, profile: buildProfile(config, sections, customIcons) };
 }
