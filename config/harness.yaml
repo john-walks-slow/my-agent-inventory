@@ -1236,7 +1236,7 @@ sections:
       - id: glob
         name: glob
         title: 路径匹配
-        icon: briefcase
+        icon: map
         category: files
         description: 按 glob 模式发现文件路径，含隐藏文件。
       - id: grep

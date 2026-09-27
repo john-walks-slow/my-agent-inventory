@@ -1,10 +1,11 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { buildInventoryModel } from './config/loader';
 import type { ItemView, SectionView } from './config/loader';
 import { sectionLabel } from './theme/vocab';
 import { InventoryGrid } from './components/InventoryGrid';
 import { DetailPanel } from './components/DetailPanel';
 import { BooksView } from './components/BooksView';
+import { IconsCodex } from './components/IconsCodex';
 import { ItemIcon } from './components/ItemIcon';
 import { retroAudio } from './audio/retroAudio';
 import { Volume2, VolumeX, User, Backpack } from 'lucide-react';
@@ -12,6 +13,14 @@ import { Volume2, VolumeX, User, Backpack } from 'lucide-react';
 export const App: React.FC = () => {
   const model = useMemo(() => buildInventoryModel(), []);
   const sections = model.sections;
+
+  // hash 路由：#/icons → 图标图鉴
+  const [route, setRoute] = useState(() => window.location.hash);
+  useEffect(() => {
+    const onHash = () => setRoute(window.location.hash);
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
 
   const [activeSectionId, setActiveSectionId] = useState<string>(sections[0]?.id ?? '');
   const [subCategory, setSubCategory] = useState('all');
@@ -57,6 +66,10 @@ export const App: React.FC = () => {
 
   const sectionCount = (id: string) => sections.find((s) => s.id === id)?.items.length ?? 0;
   const totalItemCount = sections.reduce((n, s) => n + s.items.length, 0);
+
+  if (route === '#/icons') {
+    return <IconsCodex onExit={() => { window.location.hash = ''; }} />;
+  }
 
   return (
     <div className="min-h-screen lg:h-screen w-screen p-2 sm:p-4 max-w-6xl mx-auto flex flex-col justify-between overflow-x-hidden lg:overflow-hidden">
@@ -177,6 +190,14 @@ export const App: React.FC = () => {
         <span className="opacity-80">
           收纳总数: {totalItemCount} 项
         </span>
+        <a
+          href="#/icons"
+          onClick={() => retroAudio.playTab()}
+          className="opacity-80 hover:opacity-100 underline underline-offset-2"
+          title="内置图标套件图鉴"
+        >
+          图标图鉴 · 7Soul (CC0)
+        </a>
       </footer>
 
       {/* Profile Modal */}

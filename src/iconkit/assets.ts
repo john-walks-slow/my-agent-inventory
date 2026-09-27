@@ -1,13 +1,15 @@
 // 浏览器侧套件资产映射（仅前端可导入；registry.ts 保持 Node/浏览器双安全）
-// 文件名去扩展名即套件 id（P3 由入库脚本生成资产）。
-const modules = import.meta.glob('/src/iconkit/assets/*.{png,gif,webp}', {
+// manifest 的 value 是原始包内文件名（仅溯源）；入库时资产已统一重命名为 <id>.png。
+import { KIT_MANIFEST } from './manifest.gen';
+
+const modules = import.meta.glob('/src/iconkit/assets/*.png', {
   query: '?url',
   import: 'default',
   eager: true,
 }) as Record<string, string>;
 
 export const KIT_ASSET_URLS: Record<string, string> = {};
-for (const [path, url] of Object.entries(modules)) {
-  const file = path.split('/').pop() ?? '';
-  KIT_ASSET_URLS[file.replace(/\.(png|gif|webp)$/, '')] = url;
+for (const id of Object.keys(KIT_MANIFEST)) {
+  const url = modules[`/src/iconkit/assets/${id}.png`];
+  if (url) KIT_ASSET_URLS[id] = url;
 }

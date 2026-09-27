@@ -3,7 +3,10 @@
 import { parse } from 'yaml';
 import harnessYamlRaw from '../../config/harness.yaml?raw';
 import { siteConfigSchema, type SiteConfig, type ItemConfig, type SectionConfig } from './schema';
-import { isKitIcon } from '../iconkit/registry';
+import { KIT_ICONS } from '../iconkit/registry';
+import { resolveIconRef, type CustomIcon, type IconRef } from '../iconkit/resolve';
+
+export type { CustomIcon, IconRef } from '../iconkit/resolve';
 
 // ---- 静态资产 glob（构建期由 Vite 内联/拷贝） ----
 
@@ -26,16 +29,6 @@ const imgIconModules = import.meta.glob('/config/icons/*.{png,gif,webp,jpg,jpeg}
 }) as Record<string, string>;
 
 // ---- 装载结果类型 ----
-
-export type CustomIcon =
-  | { kind: 'svg'; raw: string }
-  | { kind: 'img'; url: string };
-
-export type IconRef =
-  | { kind: 'custom-svg'; raw: string; name: string }
-  | { kind: 'custom-img'; url: string; name: string }
-  | { kind: 'kit'; id: string }
-  | { kind: 'fallback' };
 
 export interface ItemView extends ItemConfig {
   /** 完整正文 Markdown（约定路径 config/content/<section>/<id>.md，缺省为空串） */
@@ -96,12 +89,7 @@ function loadCustomIcons(): Record<string, CustomIcon> {
 }
 
 function resolveIcon(name: string | undefined, customIcons: Record<string, CustomIcon>): IconRef {
-  if (!name) return { kind: 'fallback' };
-  const custom = customIcons[name];
-  if (custom?.kind === 'svg') return { kind: 'custom-svg', raw: custom.raw, name };
-  if (custom?.kind === 'img') return { kind: 'custom-img', url: custom.url, name };
-  if (isKitIcon(name)) return { kind: 'kit', id: name };
-  return { kind: 'fallback' };
+  return resolveIconRef(name, customIcons, KIT_ICONS);
 }
 
 export function buildInventoryModel(): InventoryModel {
