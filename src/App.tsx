@@ -108,7 +108,14 @@ export const App: React.FC = () => {
             </h1>
             <div className="flex items-center gap-1.5 mt-1 text-[10px] font-bold leading-none">
               <span className="bg-ui-frame-border text-ui-ink-gold px-1.5 py-0.5 font-mono">Lv.{profile.level.level}</span>
-              <span className="text-ui-ink-muted truncate">{levelTitle(profile.level.level, theme)}</span>
+              {/* 职业由装备构成主导 section 自动判定；空背包回退等级称号 */}
+              {profile.jobSection && vocab.jobs[profile.jobSection] ? (
+                <span className="text-ui-ink-muted truncate cursor-help" title={vocab.jobDescs[profile.jobSection]}>
+                  {vocab.jobs[profile.jobSection]}
+                </span>
+              ) : (
+                <span className="text-ui-ink-muted truncate">{levelTitle(profile.level.level, theme)}</span>
+              )}
               <span className="text-ui-ink-faint shrink-0">{Math.round(profile.level.progress * 100)}%</span>
             </div>
             <div className="h-1.5 bg-ui-exp-track border border-ui-wood-dark mt-1 max-w-44">

@@ -153,9 +153,10 @@
   <!-- 昵称 / 副题 -->
   <text x="116" y="63" font-family="'BadgePirata','Songti SC','SimSun',serif" font-size="23" font-weight="bold" fill="#e8d8b0">大肥鱼</text>
   <text x="116" y="82" font-family="'Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif" font-size="11" fill="#b8a078">DeepSeek Harness</text>
-  <!-- Lv 徽章 -->
+  <!-- Lv 徽章 + 职业称号 -->
   <rect x="116" y="94" width="77" height="21" rx="4" fill="#8c2b1e"/>
   <text x="154.5" y="108.5" text-anchor="middle" font-family="'BadgePirata','Songti SC','SimSun',serif" font-size="12" font-weight="bold" fill="#ffe4a1">Lv.16</text>
+  <text x="201" y="108.5" font-family="'BadgePirata','Songti SC','SimSun',serif" font-size="12" font-weight="bold" fill="#e8d8b0">狩魔人</text>
   <!-- EXP 条（带描边轨道） -->
   <text x="116" y="139" font-family="'BadgePirata','Songti SC','SimSun',serif" font-size="9" font-weight="bold" fill="#b8a078" letter-spacing="1">EXP</text>
   <rect x="144" y="130" width="164" height="10" rx="2" fill="#1a1208" stroke="#5c4830" stroke-width="1" opacity="0.9"/>

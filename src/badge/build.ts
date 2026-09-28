@@ -21,6 +21,8 @@ export interface BadgeProfile {
   items?: number;
   /** chip 标签措辞（来自主题词汇表 expTerms） */
   chipLabels: { sessions: string; tokens: string; items: string };
+  /** 职业称号（主题词汇表 jobs；缺省不渲染） */
+  job?: string;
   /** 品牌头像 SVG 源码（16×16） */
   brandSvg: string;
 }
@@ -156,9 +158,14 @@ export function buildBadge(profile: BadgeProfile, theme: BadgeThemeSpec, fontDat
   <!-- 昵称 / 副题 -->
   <text x="116" y="63" font-family="${theme.fontDisplay}" font-size="23" font-weight="bold" fill="${theme.ink}">${nickname}</text>
   <text x="116" y="82" font-family="${theme.fontBody}" font-size="11" fill="${theme.inkMuted}">${sub}</text>
-  <!-- Lv 徽章 -->
+  <!-- Lv 徽章 + 职业称号 -->
   <rect x="116" y="94" width="${lvWidth}" height="21" rx="${Math.max(3, theme.radius - 2)}" fill="${theme.levelBg}"/>
-  <text x="${116 + lvWidth / 2}" y="108.5" text-anchor="middle" font-family="${theme.fontDisplay}" font-size="12" font-weight="bold" fill="${theme.levelInk}">${lvText}</text>
+  <text x="${116 + lvWidth / 2}" y="108.5" text-anchor="middle" font-family="${theme.fontDisplay}" font-size="12" font-weight="bold" fill="${theme.levelInk}">${lvText}</text>${
+    profile.job
+      ? `
+  <text x="${116 + lvWidth + 8}" y="108.5" font-family="${theme.fontDisplay}" font-size="12" font-weight="bold" fill="${theme.ink}">${escapeXml(profile.job)}</text>`
+      : ''
+  }
   <!-- EXP 条（带描边轨道） -->
   <text x="116" y="139" font-family="${theme.fontDisplay}" font-size="9" font-weight="bold" fill="${theme.inkMuted}" letter-spacing="1">EXP</text>
   <rect x="144" y="130" width="164" height="10" rx="2" fill="${theme.barTrack}" stroke="${theme.innerLine ?? theme.frame}" stroke-width="1" opacity="0.9"/>

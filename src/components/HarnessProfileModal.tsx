@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { HarnessProfileView } from '../config/loader';
 import { BrandAvatar } from './BrandAvatar';
 import { levelTitle, sectionLabel, getVocab } from '../theme/vocab';
 import { computeExp } from '../stats/level';
 import { retroAudio } from '../audio/retroAudio';
-import { Share2, Check } from 'lucide-react';
+import { Share2 } from 'lucide-react';
 
 /** 中文单位格式化 Token：4356590671 → 43.6 亿 */
 function fmtTokens(n: number): string {
@@ -33,29 +33,12 @@ export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profil
   const vocab = getVocab(theme);
   const title = levelTitle(level.level, theme);
   const expPct = Math.round(level.progress * 100);
-  const [shared, setShared] = useState(false);
 
-  const shareBadge = async () => {
-    const url = `${window.location.origin}${window.location.pathname}#/badge`;
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(url);
-      } else {
-        const textArea = document.createElement('textarea');
-        textArea.value = url;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        textArea.remove();
-      }
-      retroAudio.playCoin();
-    } catch {
-      // ignore
-    }
-    setShared(true);
-    setTimeout(() => setShared(false), 2000);
+  // 名片页自带 URL/Markdown/HTML 复制组，这里直接送用户过去
+  const goBadgePage = () => {
+    retroAudio.playCoin();
+    onClose();
+    window.location.hash = '#/badge';
   };
 
   return (
@@ -146,12 +129,12 @@ export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profil
 
         <div className="mt-2 pt-2 border-t border-ui-wood-dark flex gap-1.5">
           <button
-            onClick={shareBadge}
+            onClick={goBadgePage}
             className="sdv-action-btn flex-1 !py-1.5 flex items-center justify-center gap-1"
-            title="复制名片页链接"
+            title="打开名片页"
           >
-            {shared ? <Check size={12} className="text-green-700" /> : <Share2 size={12} />}
-            {shared ? '链接已复制！' : '分享名片'}
+            <Share2 size={12} />
+            分享名片
           </button>
           <button
             onClick={() => {

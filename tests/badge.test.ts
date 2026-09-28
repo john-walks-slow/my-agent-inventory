@@ -49,6 +49,14 @@ test('buildBadge：jrpg 主题用渐变内底', () => {
   assert.ok(svg.includes('url(#bgGrad)'), 'jrpg 内底应引用渐变');
 });
 
+test('buildBadge：职业称号渲染在 Lv 徽章右侧，缺省不渲染', () => {
+  const withJob = buildBadge({ ...profile, job: '学者' }, BADGE_THEMES.stardew);
+  assert.ok(withJob.includes('>学者</text>'), '应渲染职业词');
+  assert.ok(!withJob.includes('渔夫大师'), '职业位不渲染等级称号');
+  const without = buildBadge(profile, BADGE_THEMES.pokemon);
+  assert.ok(!without.includes('>学者</text>'), '无 job 不应渲染职业');
+});
+
 test('buildBadge：无字体参数则不内嵌 @font-face；progress 越界 clamp', () => {
   const svg = buildBadge({ ...profile, progress: 1.5 }, BADGE_THEMES.pokemon);
   assert.ok(!svg.includes('@font-face'));

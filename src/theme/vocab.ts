@@ -55,6 +55,8 @@ export interface ThemeVocab {
   since: string;
   /** 职业命名：装备构成主导的 section → 职业称号（自动判定，见 stats/job.ts） */
   jobs: Record<string, string>;
+  /** 职业悬停解释（与 jobs 同键；顶栏 tooltip） */
+  jobDescs: Record<string, string>;
 }
 
 const stardew: ThemeVocab = {
@@ -85,6 +87,13 @@ const stardew: ThemeVocab = {
     legendary: '传说 (Legendary)',
   },
   jobs: { plugins: '工匠', skills: '学者', mcp: '驯兽师', tools: '农夫', tomes: '藏书家' },
+  jobDescs: {
+    plugins: '自研插件最多的农场主，农具全靠亲手打造',
+    skills: '技能收藏最丰，图书馆的常客',
+    mcp: '驯服了最多的 MCP 工具兽',
+    tools: '背包里塞满了趁手的工具',
+    tomes: '典籍攒得最深，闲暇就翻两页',
+  },
   since: '安装日期',
   detail: {
     highlights: '✦ 核心亮点',
@@ -149,6 +158,13 @@ const pokemon: ThemeVocab = {
     legendary: '传说',
   },
   jobs: { plugins: '工程师', skills: '道场师傅', mcp: '设施管理员', tools: '背包客', tomes: '图鉴博士' },
+  jobDescs: {
+    plugins: '道馆建设担当，自研装置最多',
+    skills: '招式储备最深，训练从不间断',
+    mcp: '名下经营的训练设施最多',
+    tools: '道具栏永远满仓的远行客',
+    tomes: '图鉴完成度遥遥领先',
+  },
   since: '安装日期',
   detail: {
     highlights: '✦ 特性',
@@ -213,6 +229,13 @@ const jrpg: ThemeVocab = {
     legendary: '传说',
   },
   jobs: { plugins: '锻造师', skills: '咒文师', mcp: '召唤士', tools: '道具师', tomes: '贤者' },
+  jobDescs: {
+    plugins: '亲手锻造的自研装备最多',
+    skills: '习得的咒文最多，卷轴不离身',
+    mcp: '召唤兽栏最满，号令群灵',
+    tools: '道具袋最深，万事皆有备',
+    tomes: '遍读古代典籍，智慧超群',
+  },
   since: '安装日期',
   detail: {
     highlights: '✦ 特技',
@@ -277,6 +300,13 @@ const diablo: ThemeVocab = {
     legendary: '传奇 (Legendary)',
   },
   jobs: { plugins: '符文匠', skills: '狩魔人', mcp: '死灵法师', tools: '炼金师', tomes: '禁书看守' },
+  jobDescs: {
+    plugins: '镶嵌的自研符文最多',
+    skills: '掌握的狩魔技巧最多',
+    mcp: '驱使的仆从大军最庞大',
+    tools: '腰带上挂满了炼金药剂',
+    tomes: '禁书库的藏品最丰',
+  },
   since: '安装日期',
   detail: {
     highlights: '✦ 威能',

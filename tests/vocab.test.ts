@@ -31,6 +31,7 @@ test('四主题词汇表：rarity/detail/hud/reader/jobs/since 全键非空', ()
     assert.ok(v.since.length > 0, `${t}.since`);
     for (const sec of ['plugins', 'skills', 'mcp', 'tools', 'tomes'] as const) {
       assert.ok(v.jobs[sec]?.length, `${t}.jobs.${sec} 缺失`);
+      assert.ok(v.jobDescs[sec]?.length, `${t}.jobDescs.${sec} 缺失`);
     }
     // currency.glyph 必填；unit 允许空串（如 ₽ 无单位后缀）
     assert.ok(v.currency.glyph.length > 0, `${t}.currency.glyph`);
