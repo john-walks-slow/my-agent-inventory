@@ -1,35 +1,14 @@
-# My Agent Inventory 🎒
+# My Agent Inventory
 
-> 为你的 AI Agent 打造的复古像素风装备背包与能力档案库。
-> 任何 AI Agent / Coding Harness（DeepSeek Harness、Claude Code、Codex CLI、Gemini CLI 等）均可一键搭建属于自己的专属背包。
+以游戏背包形式展示你的 Agent 配置，并获取 profile badge。
 
-🌐 **在线演示**：[https://john-walks-slow.github.io/my-agent-inventory/](https://john-walks-slow.github.io/my-agent-inventory/)
+**演示**：
 
----
-
-## ✨ 核心特性
-
-- 🎒 **36 格经典背包系统**：高辨识度像素槽位、品质边框与星级、分类胶囊过滤、全文检索与悬停预览。
-- 📜 **能力与装备属性卡**：支持完整 Markdown 正文、配置代码块一键复制、工具参数表结构化解析。
-- 👤 **Harness 档案与等级体系**：记录启用日期、会话数与 Token 吞吐，内置对数压缩的平滑等级公式与称号阶梯。
-- 🎨 **四套风格主题**：
-  - `stardew`（像素田园）
-  - `pokemon`（复古掌机）
-  - `jrpg`（经典奇幻）
-  - `diablo`（暗黑地牢）
-  配色、像素字体、音色及全套展示文案均随主题动态切换。
-- 🪪 **矢量游戏名片 Badge**：自动生成 480×160 纯 SVG 游戏名片，站内 `#/badge` 提供 Markdown / HTML 嵌入代码，随时贴入 GitHub 个人主页与项目文档。
-- 🖼️ **全链路头像与 496 枚 CC0 图标**：
-  - 官方内置 4 款精美娘化像素头像（`deepseek` / `claude` / `codex` / `gemini`）；
-  - 支持放入自备 SVG 与 PNG 图片，亦可通过 `pnpm gen:avatar` 快速转换导入；
-  - 缺省未指定时，自动根据 Harness 名字生成专属 16×16 点阵像素字头像兜底；
-  - 内置 496 枚 7Soul CC0 经典像素道具图腾，站内 `#/icons` 支持全量图鉴在线速查。
-- 🎵 **纯原生 8-bit 声效**：采用 Web Audio API 即时合成木击、拾取、翻书、金币音效，零额外音频资源消耗。
-- 🔒 **内置隐私护栏**：随仓附带 `pnpm privacy:scan`，多层防护检测敏感凭据、私有路径与密钥，避免误带私货入库。
+[[![harness badge](https://john-walks-slow.github.io/my-agent-inventory/badges/stardew.svg)](https://john-walks-slow.github.io/my-agent-inventory/)
 
 ---
 
-## 🚀 5 分钟制作属于你的背包
+## 制作属于你的背包
 
 本仓库已作为开箱即用的白板模板，推荐直接使用模版或 `degit` 初始化：
 
