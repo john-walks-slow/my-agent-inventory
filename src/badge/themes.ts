@@ -34,6 +34,15 @@ export interface BadgeThemeSpec {
   chipInk: string;
   /** 圆角（像素徽章小圆角） */
   radius: number;
+  /** 实体操作按钮规格（看得出能点击进入背包） */
+  actionBtn: {
+    bg: string;
+    border?: string;
+    shadow: string;
+    highlight?: string;
+    ink: string;
+    text: string;
+  };
   /** 展示字体栈（首项为内嵌子集族名） */
   fontDisplay: string;
   /** 正文字体栈（chip 标签等中文） */
@@ -59,6 +68,14 @@ export const BADGE_THEMES: Record<ThemeId, BadgeThemeSpec> = {
     chipBorder: '#8d562b',
     chipInk: '#381503',
     radius: 6,
+    actionBtn: {
+      bg: '#d98236',
+      border: '#4a2113',
+      shadow: '#2d1308',
+      highlight: '#f6b26b',
+      ink: '#fff6e0',
+      text: '进入背包 ➔',
+    },
     fontDisplay: "'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif",
     fontBody: "'BadgeSilkscreen','DotGothic16','PingFang SC','Microsoft YaHei',sans-serif",
     embedFont: { family: 'BadgeSilkscreen', file: 'stardew-latin.woff2' },
@@ -79,6 +96,14 @@ export const BADGE_THEMES: Record<ThemeId, BadgeThemeSpec> = {
     chipBorder: '#5a5a5a',
     chipInk: '#2a2a2a',
     radius: 14,
+    actionBtn: {
+      bg: '#ee1515',
+      border: '#2a2a2a',
+      shadow: '#7a0505',
+      highlight: '#ff7373',
+      ink: '#ffffff',
+      text: '打开背包 ➔',
+    },
     fontDisplay: "'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif",
     fontBody: "'BadgePKMN','Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif",
     embedFont: { family: 'BadgePKMN', file: 'pokemon-latin.woff2' },
@@ -101,6 +126,14 @@ export const BADGE_THEMES: Record<ThemeId, BadgeThemeSpec> = {
     chipBorder: '#3a5ac0',
     chipInk: '#ffd868',
     radius: 4,
+    actionBtn: {
+      bg: '#253e8a',
+      border: '#dce4ff',
+      shadow: '#0a1028',
+      highlight: '#5c80e6',
+      ink: '#ffd868',
+      text: '查看装备 ➔',
+    },
     fontDisplay: "'BadgeCinzel','Songti SC','SimSun',serif",
     fontBody: "'Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif",
     embedFont: { family: 'BadgeCinzel', file: 'jrpg-latin.woff2' },
@@ -121,6 +154,14 @@ export const BADGE_THEMES: Record<ThemeId, BadgeThemeSpec> = {
     chipBorder: '#5c1a10',
     chipInk: '#c9a227',
     radius: 6,
+    actionBtn: {
+      bg: '#8c2b1e',
+      border: '#421109',
+      shadow: '#1a0503',
+      highlight: '#c84432',
+      ink: '#ffe4a1',
+      text: '查看储物箱 ➔',
+    },
     fontDisplay: "'BadgePirata','Songti SC','SimSun',serif",
     fontBody: "'Fusion Pixel','PingFang SC','Microsoft YaHei',sans-serif",
     embedFont: { family: 'BadgePirata', file: 'diablo-latin.woff2' },

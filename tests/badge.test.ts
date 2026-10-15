@@ -49,12 +49,12 @@ test('buildBadge：jrpg 主题用渐变内底', () => {
   assert.ok(svg.includes('url(#bgGrad)'), 'jrpg 内底应引用渐变');
 });
 
-test('buildBadge：职业称号渲染在 Lv 徽章右侧，缺省不渲染', () => {
-  const withJob = buildBadge({ ...profile, job: '学者' }, BADGE_THEMES.stardew);
-  assert.ok(withJob.includes('>学者</text>'), '应渲染职业词');
-  assert.ok(!withJob.includes('渔夫大师'), '职业位不渲染等级称号');
+test('buildBadge：等级称号渲染在 Lv 徽章右侧，缺省不渲染', () => {
+  const withTitle = buildBadge({ ...profile, title: '渔夫大师' }, BADGE_THEMES.stardew);
+  assert.ok(withTitle.includes('>渔夫大师</text>'), '应渲染称号词');
+
   const without = buildBadge(profile, BADGE_THEMES.pokemon);
-  assert.ok(!without.includes('>学者</text>'), '无 job 不应渲染职业');
+  assert.ok(!without.includes('>渔夫大师</text>'), '无 title 不应渲染称号');
 });
 
 test('buildBadge：无字体参数则不内嵌 @font-face；progress 越界 clamp', () => {
@@ -66,13 +66,14 @@ test('buildBadge：无字体参数则不内嵌 @font-face；progress 越界 clam
   assert.ok(under.includes('width="0"'), '负进度钳为 0');
 });
 
-test('buildBadge：undefined 的 chip 不渲染；昵称 XSS 转义', () => {
+test('buildBadge：undefined 的 chip 不渲染；昵称 XSS 转义；渲染实体操作按钮', () => {
   const svg = buildBadge(
     { ...profile, sessions: undefined, nickname: '<script>alert("x")</script>' },
     BADGE_THEMES.diablo
   );
   assert.ok(!svg.includes('会话'), 'sessions chip 应省略');
-  assert.equal((svg.match(/translate\(330 /g) ?? []).length, 2, '应只有 2 个 chip');
+  assert.ok(svg.includes('Token') && svg.includes('装备'), '其余 chip 应渲染');
+  assert.ok(svg.includes('查看储物箱 ➔'), '应渲染暗黑主题操作按钮');
   assert.ok(!svg.includes('<script>'), 'script 标签必须被转义');
   assert.ok(svg.includes('&lt;script&gt;'));
 });

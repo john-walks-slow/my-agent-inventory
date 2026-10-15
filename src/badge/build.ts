@@ -21,7 +21,9 @@ export interface BadgeProfile {
   items?: number;
   /** chip 标签措辞（来自主题词汇表 expTerms） */
   chipLabels: { sessions: string; tokens: string; items: string };
-  /** 职业称号（主题词汇表 jobs；缺省不渲染） */
+  /** 等级称号（如「渔夫大师」；缺省不渲染） */
+  title?: string;
+  /** @deprecated 别名兼容 */
   job?: string;
   /** 品牌头像 SVG 源码（16×16） */
   brandSvg: string;
@@ -103,7 +105,8 @@ export function buildBadge(profile: BadgeProfile, theme: BadgeThemeSpec, fontDat
   const pct = Math.round(progress * 100);
   // 左块文本可用宽度：从 x=112 到 chip 列（x=330）前留 8px
   const nickname = escapeXml(fitText(profile.nickname || profile.harnessName, 206, 23));
-  const sub = escapeXml(fitSubtitle(profile.harnessName, profile.siteTitle, 206, 11));
+  // 副标题仅展示 harness 标识名，不再拼接“我的 DSH 背包”站点标题
+  const sub = escapeXml(fitText(profile.harnessName, 206, 11));
   const lvText = `Lv.${profile.level}`;
 
   const fontFace = fontDataUri
@@ -125,13 +128,27 @@ export function buildBadge(profile: BadgeProfile, theme: BadgeThemeSpec, fontDat
   const chipSvg = chipRows
     .map(
       (c, i) => `
-    <g transform="translate(330 ${28 + i * 34})">
-      <rect width="126" height="26" rx="${Math.max(3, theme.radius - 2)}" fill="${theme.chipBg}" stroke="${theme.chipBorder ?? theme.innerLine ?? theme.frame}" stroke-width="1"/>
-      <text x="9" y="17" font-family="${theme.fontBody}" font-size="9.5" fill="${theme.inkMuted}">${c.label}</text>
-      <text x="117" y="17.5" text-anchor="end" font-family="${theme.fontDisplay}" font-size="12" font-weight="bold" fill="${theme.chipInk}">${c.value}</text>
+    <g transform="translate(330 ${17 + i * 29})">
+      <rect width="126" height="23" rx="${Math.max(3, theme.radius - 2)}" fill="${theme.chipBg}" stroke="${theme.chipBorder ?? theme.innerLine ?? theme.frame}" stroke-width="1"/>
+      <text x="9" y="15" font-family="${theme.fontBody}" font-size="9" fill="${theme.inkMuted}">${c.label}</text>
+      <text x="117" y="15.5" text-anchor="end" font-family="${theme.fontDisplay}" font-size="11" font-weight="bold" fill="${theme.chipInk}">${c.value}</text>
     </g>`
     )
     .join('');
+
+  const btn = theme.actionBtn;
+  const btnBorder = btn.border ?? theme.innerLine ?? theme.frame;
+  const btnRadius = Math.max(3, theme.radius - 2);
+  const actionBtnSvg = btn
+    ? `
+  <!-- 右下角立体实体按钮（看得出能点击看详情） -->
+  <g transform="translate(330 109)">
+    <rect x="0" y="2" width="126" height="24" rx="${btnRadius}" fill="${btn.shadow}"/>
+    <rect x="0" y="0" width="126" height="23" rx="${btnRadius}" fill="${btn.bg}" stroke="${btnBorder}" stroke-width="1"/>
+    ${btn.highlight ? `<line x1="3" y1="1.5" x2="123" y2="1.5" stroke="${btn.highlight}" stroke-width="1" stroke-linecap="round"/>` : ''}
+    <text x="63" y="15.5" text-anchor="middle" font-family="${theme.fontDisplay}" font-size="11" font-weight="bold" fill="${btn.ink}">${escapeXml(btn.text)}</text>
+  </g>`
+    : '';
 
   // 内底：单色或垂直渐变（FF 风格窗口用渐变）
   const bgFill = theme.bgGradient
@@ -161,9 +178,9 @@ export function buildBadge(profile: BadgeProfile, theme: BadgeThemeSpec, fontDat
   <!-- Lv 徽章 + 职业称号 -->
   <rect x="116" y="94" width="${lvWidth}" height="21" rx="${Math.max(3, theme.radius - 2)}" fill="${theme.levelBg}"/>
   <text x="${116 + lvWidth / 2}" y="108.5" text-anchor="middle" font-family="${theme.fontDisplay}" font-size="12" font-weight="bold" fill="${theme.levelInk}">${lvText}</text>${
-    profile.job
+    (profile.title ?? profile.job)
       ? `
-  <text x="${116 + lvWidth + 8}" y="108.5" font-family="${theme.fontDisplay}" font-size="12" font-weight="bold" fill="${theme.ink}">${escapeXml(profile.job)}</text>`
+  <text x="${116 + lvWidth + 8}" y="108.5" font-family="${theme.fontDisplay}" font-size="12" font-weight="bold" fill="${theme.ink}">${escapeXml(profile.title ?? profile.job ?? '')}</text>`
       : ''
   }
   <!-- EXP 条（带描边轨道） -->
@@ -173,5 +190,6 @@ export function buildBadge(profile: BadgeProfile, theme: BadgeThemeSpec, fontDat
   <text x="316" y="139" text-anchor="end" font-family="${theme.fontDisplay}" font-size="9" font-weight="bold" fill="${theme.inkMuted}">${pct}%</text>
   <!-- 数据 chips -->
   ${chipSvg}
+  ${actionBtnSvg}
 </svg>`;
 }
