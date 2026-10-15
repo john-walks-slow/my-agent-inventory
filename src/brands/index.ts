@@ -1,18 +1,21 @@
 // 官方内置娘化头像（src/brands/*.svg，仅保留 deepseek / claude / codex / gemini 4 种）
 // 其余通过 config/icons/<avatar>.(svg|png) 自定义；缺省或未命中则自动生成 16×16 点阵像素字头像兜底。
+/// <reference types="vite/client" />
 import type { CustomIcon } from '../iconkit/resolve';
 import { generatePixelTextSvg } from './pixelText';
 
 export { generatePixelTextSvg } from './pixelText';
 
-const globFn = (import.meta as unknown as { glob?: (p: string, o: unknown) => Record<string, string> }).glob;
-const modules: Record<string, string> = globFn
-  ? globFn('/src/brands/*.svg', {
-      query: '?raw',
-      import: 'default',
-      eager: true,
-    })
-  : {};
+// Vite 构建时静态内联；Node 运行时安全兜底
+const modules = (
+  typeof import.meta !== 'undefined' && 'glob' in import.meta
+    ? (import.meta as any).glob('/src/brands/*.svg', {
+        query: '?raw',
+        import: 'default',
+        eager: true,
+      })
+    : {}
+) as Record<string, string>;
 
 /** 内置娘化头像 key → SVG 源码（deepseek, claude, codex, gemini） */
 export const BUILTIN_AVATARS: Record<string, string> = {};
