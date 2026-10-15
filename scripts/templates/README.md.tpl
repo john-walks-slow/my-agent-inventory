@@ -1,6 +1,6 @@
 # {{TITLE}}
 
-{{NAME}} 的装备背包 —— 星露谷风格的 harness inventory 展示站（插件 / 技能 / MCP / 踩坑典籍）。
+{{NAME}} 的装备背包 —— 复古像素风的 Harness Inventory 展示站（插件 / 技能 / MCP / 能力指南）。
 
 ## 快速开始
 

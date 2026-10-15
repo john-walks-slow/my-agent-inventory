@@ -1,9 +1,9 @@
-# 我的 DSH 背包 (My DSH Inventory) AGENTS.md
+# 我的 Agent 背包 (My Harness Inventory) AGENTS.md
 
 ## 目标
 
-模仿《星露谷物语》(Stardew Valley) 背包（Inventory）系统，展示个人自研的 DSH 插件、全域 Agent 技能、MCP 服务器和踩坑经验典籍。
-坚持轻量级、零外部重库、纯手绘 16×16 原生像素艺术与 Web Audio 8-bit 声效。
+复古像素风格的 AI Agent Harness 个人装备与能力展示背包系统。
+坚持轻量级、零外部重库、纯 16×16 原生像素美学与 Web Audio 8-bit 声效。
 
 ## 地图
 
