@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { buildInventoryModel } from './config/loader';
 import type { ItemView, SectionView } from './config/loader';
+import { THEMES } from './config/schema';
+import type { ThemeId } from './config/schema';
 import { sectionLabel, levelTitle, getVocab } from './theme/vocab';
 import { InventoryGrid } from './components/InventoryGrid';
 import { DetailPanel } from './components/DetailPanel';
@@ -11,12 +13,19 @@ import { ItemIcon } from './components/ItemIcon';
 import { HarnessProfileModal } from './components/HarnessProfileModal';
 import { BrandAvatar } from './components/BrandAvatar';
 import { retroAudio } from './audio/retroAudio';
-import { Volume2, VolumeX } from 'lucide-react';
+import { Volume2, VolumeX, Palette } from 'lucide-react';
+
+const THEME_NAMES: Record<ThemeId, string> = {
+  stardew: '星露谷',
+  pokemon: '宝可梦',
+  jrpg: 'JRPG',
+  diablo: '暗黑',
+};
 
 export const App: React.FC = () => {
   const model = useMemo(() => buildInventoryModel(), []);
   const sections = model.sections;
-  const theme = model.config.site.theme;
+  const [theme, setTheme] = useState<ThemeId>(() => model.config.site.theme);
   const vocab = getVocab(theme);
 
   // hash 路由：#/icons → 图标图鉴
@@ -27,11 +36,11 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
-  // 主题挂钩：site.theme → <html data-theme>（P5b 主题表按此切换 token 集 + 音色）
+  // 主题挂钩：theme → <html data-theme>（P5b 主题表按此切换 token 集 + 音色）
   useEffect(() => {
-    document.documentElement.dataset.theme = model.config.site.theme;
-    retroAudio.setTheme(model.config.site.theme);
-  }, [model.config.site.theme]);
+    document.documentElement.dataset.theme = theme;
+    retroAudio.setTheme(theme);
+  }, [theme]);
 
   const [activeSectionId, setActiveSectionId] = useState<string>(sections[0]?.id ?? '');
   const [subCategory, setSubCategory] = useState('all');
@@ -56,6 +65,14 @@ export const App: React.FC = () => {
     if (!soundEnabled) {
       retroAudio.playCoin();
     }
+  };
+
+  const cycleTheme = () => {
+    const currentIndex = THEMES.indexOf(theme);
+    const nextTheme = THEMES[(currentIndex + 1) % THEMES.length];
+    setTheme(nextTheme);
+    retroAudio.setTheme(nextTheme);
+    retroAudio.playTab();
   };
 
   const handleCategoryChange = (secId: string) => {
@@ -124,7 +141,7 @@ export const App: React.FC = () => {
           </div>
         </button>
 
-        {/* HUD Widgets: Money, Sound */}
+        {/* HUD Widgets: Money, Theme Switcher, Sound */}
         <div className="flex items-center gap-2 text-xs font-bold shrink-0">
           {/* Gold Counter: Clean Retro Badge */}
           <div
@@ -138,6 +155,16 @@ export const App: React.FC = () => {
             <span className="text-ui-gold-soft text-xs leading-none">{vocab.currency.glyph}</span>
             <span className="hidden sm:inline font-mono text-xs leading-none text-ui-ink-muted">{goldCount.toLocaleString()}{vocab.currency.unit}</span>
           </div>
+
+          {/* Theme Switcher (Cycle through themes) */}
+          <button
+            onClick={cycleTheme}
+            className="sdv-action-btn !p-1"
+            title={`切换主题（当前: ${THEME_NAMES[theme]}，点击切换）`}
+            aria-label={`切换主题（当前: ${THEME_NAMES[theme]}）`}
+          >
+            <Palette size={14} />
+          </button>
 
           {/* Sound Toggle */}
           <button
