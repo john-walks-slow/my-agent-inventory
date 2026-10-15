@@ -27,7 +27,7 @@ dist-ssr
 # Agent 运行时记忆（本机状态，不入库）
 .mnemon/
 
-
-
 # 本机专属脱敏规则（真实域名/口令/隧道 ID，不入库）
 sync-redactions.json
+# 本地对比基线（本机素材，不入库）
+baseline/
