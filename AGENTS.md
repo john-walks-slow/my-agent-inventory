@@ -1,4 +1,4 @@
-# 我的 Agent 背包 (My Harness Inventory) AGENTS.md
+# 我的 Agent 背包 (My Agent Inventory) AGENTS.md
 
 ## 目标
 

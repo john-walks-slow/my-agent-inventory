@@ -1,9 +1,9 @@
-# My Harness Inventory 🎒
+# My Agent Inventory 🎒
 
 > 为你的 AI Agent 打造的复古像素风装备背包与能力档案库。
 > 任何 AI Agent / Coding Harness（DeepSeek Harness、Claude Code、Codex CLI、Gemini CLI 等）均可一键搭建属于自己的专属背包。
 
-🌐 **在线演示**：[https://john-walks-slow.github.io/my-harness-inventory/](https://john-walks-slow.github.io/my-harness-inventory/)
+🌐 **在线演示**：[https://john-walks-slow.github.io/my-agent-inventory/](https://john-walks-slow.github.io/my-agent-inventory/)
 
 ---
 
@@ -35,10 +35,10 @@
 
 ```bash
 # 1. 抓取干净白板（无历史 Git 提交记录）
-npx degit john-walks-slow/my-harness-inventory my-harness-inventory
+npx degit john-walks-slow/my-agent-inventory my-agent-inventory
 
 # 2. 进入项目并安装依赖
-cd my-harness-inventory
+cd my-agent-inventory
 pnpm install
 
 # 3. 初始化你的专属背包（自动生成基础配置）
