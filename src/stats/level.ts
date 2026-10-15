@@ -66,6 +66,12 @@ export function itemScore(gear: GearCounts | undefined): number {
   );
 }
 
+/** 全站统一 Token 口径：非缓存 input+output 与缓存命中一并累计。
+ *  档案面板、名片与等级公式必须共用此函数，否则同一份数据会算出两个等级。 */
+export function totalTokens(stats: { tokens?: number; cacheTokens?: number } | undefined): number {
+  return (stats?.tokens ?? 0) + (stats?.cacheTokens ?? 0);
+}
+
 export function computeExp(input: LevelInput): number {
   const sessions = input.sessions ?? 0;
   const tokens = input.tokens ?? 0;

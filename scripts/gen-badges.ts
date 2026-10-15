@@ -5,9 +5,8 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { parse as parseYaml } from 'yaml';
 import { siteConfigSchema } from '../src/config/schema';
 import { THEMES } from '../src/config/schema';
-import { computeLevel, daysSince } from '../src/stats/level';
-import { deriveJobSection } from '../src/stats/job';
-import { getVocab } from '../src/theme/vocab';
+import { computeLevel, daysSince, totalTokens } from '../src/stats/level';
+import { getVocab, levelTitle } from '../src/theme/vocab';
 import { buildBadge } from '../src/badge/build';
 import { BADGE_THEMES } from '../src/badge/themes';
 
@@ -26,9 +25,10 @@ for (const sec of config.sections) {
   gear[sec.id] = sec.items.length;
   items += sec.items.length;
 }
-const jobSection = deriveJobSection(gear, config.sections.map((s) => s.id));
+// 与 src/config/loader.ts 共用 totalTokens：名片上的等级/进度必须和档案面板一致
+const tokens = totalTokens(h.stats);
 const level = computeLevel(
-  { sessions: h.stats?.sessions, tokens: h.stats?.tokens, days: daysSince(h.since), gear },
+  { sessions: h.stats?.sessions, tokens, days: daysSince(h.since), gear },
   h.level
 );
 
@@ -59,14 +59,14 @@ for (const t of THEMES) {
       level: level.level,
       progress: level.progress,
       sessions: h.stats?.sessions,
-      tokens: h.stats?.tokens,
+      tokens,
       items,
       chipLabels: {
         sessions: vocab.expTerms.sessions,
         tokens: vocab.expTerms.tokens,
         items: vocab.expTerms.gear,
       },
-      job: jobSection ? vocab.jobs[jobSection] : undefined,
+      title: levelTitle(level.level, t),
       brandSvg: brand.svg,
     },
     spec,

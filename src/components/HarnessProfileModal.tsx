@@ -29,7 +29,7 @@ export interface HarnessProfileModalProps {
 
 /** Harness 档案弹窗：品牌头像 + 昵称 + Lv/EXP + 统计数据行 */
 export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profile, sectionOrder, theme, onClose }) => {
-  const { info, avatar, stats, level, gear, jobSection } = profile;
+  const { info, avatar, stats, level, gear } = profile;
   const vocab = getVocab(theme);
   const title = levelTitle(level.level, theme);
   const expPct = Math.round(level.progress * 100);
@@ -88,11 +88,6 @@ export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profil
 
         {/* 统计数据行 */}
         <div className="space-y-1.5 text-xs">
-          {jobSection && (
-            <Row label="职业:">
-              {vocab.jobs[jobSection] ?? sectionLabel({ id: jobSection }, theme)}
-            </Row>
-          )}
           {info.since && (
             <Row label={`${vocab.since}:`}>
               {info.since}

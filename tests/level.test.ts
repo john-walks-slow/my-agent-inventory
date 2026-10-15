@@ -8,6 +8,7 @@ import {
   computeLevel,
   daysSince,
   itemScore,
+  totalTokens,
   type LevelInput,
 } from '../src/stats/level';
 import { levelTitle } from '../src/theme/vocab';
@@ -85,6 +86,21 @@ test('单调性：任何维度增长不降级', () => {
   assert.ok(computeFormulaLevel(anchor({ sessions: 10, tokens: 2e5, days: 10, gear: { plugins: 1 } })) >= base);
   assert.ok(computeFormulaLevel(anchor({ sessions: 10, tokens: 1e5, days: 20, gear: { plugins: 1 } })) >= base);
   assert.ok(computeFormulaLevel(anchor({ sessions: 10, tokens: 1e5, days: 10, gear: { plugins: 2 } })) >= base);
+});
+
+test('totalTokens：非缓存与缓存命中一并累计（档案与名片必须同口径）', () => {
+  assert.equal(totalTokens({ tokens: 4_437_773_392, cacheTokens: 40_385_121_961 }), 44_822_895_353);
+  assert.equal(totalTokens({ tokens: 100 }), 100);
+  assert.equal(totalTokens({ cacheTokens: 100 }), 100);
+  assert.equal(totalTokens(undefined), 0);
+
+  // 回归：同一份 harness.stats 在 loader 与 gen-badges 两条路径上必须算出同一个等级
+  const stats = { tokens: 4_437_773_392, cacheTokens: 40_385_121_961 };
+  const gear = { plugins: 13, skills: 41, mcp: 3, tools: 24, tomes: 4 };
+  const withCache = computeLevel({ sessions: 487, tokens: totalTokens(stats), days: 49, gear });
+  const withoutCache = computeLevel({ sessions: 487, tokens: stats.tokens, days: 49, gear });
+  assert.equal(withCache.level, withoutCache.level, '两条口径不应落在不同等级');
+  assert.ok(Math.abs(withCache.progress - withoutCache.progress) > 0.2, '口径忽略缓存会让 EXP 条几乎归零');
 });
 
 test('itemScore：插件/MCP/tomes 权重高于 skills/tools', () => {

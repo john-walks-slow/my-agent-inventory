@@ -6,8 +6,7 @@ import { siteConfigSchema, type SiteConfig, type ItemConfig, type SectionConfig,
 import { KIT_ICONS } from '../iconkit/registry';
 import { resolveIconRef, type CustomIcon, type IconRef } from '../iconkit/resolve';
 import { resolveAvatar } from '../brands';
-import { computeLevel, daysSince, type LevelResult } from '../stats/level';
-import { deriveJobSection } from '../stats/job';
+import { computeLevel, daysSince, totalTokens, type LevelResult } from '../stats/level';
 
 export type { CustomIcon, IconRef } from '../iconkit/resolve';
 
@@ -67,8 +66,6 @@ export interface HarnessProfileView {
   /** sectionId → 物品数（装备计数） */
   gear: Record<string, number>;
   gearTotal: number;
-  /** 装备构成主导 section（职业自动判定，见 stats/job.ts；空背包为 null） */
-  jobSection: string | null;
   level: LevelResult;
 }
 
@@ -145,12 +142,12 @@ function buildProfile(config: SiteConfig, sections: SectionView[], customIcons: 
     gearTotal += sec.items.length;
   }
   const days = daysSince(h.since);
-  // 计算总 Token（含缓存命中）：如果提供了 cacheTokens，全量计入累计与等级经验
-  const effectiveTokens = (h.stats?.tokens ?? 0) + (h.stats?.cacheTokens ?? 0);
+  // 全站统一 Token 口径（含缓存命中），与 scripts/gen-badges.ts 共用 totalTokens
+  const tokens = totalTokens(h.stats);
   const level = computeLevel(
     {
       sessions: h.stats?.sessions,
-      tokens: effectiveTokens || h.stats?.tokens,
+      tokens,
       days,
       gear,
     },
@@ -162,13 +159,12 @@ function buildProfile(config: SiteConfig, sections: SectionView[], customIcons: 
     stats: {
       sessions: h.stats?.sessions,
       subagentSessions: h.stats?.subagentSessions,
-      tokens: effectiveTokens || h.stats?.tokens,
+      tokens,
       cacheTokens: h.stats?.cacheTokens,
       days,
     },
     gear,
     gearTotal,
-    jobSection: deriveJobSection(gear, sections.map((s) => s.id)),
     level,
   };
 }

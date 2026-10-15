@@ -27,7 +27,7 @@
 - `src/assets/fonts/`: 主题像素字体（DotGothic16/PKMN/Fusion Pixel/Cinzel/Pirata One，许可文本与清单见其 README.md）
 - `src/badge/`: 游戏名片纯函数与四主题规格（480×160 SVG；fonts/ 为 ASCII 拉丁字体子集，data-URI 内嵌进 badge）
 - `scripts/gen-badges.ts`: badge/favicon 生成器（predev/prebuild 钩子 → `public/badges/*.svg` + `badge.svg`（随 site.theme）+ `favicon.svg`（品牌头像））
-- `src/stats/level.ts`: 等级与经验纯函数（对数压缩公式，5 锚点校准，`tests/level.test.ts`）；`src/stats/job.ts`: 职业派生（主导 section → 主题化职业名，平票取配置顺序前，`tests/job.test.ts`）
+- `src/stats/level.ts`: 等级与经验纯函数（对数压缩公式，5 锚点校准，`tests/level.test.ts`）
 - `src/brands/`: 品牌 16×16 像素头像（simple-icons CC0 像素化 5 枚 + 手绘字符画 6 枚，`tools/gen-brands.mjs` 生成；generic 兜底）
 - `src/audio/retroAudio.ts`: 纯原生 Web Audio API 8-bit 声效合成器（木击、拾取、金币、翻书）
 - `src/index.css`: 星露谷调色板、像素微阴影系统与独立滚动条样式
