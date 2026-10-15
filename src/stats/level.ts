@@ -5,7 +5,7 @@
 //   level = clamp(1 + floor(exp / K), 1, 99)
 //
 // 会话与 Token 均做对数压缩（跨 4-5 个数量级且防刷）；
-// 系数由 4 个人设锚点 + DSH 真机第 5 锚拟合（tests/level.test.ts 固化预期）。
+// 系数由 4 个人设锚点 + DSH 真机第 5 锚拟合，再整体放宽（K 4.2 → 3.5，每级约省 17% exp）。
 // harness.level 可显式覆盖等级（彩蛋与公式解耦），EXP 条仍按公式 exp 计算进度。
 
 export interface GearCounts {
@@ -51,8 +51,8 @@ const B = 1.0;
 const C = 0.35;
 /** 装备分系数 */
 const D = 0.35;
-/** 每级所需 exp（线性阶梯） */
-const K = 4.2;
+/** 每级所需 exp（线性阶梯）；下调 = 曲线更宽裕 */
+const K = 3.5;
 
 /** 装备加权分：插件/MCP 是重装备，tomes 是经验结晶 */
 export function itemScore(gear: GearCounts | undefined): number {
