@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface BrandAvatarProps {
-  avatar: { kind: 'custom-svg' | 'custom-img' | 'brand' | 'generic'; raw?: string; url?: string; key: string };
+  avatar: { kind: 'custom-svg' | 'custom-img' | 'builtin' | 'pixel-text' | 'brand' | 'generic'; raw?: string; url?: string; key: string };
   size?: number;
   className?: string;
 }

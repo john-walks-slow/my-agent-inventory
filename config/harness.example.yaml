@@ -17,12 +17,11 @@ harness:
   name: My Agent Harness
   # 可选昵称：badge 与档案优先展示；不填则用 name
   nickname: ""
-  # 内置品牌头像 key（官方支持 7 种）：
-  # dsh / gemini / claude / codex / pi / terminal / opencode，缺省 generic
-  brand: generic
-  # 可选自定义头像（支持 SVG 和 PNG）：
-  # 运行 `pnpm gen:avatar <path/to/img> [name]` 放置至 config/icons/<名字>.(svg|png)
-  # customAvatar: my-avatar
+  # 头像 key：
+  # 1. 官方内置娘化头像（仅 4 种）：deepseek / gemini / claude / codex
+  # 2. 自定义头像：config/icons/<name>.(svg|png)（可用 `pnpm gen:avatar` 导入生成）
+  # 3. 缺省或未命中时：系统自动提取 harness 名字生成专属 16×16 点阵像素字头像
+  avatar: deepseek
   # 可选版本号 —— 注意加引号，否则 1.5 会被 YAML 解析成数字
   version: "1.0.0"
   # 首次安装日期（等级公式的"工龄"项）—— 记得加引号

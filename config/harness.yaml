@@ -5,7 +5,7 @@ site:
 harness:
   name: DeepSeek Harness
   nickname: 大肥鱼
-  brand: dsh
+  avatar: deepseek
   version: 1.5.0
   # 会话记录可追溯的最早日期（skills/harness-inventory/scripts/collect-stats.mjs firstSessionDate）
   since: '2026-08-27'

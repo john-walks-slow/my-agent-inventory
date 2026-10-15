@@ -155,7 +155,7 @@ function buildProfile(config: SiteConfig, sections: SectionView[], customIcons: 
   );
   return {
     info: h,
-    avatar: resolveAvatar(h.brand, h.customAvatar, customIcons),
+    avatar: resolveAvatar(h.avatar, h.nickname || h.name, customIcons),
     stats: {
       sessions: h.stats?.sessions,
       subagentSessions: h.stats?.subagentSessions,

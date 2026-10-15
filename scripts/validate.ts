@@ -40,24 +40,27 @@ if (!result.success) {
 const cfg = result.data;
 push('ok', `schema 校验通过（theme=${cfg.site.theme}, ${cfg.sections.length} 个 section）`);
 
-// 3. 图标可解析性
+// 3. 头像与图标可解析性
 const iconsDir = resolve(root, 'config/icons');
 const customIconNames = existsSync(iconsDir)
   ? new Set(readdirSync(iconsDir).map((f) => f.replace(/\.(svg|png|gif|webp|jpg|jpeg)$/, '')))
   : new Set<string>();
 
-const iconTargets: { where: string; name?: string }[] = [
-  { where: 'harness.customAvatar', name: cfg.harness.customAvatar },
-  ...cfg.sections.flatMap((sec) => [
-    { where: `sections[${sec.id}].icon`, name: sec.icon },
-    ...sec.items.map((it) => ({ where: `sections[${sec.id}].items[${it.id}].icon`, name: it.icon })),
-  ]),
-];
+const builtinAvatars = new Set(['deepseek', 'dsh', 'gemini', 'gemini-cli', 'claude', 'claude-code', 'codex']);
+if (cfg.harness.avatar) {
+  if (!customIconNames.has(cfg.harness.avatar) && !builtinAvatars.has(cfg.harness.avatar)) {
+    push('warn', `harness.avatar: 头像 "${cfg.harness.avatar}" 既不在 config/icons/ 也非内置娘化预设，将自动呈现专属 16×16 像素字头像兜底`);
+  }
+}
+
+const iconTargets: { where: string; name?: string }[] = cfg.sections.flatMap((sec) => [
+  { where: `sections[${sec.id}].icon`, name: sec.icon },
+  ...sec.items.map((it) => ({ where: `sections[${sec.id}].items[${it.id}].icon`, name: it.icon })),
+]);
 
 for (const t of iconTargets) {
   if (!t.name) continue;
   if (customIconNames.has(t.name) || isKitIcon(t.name)) continue;
-  if (t.name === cfg.harness.brand) continue;
   push('warn', `${t.where}: 图标 "${t.name}" 既不在 config/icons/ 也不在内置套件中，将渲染兜底图标`);
 }
 

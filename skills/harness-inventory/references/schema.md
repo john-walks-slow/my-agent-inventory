@@ -25,8 +25,7 @@ sections:  # 背包分区（Tab）数组，至少 1 个
 |---|---|---|---|
 | `name` | string | ✅ | harness 全名，如 `Claude Code` |
 | `nickname` | string |  | 昵称（HUD/档案弹窗展示） |
-| `brand` | string |  | 官方收录品牌头像 key：`dsh` `gemini` `claude` `codex` `pi` `terminal` `opencode`，缺省 `generic` |
-| `customAvatar` | string |  | 自定义头像（支持 SVG 和 PNG）：`config/icons/` 下文件名（不含扩展名），优先于 `brand`；可用 `pnpm gen:avatar` 快速生成/导入 |
+| `avatar` | string |  | 头像 key：优先匹配 `config/icons/`（支持 SVG 与 PNG），其次内置娘化头像（`deepseek` `gemini` `claude` `codex`）；缺省或未命中则自动生成 16×16 点阵像素字头像 |
 | `version` | string |  | harness 版本，如 `'1.5.0'`（加引号） |
 | `since` | string |  | 启用日期 `YYYY-MM-DD`，**必须加引号** |
 | `stats` | object |  | 见下 |

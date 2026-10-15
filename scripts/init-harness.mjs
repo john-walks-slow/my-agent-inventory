@@ -29,17 +29,14 @@ const siteTitle = flag('title') ?? (harnessName ? `${harnessName} 背包` : unde
 const theme = flag('theme');
 const yes = args.includes('--yes');
 
-// --name → 内置品牌头像 key（badge 头像与档案弹窗用；官方支持：gemini / dsh / claude / codex / pi / terminal / opencode）
-const BRANDS = [
-  [/deepseek\s*harness|^dsh$/i, 'dsh'],
+// --name → 内置娘化头像 key（官方预置：deepseek / claude / codex / gemini；其余缺省由系统自动生成像素字）
+const BUILTINS = [
+  [/deepseek\s*harness|^dsh$/i, 'deepseek'],
   [/claude/i, 'claude'],
   [/codex/i, 'codex'],
   [/gemini/i, 'gemini'],
-  [/opencode/i, 'opencode'],
-  [/^pi\b|raspberry\s*pi/i, 'pi'],
-  [/terminal|console|shell/i, 'terminal'],
 ];
-const brand = harnessName ? (BRANDS.find(([re]) => re.test(harnessName))?.[1] ?? 'generic') : 'generic';
+const avatar = harnessName ? (BUILTINS.find(([re]) => re.test(harnessName))?.[1] ?? '') : '';
 
 console.log('my-harness-inventory · 白板初始化');
 console.log(`  目录: ${ROOT}`);
@@ -99,9 +96,13 @@ let yaml = readFileSync(path.join(ROOT, 'config/harness.example.yaml'), 'utf8');
 if (harnessName) yaml = yaml.replace(/name: My Agent Harness/, `name: ${harnessName}`);
 if (siteTitle) yaml = yaml.replace(/title: 我的 Harness 背包/, `title: ${siteTitle}`);
 if (theme) yaml = yaml.replace(/theme: stardew/, `theme: ${theme}`);
-if (harnessName) yaml = yaml.replace(/brand: generic/, `brand: ${brand}`);
+if (harnessName) {
+  yaml = avatar
+    ? yaml.replace(/avatar: deepseek/, `avatar: ${avatar}`)
+    : yaml.replace(/avatar: deepseek/, '# avatar 未指定，系统自动生成专属像素字头像');
+}
 writeFileSync(path.join(ROOT, 'config/harness.yaml'), yaml);
-console.log(`✓ config/harness.yaml 已重置${harnessName ? `（name: ${harnessName}，brand: ${brand}）` : ''}`);
+console.log(`✓ config/harness.yaml 已重置${harnessName ? `（name: ${harnessName}，avatar: ${avatar || '像素字兜底'}）` : ''}`);
 
 // ---- 3. package.json name / index.html title ----
 const slug = (harnessName ?? 'my harness')

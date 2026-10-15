@@ -1,36 +1,57 @@
-// 品牌像素头像（src/brands/*.svg，16×16，tools/gen-brands.mjs 生成）。
-// 仅前端可导入；档案弹窗与 HUD 通过 brand key 或 customAvatar 解析。
+// 官方内置娘化头像（src/brands/*.svg，仅保留 deepseek / claude / codex / gemini 4 种）
+// 其余通过 config/icons/<avatar>.(svg|png) 自定义；缺省或未命中则自动生成 16×16 点阵像素字头像兜底。
 import type { CustomIcon } from '../iconkit/resolve';
+import { generatePixelTextSvg } from './pixelText';
 
-const modules = import.meta.glob('/src/brands/*.svg', {
-  query: '?raw',
-  import: 'default',
-  eager: true,
-}) as Record<string, string>;
+export { generatePixelTextSvg } from './pixelText';
 
-/** 内置品牌 key → SVG 源码（如 'dsh'、'claude-code'） */
-export const BRAND_AVATARS: Record<string, string> = {};
-for (const [path, raw] of Object.entries(modules)) {
-  BRAND_AVATARS[path.split('/').pop()!.replace(/\.svg$/, '')] = raw;
+const globFn = (import.meta as unknown as { glob?: (p: string, o: unknown) => Record<string, string> }).glob;
+const modules: Record<string, string> = globFn
+  ? globFn('/src/brands/*.svg', {
+      query: '?raw',
+      import: 'default',
+      eager: true,
+    })
+  : {};
+
+/** 内置娘化头像 key → SVG 源码（deepseek, claude, codex, gemini） */
+export const BUILTIN_AVATARS: Record<string, string> = {};
+for (const [p, raw] of Object.entries(modules)) {
+  BUILTIN_AVATARS[p.split('/').pop()!.replace(/\.svg$/, '')] = raw;
 }
 
-export const BRAND_KEYS = Object.keys(BRAND_AVATARS);
+export const BUILTIN_AVATAR_KEYS = ['deepseek', 'claude', 'codex', 'gemini'];
 
-export function isKnownBrand(key: string): boolean {
-  return key in BRAND_AVATARS;
+export function isBuiltinAvatar(key: string): boolean {
+  return key in BUILTIN_AVATARS;
 }
 
-/** 头像解析：customAvatar（config/icons/）优先 → 内置品牌 → generic 兜底 */
+export type AvatarResolution =
+  | { kind: 'custom-svg'; raw: string; key: string }
+  | { kind: 'custom-img'; url: string; key: string }
+  | { kind: 'builtin'; raw: string; key: string }
+  | { kind: 'pixel-text'; raw: string; key: string };
+
+/**
+ * 头像三级解析链：
+ * 1. config/icons/<avatar>.(svg|png) 用户自定义优先
+ * 2. 内置 4 大娘化预设头像（deepseek / claude / codex / gemini）
+ * 3. 兜底：根据 harness 名字动态生成 16×16 纯点阵像素字头像
+ */
 export function resolveAvatar(
-  brand: string | undefined,
-  customAvatar: string | undefined,
+  avatar: string | undefined,
+  harnessName: string,
   customIcons: Record<string, CustomIcon>
-): { kind: 'custom-svg' | 'custom-img' | 'brand' | 'generic'; raw?: string; url?: string; key: string } {
-  if (customAvatar && customIcons[customAvatar]) {
-    const icon = customIcons[customAvatar];
-    if (icon.kind === 'svg') return { kind: 'custom-svg', raw: icon.raw, key: customAvatar };
-    return { kind: 'custom-img', url: icon.url, key: customAvatar };
+): AvatarResolution {
+  if (avatar && customIcons[avatar]) {
+    const icon = customIcons[avatar];
+    if (icon.kind === 'svg') return { kind: 'custom-svg', raw: icon.raw, key: avatar };
+    return { kind: 'custom-img', url: icon.url, key: avatar };
   }
-  if (brand && BRAND_AVATARS[brand]) return { kind: 'brand', raw: BRAND_AVATARS[brand], key: brand };
-  return { kind: 'generic', raw: BRAND_AVATARS['generic'], key: 'generic' };
+  if (avatar && BUILTIN_AVATARS[avatar]) {
+    return { kind: 'builtin', raw: BUILTIN_AVATARS[avatar], key: avatar };
+  }
+  // 兜底：自动生成复古 16×16 点阵像素字
+  const pixelTextSvg = generatePixelTextSvg(harnessName || 'AI');
+  return { kind: 'pixel-text', raw: pixelTextSvg, key: 'pixel-text' };
 }

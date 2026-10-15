@@ -9,6 +9,7 @@ import { computeLevel, daysSince, totalTokens } from '../src/stats/level';
 import { getVocab, levelTitle } from '../src/theme/vocab';
 import { buildBadge } from '../src/badge/build';
 import { BADGE_THEMES } from '../src/badge/themes';
+import { generatePixelTextSvg } from '../src/brands/pixelText';
 
 const ROOT = new URL('..', import.meta.url).pathname;
 
@@ -32,26 +33,32 @@ const level = computeLevel(
   h.level
 );
 
-// ---- 头像解析（customAvatar → brand → generic） ----
-function resolveBrandSvg(): { svg: string; key: string } {
-  if (h.customAvatar) {
-    const svgPath = ROOT + `config/icons/${h.customAvatar}.svg`;
+// ---- 头像解析（avatar: 自定义图标 → 内置娘化 → 像素字兜底） ----
+function resolveAvatarSvg(): { svg: string; key: string } {
+  const target = h.avatar;
+  if (target) {
+    const svgPath = ROOT + `config/icons/${target}.svg`;
     if (existsSync(svgPath)) {
-      return { svg: read(`config/icons/${h.customAvatar}.svg`), key: h.customAvatar };
+      return { svg: read(`config/icons/${target}.svg`), key: target };
     }
     for (const ext of ['png', 'webp', 'jpg', 'jpeg', 'gif']) {
-      const imgPath = ROOT + `config/icons/${h.customAvatar}.${ext}`;
+      const imgPath = ROOT + `config/icons/${target}.${ext}`;
       if (existsSync(imgPath)) {
         const mime = ext === 'jpg' || ext === 'jpeg' ? 'image/jpeg' : `image/${ext}`;
         const base64 = readFileSync(imgPath).toString('base64');
-        return { svg: `data:${mime};base64,${base64}`, key: h.customAvatar };
+        return { svg: `data:${mime};base64,${base64}`, key: target };
       }
     }
+    const builtinPath = ROOT + `src/brands/${target}.svg`;
+    if (existsSync(builtinPath)) {
+      return { svg: read(`src/brands/${target}.svg`), key: target };
+    }
   }
-  const brandKey = existsSync(ROOT + `src/brands/${h.brand ?? ''}.svg`) ? (h.brand as string) : 'generic';
-  return { svg: read(`src/brands/${brandKey}.svg`), key: brandKey };
+  // 缺省或未命中时，自动生成 16×16 点阵像素字头像兜底
+  const pixelTextSvg = generatePixelTextSvg(h.nickname || h.name);
+  return { svg: pixelTextSvg, key: 'pixel-text' };
 }
-const brand = resolveBrandSvg();
+const avatar = resolveAvatarSvg();
 
 mkdirSync(ROOT + 'public/badges', { recursive: true });
 const activeTheme = config.site.theme;
@@ -78,7 +85,7 @@ for (const t of THEMES) {
         items: vocab.expTerms.gear,
       },
       title: levelTitle(level.level, t),
-      brandSvg: brand.svg,
+      brandSvg: avatar.svg,
     },
     spec,
     fontDataUri
@@ -90,13 +97,13 @@ for (const t of THEMES) {
 }
 
 // favicon = 品牌头像本体（16×16 像素 SVG，浏览器原生支持）
-const faviconContent = brand.svg.startsWith('data:image/')
+const faviconContent = avatar.svg.startsWith('data:image/')
   ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
-  <image width="16" height="16" href="${brand.svg}" style="image-rendering:pixelated;image-rendering:crisp-edges;" preserveAspectRatio="xMidYMid meet"/>
+  <image width="16" height="16" href="${avatar.svg}" style="image-rendering:pixelated;image-rendering:crisp-edges;" preserveAspectRatio="xMidYMid meet"/>
 </svg>\n`
-  : brand.svg;
+  : avatar.svg;
 writeFileSync(ROOT + 'public/favicon.svg', faviconContent);
-console.log(`badge: favicon.svg (${brand.key})`);
+console.log(`badge: favicon.svg (${avatar.key})`);
 
 // index.html <title> 与配置同步（顶栏已不显示站点标题，浏览器标签页是标题唯一出口）
 const indexPath = ROOT + 'index.html';

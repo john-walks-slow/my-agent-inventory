@@ -28,7 +28,7 @@
 - `src/badge/`: 游戏名片纯函数与四主题规格（480×160 SVG；fonts/ 为 ASCII 拉丁字体子集，data-URI 内嵌进 badge）
 - `scripts/gen-badges.ts`: badge/favicon 生成器（predev/prebuild 钩子 → `public/badges/*.svg` + `badge.svg`（随 site.theme）+ `favicon.svg`（品牌头像））
 - `src/stats/level.ts`: 等级与经验纯函数（对数压缩公式，5 锚点校准，`tests/level.test.ts`）
-- `src/brands/`: 官方品牌 16×16 像素头像（收敛支持 gemini/dsh/claude/codex/pi/terminal/opencode + generic 兜底；其余 harness 引导用户走 customAvatar 自定义，支持 SVG 与 PNG，配套 `pnpm gen:avatar`）
+- `src/brands/`: 官方内置娘化 16×16 像素头像（仅保留 deepseek/gemini/claude/codex 4 种）；字段统一为 `avatar`（支持在 `config/icons/` 放自定义 SVG/PNG，配套 `pnpm gen:avatar`）；缺省或未命中时自动生成专属 16×16 点阵像素字头像兜底，彻底废除 brand/customAvatar 双字段与 generic 木牌
 - `src/audio/retroAudio.ts`: 纯原生 Web Audio API 8-bit 声效合成器（木击、拾取、金币、翻书）
 - `src/index.css`: 星露谷调色板、像素微阴影系统与独立滚动条样式
 - `src/App.tsx`: 顶层 HUD 框架（左上角色 status：头像/昵称/Lv/称号/迷你 EXP 条，点击开档案；金币/音效/Tab 导航（由 sections 驱动）与 hash 路由）

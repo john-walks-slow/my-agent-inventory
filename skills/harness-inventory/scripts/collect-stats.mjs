@@ -129,7 +129,7 @@ async function collectDsh() {
     })
   );
   return {
-    id: 'dsh', name: 'DeepSeek Harness', brand: 'dsh',
+    id: 'dsh', name: 'DeepSeek Harness', avatar: 'deepseek',
     since: acc.first === Infinity ? await birthDate(path.join(HOME, '.dsh')) : new Date(acc.first).toISOString().slice(0, 10),
     sessions: acc.root, subagentSessions: acc.sub,
     tokens: acc.input + acc.output, cacheTokens: acc.cacheRead,
@@ -172,7 +172,7 @@ async function collectClaudeCode() {
   if (scan === null) return null;
   const dir = claudeDir();
   const res = {
-    id: 'claude-code', name: 'Claude Code', brand: 'claude-code',
+    id: 'claude-code', name: 'Claude Code', avatar: 'claude',
     since: undefined, sessions: scan.files.length, subagentSessions: scan.subagents,
     tokens: 0, cacheTokens: 0, note: '',
   };
@@ -223,7 +223,7 @@ async function collectCodex() {
   if (!existsSync(base)) return null;
   const files = await walkJsonl(path.join(base, 'sessions'));
   const res = {
-    id: 'codex', name: 'OpenAI Codex CLI', brand: 'codex',
+    id: 'codex', name: 'OpenAI Codex CLI', avatar: 'codex',
     since: undefined, sessions: files.length, subagentSessions: 0, tokens: 0, cacheTokens: 0,
     note: 'rollout 内 token_usage 为会话内累积值，每会话取末值再求和',
   };
@@ -350,7 +350,7 @@ if (jsonOut) {
 } else {
   console.log(`# collect-stats 输出（${r.name}，采集于 ${new Date().toISOString().slice(0, 10)}）`);
   console.log(`# ${r.note}`);
-  console.log(`harness:\n  brand: ${r.brand}`);
+  console.log(`harness:\n  avatar: ${r.avatar}`);
   if (r.since) console.log(`  since: "${r.since}"`);
   console.log(`  stats:\n    sessions: ${y(r.sessions)}`);
   if (r.subagentSessions) console.log(`    subagentSessions: ${y(r.subagentSessions)}`);

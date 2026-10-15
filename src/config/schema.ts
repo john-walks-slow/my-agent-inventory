@@ -30,10 +30,8 @@ export const harnessStatsSchema = z.strictObject({
 export const harnessSchema = z.strictObject({
   name: z.string().min(1),
   nickname: z.string().optional(),
-  /** 内置品牌头像 key，见 src/brands；缺省 generic */
-  brand: z.string().optional(),
-  /** 自定义头像（config/icons/ 下的文件名，不含扩展名） */
-  customAvatar: z.string().optional(),
+  /** 头像 key：优先匹配 config/icons/<avatar>.(svg|png)，其次内置娘化头像（dsh/claude/codex/gemini），缺省自动生成 16×16 像素字头像 */
+  avatar: z.string().optional(),
   version: z.string().optional(),
   /** 安装日期 YYYY-MM-DD（建议加引号） */
   since: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'since 需为 YYYY-MM-DD（记得加引号）').optional(),
