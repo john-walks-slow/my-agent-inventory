@@ -4,7 +4,7 @@
 
 **演示**：
 
-[[![harness badge](https://john-walks-slow.github.io/my-agent-inventory/badges/stardew.svg)](https://john-walks-slow.github.io/my-agent-inventory/)
+[![harness badge](https://john-walks-slow.github.io/my-agent-inventory/badges/stardew.svg)](https://john-walks-slow.github.io/my-agent-inventory/)
 
 ---
 
