@@ -27,6 +27,8 @@ export interface ThemeVocab {
     repo: string;
     copy: string;
     copied: string;
+    privateBadge: string;
+    privateNotice: string;
   };
   /** HUD 与空态文案；{n}/{rows}/{cells} 为占位符，用 fmt() 插值 */
   hud: {
@@ -104,6 +106,8 @@ const stardew: ThemeVocab = {
     repo: '仓库',
     copy: '复制命令',
     copied: '已复制！',
+    privateBadge: '🔒 私密加锁',
+    privateNotice: '此条目已加锁保护，正文、安装指令与配置已隐藏，仅开放公开摘要。',
   },
   hud: {
     profile: '档案',
@@ -175,6 +179,8 @@ const pokemon: ThemeVocab = {
     repo: '交换所',
     copy: '抄录',
     copied: '抄好了！',
+    privateBadge: '🔒 保密档案',
+    privateNotice: '该道具已加锁封存，详细内容已隐藏，仅开放基础图鉴摘要。',
   },
   hud: {
     profile: '训练卡',
@@ -246,6 +252,8 @@ const jrpg: ThemeVocab = {
     repo: '武器屋',
     copy: '誊写',
     copied: '誊好了！',
+    privateBadge: '🔒 封印密卷',
+    privateNotice: '该装备已被封印加锁，禁阅正文与设定，仅供查阅外部摘要。',
   },
   hud: {
     profile: '冒险手账',
@@ -317,6 +325,8 @@ const diablo: ThemeVocab = {
     repo: '赌商',
     copy: '拓印',
     copied: '拓好了！',
+    privateBadge: '🔒 禁忌封锁',
+    privateNotice: '该战利品已被地狱封锁，真容与配置无法显现，仅余残卷摘要。',
   },
   hud: {
     profile: '石碑',

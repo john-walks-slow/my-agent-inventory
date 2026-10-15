@@ -15,8 +15,20 @@
 
 ## 提交规约
 
-- 提交按 hunk 精确拆分，只带自己的改动，严禁 `git add -A` 一锅端。
-- 消息模板：`type(scope): subject`，type 取 feat / fix / docs / style / refactor / test / chore，subject 以动词开头；body 回答"为什么改、怎么解决、有何副作用"。
+- 提交按 hunk 精确拆分（使用 `commit-own-changes` 规范与 `git-hunk`），只带自己的改动，严禁 `git add -A` 一锅端。
+- 提交前获取仓库操作锁（`git-lock.sh acquire`），完成后及时释放。
+- 提交消息模板：
+```
+# head: <type>(<scope>): <subject>
+# - type: feat, fix, docs, style, refactor, test, chore
+# - scope: can be empty
+# - subject: start with verb, 50-character line
+#
+# body: 72-character wrapped.
+# * Why was this change necessary?
+# * How does it address the problem?
+# * Are there any side effects?
+```
 
 ## 文档规范（极简策略）
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { ItemView } from '../config/loader';
-import { ItemIcon, PixelQualityBadge } from './ItemIcon';
+import { ItemIcon, PixelQualityBadge, PixelLockBadge } from './ItemIcon';
 import { retroAudio } from '../audio/retroAudio';
 import { getVocab, fmt } from '../theme/vocab';
 import { Search } from 'lucide-react';
@@ -142,6 +142,7 @@ export const InventoryGrid: React.FC<InventoryGridProps> = ({
                     <div className="w-full h-full flex items-center justify-center p-1">
                       <ItemIcon iconRef={item.iconRef} size={28} className="max-w-full max-h-full" />
                       <PixelQualityBadge rarity={item.rarity} />
+                      {item.private && <PixelLockBadge />}
                       {item.stack && item.stack > 1 && (
                         <span className="absolute bottom-1 right-1 text-[9px] font-bold text-ui-ink font-mono bg-ui-cell-active/90 px-0.5 leading-none rounded-none border border-ui-wood-dark/50 pointer-events-none">
                           {item.stack}

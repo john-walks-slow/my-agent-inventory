@@ -95,3 +95,21 @@ export const PixelQualityBadge: React.FC<{ rarity: Rarity }> = ({ rarity }) => {
     </svg>
   );
 };
+
+// 私密加锁角标（10x10 像素锁）
+export const PixelLockBadge: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <svg
+    viewBox="0 0 8 8"
+    width={11}
+    height={11}
+    className={`absolute top-0.5 right-0.5 pointer-events-none drop-shadow-[0_1px_0_rgba(0,0,0,0.8)] ${className}`}
+    style={{ imageRendering: 'pixelated' }}
+  >
+    <rect x="2" y="0" width="4" height="4" fill="var(--color-ui-wood-dark)" />
+    <rect x="3" y="1" width="2" height="3" fill="var(--color-ui-panel-light)" />
+    <rect x="1" y="3" width="6" height="5" fill="#eab308" />
+    <rect x="1" y="3" width="6" height="1" fill="#ca8a04" />
+    <rect x="3.5" y="5" width="1" height="2" fill="#713f12" />
+  </svg>
+);
+

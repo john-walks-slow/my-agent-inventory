@@ -23,15 +23,17 @@
 
 | 目录 | 用途 |
 | --- | --- |
-| `~/.dsh/` | Harness 配置、预设与全局指令（AGENTS.md） |
-| `~/agents/<id>/` | 持久个体 Agent 的工作与记忆目录 |
-| `~/projects/` | 一切开发与工程项目 |
+| `~/.dsh/` | Harness 配置、预设与全局指令（`AGENTS.md`、`profiles/`、`.agent-presets/`） |
+| `~/agents/<id>/` | 持久个体 Agent 的工作与记忆目录（如 `agents/luna/`） |
+| `~/projects/` | 所有开发与工程项目目录（含 DSH 插件开发，当前唯一开发目录） |
 | `~/.agents/skills/` | 全局 Agent Skills 唯一目录 |
-| `~/documents/`、`~/docs/` | 文档与调研输出 |
+| `~/documents/` 与 `~/docs/` | 文档、知识库与调研输出 |
+| `~/downloads/` | 下载文件与临时抓取缓存 |
+| `~/plugins/` | 非 DSH 遗留目录（自有 DSH 插件已全部迁至 `~/projects/`） |
 
 ## 凭据管理
 
-所有外部 API 凭据统一收在一个本地密码本（CLI + Skill 双入口）。Agent 需要任何 Key 时**自助查询密码本，不打扰用户**；查不到才发起确认。
+所有外部 API 凭据统一收在全局密码本（`~/.config/api-vault/vault.json`，配套 CLI 为 `api-vault`，全局 Skill 为 `api-vault`）。Agent 需要任何 Key 时**自助查询密码本，无需向用户询问**；查不到缺失时才发起确认。
 
 ## 运维心法
 

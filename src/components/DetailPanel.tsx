@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react';
 import type { ItemView } from '../config/loader';
-import { ItemIcon, PixelQualityBadge } from './ItemIcon';
+import { ItemIcon, PixelQualityBadge, PixelLockBadge } from './ItemIcon';
 import { retroAudio } from '../audio/retroAudio';
 import { getVocab } from '../theme/vocab';
 import { marked } from 'marked';
-import { ExternalLink, Copy, Check, Terminal, Layers, Braces } from 'lucide-react';
+import { ExternalLink, Copy, Check, Terminal, Layers, Braces, Lock } from 'lucide-react';
 
 interface DetailPanelProps {
   item: ItemView | null;
@@ -102,6 +102,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item, theme }) => {
         <div className="relative w-12 h-12 sdv-cell flex items-center justify-center shrink-0">
           <ItemIcon iconRef={item.iconRef} size={32} />
           <PixelQualityBadge rarity={item.rarity} />
+          {item.private && <PixelLockBadge />}
         </div>
 
         <div className="flex-1 min-w-0">
@@ -109,6 +110,11 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item, theme }) => {
             <h2 className="text-base font-bold tracking-wide text-ui-ink leading-tight">
               {item.name}
             </h2>
+            {item.private && (
+              <span className="px-1 py-0.2 text-[9px] bg-ui-wood-dark text-white font-mono rounded-none border border-ui-wood-mid flex items-center gap-0.5">
+                <Lock size={9} /> {vocab.detail.privateBadge}
+              </span>
+            )}
             {item.version && (
               <span className="px-1 py-0.2 text-[9px] bg-ui-accent text-white font-mono rounded-none border border-ui-wood-dark">
                 v{item.version}
@@ -137,6 +143,17 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item, theme }) => {
           {item.description}
         </p>
 
+        {/* Private Item Locked Notice */}
+        {item.private && (
+          <div className="p-3 bg-ui-panel border border-ui-wood-dark flex items-start gap-2 shadow-inner">
+            <Lock size={16} className="text-ui-ink-amber shrink-0 mt-0.5" />
+            <div className="text-xs text-ui-ink-muted leading-relaxed">
+              <p className="font-bold text-ui-ink mb-0.5">{vocab.detail.privateBadge}</p>
+              <p>{vocab.detail.privateNotice}</p>
+            </div>
+          </div>
+        )}
+
         {/* Core Highlights */}
         {item.highlights && item.highlights.length > 0 && (
           <div>
@@ -157,8 +174,8 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item, theme }) => {
           </div>
         )}
 
-        {/* 正文 Markdown：无小节标题，直接作为主体流式渲染 */}
-        {renderedContent && (
+        {/* 正文 Markdown：私密加锁条目不展示正文 */}
+        {!item.private && renderedContent && (
           <div
             className="text-xs leading-relaxed text-ui-ink bg-ui-highlight p-2 border border-ui-accent/60 shadow-xs select-text
               [&_h1]:text-sm [&_h1]:font-bold [&_h1]:text-ui-frame-border [&_h1]:border-b [&_h1]:border-ui-wood-mid/50 [&_h1]:pb-1 [&_h1]:mt-2
@@ -179,7 +196,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item, theme }) => {
         )}
 
         {/* Installation Command */}
-        {item.install && (
+        {!item.private && item.install && (
           <div>
             <div className="flex items-center justify-between mb-1">
               <h4 className="text-[11px] font-bold text-ui-ink-muted flex items-center gap-1">
@@ -194,7 +211,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item, theme }) => {
         )}
 
         {/* Configuration Example */}
-        {item.config && (
+        {!item.private && item.config && (
           <div>
             <div className="flex items-center justify-between mb-1">
               <h4 className="text-[11px] font-bold text-ui-ink-muted">{vocab.detail.config}</h4>
@@ -207,7 +224,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ item, theme }) => {
         )}
 
         {/* Tool Input Schema */}
-        {item.schema && (
+        {!item.private && item.schema && (
           <div>
             <div className="flex items-center justify-between mb-1">
               <h4 className="text-[11px] font-bold text-ui-ink-muted flex items-center gap-1">

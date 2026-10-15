@@ -94,6 +94,7 @@ sections:
         description: 突破浏览器同源与 loopback 限制，使公网命名隧道等远程环境享有完整宿主管理权限。
         version: 0.1.0
         author: John Ren
+        private: true
         repo: https://github.com/johnren/dsh-web-transport-trust
         install: cd ~/plugins/dsh-web-transport-trust && pnpm link --global
         highlights:
@@ -370,6 +371,7 @@ sections:
         category: ops
         description: 红米 K30S Ultra 容器启动链、canonical 挂载树、服务规范及 /dev /proc /sys 铁律。
         author: John Ren
+        private: true
         highlights:
           - 真机实测踩坑
           - 避免系统级崩溃
@@ -1375,7 +1377,8 @@ sections:
         tags:
           - AGENTS.md
           - Rules
-        description: 宿主硬件、容器形态与服务治理的全局约定（脱敏精编）。
+        description: 宿主硬件、容器形态、服务治理与系统架构的全局约定。
+        private: true
       - id: coding-style
         name: 编码心法
         title: 全局指令 · 输出风格与核心编码实践
@@ -1385,7 +1388,7 @@ sections:
         tags:
           - AGENTS.md
           - Rules
-        description: 简洁执行、Research First 与童子军法则。
+        description: 简洁执行、Research First、童子军法则与防止过拟合。
       - id: collab-docs
         name: 协作与文档规约
         title: 全局指令 · 多 Agent 协作与文档规范
@@ -1395,7 +1398,7 @@ sections:
         tags:
           - AGENTS.md
           - Rules
-        description: 多 Agent 并行的边界纪律与极简文档策略。
+        description: 多 Agent 并行的边界纪律、hunk 精确提交与极简文档策略。
       - id: security-ironlaw
         name: 安全铁律
         title: 全局指令 · 敏感信息与安全防护规范
@@ -1406,3 +1409,4 @@ sections:
           - AGENTS.md
           - Rules
         description: 凭据隔离、文档脱敏与测试 Mock 的红线。
+        private: true

@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import type { SectionView, ItemView } from '../config/loader';
-import { ItemIcon, PixelQualityBadge } from './ItemIcon';
+import { ItemIcon, PixelQualityBadge, PixelLockBadge } from './ItemIcon';
 import { retroAudio } from '../audio/retroAudio';
 import { getVocab } from '../theme/vocab';
 import { marked } from 'marked';
-import { BookOpen, Bookmark } from 'lucide-react';
+import { BookOpen, Bookmark, Lock } from 'lucide-react';
 
 interface BooksViewProps {
   section: SectionView;
@@ -94,6 +94,7 @@ export const BooksView: React.FC<BooksViewProps> = ({
                 <div className="relative w-8 h-8 sdv-cell flex items-center justify-center shrink-0 mt-0.5">
                   <ItemIcon iconRef={book.iconRef} size={22} />
                   <PixelQualityBadge rarity={book.rarity} />
+                  {book.private && <PixelLockBadge />}
                 </div>
 
                 <div className="flex-1 min-w-0">
@@ -139,22 +140,38 @@ export const BooksView: React.FC<BooksViewProps> = ({
             </div>
 
             {/* Independent Scrollable Markdown Body */}
-            <div
-              className="custom-scroll flex-1 overflow-y-auto pr-2 max-w-none text-xs sm:text-sm leading-relaxed space-y-2 select-text
-                [&_h1]:text-lg [&_h1]:font-bold [&_h1]:text-ui-frame-border [&_h1]:border-b [&_h1]:border-ui-wood-mid/50 [&_h1]:pb-1.5
-                [&_h2]:text-sm [&_h2]:font-bold [&_h2]:text-ui-wood-dark [&_h2]:mt-3
-                [&_h3]:text-xs [&_h3]:font-bold [&_h3]:text-ui-ink-amber
-                [&_p]:leading-relaxed [&_p]:text-ui-ink
-                [&_ul]:list-disc [&_ul]:pl-4 [&_ol]:list-decimal [&_ol]:pl-4
-                [&_pre]:bg-ui-bg-deep [&_pre]:text-ui-ink-gold [&_pre]:p-2.5 [&_pre]:border [&_pre]:border-ui-wood-dark [&_pre]:overflow-x-auto
-                [&_code]:font-mono [&_code]:text-xs
-                [&_blockquote]:border-l-3 [&_blockquote]:border-ui-wood-mid [&_blockquote]:pl-2.5 [&_blockquote]:italic [&_blockquote]:text-ui-wood-dark
-                [&_table]:w-full [&_table]:text-xs
-                [&_th]:bg-ui-panel [&_th]:border [&_th]:border-ui-wood-mid/50 [&_th]:px-1.5 [&_th]:py-0.5
-                [&_td]:border [&_td]:border-ui-wood-mid/50 [&_td]:px-1.5 [&_td]:py-0.5
-              "
-              dangerouslySetInnerHTML={{ __html: renderedContent }}
-            />
+            {currentBook.private ? (
+              <div className="flex-1 flex flex-col items-center justify-center p-6 text-center text-ui-ink-muted">
+                <div className="w-12 h-12 rounded-full border-2 border-ui-wood-mid flex items-center justify-center mb-3 bg-ui-panel-warm shadow-inner">
+                  <Lock size={22} className="text-ui-ink-amber" />
+                </div>
+                <h4 className="text-sm font-bold text-ui-ink mb-1">{vocab.detail.privateBadge}</h4>
+                <p className="text-xs text-ui-ink-body max-w-sm mb-3">{vocab.detail.privateNotice}</p>
+                {currentBook.description && (
+                  <div className="text-xs bg-ui-highlight-warm/80 p-3 border border-ui-wood-mid/50 text-ui-ink max-w-md text-left shadow-xs">
+                    <span className="font-bold text-ui-ink-amber block mb-1">【公开摘要】</span>
+                    {currentBook.description}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div
+                className="custom-scroll flex-1 overflow-y-auto pr-2 max-w-none text-xs sm:text-sm leading-relaxed space-y-2 select-text
+                  [&_h1]:text-lg [&_h1]:font-bold [&_h1]:text-ui-frame-border [&_h1]:border-b [&_h1]:border-ui-wood-mid/50 [&_h1]:pb-1.5
+                  [&_h2]:text-sm [&_h2]:font-bold [&_h2]:text-ui-wood-dark [&_h2]:mt-3
+                  [&_h3]:text-xs [&_h3]:font-bold [&_h3]:text-ui-ink-amber
+                  [&_p]:leading-relaxed [&_p]:text-ui-ink
+                  [&_ul]:list-disc [&_ul]:pl-4 [&_ol]:list-decimal [&_ol]:pl-4
+                  [&_pre]:bg-ui-bg-deep [&_pre]:text-ui-ink-gold [&_pre]:p-2.5 [&_pre]:border [&_pre]:border-ui-wood-dark [&_pre]:overflow-x-auto
+                  [&_code]:font-mono [&_code]:text-xs
+                  [&_blockquote]:border-l-3 [&_blockquote]:border-ui-wood-mid [&_blockquote]:pl-2.5 [&_blockquote]:italic [&_blockquote]:text-ui-wood-dark
+                  [&_table]:w-full [&_table]:text-xs
+                  [&_th]:bg-ui-panel [&_th]:border [&_th]:border-ui-wood-mid/50 [&_th]:px-1.5 [&_th]:py-0.5
+                  [&_td]:border [&_td]:border-ui-wood-mid/50 [&_td]:px-1.5 [&_td]:py-0.5
+                "
+                dangerouslySetInnerHTML={{ __html: renderedContent }}
+              />
+            )}
 
             {/* Footer Tags */}
             <div className="mt-2 pt-2 border-t border-ui-wood-mid/30 flex flex-wrap items-center justify-between gap-1 shrink-0 text-xs">

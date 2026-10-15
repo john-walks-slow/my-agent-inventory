@@ -66,6 +66,8 @@ export const itemSchema = z.strictObject({
   /** 人类真实备注（默认不出现；主题化命名） */
   note: z.string().optional(),
   added: z.string().optional(),
+  /** 是否为私密/加锁条目（加锁时不展示正文/配置/安装等细节，仅展示摘要 summary/description） */
+  private: z.boolean().optional(),
 });
 
 export const categoryDefSchema = z.strictObject({
