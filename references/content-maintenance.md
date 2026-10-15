@@ -39,7 +39,7 @@ pnpm sync:content -- --write # 落盘
 ```
 
 源：`~/.agents/skills/<name>/SKILL.md`、`~/projects/<plugin>/README.md`、`~/.dsh/AGENTS.md`（按小节切分入 tomes）。
-脚本内置脱敏表（家庭目录绝对路径、公网隧道域名与 ID、内网 IP、明文口令 → 占位符），新增敏感形态时在 `scripts/sync-content.mjs` 的 `REDACTIONS` 里补规则，改完跑 `pnpm privacy:scan` 确认零命中。
+脱敏规则分两层：**通用形态**（内网段、home 绝对路径、UUID）写死在 `scripts/sync-content.mjs`，可安全入库；**本机专属值**（真实域名、口令、隧道 ID 前缀）放仓库根目录 `sync-redactions.json`（已 gitignore，格式见 `sync-redactions.example.json`）。新增敏感形态时按这个分界决定放哪层——放进库文件就等于公开。改完跑 `pnpm privacy:scan` 确认零命中。
 隐私条目的**加锁**是 UI 层开关（`private: true`），不等于从仓库移除内容——真要保密必须靠脱敏或不入库。
 
 ## 3b. 工具 inputSchema（tools section 专属）
