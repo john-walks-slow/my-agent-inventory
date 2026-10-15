@@ -10,7 +10,7 @@
 
 ## 🤖 制作你的背包
 
-将以下提示词复制给你的 Agent：
+将以下提示词复制给你的 Agent 即可完成全部配置：
 
 ```
 请使用 npx degit john-walks-slow/my-agent-inventory my-agent-inventory 获取模板并进入目录。
