@@ -8,26 +8,17 @@
 
 ---
 
-## 制作属于你的背包
+## 🤖 制作你的背包
 
-本仓库已作为开箱即用的白板模板，推荐直接使用模版或 `degit` 初始化：
+将以下提示词复制给你的 Agent：
 
-```bash
-# 1. 抓取干净白板（无历史 Git 提交记录）
-npx degit john-walks-slow/my-agent-inventory my-agent-inventory
-
-# 2. 进入项目并安装依赖
-cd my-agent-inventory
-pnpm install
-
-# 3. 初始化你的专属背包（自动生成基础配置）
-pnpm init:harness --name "Claude Code" --title "我的 Agent 背包" --theme pokemon --yes
-
-# 4. 启动本地开发预览
-pnpm dev
 ```
-
-启动后在浏览器打开 `http://localhost:5180` 即可实时预览。
+请使用 npx degit john-walks-slow/my-agent-inventory my-agent-inventory 获取模板并进入目录。
+完整阅读仓库自带的 skills/harness-inventory/SKILL.md，按其中的规范流程为我们搭建专属的装备背包展示站：
+1. 自动采集本机的真实使用统计与技能/插件装备；
+2. 与我汇报并确认后，完成白板初始化与配置填充；
+3. 启动本地开发预览供我验收。
+```
 
 ---
 
