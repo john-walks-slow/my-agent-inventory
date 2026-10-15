@@ -14,40 +14,40 @@ import { levelTitle } from '../src/theme/vocab';
 
 const anchor = (over: Partial<LevelInput>): LevelInput => ({ ...over });
 
-test('锚点：轻度人设 → Lv.6', () => {
+test('锚点：轻度人设 → Lv.8', () => {
   const lv = computeFormulaLevel(
     anchor({ sessions: 50, tokens: 5e6, days: 60, gear: { plugins: 2, skills: 3, mcp: 1, tools: 0, tomes: 1 } })
   );
-  assert.equal(lv, 6);
+  assert.equal(lv, 8);
 });
 
-test('锚点：中度人设 → Lv.11', () => {
+test('锚点：中度人设 → Lv.13', () => {
   const lv = computeFormulaLevel(
     anchor({ sessions: 300, tokens: 1e8, days: 200, gear: { plugins: 5, skills: 10, mcp: 2, tools: 3, tomes: 2 } })
   );
-  assert.equal(lv, 11);
+  assert.equal(lv, 13);
 });
 
-test('锚点：重度人设 → Lv.17', () => {
+test('锚点：重度人设 → Lv.21', () => {
   const lv = computeFormulaLevel(
     anchor({ sessions: 1200, tokens: 6e8, days: 400, gear: { plugins: 10, skills: 25, mcp: 4, tools: 10, tomes: 3 } })
   );
-  assert.equal(lv, 17);
+  assert.equal(lv, 21);
 });
 
-test('锚点：离谱人设 → Lv.24', () => {
+test('锚点：离谱人设 → Lv.29', () => {
   const lv = computeFormulaLevel(
     anchor({ sessions: 5000, tokens: 3e9, days: 700, gear: { plugins: 15, skills: 40, mcp: 6, tools: 20, tomes: 5 } })
   );
-  assert.equal(lv, 24);
+  assert.equal(lv, 29);
 });
 
-test('锚点：DSH 真机数据（skills/harness-inventory/scripts/collect-stats.mjs 实测）→ Lv.20 大肥鱼', () => {
+test('锚点：DSH 真机数据（含缓存口径，skills/harness-inventory/scripts/collect-stats.mjs 实测）→ Lv.25 大肥鱼', () => {
   const lv = computeFormulaLevel(
-    anchor({ sessions: 482, tokens: 4_356_590_671, days: 31, gear: { plugins: 13, skills: 41, mcp: 3, tools: 24, tomes: 4 } })
+    anchor({ sessions: 487, tokens: 44_822_895_353, days: 49, gear: { plugins: 13, skills: 41, mcp: 3, tools: 24, tomes: 4 } })
   );
-  assert.equal(lv, 20);
-  assert.equal(levelTitle(lv), '战斗老手');
+  assert.equal(lv, 25);
+  assert.equal(levelTitle(lv), '觅食专家');
 });
 
 test('零数据 → Lv.1；疯狂数据 → 封顶 99', () => {
@@ -56,15 +56,15 @@ test('零数据 → Lv.1；疯狂数据 → 封顶 99', () => {
 });
 
 test('harness.level 显式覆盖：等级被钉住，EXP 条仍按公式 exp 计算进度', () => {
-  const input = anchor({ sessions: 482, tokens: 4_356_590_671, days: 31, gear: { plugins: 13, skills: 41, mcp: 3, tools: 24, tomes: 4 } });
-  const r = computeLevel(input, 20);
-  assert.equal(r.level, 20);
-  assert.equal(r.formulaLevel, 20);
+  const input = anchor({ sessions: 487, tokens: 44_822_895_353, days: 49, gear: { plugins: 13, skills: 41, mcp: 3, tools: 24, tomes: 4 } });
+  const r = computeLevel(input, 25);
+  assert.equal(r.level, 25);
+  assert.equal(r.formulaLevel, 25);
   assert.ok(r.progress > 0 && r.progress < 1);
   // 覆盖为别的值时 formulaLevel 不变
   const forced = computeLevel(input, 42);
   assert.equal(forced.level, 42);
-  assert.equal(forced.formulaLevel, 20);
+  assert.equal(forced.formulaLevel, 25);
   assert.equal(forced.exp, r.exp);
 });
 
@@ -76,7 +76,7 @@ test('EXP 区间进度：跨级连续且夹在 [0,1]', () => {
   assert.ok(exp < r.expNext || r.maxed);
   assert.ok(r.progress >= 0 && r.progress <= 1);
   // 区间起点恰为整数倍 K
-  assert.equal(r.expBase, (r.level - 1) * 3.5);
+  assert.equal(r.expBase, (r.level - 1) * 2.8);
 });
 
 test('单调性：任何维度增长不降级', () => {
