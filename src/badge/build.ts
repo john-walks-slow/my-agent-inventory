@@ -87,8 +87,15 @@ export function fitSubtitle(harnessName: string, siteTitle: string, maxWidth: nu
   return fitText(harnessName, maxWidth, fontSize);
 }
 
-/** 抽取品牌头像 SVG 的内部内容，重新包进嵌套 <svg>（保持 16×16 视口缩放） */
+/** 抽取品牌头像 SVG 的内部内容，重新包进嵌套 <svg>（保持 16×16 视口缩放）；支持直接传入图片 Data URI */
 function embedBrandSvg(raw: string, x: number, y: number, size: number): string {
+  if (raw.startsWith('data:image/') || raw.startsWith('<image')) {
+    const href = raw.startsWith('data:image/') ? raw : raw.match(/href="([^"]+)"/)?.[1] ?? '';
+    return (
+      `<image x="${x}" y="${y}" width="${size}" height="${size}" href="${href}" ` +
+      `style="image-rendering:pixelated;image-rendering:crisp-edges;" preserveAspectRatio="xMidYMid meet"/>`
+    );
+  }
   const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>[\s\S]*$/, '');
   return (
     `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="0 0 16 16" ` +

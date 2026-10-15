@@ -34,8 +34,19 @@ const level = computeLevel(
 
 // ---- 头像解析（customAvatar → brand → generic） ----
 function resolveBrandSvg(): { svg: string; key: string } {
-  if (h.customAvatar && existsSync(ROOT + `config/icons/${h.customAvatar}.svg`)) {
-    return { svg: read(`config/icons/${h.customAvatar}.svg`), key: h.customAvatar };
+  if (h.customAvatar) {
+    const svgPath = ROOT + `config/icons/${h.customAvatar}.svg`;
+    if (existsSync(svgPath)) {
+      return { svg: read(`config/icons/${h.customAvatar}.svg`), key: h.customAvatar };
+    }
+    for (const ext of ['png', 'webp', 'jpg', 'jpeg', 'gif']) {
+      const imgPath = ROOT + `config/icons/${h.customAvatar}.${ext}`;
+      if (existsSync(imgPath)) {
+        const mime = ext === 'jpg' || ext === 'jpeg' ? 'image/jpeg' : `image/${ext}`;
+        const base64 = readFileSync(imgPath).toString('base64');
+        return { svg: `data:${mime};base64,${base64}`, key: h.customAvatar };
+      }
+    }
   }
   const brandKey = existsSync(ROOT + `src/brands/${h.brand ?? ''}.svg`) ? (h.brand as string) : 'generic';
   return { svg: read(`src/brands/${brandKey}.svg`), key: brandKey };
@@ -79,7 +90,12 @@ for (const t of THEMES) {
 }
 
 // favicon = 品牌头像本体（16×16 像素 SVG，浏览器原生支持）
-writeFileSync(ROOT + 'public/favicon.svg', brand.svg);
+const faviconContent = brand.svg.startsWith('data:image/')
+  ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <image width="16" height="16" href="${brand.svg}" style="image-rendering:pixelated;image-rendering:crisp-edges;" preserveAspectRatio="xMidYMid meet"/>
+</svg>\n`
+  : brand.svg;
+writeFileSync(ROOT + 'public/favicon.svg', faviconContent);
 console.log(`badge: favicon.svg (${brand.key})`);
 
 // index.html <title> 与配置同步（顶栏已不显示站点标题，浏览器标签页是标题唯一出口）

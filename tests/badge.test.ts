@@ -108,3 +108,11 @@ test('fitSubtitle：整串放不下时回退 harness 名，再放不下才截断
   const cut = fitSubtitle('A Very Long Harness Name Indeed', 'x', 100, 12);
   assert.ok(cut.endsWith('…') && cut.length < 'A Very Long Harness Name Indeed'.length);
 });
+
+test('buildBadge：支持 Data URI 位图头像（PNG 自定义头像通道）', () => {
+  const pngDataUri = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA';
+  const svg = buildBadge({ ...profile, brandSvg: pngDataUri }, BADGE_THEMES.stardew);
+  assert.ok(svg.includes('<image '), '应渲染 <image> 元素');
+  assert.ok(svg.includes(`href="${pngDataUri}"`), '应正确设置 href 为 data URI');
+  assert.ok(svg.includes('image-rendering:pixelated'), '应保持像素化样式');
+});

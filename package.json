@@ -16,6 +16,7 @@
     "privacy:scan": "node scripts/privacy-scan.mjs",
     "sync:content": "node scripts/sync-content.mjs",
     "collect:schemas": "node scripts/collect-dsh-tools.mjs",
+    "gen:avatar": "node scripts/gen-avatar.mjs",
     "predev": "tsx scripts/gen-badges.ts",
     "prebuild": "tsx scripts/gen-badges.ts"
   },

@@ -29,18 +29,15 @@ const siteTitle = flag('title') ?? (harnessName ? `${harnessName} 背包` : unde
 const theme = flag('theme');
 const yes = args.includes('--yes');
 
-// --name → 内置品牌头像 key（badge 头像与档案弹窗用）
+// --name → 内置品牌头像 key（badge 头像与档案弹窗用；官方支持：gemini / dsh / claude / codex / pi / terminal / opencode）
 const BRANDS = [
   [/deepseek\s*harness|^dsh$/i, 'dsh'],
-  [/claude/i, 'claude-code'],
+  [/claude/i, 'claude'],
   [/codex/i, 'codex'],
-  [/cursor/i, 'cursor'],
-  [/gemini/i, 'gemini-cli'],
+  [/gemini/i, 'gemini'],
   [/opencode/i, 'opencode'],
-  [/goose/i, 'goose'],
-  [/sourcegraph|^amp\b/i, 'amp'],
-  [/copilot/i, 'copilot'],
-  [/aider/i, 'aider'],
+  [/^pi\b|raspberry\s*pi/i, 'pi'],
+  [/terminal|console|shell/i, 'terminal'],
 ];
 const brand = harnessName ? (BRANDS.find(([re]) => re.test(harnessName))?.[1] ?? 'generic') : 'generic';
 
