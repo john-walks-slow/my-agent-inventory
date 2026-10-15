@@ -106,8 +106,20 @@ export const HarnessProfileModal: React.FC<HarnessProfileModalProps> = ({ profil
               <span className="opacity-70">（子代理）</span>
             </Row>
           )}
-          {stats.tokens !== undefined && <Row label="累计 Token:">{fmtTokens(stats.tokens)}<span className="opacity-70">（非缓存）</span></Row>}
-          {stats.cacheTokens !== undefined && <Row label="缓存命中:">{fmtTokens(stats.cacheTokens)}</Row>}
+          {stats.tokens !== undefined && (
+            <Row label="累计 Token:">
+              {fmtTokens(stats.tokens)}
+              {stats.cacheTokens !== undefined && stats.cacheTokens > 0 && (
+                <span className="opacity-70">（含缓存）</span>
+              )}
+            </Row>
+          )}
+          {stats.cacheTokens !== undefined && (
+            <Row label="缓存命中:">
+              {fmtTokens(stats.cacheTokens)}
+              <span className="opacity-70">（Cache）</span>
+            </Row>
+          )}
           <Row label="背包装载:">
             <span className="inline-flex flex-wrap gap-x-2 justify-end">
               {sectionOrder.map((sec) => (

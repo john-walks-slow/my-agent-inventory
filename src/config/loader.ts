@@ -145,10 +145,12 @@ function buildProfile(config: SiteConfig, sections: SectionView[], customIcons: 
     gearTotal += sec.items.length;
   }
   const days = daysSince(h.since);
+  // 计算总 Token（含缓存命中）：如果提供了 cacheTokens，全量计入累计与等级经验
+  const effectiveTokens = (h.stats?.tokens ?? 0) + (h.stats?.cacheTokens ?? 0);
   const level = computeLevel(
     {
       sessions: h.stats?.sessions,
-      tokens: h.stats?.tokens,
+      tokens: effectiveTokens || h.stats?.tokens,
       days,
       gear,
     },
@@ -160,7 +162,7 @@ function buildProfile(config: SiteConfig, sections: SectionView[], customIcons: 
     stats: {
       sessions: h.stats?.sessions,
       subagentSessions: h.stats?.subagentSessions,
-      tokens: h.stats?.tokens,
+      tokens: effectiveTokens || h.stats?.tokens,
       cacheTokens: h.stats?.cacheTokens,
       days,
     },
