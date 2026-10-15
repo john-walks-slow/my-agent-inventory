@@ -10,7 +10,7 @@
 - `config/harness.yaml`: 站点唯一事实源（站点信息、harness 档案、sections/物品全量数据），schema 见 `src/config/schema.ts`；`config/harness.example.yaml`: 白板模板（全注释，init-harness 的替换源）
 - `config/schemas/<id>.json`: tools section 物品的 inputSchema（标准 JSON Schema，详情卡参数表数据源），由 `scripts/collect-dsh-tools.mjs` 从本机 DSH 安装自动生成
 - `tools/`: 字体与品牌资产生成脚本（Python：`prep-pkmn-font.py` 修复 PKMN 字体表+剥空映射；`subset-badge-fonts.py` 重出 badge 子集；`gen-brands.mjs` 品牌头像：simple-icons CC0 像素化 + 手绘字符画）
-- `config/content/<section>/<id>.md`: 物品深度解析正文（Markdown）；`config/icons/*.svg`: 自定义 16×16 像素图腾
+- `config/content/<section>/<id>.md`: 物品深度解析正文（Markdown），由 `scripts/sync-content.mjs` 从本机 skill/插件 README/全局指令原样同步（含脱敏）；`config/icons/`: 自定义图腾目录（当前为空，全部图腾走内置套件）
 - `skills/harness-inventory/`: 配套 agent skill（SKILL.md 十步流程 + references/ 配置·隐私·图标·发布·各家 harness 采集指南 + scripts/collect-stats.mjs 统一采集器（dsh/claude-code/codex 全量，其余探测指引；重测后回填 harness.yaml））
 - `docs/essays/`: 已归档的长文典籍（不在站内展示）
 - `references/content-maintenance.md`: 内容扩展与维护规范（新增装备/Tab/图标的标准流程）
@@ -58,14 +58,22 @@ pnpm preview --host 0.0.0.0 --port 5180
 # 单测（等级锚点/图标链/词汇表/badge 布局）与 lint
 pnpm test && pnpm lint
 
+# 从本机 DSH 环境同步正文（skills / 插件 README / 全局指令 → config/content/；默认 dry run）
+pnpm sync:content            # 预览改动
+pnpm sync:content -- --write # 实际落盘
+
+# 全仓隐私扫描（发布前必跑，硬命中即阻断）
+pnpm privacy:scan
+
 # 临时公网穿透演示 (开隧道给用户体验)
 bash ~/.agents/skills/dev-tunnel/scripts/dev-tunnel.sh 5180
 ```
 
 ## 规范
 
-1. **内容扩展准则**：新增插件/技能/物品 = 在 `config/harness.yaml` 对应 section 加条目 + `config/content/<section>/<id>.md` 写正文 + 需要新图腾时在 `config/icons/` 放 16×16 SVG（或引用 `src/iconkit/` 内置套件 id）。
-2. **像素一致性**：杜绝引入外部矢量图标库（如 Lucide、FontAwesome）作为物品道具图腾，一律使用 16×16 像素 SVG 或内置套件。
-3. **视口与响应式约束**：
+1. **内容扩展准则**：新增插件/技能/物品 = 在 `config/harness.yaml` 对应 section 加条目 + `config/content/<section>/<id>.md` 写正文（本机已有同名 skill/插件时用 `pnpm sync:content` 直接同步原文，勿手抄）+ 图腾引用 `src/iconkit/` 内置套件 id。
+2. **像素一致性**：全部图腾取自内置 7Soul CC0 套件；杜绝引入外部矢量图标库（如 Lucide、FontAwesome）或自绘 SVG 作为道具图腾。
+3. **隐私加锁**：正文含本机基础设施细节的条目在 harness.yaml 打 `private: true`（UI 只出摘要）；真正敏感的凭据/域名在 `scripts/sync-content.mjs` 的脱敏表中处理，`pnpm privacy:scan` 必须零命中。
+4. **视口与响应式约束**：
    - PC 端必须保持外层视口固定（`overflow: hidden`），详情与长文各自独立滚动；
    - 移动端格子自适应 6 列，必须保持严格 1:1 几何正方形（`aspect-square`）。

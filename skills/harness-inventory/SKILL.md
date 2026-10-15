@@ -97,9 +97,9 @@ pnpm init:harness --name "Claude Code" --title "我的 Claude 背包" --theme po
 ### 6. 填充配置
 
 - 主配置 `config/harness.yaml`：粘贴第 2 步采集的 YAML 片段 + 逐件装备条目。**全字段说明见 `references/schema.md`**。
-- 每件装备的深度正文：`config/content/<section>/<id>.md`（Markdown）。
-- 图标：从 `references/icons.md` 的常用 id 表选（内置套件共 496 枚，表内精选 121 枚），或在 `config/icons/` 放自定义 16×16 SVG；AIGC 生成图标走 `config/icons/` 为**可选**通道。
-- 随时校验：`pnpm validate`（id 唯一性、category 引用、正文/图标完整性全查）。
+- 每件装备的深度正文：`config/content/<section>/<id>.md`（Markdown）；本机已有同名 skill / 插件 README 时用 `pnpm sync:content -- --write` 直接同步原文，不要手抄摘要。
+- 图标：从 `references/icons.md` 的常用 id 表选（内置套件共 496 枚，表内精选 121 枚）。本仓已统一使用该套件，`config/icons/` 留空。
+- 随时校验：`pnpm validate`（id 唯一性、category 引用、正文/图标完整性全查）；同步过正文后补跑 `pnpm privacy:scan`。
 
 ### 7. 本地预览
 

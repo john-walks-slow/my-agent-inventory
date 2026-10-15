@@ -1,5 +1,5 @@
 # privacy-scan 域名白名单（每行一个；子域自动覆盖）
-# 本仓合法引用的公共资源站点（字体/图标调研与 CREDITS 出处）
+# 本仓合法引用的公共资源站点、上游项目与占位符域名
 itch.io
 deviantart.com
 kenney.nl
@@ -7,3 +7,19 @@ takwolf.com
 unifoundry.com
 superpencil.com
 githubusercontent.com
+simpleicons.org
+creativecommons.org
+# 上游项目与社区（插件 README 原文引用）
+linux.do
+img.shields.io
+allcontributors.org
+open.feishu.cn
+d.officecli.ai
+deepseek1024.com
+dshfind.com
+dsh-im-random-badge.xmanrui-dsh-im.workers.dev
+# 文档占位符
+site-a.com
+site-b.com
+trycloudflare.com
+opensource.org

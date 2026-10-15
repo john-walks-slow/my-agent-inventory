@@ -7,7 +7,7 @@
 ```bash
 # ① config/harness.yaml 对应 section 的 items 末尾加条目（字段见 schema.md）
 # ② 写正文：config/content/<section>/<id>.md（Markdown 全支持）
-# ③ 图标（可选）：引用内置套件 id，或 config/icons/ 放 16×16 SVG
+# ③ 图标（可选）：引用内置套件 id（本站全部图腾统一走套件，config/icons/ 留空）
 pnpm validate && pnpm dev   # 校验 + 预览
 ```
 
@@ -27,9 +27,20 @@ pnpm validate && pnpm dev   # 校验 + 预览
 
 解析链 `config/icons/<icon>.svg → .png → 内置套件 id → 兜底`：
 
-- **内置套件**（496 枚，7Soul CC0）：站内 `#/icons` 图鉴页检索；常用 121 枚速查表见 [references/icons.md](../skills/harness-inventory/references/icons.md)
-- **自定义**：`config/icons/<name>.svg`，16×16 手绘像素风（禁止引入 Lucide/FontAwesome 等矢量库）
+- **内置套件**（496 枚，7Soul CC0）：站内 `#/icons` 图鉴页检索；常用 121 枚速查表见 [references/icons.md](../skills/harness-inventory/references/icons.md)。**本站全部图腾都用它，`config/icons/` 留空**
+- **自定义**（当前未使用）：`config/icons/<name>.svg`，16×16 手绘像素风（禁止引入 Lucide/FontAwesome 等矢量库）
 - ⚠ kit id 拼错**静默兜底不报错**；引用了不存在的自定义文件名才会被 validate 抓住
+
+## 3a. 正文同步（从本机文件复制，勿手抄）
+
+```bash
+pnpm sync:content            # dry run：列出每个文件将发生的字节变化
+pnpm sync:content -- --write # 落盘
+```
+
+源：`~/.agents/skills/<name>/SKILL.md`、`~/projects/<plugin>/README.md`、`~/.dsh/AGENTS.md`（按小节切分入 tomes）。
+脚本内置脱敏表（家庭目录绝对路径、公网隧道域名与 ID、内网 IP、明文口令 → 占位符），新增敏感形态时在 `scripts/sync-content.mjs` 的 `REDACTIONS` 里补规则，改完跑 `pnpm privacy:scan` 确认零命中。
+隐私条目的**加锁**是 UI 层开关（`private: true`），不等于从仓库移除内容——真要保密必须靠脱敏或不入库。
 
 ## 3b. 工具 inputSchema（tools section 专属）
 

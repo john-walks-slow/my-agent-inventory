@@ -125,7 +125,8 @@ sections:
 解析链：`config/icons/<icon>.svg` → `config/icons/<icon>.png` → 内置套件 id → 兜底。
 
 - 内置套件 496 枚（7Soul，CC0），站内 `#/icons` 图鉴页可浏览检索；常用 121 枚速查表见 [references/icons.md](./skills/harness-inventory/references/icons.md)
-- 自定义：`config/icons/` 放 16×16 像素风 SVG/PNG（AIGC 生成图标也走这里）
+- 本站全部图腾统一取自该套件（`config/icons/` 留空）——自绘与 AIGC 图标在风格一致性上明显不如原套件
+- 自定义通道仍保留：`config/icons/` 放 16×16 像素风 SVG/PNG 即可覆盖同名 id
 - ⚠ kit id 拼错不报错（静默兜底），`puzzle`/`sword` 这类裸词不在套件里（是 `sword-1`），从速查表复制最稳
 
 ### 等级与经验（fork 者预期表）

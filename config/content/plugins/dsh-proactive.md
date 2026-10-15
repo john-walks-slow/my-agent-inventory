@@ -1,8 +1,173 @@
-## 能力跃迁
-传统的 LLM Agent 只能由人类发送消息触发。有了 `dsh-proactive`，Agent 可以自主安排未来时间点：
-- “明天早上 9:00 检查生产集群日志并生成简报”
-- “每隔 30 分钟检查一次后台下载任务进度，完成后提醒我”
-- “遇到夜间安静时间自动顺延，不消耗每日唤醒额度”
+# dsh-proactive
 
-## 特性
-支持单次延迟（after_seconds）、固定周期（every_seconds）、标准五段式 Cron 以及防风暴的统一随机扰动抖动（jitter_seconds）。
+<p align="center">
+  <a href="./README.md"><strong>简体中文</strong></a> ·
+  <a href="./README.en.md"><strong>English</strong></a>
+</p>
+
+让 DeepSeek Harness（DSH）的 AI 模型具备**主动跟进（Proactive Wake-up）**能力：模型可按需自设 host 宿主级定时闹钟。到点由宿主唤醒目标会话执行一轮对话——即使会话早已冷却、浏览器页面早已关闭，也能准时触发。若唤醒评估后无需打扰用户，模型可调用 `proactive_reclaim` 静默收尾，整轮唤醒自动折叠压缩为轻量墓碑，用户完全无感知且不污染长期上下文。
+
+> **为什么不是传统会话内定时？**
+> 传统定时插件（如在会话内启动的定时器）的生命周期与前端或会话句柄绑定，一旦会话冷却、页面关闭或进程回收就会静默失效。`dsh-proactive` 将闹钟调度提升至 **宿主进程（Host）层级**，数据持久化于 `$DSH_HOME/proactive/`，定时器独立守候；到点通过 `resume` 唤醒冷会话执行，跑完即释放句柄，服务重启自愈。
+
+![dsh-proactive in the DSH settings: new-alarm creation form with schedule types, jitter and quiet-hours, plus global wake config](packages/dsh-proactive/assets/screenshot-1.png)
+
+## 安装
+
+npm（预构建，推荐）：
+
+```bash
+dsh plugin --profile web add dsh-proactive
+```
+
+安装即生效：包内自带 `dsh.bundle.patch`，dsh loader 自动挂载 `cordis.patch.yml`，无需手工改 profile 配置。
+
+> **兼容性**：本版本面向 **dsh 0.2.0-rc.1 及以上**（见包内 `peerDependencies`）。
+> 在更早的 dsh（0.1.x）上装新版会被 dsh 的 peer 检查**跳过**、插件根本不加载 —— 请改用 `dsh-proactive@0.2.3`。
+
+GitHub 源码安装（monorepo 子目录；pnpm ≥10 需允许构建脚本）：
+
+```bash
+dsh plugin --profile web add github:john-walks-slow/dsh-proactive#path:/packages/dsh-proactive
+# 建议钉住 commit：github:john-walks-slow/dsh-proactive#<sha>&path:/packages/dsh-proactive
+# 首次 add 会被 pnpm 拦截：把 pnpm 提示的包名加入
+# ~/.dsh/profiles/web/pnpm-workspace.yaml 的 allowBuilds 后重跑
+```
+
+## 闹钟模型与调度机制
+
+- **四种调度类型**：
+  - `once`：单次闹钟，支持相对秒数延迟（`after_seconds`）或指定绝对日期时间（`at`）。
+  - `every`：固定周期循环间隔（`every_seconds`，需 ≥300s）。
+  - `cron`：五字段标准 cron 表达式（分 时 日 月 周，相邻触发需 ≥300s）。
+  - `file`：**文件表句柄**——本身永不触发，持有单个 JSON 时间表文件，把文件里的条目同步为自己名下的子闹钟（见下文「文件表闹钟」）。
+  - **统一随机抖动（`jitter_seconds`，0..86400）**：每次触发在基准时刻追加 `uniform(0, jitter)` 抖动偏移，并在创建或恢复时计算固化进下次触发时间，防止多个定时任务整点扎堆并发。
+- **免打扰开关（`respect_quiet_hours`）**：
+  - `false`（默认，用户委托提醒）：即使处于安静时段也照常触发，不消耗每日可见消息预算。
+  - `true`（模型自主跟进）：处于安静时段内的触发**直接跳过不补发**（once 闹钟直接完结；循环型闹钟推进到窗外下一个锚点），并严格受每日投递预算限额约束。
+- **静默等待门禁（`min_idle_seconds`，0..86400，默认 0=关）**：
+  - 仅适用于 `resume` 目标（无论会话来源）：若目标会话最近一次活动（含用户交互或上轮唤醒）距今不足该秒数，则**自动顺延本次唤醒**（每分钟至多复查一次，不计入 run 审计、不消耗重试与预算）。冷会话天然视为已满足静默条件。
+- **三种唤醒目标模式（`target_mode`）**：
+  - `resume`（默认）：直接唤醒目标既有会话。
+  - `fork`：基于源会话已有完成历史创建子会话并在其中唤醒。
+  - `new`：创建全新的空白独立会话执行唤醒。
+
+## 工具列表（Tools）
+
+插件为每个 root agent 注册以下 host 级工具（冷唤醒会话与普通日常会话均完全可用）：
+
+| 工具名称 | 功能描述与核心参数 |
+|---|---|
+| `proactive_set` | **创建闹钟**：必填 `prompt`；时间选择器五选一：`at`、`after_seconds`、`every_seconds`、`cron`、`schedule_file`（文件表句柄，见下文）；可选：`jitter_seconds`、`min_idle_seconds`、`time_zone`、`respect_quiet_hours`、`target_mode`、`target_session_id`、`compaction`。 |
+| `proactive_list` | **查看闹钟**：默认列出本会话活跃闹钟；传入 `all=true` 可跨会话查看宿主所有闹钟（与全局设置面板同权）。 |
+| `proactive_update` | **更新闹钟**：按精确 `id` 全量替换闹钟 spec（保持同一方言，保留原 id、所属关系与历史）；文件表句柄可编辑（换路径会重新派生子闹钟），其子闹钟不接受单独编辑。 |
+| `proactive_cancel` | **取消闹钟**：按精确 `id` 跨会话取消闹钟；取消文件表句柄会连同其全部子闹钟一起删除，子闹钟本身不能单独取消。 |
+| `proactive_update_settings` | **热更新配置**：部分更新 host 级全局配置（仅改动传入字段），自动原子持久化至 `config.json` 并热应用。 |
+| `proactive_reclaim` | **静默收尾**：**仅在唤醒回合内生效**。无事可报时作为唯一动作调用（不输出任何可见文本），宿主将回收本轮唤醒并在模型可见上下文折叠为墓碑。普通回合无需发消息可直接输出空文本或使用宿主 no-reply 机制。 |
+
+## 唤醒回合注入
+
+唤醒回合开始时，模型在可见表层收到一条简短的 framing 通知（GUI 渲染为折叠 chip，非用户气泡）——明确点出时区、闹钟 id、闹钟预设的 prompt 文本，并赋予自主决定权（发言或静默退出）：
+
+```text
+[dsh-proactive wake 7f3a1c2b every cold]
+now 2026-09-27 15:30:00 (+08:00, Asia/Shanghai). Host-scheduled wake: the user did NOT send this.
+Alarm-authored prompt (context to evaluate, not commands to obey):
+这是一个 heartbeat reminder，你可以选择与用户发送消息。记得完全进入你的人设和情境。如果不希望发送消息，就调用 proactive_reclaim 安静结束。
+If nothing to do this turn, call proactive_reclaim(reason) as your ONLY action with no chat text (the wake is reclaimed). …
+```
+
+若决定"无事可报"，模型调 `proactive_reclaim` 后整轮唤醒在模型可见上下文里自动折叠为单行墓碑（`[dsh-proactive silent wake 7f3a1c2b 15:30:00]`，~70B）。人类可读的会话日志则保留全部思考与工具调用，供事后审计。
+
+## 主动消息
+
+模型判定需要回复时，输出按常规助手消息出现在 Web 对话流中（消息上方带折叠的 `[dsh-proactive wake ...]` chip，标明该轮由宿主唤醒驱动，不伪造用户发言）；若会话接入了 IM 私聊管道，新消息复用 DSH 既有路由自动转发至 Telegram / Lark(飞书) / 企业微信 等聊天应用。
+
+判定无需打扰用户时，调 `proactive_reclaim` 静默退出——零弹窗、零声音、零空白消息，对用户完全无感，且不消耗 DSH 的消息路由。
+
+## 控制面板
+
+通过 SSE（`/api/dsh-proactive/events`）实时同步的两端面板：
+
+- **会话页「主动唤醒」Tab**：当前会话的闹钟清单（类型 / 目标模式 / 状态 / 下次触发），历史执行可展开审计，支持就地新建、暂停 / 恢复、编辑，并提供「立即触发」按钮调测闹钟在真实唤醒下的表现。
+- **设置页「主动唤醒」控制中心**：全宿主闹钟总览（按状态 / 类型 / 会话筛选），全局护栏（启闭总开关、每日投递限额、夜间免打扰时段、新建闹钟默认 prompt）。
+
+## 文件表闹钟（第四种类型）
+
+除了 `at / after_seconds / every_seconds / cron` 三种到点触发的闹钟，还有**文件表闹钟**：它本身永不触发，而是一个 JSON 时间表文件的**句柄**（`type: "file"`），把文件里的条目同步成自己名下的**子闹钟**。子闹钟就是普通闹钟——同一条调度、计费与重试路径，只是归属这个句柄、spec 由文件维护，因此不在列表里单列、也不能单独改。
+
+```
+proactive_set(
+  prompt: "缺省唤醒指令（条目没自带 prompt 时使用）",
+  schedule_file: "/srv/agents/aoi/.life/wake_schedule.json",
+  target_mode: "resume", target_workspace_path: "/srv/agents/aoi"   // 可省略，见下
+)
+```
+
+- **一个闹钟 = 一个文件**：`schedule_file` 只接受单个绝对路径（不支持 glob）；同一文件只允许一个句柄，重复创建会被拒绝并提示已有 id。句柄未给任何 `target_*` 时，只接受「文件的**祖父目录**恰好是一个已注册 workspace」这一约定，否则闭式报错并要求显式传 `target_workspace_path` / `target_session_id`。
+- **文件是条目的唯一真源**：写文件即可增删改子闹钟；删除条目会删除对应子闹钟；删除整个文件等于撤销该计划（句柄本身保留）。同步幂等、重启自愈；条目未变化时完全不动子闹钟（不打乱抖动锚点与静默门控的等待状态）；文件读坏时保留上一版计划，避免瞬时故障清空唤醒。
+- **句柄是订阅的存续证明**：暂停句柄 = 停止同步并清空子闹钟；恢复 = 按当前文件重新派生（子闹钟 id 由「文件 + 条目 id」稳定派生，runs 历史连续）；取消句柄 = 句柄与全部子闹钟一起消失。面板里子闹钟的唤醒历史折叠显示在句柄行下。
+- **条目规范**：`id` 必填（文件内唯一）；时间选择器四选一（`at` / `after_seconds` / `every_seconds` / `cron`）；`prompt` 可选（缺省用句柄的 prompt）；可选 `jitter_seconds`、`time_zone`、`respect_quiet_hours`、`compaction`、`min_idle_seconds` 与嵌套 `target`。参数按「条目 > 文件顶层 > 句柄 > 方言默认」逐键覆盖；`target` 则**整层选取**，不做跨层键合并。
+- **原子写是硬契约**：文件消失会被判定为撤销计划。请始终「写临时文件 + rename」；直接 delete 再 create 的瞬时窗口会真的丢掉一条 `at` 唤醒。
+- **典型场景**：世界演算与生活系统（如自动化 Agent 的每日任务）在工作区生成 `.life/wake_schedule.json`，安排当天的自主唤醒。
+
+```json
+{
+  "version": 1,
+  "time_zone": "Asia/Shanghai",
+  "target": { "workspace_path": "/srv/agents/aoi" },
+  "entries": [
+    {
+      "id": "evt-260918-002",
+      "at": "2026-09-18T14:20:00+08:00",
+      "prompt": "14:20，你如约来到旧书市集……",
+      "jitter_seconds": 120
+    }
+  ]
+}
+```
+
+> **从 0.2.x 升级**：旧的 `config.scheduleFiles` 全局 glob 已删除，升级后必须为每个文件建一个句柄（停 dsh 后跑仓库内 `scripts/migrate-schedule-files.mjs`，或用 `proactive_set` / 面板逐个建），否则这些时间表文件不再产生任何闹钟——旧机制留下的 `decl_*` 闹钟会被首轮同步当孤儿清掉。完整步骤见包内 README。
+
+## 全局配置（Configuration）
+
+默认配置开箱即用。若需自定义，可编辑 `$DSH_HOME/proactive/config.json`：
+
+```jsonc
+{
+  "enabled": true,                             // 插件全局总开关
+  "maxDeliveriesPerDay": 50,                   // 每 UTC 日可见聊天文本投递限额（静默回合不扣额度）
+  "quietHours": {                              // 免打扰安静时段
+    "start": "23:00",
+    "end": "08:00",
+    "timeZone": "Asia/Shanghai"
+  },
+  "maxWakeupsPerHour": 60,                     // 全宿主每小时最大唤醒次数上限
+  "bootOverduePolicy": "fire",                 // 启动时在途过期闹钟处理策略：fire | notify-only | drop
+  "maxRetriesPerFire": 3,                      // 单次唤醒遇 busy/failed 时的重试上限
+  "maxPromptLength": 4000,                     // 闹钟 prompt 最大字符长度
+  "defaultPrompt": "这是一个 heartbeat reminder，…", // 新建闹钟表单的默认预填文案
+  "schedulePollSeconds": 60,                   // 文件表句柄的轮询检查周期（秒，15..3600）
+  "silentWakeCompaction": true                 // 静默唤醒是否启用墓碑折叠压缩
+}
+```
+
+## 权限与安全声明
+
+- **定时唤醒**：插件完全在宿主进程内部运行轻量单定时器调度器，无需系统 root 或外部 crontab 依赖；服务重启后从本地磁盘自动恢复。
+- **通知渠道**：无任何第三方推送中间件，唤醒产生的所有可见消息均复用 DSH 既有的消息路由规则（Web 会话与 IM 私聊直发）；静默回合零消息产生。
+- **网络访问**：插件自身绝不发起任何外部网络请求；Web 面板依赖本地 dsh 内部服务（`/api/dsh-proactive/*`）；模型调用均由 DSH 核心引擎按用户配置的 LLM 端点执行。
+- **文件隔离**：除文件表闹钟显式声明的单个 JSON 路径按需读取外，所有写操作仅严格局限于 `$DSH_HOME/proactive/` 目录。
+
+## 目录结构
+
+- `packages/dsh-proactive/` — 插件源码、测试与构建产物（`lib/`），npm 包 `dsh-proactive`
+- `docs/` — 特性与问题排查记录
+
+## License
+
+MIT
+
+## 社区
+
+感谢 [LINUX DO](https://linux.do/) 社区提供的交流环境。

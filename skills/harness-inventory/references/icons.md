@@ -45,15 +45,14 @@ config/icons/<icon>.svg → config/icons/<icon>.png → iconkit 内置 id → �
 选型直觉：插件→`metal-1`/`key-1`（或自定义 gear/puzzle 类 SVG）、技能→`book-1`/`scroll`、MCP→`crystal-1`/`ruby`、工作流→`map`、典籍→`scroll-2`。
 ⚠ `puzzle`、`sword`、`book` 这类裸词**不在套件里**（存在的是 `sword-1`/`book-1`）——kit id 拼错不报错、静默兜底，从本表复制 id 最稳。
 
-## 自定义图标
+## 自定义图标（本仓已停用）
 
-放 `config/icons/<icon>.svg`，16×16 像素风（描边粗、色块实）。命名即 `icon` 字段引用值。
-风格要求：与内置套件一致的 16×16 手绘像素，**杜绝引入 Lucide/FontAwesome 等矢量图标库**。
+解析链仍保留 `config/icons/<icon>.svg|png` 一层，但**本站全部图腾已统一取自内置 7Soul 套件**——自绘 SVG 在风格一致性与辨识度上都不如原套件，故 `config/icons/` 目前为空。
+若确要放自定义图标：16×16 像素风（描边粗、色块实），与套件风格对齐，**杜绝引入 Lucide/FontAwesome 等矢量图标库**。
 
-## AIGC 图标（可选通道）
+## AIGC 图标（不推荐）
 
-用 AI 生成像素图标时：生成 16×16 或等比放大的像素风图片 → 转 SVG（或直接放 `.png`）→ 存 `config/icons/`。
-注意：AIGC 产物先过人类过目（对齐闸门的一部分）；许可证信息记入仓库 NOTICE。
+已实测：AIGC/矢量化像素图标与该套件并列时风格割裂明显。除非有明确的原创造型需求，一律优先从套件选 id。
 
 ## 站内图鉴
 

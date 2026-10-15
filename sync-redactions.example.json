@@ -1,0 +1,5 @@
+[
+  ["\\b<your-vnc-password>\\b", "<vnc-password>"],
+  ["([a-z0-9-]+)\\.<your-domain>", "$1.<your-domain>"],
+  ["\\b<your-tunnel-id-prefix>\\b", "<tunnel-id>"]
+]
