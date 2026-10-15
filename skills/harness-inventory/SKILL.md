@@ -6,7 +6,7 @@ description: 为任意 AI coding harness（Claude Code / Codex CLI / DSH / Curso
 # Harness Inventory —— 打造你的 harness 背包
 
 把一个 harness（AI coding agent 运行时）的插件、技能、MCP 与踩坑经验，做成《星露谷物语》背包风格的展示站。
-本 skill 自包含，不假设你运行在哪种 harness 里。仓库：<https://github.com/john-walks-slow/my-dsh-inventory>
+本 skill 自包含，不假设你运行在哪种 harness 里。仓库：<https://github.com/john-walks-slow/my-harness-inventory>
 
 ## 十步流程
 
@@ -70,7 +70,7 @@ DSH / Claude Code / Codex CLI 会全量解析并输出 YAML 片段（大量会�
 - **degit**：
 
 ```bash
-npx degit john-walks-slow/my-dsh-inventory my-<harness>-inventory
+npx degit john-walks-slow/my-harness-inventory my-<harness>-inventory
 cd my-<harness>-inventory && git init && git add -A && git commit -m "init from harness-inventory template"
 ```
 

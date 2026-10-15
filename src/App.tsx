@@ -235,7 +235,7 @@ export const App: React.FC = () => {
           {vocab.hud.totalLabel}: {totalItemCount} {vocab.hud.totalUnit}
         </span>
         <a
-          href="https://github.com/john-walks-slow/my-dsh-inventory"
+          href="https://github.com/john-walks-slow/my-harness-inventory"
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => retroAudio.playTab()}
