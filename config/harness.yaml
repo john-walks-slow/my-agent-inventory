@@ -107,27 +107,6 @@ sections:
           - Tunnel
           - DevOps
         added: 2026-08-01
-      - id: dsh-whip
-        name: dsh-whip
-        title: 鞭策者 (Agent PUA 驱动器)
-        icon: spell-thunder-1
-        rarity: rare
-        category: experiment
-        description: 在 Agent 出现懈怠、循环思考或停滞时注入随机的激情鼓励和幽默催促。
-        version: 1.0.0
-        author: John Ren
-        repo: https://github.com/john-walks-slow/dsh-whip
-        install: cd ~/plugins/dsh-whip && pnpm link --global
-        highlights:
-          - 打破死循环
-          - 幽默诙谐
-          - 自动化催进度
-        tags:
-          - Fun
-          - Experiment
-          - Heartbeat
-          - Prompt Hack
-        added: 2026-08-18
       - id: dsh-proactive
         name: dsh-proactive
         title: 宿主级主动闹钟与心跳唤醒
