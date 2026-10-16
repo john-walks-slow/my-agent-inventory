@@ -37,7 +37,7 @@ sections:
         description: 阻塞等待指定后台子代理（continuable subagent）执行完毕并提取其终结输出。
         version: 1.0.0
         author: John Ren
-        repo: https://github.com/johnren/dsh-wait-subagent
+        repo: https://github.com/john-walks-slow/dsh-wait-subagent
         install: |-
           dsh plugin install dsh-wait-subagent
           # 或本地链接开发:
@@ -68,7 +68,7 @@ sections:
         stack: 99
         version: 2.1.0
         author: John Ren
-        repo: https://github.com/johnren/dsh-clear-mind
+        repo: https://github.com/john-walks-slow/dsh-clear-mind
         install: dsh plugin install dsh-clear-mind
         config: |-
           clear_mind:
@@ -95,7 +95,7 @@ sections:
         description: 突破浏览器同源与 loopback 限制，使公网命名隧道等远程环境享有完整宿主管理权限。
         version: 0.1.0
         author: John Ren
-        repo: https://github.com/johnren/dsh-web-transport-trust
+        repo: https://github.com/john-walks-slow/dsh-web-transport-trust
         install: cd ~/plugins/dsh-web-transport-trust && pnpm link --global
         highlights:
           - 全域远程写权限
@@ -116,7 +116,7 @@ sections:
         description: 在 Agent 出现懈怠、循环思考或停滞时注入随机的激情鼓励和幽默催促。
         version: 1.0.0
         author: John Ren
-        repo: https://github.com/johnren/dsh-whip
+        repo: https://github.com/john-walks-slow/dsh-whip
         install: cd ~/plugins/dsh-whip && pnpm link --global
         highlights:
           - 打破死循环
@@ -137,7 +137,7 @@ sections:
         description: 提供精准 Cron 定时器、延时唤醒与静默免打扰机制，赋予 Agent 真正的时间自主意识。
         version: 1.4.2
         author: John Ren
-        repo: https://github.com/johnren/dsh-proactive
+        repo: https://github.com/john-walks-slow/dsh-proactive
         install: dsh plugin install dsh-proactive
         config: |-
           proactive:
@@ -167,7 +167,7 @@ sections:
         description: 在会话中根据任务复杂度动态切换 Provider、Model 与思考深度（Reasoning Effort）。
         version: 1.1.0
         author: John Ren
-        repo: https://github.com/johnren/dsh-set-model
+        repo: https://github.com/john-walks-slow/dsh-set-model
         install: dsh plugin install dsh-set-model
         highlights:
           - 会话内平滑切模型
@@ -188,7 +188,7 @@ sections:
         stack: 16
         version: 0.2.1
         author: John Ren
-        repo: https://github.com/johnren/dsh-mini-memory
+        repo: https://github.com/john-walks-slow/dsh-mini-memory
         install: cd ~/plugins/dsh-mini-memory && pnpm link --global
         highlights:
           - 零额外守护进程
@@ -208,7 +208,7 @@ sections:
         description: 模拟虚拟世界与 Living Agent 的每日生活事件、因果结算与命运投骰。
         version: 1.0.3
         author: John Ren
-        repo: https://github.com/johnren/dsh-simulated-life
+        repo: https://github.com/john-walks-slow/dsh-simulated-life
         install: dsh plugin install dsh-simulated-life
         highlights:
           - 因果闭环演算
@@ -229,7 +229,7 @@ sections:
         description: 限制每日前台使用时长与深夜时段访问，守护健康作息的自律守护者。
         version: 0.1.0
         author: John Ren
-        repo: https://github.com/johnren/dsh-anti-addiction
+        repo: https://github.com/john-walks-slow/dsh-anti-addiction
         install: cd ~/projects/dsh-anti-addiction && pnpm link --global
         config: |-
           anti-addiction:
@@ -248,28 +248,6 @@ sections:
           - Automation
           - Experiment
         added: 2026-09-10
-      - id: dsh-mobile-qol
-        name: dsh-mobile-qol
-        title: 移动端体验增强
-        icon: book-4
-        rarity: epic
-        category: tools
-        description: 专为手机/平板触屏优化的 Web UI 增强套件：侧边栏滑动手势、输入法适配等。
-        version: 0.1.0
-        author: John Ren
-        repo: https://github.com/johnren/dsh-mobile-qol
-        install: cd ~/projects/dsh-mobile-qol && pnpm link --global
-        highlights:
-          - 侧滑手势呼出侧栏
-          - 输入法防遮挡
-          - 触控目标放大
-          - 长按复制
-        tags:
-          - Mobile
-          - UX
-          - Touch
-          - Web UI
-        added: 2026-09-08
       - id: dsh-message-datetime
         name: dsh-message-datetime
         title: 每轮时钟注入
@@ -279,7 +257,7 @@ sections:
         description: 在每轮对话的 Runtime Context 中注入一行精确的当前日期时间与时区。
         version: 0.1.0
         author: John Ren
-        repo: https://github.com/johnren/dsh-message-datetime
+        repo: https://github.com/john-walks-slow/dsh-message-datetime
         install: cd ~/projects/dsh-message-datetime && pnpm link --global
         highlights:
           - 每轮自动注入
@@ -301,7 +279,7 @@ sections:
         description: 多通道通知插件：页面 Toast 提醒、PWA 系统推送通知与自定义提示音三合一。
         version: 0.1.0
         author: John Ren
-        repo: https://github.com/johnren/dsh-hybrid-notify
+        repo: https://github.com/john-walks-slow/dsh-hybrid-notify
         install: cd ~/projects/dsh-notify && pnpm link --global
         highlights:
           - 三通道融合
@@ -323,7 +301,7 @@ sections:
         description: 将九种 IM 机器人（微信/QQ/Telegram/飞书/Discord/Slack 等）接入 DSH，实现全平台消息收发。
         version: 4.13.0
         author: John Ren
-        repo: https://github.com/johnren/dsh-im-humanize
+        repo: https://github.com/john-walks-slow/dsh-im-humanize
         install: cd ~/projects/dsh-im-humanize && pnpm link --global
         config: |-
           dsh-im:
