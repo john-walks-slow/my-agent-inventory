@@ -74,7 +74,7 @@ bash ~/.agents/skills/dev-tunnel/scripts/dev-tunnel.sh 5180
 
 1. **内容扩展准则**：新增插件/技能/物品 = 在 `config/harness.yaml` 对应 section 加条目 + `config/content/<section>/<id>.md` 写正文（本机已有同名 skill/插件时用 `pnpm sync:content` 直接同步原文，勿手抄）+ 图腾引用 `src/iconkit/` 内置套件 id。
 2. **像素一致性**：全部图腾取自内置 7Soul CC0 套件；杜绝引入外部矢量图标库（如 Lucide、FontAwesome）或自绘 SVG 作为道具图腾。
-3. **隐私加锁与脱敏分层**：正文含本机基础设施细节的条目在 harness.yaml 打 `private: true`（UI 只出摘要）。脱敏规则分两层——**通用形态**（内网段、home 绝对路径、UUID）写在 `scripts/sync-content.mjs` 可入库；**本机专属值**（真实域名、口令、隧道 ID 前缀）必须放仓库根目录的 `sync-redactions.json`（已 gitignore，模板见 `sync-redactions.example.json`）——**绝不可把真实凭据写进入库文件，那等于把要保护的东西写在了保护规则里**。改完跑 `pnpm privacy:scan`。
+3. **隐私加锁与脱敏分层**：正文含本机基础设施细节的条目在 harness.yaml 打 `private: true`（站点全站不渲染，连名称与摘要都不露出；loader 与 gen-badges 同口径过滤）。脱敏规则分两层——**通用形态**（内网段、home 绝对路径、UUID）写在 `scripts/sync-content.mjs` 可入库；**本机专属值**（真实域名、口令、隧道 ID 前缀）必须放仓库根目录的 `sync-redactions.json`（已 gitignore，模板见 `sync-redactions.example.json`）——**绝不可把真实凭据写进入库文件，那等于把要保护的东西写在了保护规则里**。改完跑 `pnpm privacy:scan`。
 4. **视口与响应式约束**：
    - PC 端必须保持外层视口固定（`overflow: hidden`），详情与长文各自独立滚动；
    - 移动端格子自适应 6 列，必须保持严格 1:1 几何正方形（`aspect-square`）。

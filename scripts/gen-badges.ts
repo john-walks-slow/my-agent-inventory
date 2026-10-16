@@ -23,8 +23,10 @@ const h = config.harness;
 const gear: Record<string, number> = {};
 let items = 0;
 for (const sec of config.sections) {
-  gear[sec.id] = sec.items.length;
-  items += sec.items.length;
+  // 与 loader 同口径：private 条目不计入装备数（全站不展示）
+  const visible = sec.items.filter((item) => !item.private).length;
+  gear[sec.id] = visible;
+  items += visible;
 }
 // 与 src/config/loader.ts 共用 totalTokens：名片上的等级/进度必须和档案面板一致
 const tokens = totalTokens(h.stats);

@@ -19,14 +19,16 @@ sections:
   - id: plugins
     icon: chest-1
     categories:
-      - id: core
-        label: 核心
+      - id: qol
+        label: QoL
       - id: tools
-        label: 效能
-      - id: workflow
-        label: 工作流
+        label: 工具
       - id: experiment
         label: 实验
+      - id: toy
+        label: 玩具
+      - id: other
+        label: 其他
     items:
       - id: dsh-wait-subagent
         name: dsh-wait-subagent
@@ -63,7 +65,7 @@ sections:
         title: 思维蒸馏与上下文收敛
         icon: spell-light-1
         rarity: legendary
-        category: core
+        category: tools
         description: Agent 自主上下文剪枝与压缩检查点工具，把长会话蒸馏成精简快照。
         stack: 99
         version: 2.1.0
@@ -91,7 +93,7 @@ sections:
         title: Web 传输宿主鉴权解锁
         icon: metal-6
         rarity: epic
-        category: core
+        category: other
         description: 突破浏览器同源与 loopback 限制，使公网命名隧道等远程环境享有完整宿主管理权限。
         version: 0.1.0
         author: John Ren
@@ -112,7 +114,7 @@ sections:
         title: 宿主级主动闹钟与心跳唤醒
         icon: clock
         rarity: legendary
-        category: core
+        category: tools
         description: 提供精准 Cron 定时器、延时唤醒与静默免打扰机制，赋予 Agent 真正的时间自主意识。
         version: 1.4.2
         author: John Ren
@@ -183,7 +185,7 @@ sections:
         title: 虚拟生活每日演算系统
         icon: map
         rarity: legendary
-        category: workflow
+        category: toy
         description: 模拟虚拟世界与 Living Agent 的每日生活事件、因果结算与命运投骰。
         version: 1.0.3
         author: John Ren
@@ -232,7 +234,7 @@ sections:
         title: 每轮时钟注入
         icon: scroll-2
         rarity: rare
-        category: core
+        category: tools
         description: 在每轮对话的 Runtime Context 中注入一行精确的当前日期时间与时区。
         version: 0.1.0
         author: John Ren
@@ -254,7 +256,7 @@ sections:
         title: 多通道混合通知
         icon: elm-4
         rarity: epic
-        category: tools
+        category: qol
         description: 多通道通知插件：页面 Toast 提醒、PWA 系统推送通知与自定义提示音三合一。
         version: 0.1.0
         author: John Ren
@@ -276,7 +278,7 @@ sections:
         title: 九合一 IM 即时消息桥接
         icon: scroll
         rarity: legendary
-        category: core
+        category: tools
         description: 将九种 IM 机器人（微信/QQ/Telegram/飞书/Discord/Slack 等）接入 DSH，实现全平台消息收发。
         version: 4.13.0
         author: John Ren
@@ -309,7 +311,7 @@ sections:
         title: Web GUI 体验优化套件
         icon: mirror
         rarity: legendary
-        category: tools
+        category: qol
         description: 会话标签栏、侧栏滑动手势、输入法/键盘适配、触摸反馈与设置页重写等 QoL 功能，每项独立开关。
         version: 1.0.10
         author: John Ren
@@ -331,7 +333,7 @@ sections:
         title: 会话状态前缀徽章
         icon: feather-1
         rarity: rare
-        category: tools
+        category: qol
         description: 用可自定义的 Emoji 前缀标记会话项目状态（进行中 / 阻塞 / 待审 / 完成），纯视觉区分、无行为副作用。
         version: 0.1.0
         author: John Ren
@@ -353,7 +355,7 @@ sections:
         title: 侧边栏分组快捷切换
         icon: book-2
         rarity: rare
-        category: tools
+        category: qol
         description: Alt+R 或点击侧边栏分组标题，一键在按工作区分组与平铺会话列表之间来回切换。
         version: 0.1.0
         author: John Ren
@@ -373,7 +375,7 @@ sections:
         title: 禅模式与前台时间追踪
         icon: leaf
         rarity: epic
-        category: experiment
+        category: qol
         description: Agent 后台工作时切到 Zen 标签，只留状态、最新消息与一行统计；并追踪盯屏时间、给出日 / 周禅定分数。
         version: 1.1.0
         author: John Ren
@@ -395,7 +397,7 @@ sections:
         title: 上下文注入与请求改写
         icon: spell-shadow-1
         rarity: epic
-        category: core
+        category: experiment
         description: 请求发出前按关键词 / 正则替换指定角色的消息、按会话启用上下文预设与构造回合，只改请求、不改会话。
         version: 0.1.0
         author: John Ren
@@ -439,7 +441,7 @@ sections:
         title: Live2D 语音伙伴
         icon: crystal-1
         rarity: legendary
-        category: workflow
+        category: toy
         description: 会话里新增 Live2D 标签：角色随对话实时开口说话（口型、表情、字幕），连续语音输入让你免键盘对话。
         version: 1.6.2
         author: John Ren
@@ -461,7 +463,7 @@ sections:
         title: AIVN 舞台引擎（DSH 版）
         icon: spell-magic-1
         rarity: legendary
-        category: workflow
+        category: toy
         description: 把 AIVN 舞台装进 DSH：一个工作区是一部剧，剧作家预设写 Stage DSL，对话页的 AIVN 标签实时演出。
         version: 0.2.0
         author: John Ren
@@ -504,7 +506,7 @@ sections:
         title: DSH 部署补丁集
         icon: fabric
         rarity: rare
-        category: tools
+        category: other
         description: 本机部署上 dsh 上游问题的补丁集：根因在上游、尚未修复，先以补丁打到已安装的 dsh 包上，升级后重打。
         author: John Ren
         repo: https://github.com/john-walks-slow/dsh-patch

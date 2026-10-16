@@ -178,7 +178,8 @@ export function buildInventoryModel(): InventoryModel {
   const sections: SectionView[] = config.sections.map((sec) => ({
     ...sec,
     iconRef: resolveIcon(sec.icon, customIcons),
-    items: sec.items.map((item) => ({
+    // private 条目全站不渲染：数据留在仓库供本人维护，站点不露出任何信息（含名称与摘要）
+    items: sec.items.filter((item) => !item.private).map((item) => ({
       ...item,
       content: contents[`${sec.id}/${item.id}`] ?? '',
       schema: schemas[item.id],
