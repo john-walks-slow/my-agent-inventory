@@ -347,6 +347,221 @@ sections:
           - Core
           - Must-Have
         added: 2026-08-15
+      - id: dsh-qol
+        name: dsh-qol
+        title: Web GUI 体验优化套件
+        icon: mirror
+        rarity: legendary
+        category: tools
+        description: 会话标签栏、侧栏滑动手势、输入法/键盘适配、触摸反馈与设置页重写等 QoL 功能，每项独立开关。
+        version: 1.0.10
+        author: John Ren
+        repo: https://github.com/john-walks-slow/dsh-qol
+        install: dsh plugin --profile web add dsh-qol
+        highlights:
+          - 活跃会话 Tab Bar，可 Pin 与拖拽排序
+          - 侧栏跟手滑动开合
+          - 输入法与键盘适配
+          - 13 项开关即时生效
+        tags:
+          - QoL
+          - Mobile
+          - Web UI
+          - Touch
+        added: 2026-09-17
+      - id: dsh-session-prefix
+        name: dsh-session-prefix
+        title: 会话状态前缀徽章
+        icon: feather-1
+        rarity: rare
+        category: tools
+        description: 用可自定义的 Emoji 前缀标记会话项目状态（进行中 / 阻塞 / 待审 / 完成），纯视觉区分、无行为副作用。
+        version: 0.1.0
+        author: John Ren
+        repo: https://github.com/john-walks-slow/dsh-session-prefix
+        install: dsh plugin --profile web add session-prefix
+        highlights:
+          - 新会话自动冠默认状态前缀
+          - session_prefix 模型工具随工作流切换状态
+          - /state 命令随时查看与切换
+          - 侧边栏搜索可按状态前缀筛选
+        tags:
+          - Session
+          - Status
+          - Emoji
+          - Workflow
+        added: 2026-10-13
+      - id: dsh-sidebar-toggle
+        name: dsh-sidebar-toggle
+        title: 侧边栏分组快捷切换
+        icon: book-2
+        rarity: rare
+        category: tools
+        description: Alt+R 或点击侧边栏分组标题，一键在按工作区分组与平铺会话列表之间来回切换。
+        version: 0.1.0
+        author: John Ren
+        repo: https://github.com/john-walks-slow/dsh-sidebar-toggle
+        install: dsh plugin --profile web add dsh-sidebar-toggle
+        highlights:
+          - 全局快捷键 Alt+R
+          - 点击分组标题即切换
+          - 自动避让输入法组合状态
+        tags:
+          - Sidebar
+          - Shortcut
+          - Web UI
+        added: 2026-10-13
+      - id: dsh-zen
+        name: dsh-zen
+        title: 禅模式与前台时间追踪
+        icon: leaf
+        rarity: epic
+        category: experiment
+        description: Agent 后台工作时切到 Zen 标签，只留状态、最新消息与一行统计；并追踪盯屏时间、给出日 / 周禅定分数。
+        version: 1.1.0
+        author: John Ren
+        repo: https://github.com/john-walks-slow/dsh-zen
+        install: dsh plugin --profile web add @johnnren/dsh-zen
+        highlights:
+          - 极简 Zen 视图标签
+          - 前台时间追踪与禅定分数
+          - 一键隐藏中间过程
+          - Alt+Z 快捷切换
+        tags:
+          - Zen
+          - Focus
+          - Web UI
+          - Tracker
+        added: 2026-09-06
+      - id: dsh-inject
+        name: dsh-inject
+        title: 上下文注入与请求改写
+        icon: spell-shadow-1
+        rarity: epic
+        category: core
+        description: 请求发出前按关键词 / 正则替换指定角色的消息、按会话启用上下文预设与构造回合，只改请求、不改会话。
+        version: 0.1.0
+        author: John Ren
+        repo: https://github.com/john-walks-slow/dsh-inject
+        install: npm install dsh-inject
+        highlights:
+          - 只改请求副本，会话原文不变
+          - 多预设按会话启用
+          - 每次注入留可折叠记录行
+          - 兼容 Keysmith 规则
+        tags:
+          - Context
+          - Injection
+          - Keysmith
+          - Prompt
+        added: 2026-10-13
+      - id: dsh-cd
+        name: dsh-cd
+        title: 会话工作目录切换
+        icon: map
+        rarity: epic
+        category: tools
+        description: 给 DSH 补一个 cd：轻量覆盖相对路径的解析基准，或经用户同意真正把会话搬到另一个工作区。
+        version: 0.2.1
+        author: John Ren
+        repo: https://github.com/john-walks-slow/dsh-cd
+        install: dsh plugin --profile web add dsh-cd
+        highlights:
+          - 文件工具与 bash 默认目录跟随
+          - 真切工作区连沙箱根与 skills 发现一起搬
+          - /cd 命令供用户直接搬
+          - 按会话隔离、缓存安全
+        tags:
+          - Workspace
+          - Path
+          - Session
+          - Tools
+        added: 2026-10-10
+      - id: dsh-live2d-voice
+        name: dsh-live2d-voice
+        title: Live2D 语音伙伴
+        icon: crystal-1
+        rarity: legendary
+        category: workflow
+        description: 会话里新增 Live2D 标签：角色随对话实时开口说话（口型、表情、字幕），连续语音输入让你免键盘对话。
+        version: 1.6.2
+        author: John Ren
+        repo: https://github.com/john-walks-slow/dsh-live2d-voice
+        install: pnpm add dsh-live2d-voice
+        highlights:
+          - 流式 TTS 边生成边说
+          - 本地 VAD 加云端 ASR 连续语音输入
+          - 双语字幕与台词翻译
+          - 多模型目录即选即换
+        tags:
+          - Live2D
+          - TTS
+          - ASR
+          - Voice
+        added: 2026-09-27
+      - id: dsh-aivn
+        name: dsh-aivn
+        title: AIVN 舞台引擎（DSH 版）
+        icon: spell-magic-1
+        rarity: legendary
+        category: workflow
+        description: 把 AIVN 舞台装进 DSH：一个工作区是一部剧，剧作家预设写 Stage DSL，对话页的 AIVN 标签实时演出。
+        version: 0.2.0
+        author: John Ren
+        repo: https://github.com/john-walks-slow/dsh-aivn
+        install: dsh plugin --profile web add dsh-aivn
+        highlights:
+          - 背景、立绘、台词条实时渲染
+          - 停止点选项由玩家点选续写
+          - 逐句 TTS 朗读
+          - 与独立版共用同一套舞台引擎
+        tags:
+          - AIVN
+          - Visual Novel
+          - Stage DSL
+          - TTS
+        added: 2026-10-07
+      - id: dsh-subagent-registry
+        name: dsh-subagent-registry
+        title: 子代理注册表
+        icon: book-3
+        rarity: rare
+        category: tools
+        description: 扫描多个目录下的 .agent.md 子代理定义，为每个子代理加载独立人设、工具白名单与模型。
+        version: 0.1.0
+        author: John Ren
+        repo: https://github.com/john-walks-slow/dsh-subagent-registry
+        install: cd ~/plugins/dsh-subagent-registry && pnpm link --global
+        highlights:
+          - Claude 风格 .agent.md 定义
+          - 项目级与用户级多目录扫描
+          - 每代理独立提示词与工具白名单
+          - 靠近工作目录者优先
+        tags:
+          - Subagent
+          - Registry
+          - Multi-Agent
+        added: 2026-09-06
+      - id: dsh-patch
+        name: dsh-patch
+        title: DSH 部署补丁集
+        icon: fabric
+        rarity: rare
+        category: tools
+        description: 本机部署上 dsh 上游问题的补丁集：根因在上游、尚未修复，先以补丁打到已安装的 dsh 包上，升级后重打。
+        author: John Ren
+        repo: https://github.com/john-walks-slow/dsh-patch
+        install: ./apply.sh
+        highlights:
+          - 孤儿进程轮询退避，修会话列表慢与 CPU 占满
+          - Web 启动 token 相关修复
+          - 允许全网卡 host
+          - apply.sh 幂等，不匹配会报错而非静默失效
+        tags:
+          - Patch
+          - Ops
+          - Upstream Fix
+        added: 2026-09-09
   - id: skills
     icon: ink
     categories:
