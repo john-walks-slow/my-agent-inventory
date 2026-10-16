@@ -182,3 +182,4 @@ if (redacted.length) {
   for (const r of redacted) console.log(`  - ${r}`);
 }
 if (!WRITE) console.log('\n（dry run：加 --write 才落盘）');
+if (WRITE) console.log('\n提醒：正文已同步，请接着跑 pnpm content-urls:fix 把相对链接/图片改写为源仓绝对地址（部署质检 content-urls:check 会拦截残留）。');

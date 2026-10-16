@@ -540,6 +540,28 @@ sections:
           - Ops
           - Upstream Fix
         added: 2026-09-09
+      - id: dsh-market
+        name: dsh-market
+        title: DSH 插件市场
+        icon: chest-2
+        rarity: epic
+        category: tools
+        description: 装在 DSH 设置页里的插件市场：浏览、搜索社区插件目录，一键安装升级与换主题。
+        version: 1.66.21
+        author: dsh-market
+        repo: https://github.com/dsh-market/dsh-market
+        install: dsh plugin --profile web add dshmarket
+        highlights:
+          - 社区插件目录浏览与搜索
+          - 一键安装与升级
+          - 一键换主题免重启
+          - 显示插件与宿主的版本兼容性
+        tags:
+          - Marketplace
+          - Plugins
+          - Themes
+          - Third-Party
+        added: 2026-08-14
   - id: skills
     icon: ink
     categories:

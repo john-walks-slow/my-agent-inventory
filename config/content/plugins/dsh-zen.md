@@ -7,13 +7,13 @@ surface: a status message, your latest user message, and one line of statistics 
 calls, no reasoning rows, no noise. Zen also tracks how much of your "running" time was spent
 actually watching the screen, and reports a daily / weekly Zen score.
 
-[中文说明](./README.zh-CN.md)
+[中文说明](https://github.com/john-walks-slow/dsh-zen/blob/HEAD/README.zh-CN.md)
 
 ## Screenshots
 
 Zen view (while generating) | Zen view (done) | Zen settings
 :---: | :---: | :---:
-![Zen view while generating](docs/screenshots/zen-running.png) | ![Zen view done](docs/screenshots/zen-view.png) | ![Zen settings](docs/screenshots/settings.png)
+![Zen view while generating](https://raw.githubusercontent.com/john-walks-slow/dsh-zen/master/docs/screenshots/zen-running.png) | ![Zen view done](https://raw.githubusercontent.com/john-walks-slow/dsh-zen/master/docs/screenshots/zen-view.png) | ![Zen settings](https://raw.githubusercontent.com/john-walks-slow/dsh-zen/master/docs/screenshots/settings.png)
 
 ## Features
 
@@ -48,7 +48,7 @@ Then restart `dsh web`. The bundle patch (`cordis.patch.yml`) inserts the `zen` 
 into the profile's composition, and the Web client is served from the committed `lib/client.js`.
 
 > Prefer pinning the exact commit hash; a floating branch can be force-pushed. See
-> [docs/PUBLISHING.md](docs/PUBLISHING.md) for the catalog submission flow.
+> [docs/PUBLISHING.md](https://github.com/john-walks-slow/dsh-zen/blob/HEAD/docs/PUBLISHING.md) for the catalog submission flow.
 
 ### From npm (once published)
 
@@ -117,7 +117,7 @@ dsh-e2e stop
 
 - Requires DeepSeek Harness with the Web client module system (default `web` profile).
 - **Verified against DeepSeek Harness `0.2.0-rc.2`** (see
-  [docs/issues/261011-dsh-02-compat](docs/issues/261011-dsh-02-compat/261011-dsh-02-compat.summary.md)).
+  [docs/issues/261011-dsh-02-compat](https://github.com/john-walks-slow/dsh-zen/blob/HEAD/docs/issues/261011-dsh-02-compat/261011-dsh-02-compat.summary.md)).
 - Slot contracts used: `conversation.view`, `conversation.session.header.actions`,
   `settings.section`.
 - Client services used: `slots`, `sessions`, `locale`, `uiConversation`.
@@ -140,7 +140,7 @@ can be cleared by deleting keys prefixed `dsh.zen.`.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](https://github.com/john-walks-slow/dsh-zen/blob/HEAD/LICENSE).
 
 ## Community
 

@@ -12,6 +12,8 @@
     "test": "tsx --test tests/*.test.ts",
     "preview": "vite preview",
     "validate": "tsx scripts/validate.ts",
+    "content-urls:fix": "node scripts/fix-content-urls.mjs",
+    "content-urls:check": "node scripts/fix-content-urls.mjs --check",
     "init:harness": "node scripts/init-harness.mjs",
     "privacy:scan": "node scripts/privacy-scan.mjs",
     "sync:content": "node scripts/sync-content.mjs",

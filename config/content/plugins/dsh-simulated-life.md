@@ -1,8 +1,8 @@
 # dsh-simulated-life
 
 <p align="center">
-  <a href="./README.md"><strong>简体中文</strong></a> ·
-  <a href="./README.en.md"><strong>English</strong></a>
+  <a href="https://github.com/john-walks-slow/dsh-simulated-life/blob/HEAD/README.md"><strong>简体中文</strong></a> ·
+  <a href="https://github.com/john-walks-slow/dsh-simulated-life/blob/HEAD/README.en.md"><strong>English</strong></a>
 </p>
 
 为 DeepSeek Harness（cordis plugin）的 Agent 提供**拟真生活上下文**：每轮对话自动注入工作区近 24 小时发生的"生活事件"，并提供 `life_react` 工具让 Agent 把感受、思考与行动回填到自己的生活日志。

@@ -1,8 +1,8 @@
 # dsh-hybrid-notify
 
 <p align="center">
-  <a href="./README.md"><strong>简体中文</strong></a> ·
-  <a href="./README.en.md"><strong>English</strong></a>
+  <a href="https://github.com/john-walks-slow/dsh-hybrid-notify/blob/HEAD/README.md"><strong>简体中文</strong></a> ·
+  <a href="https://github.com/john-walks-slow/dsh-hybrid-notify/blob/HEAD/README.en.md"><strong>English</strong></a>
 </p>
 
 <p align="center">

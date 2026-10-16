@@ -1,13 +1,13 @@
 # dsh-inject
 
 <p align="center">
-  <a href="./README.md"><strong>简体中文</strong></a> ·
-  <a href="./README.en.md"><strong>English</strong></a>
+  <a href="https://github.com/john-walks-slow/dsh-inject/blob/HEAD/README.md"><strong>简体中文</strong></a> ·
+  <a href="https://github.com/john-walks-slow/dsh-inject/blob/HEAD/README.en.md"><strong>English</strong></a>
 </p>
 
 `dsh-inject` 是一个用于管理模型上下文的 DSH 插件：在模型请求前对指定角色的消息做关键词/正则替换，并按会话启用多个上下文预设；还可以在会话当前位置插入构造回合。每次注入都会在会话里留下一条可折叠的记录行，写明这次注入了什么。
 
-![设置页](shots/inject-settings.png)
+![设置页](https://raw.githubusercontent.com/john-walks-slow/dsh-inject/master/shots/inject-settings.png)
 
 ## 安装
 

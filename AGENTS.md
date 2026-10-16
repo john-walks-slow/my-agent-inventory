@@ -36,6 +36,7 @@
 - `scripts/collect-dsh-tools.mjs` / `pnpm collect:schemas`: 从本机 DSH 安装（核心包 + 宿主 profile 插件，mock cordis ctx 捕获 defineTool 定义）提取工具 inputSchema → `config/schemas/*.json`；`--check` 只校验覆盖
 - `scripts/init-harness.mjs` / `pnpm init:harness`: 白板初始化（清空 config 内容、重置 harness.yaml/package.json name/index.html/README 标题）
 - `scripts/privacy-scan.mjs` / `pnpm privacy:scan`: 全仓隐私扫描（硬模式密钥阻断 exit 1，软模式域名/IP/路径警告；豁免清单 `.privacy-allow`）
+- `scripts/fix-content-urls.mjs` / `pnpm content-urls:fix`（检查 `pnpm content-urls:check`）：把有 repo 条目正文里的相对图片/链接改写为源仓绝对地址（图片→raw…/HEAD/、链接→blob/HEAD/）；sync:content 之后必跑，部署质检含 check 拦截残留。规则详见 `references/content-maintenance.md` §3b
 
 ## 开发与调试
 

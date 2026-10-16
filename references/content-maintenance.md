@@ -42,7 +42,18 @@ pnpm sync:content -- --write # 落盘
 脱敏规则分两层：**通用形态**（内网段、home 绝对路径、UUID）写死在 `scripts/sync-content.mjs`，可安全入库；**本机专属值**（真实域名、口令、隧道 ID 前缀）放仓库根目录 `sync-redactions.json`（已 gitignore，格式见 `sync-redactions.example.json`）。新增敏感形态时按这个分界决定放哪层——放进库文件就等于公开。改完跑 `pnpm privacy:scan` 确认零命中。
 隐私条目的**加锁**是 UI 层开关（`private: true`），不等于从仓库移除内容——真要保密必须靠脱敏或不入库。
 
-## 3b. 工具 inputSchema（tools section 专属）
+## 3b. 正文链接与图片（相对路径必须改写）
+
+正文从各仓 README 原样同步，里面的图片/链接多是相对路径；站内渲染没有 base 重写，相对路径会解析到本站域名下 → 图片全挂、链接 404。规则：**凡条目在 harness.yaml 里有 `repo` 字段，其正文中的相对引用一律改写为源仓绝对地址**——图片 → `raw.githubusercontent.com/<owner>/<repo>/HEAD/<path>`，链接 → `github.com/<owner>/<repo>/blob/HEAD/<path>`（用 HEAD 免维护各仓默认分支名）。
+
+```bash
+pnpm content-urls:fix    # 改写 config/content 里所有源仓正文的相对引用（幂等）
+pnpm content-urls:check  # 只检查：有残留相对引用 exit 1（已进 CI 与部署质检，拦得住）
+```
+
+每次 `pnpm sync:content -- --write` 之后必跑一次 `fix`（sync 脚本结尾也会提醒）。没有 `repo` 字段的正文（典籍、本地 skill）不在处理范围；正文里的示例假路径（以 `/` 开头、含 `< >`）脚本会跳过。
+
+## 3c. 工具 inputSchema（tools section 专属）
 
 `config/schemas/<id>.json` 存标准 JSON Schema（`type: object` + `properties`），详情卡自动渲染参数表（参数/类型/必填/说明）+ 原始 JSON 折叠块 + 复制按钮。由本机 DSH 安装自动生成，不手写：
 

@@ -3,7 +3,7 @@
 DSH 插件：在会话视图里新增 **Live2D** tab——Live2D 角色随对话实时开口说话（口型同步 + 表情切换 + 字幕），AI 回复经 Fish Audio TTS 流式合成语音推送到浏览器播放；🎙 连续语音输入（本地 VAD 分句 + 火山引擎 ASR）让你全程免键盘对话。
 
 <p align="center">
-  <img src="docs/assets/live2d-mobile-view.png" alt="Live2D 实时语音对话与字幕（移动端视图）" width="340" />
+  <img src="https://raw.githubusercontent.com/john-walks-slow/dsh-live2d-voice/main/docs/assets/live2d-mobile-view.png" alt="Live2D 实时语音对话与字幕（移动端视图）" width="340" />
 </p>
 
 能力总览：

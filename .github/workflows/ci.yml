@@ -36,5 +36,7 @@ jobs:
         run: pnpm validate
       - name: Privacy scan
         run: pnpm privacy:scan
+      - name: Content URL check
+        run: pnpm content-urls:check
       - name: Build
         run: pnpm build

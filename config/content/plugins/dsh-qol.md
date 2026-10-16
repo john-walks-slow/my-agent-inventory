@@ -1,13 +1,13 @@
 # dsh-qol
 
 <p align="center">
-  <a href="./README.md"><strong>简体中文</strong></a> ·
-  <a href="./README.en.md"><strong>English</strong></a>
+  <a href="https://github.com/john-walks-slow/dsh-qol/blob/HEAD/README.md"><strong>简体中文</strong></a> ·
+  <a href="https://github.com/john-walks-slow/dsh-qol/blob/HEAD/README.en.md"><strong>English</strong></a>
 </p>
 
 dsh（DeepSeek Harness）Web GUI 体验优化插件：会话 Tab Bar、侧栏滑动开合、输入法/键盘适配、触摸反馈、设置页全屏重写等 **多项 QoL 功能**，每项都可在 **设置 → QoL** 独立开关，即时生效、按浏览器持久保存。移动端为主，部分功能（Tab Bar、状态动画等）桌面端同样生效。
 
-![dsh-qol: mobile tab bar and desktop views of the DeepSeek Harness web UI](assets/hero.png)
+![dsh-qol: mobile tab bar and desktop views of the DeepSeek Harness web UI](https://raw.githubusercontent.com/john-walks-slow/dsh-qol/main/assets/hero.png)
 
 ## 功能
 

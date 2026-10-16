@@ -1,8 +1,8 @@
 # dsh-proactive
 
 <p align="center">
-  <a href="./README.md"><strong>简体中文</strong></a> ·
-  <a href="./README.en.md"><strong>English</strong></a>
+  <a href="https://github.com/john-walks-slow/dsh-proactive/blob/HEAD/README.md"><strong>简体中文</strong></a> ·
+  <a href="https://github.com/john-walks-slow/dsh-proactive/blob/HEAD/README.en.md"><strong>English</strong></a>
 </p>
 
 让 DeepSeek Harness（DSH）的 AI 模型具备**主动跟进（Proactive Wake-up）**能力：模型可按需自设 host 宿主级定时闹钟。到点由宿主唤醒目标会话执行一轮对话——即使会话早已冷却、浏览器页面早已关闭，也能准时触发。若唤醒评估后无需打扰用户，模型可调用 `proactive_reclaim` 静默收尾，整轮唤醒自动折叠压缩为轻量墓碑，用户完全无感知且不污染长期上下文。
@@ -10,7 +10,7 @@
 > **为什么不是传统会话内定时？**
 > 传统定时插件（如在会话内启动的定时器）的生命周期与前端或会话句柄绑定，一旦会话冷却、页面关闭或进程回收就会静默失效。`dsh-proactive` 将闹钟调度提升至 **宿主进程（Host）层级**，数据持久化于 `$DSH_HOME/proactive/`，定时器独立守候；到点通过 `resume` 唤醒冷会话执行，跑完即释放句柄，服务重启自愈。
 
-![dsh-proactive in the DSH settings: new-alarm creation form with schedule types, jitter and quiet-hours, plus global wake config](packages/dsh-proactive/assets/screenshot-1.png)
+![dsh-proactive in the DSH settings: new-alarm creation form with schedule types, jitter and quiet-hours, plus global wake config](https://raw.githubusercontent.com/john-walks-slow/dsh-proactive/main/packages/dsh-proactive/assets/screenshot-1.png)
 
 ## 安装
 

@@ -1,8 +1,8 @@
 # dsh-sidebar-toggle
 
 <p align="center">
-  <a href="./README.md"><strong>简体中文</strong></a> ·
-  <a href="./README.en.md"><strong>English</strong></a>
+  <a href="https://github.com/john-walks-slow/dsh-sidebar-toggle/blob/HEAD/README.md"><strong>简体中文</strong></a> ·
+  <a href="https://github.com/john-walks-slow/dsh-sidebar-toggle/blob/HEAD/README.en.md"><strong>English</strong></a>
 </p>
 
 为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）Web GUI 提供侧边栏分组模式的快捷切换：无需展开视图选项菜单，通过 **`Alt+R` 快捷键**或**直接点击侧边栏分组标题**（`会话` / `工作区` / `Sessions` / `Workspaces`），即可在**按工作区分组**（`workspace`）与**平铺会话列表**（`flat`）之间一键来回切换。

@@ -1,6 +1,6 @@
 # session-prefix
 
-中文 | [English](README.en.md)
+中文 | [English](https://github.com/john-walks-slow/dsh-session-prefix/blob/HEAD/README.en.md)
 
 用会话标题前缀（默认 Emoji，可完全自定义）标记 DeepSeek Harness 会话的项目状态——**纯视觉区分，无任何其他行为副作用**。
 
@@ -36,9 +36,9 @@ dsh plugin --profile web add link:/path/to/session-prefix
 
 ## 界面
 
-![不同状态的会话在侧边栏中的样子](assets/screenshot-1-session-prefixes.png)
+![不同状态的会话在侧边栏中的样子](https://raw.githubusercontent.com/john-walks-slow/dsh-session-prefix/master/assets/screenshot-1-session-prefixes.png)
 
-![「会话状态」设置页](assets/screenshot-2-settings.png)
+![「会话状态」设置页](https://raw.githubusercontent.com/john-walks-slow/dsh-session-prefix/master/assets/screenshot-2-settings.png)
 
 ## 权限与兼容
 

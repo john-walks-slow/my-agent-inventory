@@ -1,8 +1,8 @@
 # dsh-wait-subagent
 
 <p align="center">
-  <a href="./README.md"><strong>English</strong></a> ·
-  <a href="./README.zh-CN.md"><strong>简体中文</strong></a>
+  <a href="https://github.com/john-walks-slow/dsh-wait-subagent/blob/HEAD/README.md"><strong>English</strong></a> ·
+  <a href="https://github.com/john-walks-slow/dsh-wait-subagent/blob/HEAD/README.zh-CN.md"><strong>简体中文</strong></a>
 </p>
 
 A DeepSeek Harness (cordis) plugin that registers a `wait_subagent` tool: **block until a background continuable subagent settles, then get its stop reason and closing message** in the same call.

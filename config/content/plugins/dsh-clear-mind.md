@@ -1,14 +1,14 @@
 # dsh-clear-mind
 
 <p align="center">
-  <a href="./README.md"><strong>简体中文</strong></a> ·
-  <a href="./README.en.md"><strong>English</strong></a>
+  <a href="https://github.com/john-walks-slow/dsh-clear-mind/blob/HEAD/README.md"><strong>简体中文</strong></a> ·
+  <a href="https://github.com/john-walks-slow/dsh-clear-mind/blob/HEAD/README.en.md"><strong>English</strong></a>
 </p>
 
 让模型自主压缩指定区间上下文的 DeepSeek Harness 插件（cordis plugin）：当失败探索和大输出把上下文拖累时，模型调用 `clear_mind`「清空脑子」——把选定区间的对话历史替换成自己写的检查点，只留笔记，释放注意力与 token 预算。人类侧的会话记录始终原样保留，每次清理在 GUI 里都是一条可展开的压缩行。
 
 
-![dsh-clear-mind in the DSH settings: proactive reminder thresholds and compaction guards](assets/screenshot-1.png)
+![dsh-clear-mind in the DSH settings: proactive reminder thresholds and compaction guards](https://raw.githubusercontent.com/john-walks-slow/dsh-clear-mind/main/assets/screenshot-1.png)
 
 ## 模型看到什么
 

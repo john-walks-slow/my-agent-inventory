@@ -1,8 +1,8 @@
 # dsh-aivn
 
 <p align="center">
-  <a href="./README.md"><strong>简体中文</strong></a> ·
-  <a href="./README.en.md"><strong>English</strong></a>
+  <a href="https://github.com/john-walks-slow/dsh-aivn/blob/HEAD/README.md"><strong>简体中文</strong></a> ·
+  <a href="https://github.com/john-walks-slow/dsh-aivn/blob/HEAD/README.en.md"><strong>English</strong></a>
 </p>
 
 把 AIVN 的舞台引擎装进 DSH。
@@ -12,7 +12,7 @@
 剧作家写的 Stage DSL 被实时演出来——背景、立绘、台词条、停止点选项都在这里；玩家点一条选项，
 这句话回到剧作家手上，它接着往下写。
 
-![AIVN tab：背景、立绘、台词条，右下角是语音开关与「重听这句」](screenshots/screenshot-1.png)
+![AIVN tab：背景、立绘、台词条，右下角是语音开关与「重听这句」](https://raw.githubusercontent.com/john-walks-slow/dsh-aivn/master/screenshots/screenshot-1.png)
 
 > **这是 AIVN 的 DSH 适配版。** 同名的 [`stage-ai`](https://github.com/john-walks-slow/aivn)
 > 是**独立版**（自包含桌面应用 / 独立 Web 站）。两者共用同一套引擎与领域

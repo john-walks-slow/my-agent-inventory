@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
-  <img src="assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
+  <img src="https://raw.githubusercontent.com/john-walks-slow/dsh-im-humanize/main/assets/logo-dsh-im-connecting-readme-3x2.png" alt="DSH-IM — Connecting DeepSeek Harness" width="420" height="280" align="middle">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/john-walks-slow/dsh-im-humanize/main/assets/logo-plugin-phone.png" alt="DSH-IM phone logo" width="280" height="280" align="middle">
 </p>
 
 
@@ -10,7 +10,7 @@
 
   <p>
     <img src="https://dsh-im-random-badge.xmanrui-dsh-im.workers.dev" alt="滑动变祖器：今天是梁子或今天是梁圣（随机）">
-    <a href="LICENSE"><img src="https://img.shields.io/github/license/xmanrui/dsh-im" alt="MIT 许可证"></a>
+    <a href="https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/LICENSE"><img src="https://img.shields.io/github/license/xmanrui/dsh-im" alt="MIT 许可证"></a>
     <a href="#recognition"><img src="https://img.shields.io/badge/DeepSeek%20Harness-%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-4176E6?style=flat" alt="DeepSeek Harness 官方赞助"></a>
     <a href="https://deepseek1024.com/"><img src="https://img.shields.io/badge/deepseek1024-%E4%B8%8B%E8%BD%BD%E9%87%8FTop%2010-D97706?style=flat" alt="deepseek1024 下载量Top 10"></a>
     <a href="https://dshfind.com/zh/plugins/xmanrui/dsh-im"><img src="https://img.shields.io/badge/dshfind-%E5%88%86%E7%B1%BB%E7%AC%AC%E4%B8%80-d97706" alt="dshfind: 分类第一"></a>
@@ -30,7 +30,7 @@
     <img src="https://img.shields.io/badge/iMessage-34C759?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI%2BPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTEyIDNDNS45MjUgMyAxIDcuMDI5IDEgMTJjMCAyLjc1MSAxLjUxNCA1LjIxNCAzLjkwMSA2Ljg2NS4yOTEgMS41MjYtLjE3NCAyLjY0OC0xLjI1OCAzLjY0IDIuMDQ3LjAyNSAzLjQ0Mi0uNTA5IDQuNjQzLTEuNThBMTMuMiAxMy4yIDAgMCAwIDEyIDIxYzYuMDc1IDAgMTEtNC4wMjkgMTEtOVMxOC4wNzUgMyAxMiAzWiIvPjwvc3ZnPg%3D%3D" alt="iMessage">
   </p>
 
-  <p><strong>简体中文</strong> · <a href="README.en.md">English</a></p>
+  <p><strong>简体中文</strong> · <a href="https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/README.en.md">English</a></p>
 </div>
 
 
@@ -43,7 +43,7 @@
 
 ## 简介
 
-通过扫码、App Manifest 或已有机器人凭据把 IM 机器人接入 DeepSeek Harness，并让本机 Harness 主动连接公网 AI Office。一个插件、一个设置入口，统一管理内置 IM 渠道和 AI Office Connector。**每个 IM 渠道都支持接入多个机器人**，各机器人的连接状态、工作区、模型和会话绑定彼此独立；iMessage 是本机 Messages.app 身份接入的例外，详见[iMessage 渠道说明](docs/imessage.md)。
+通过扫码、App Manifest 或已有机器人凭据把 IM 机器人接入 DeepSeek Harness，并让本机 Harness 主动连接公网 AI Office。一个插件、一个设置入口，统一管理内置 IM 渠道和 AI Office Connector。**每个 IM 渠道都支持接入多个机器人**，各机器人的连接状态、工作区、模型和会话绑定彼此独立；iMessage 是本机 Messages.app 身份接入的例外，详见[iMessage 渠道说明](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/imessage.md)。
 
 Connect IM bots to DeepSeek Harness by scanning a QR code, using an App Manifest, or entering existing bot credentials, and let the local Harness connect outward to a public AI Office. One plugin and one settings entry manage the built-in IM channels and the AI Office Connector.
 
@@ -130,9 +130,9 @@ Connect IM bots to DeepSeek Harness by scanning a QR code, using an App Manifest
 
 ## 界面
 
-![IM 机器人页面](docs/images/imbot.png)
+![IM 机器人页面](https://raw.githubusercontent.com/john-walks-slow/dsh-im-humanize/main/docs/images/imbot.png)
 
-<img src="docs/images/Context_enhancement.png" alt="上下文增强页面" width="49%"> <img src="docs/images/access_mode.png" alt="访问模式页面" width="49%">
+<img src="https://raw.githubusercontent.com/john-walks-slow/dsh-im-humanize/main/docs/images/Context_enhancement.png" alt="上下文增强页面" width="49%"> <img src="https://raw.githubusercontent.com/john-walks-slow/dsh-im-humanize/main/docs/images/access_mode.png" alt="访问模式页面" width="49%">
 
 ## 当前内置渠道
 
@@ -148,12 +148,12 @@ Connect IM bots to DeepSeek Harness by scanning a QR code, using an App Manifest
 | Telegram | 使用 @BotFather 生成的 Bot Token | Bot API 长轮询；默认私聊直接响应、群聊被提及或回复时响应，也可为每个机器人独立启用私聊白名单安全模式；关闭思考过程留痕时，私聊、群聊和 Topic 均通过占位消息编辑展示进度并原位完成富文本回复，避免 Android 私聊 Draft 占用发送入口，平台不支持富文本时回退为普通文字 |
 | Discord | 使用 Developer Portal 生成的 Bot Token | Gateway v10 长连接；私信直接回复；服务器文字/公告频道首次 @ 后创建原生 Thread，后续在线程中无需重复 @，并通过编辑消息流式显示回答 |
 | WhatsApp | 使用手机 WhatsApp 扫码关联设备 | WhatsApp Web 长连接；默认仅响应账号自聊，也可切换到指定联系人或开放响应模式；显示已读和“正在输入”，通过每秒编辑同一条消息显示工具进度和逐步生成的回答，长回复自动分段，编辑失败时回退为完整文字回复 |
-| iMessage | 在 macOS Messages.app 中登录 iMessage，并按[渠道说明](docs/imessage.md)授予本机权限 | 使用 macOS 原生 Messages.app 收发文本私聊；不依赖 BlueBubbles；每个 macOS 用户账户使用一个本机 iMessage 身份 |
+| iMessage | 在 macOS Messages.app 中登录 iMessage，并按[渠道说明](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/imessage.md)授予本机权限 | 使用 macOS 原生 Messages.app 收发文本私聊；不依赖 BlueBubbles；每个 macOS 用户账户使用一个本机 iMessage 身份 |
 | Matrix（实验功能） | 填写 homeserver 地址，并提供访问令牌，或用户 ID 与密码 | CS API 长轮询接收；私聊直接回复，房间被 @ 后响应，支持线程回复、HTML 白名单富文本与编辑式流式输出，可回传图片和结果文件；包含实验性房间消息加解密，限制见下文 |
 
 Matrix 加密目前仅供非敏感测试：默认 optional 模式尝试启动加密引擎，失败时跳过收到的加密消息；required 模式在引擎启动失败时拒绝连接。尚未实现交互式设备验证、密钥备份、SSSS 或媒体附件内容加密，本次发布未验证真实 homeserver／Element 互通，请勿将其视为完整的端到端保密保障。
 
-企业微信自建应用的回调基址、代理地址和企业可信 IP 配置，见[企业微信自建应用接入说明](docs/企业微信自建应用接入.md)。
+企业微信自建应用的回调基址、代理地址和企业可信 IP 配置，见[企业微信自建应用接入说明](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E8%87%AA%E5%BB%BA%E5%BA%94%E7%94%A8%E6%8E%A5%E5%85%A5.md)。
 
 其他 IM 平台可继续按同一渠道适配器结构接入。
 
@@ -167,7 +167,7 @@ Matrix 加密目前仅供非敏感测试：默认 optional 模式尝试启动加
 
 已接入的 IM 渠道共用超时任务跟踪：收到“等待模型回复超时”后，插件会继续检查原任务，完成后向原聊天或线程补发最终文字；插件重启或连接恢复后也会继续检查。`/stop` 只停止当前聊天提交的对应回合，切换会话后不再向该聊天补发旧会话的结果。无需新增设置，正常回复流程保持原样。
 
-补发仍受渠道发送权限和配额限制。明确发送失败最多尝试三次；发送结果不确定时保留记录并停止自动重试，避免重复消息。此机制恢复文字结果和终态通知，不重放问题、审批或文件工具调用。详见[延迟交付说明](docs/deferred-delivery.md)。
+补发仍受渠道发送权限和配额限制。明确发送失败最多尝试三次；发送结果不确定时保留记录并停止自动重试，避免重复消息。此机制恢复文字结果和终态通知，不重放问题、审批或文件工具调用。详见[延迟交付说明](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/deferred-delivery.md)。
 
 ### 结果文件与图片回传
 
@@ -193,7 +193,7 @@ GIF 动图按各渠道原生能力呈现，存在差异：Telegram 把 `.gif` �
 
 ## AI Office Connector
 
-[查看 AI Office Connector 说明](docs/AI-Office-Connector.md)
+[查看 AI Office Connector 说明](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/AI-Office-Connector.md)
 
 ## 安装
 
@@ -266,23 +266,23 @@ Logo 由 dsh-im 的浏览器适配显示，无需修改 DSH。适配保留原始
 
 已保存的私聊目标还可以开启默认关闭的「会话双向同步」。开启后，DSH Web／CLI 在该私聊当前 Session 中发送的用户文字和最终助手文字会同步回私聊，定时任务成功完成后的最终助手文字也会同步；IM 侧原有提问与 `/steer` 不会重复。开关自动跟随 `/session`、`/new` 和工作区切换后的当前 Session。首版仅支持当前 Host 的私聊文字；群聊、Topic、Thread 与显式远程 `harnessBaseUrl` 不支持。
 
-设置步骤、各渠道字段、完整调用示例、管理端点、错误码与排错说明请查看[《主动投递使用指南》](PROACTIVE_DELIVERY.md)（[English](PROACTIVE_DELIVERY.en.md)）。
+设置步骤、各渠道字段、完整调用示例、管理端点、错误码与排错说明请查看[《主动投递使用指南》](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/PROACTIVE_DELIVERY.md)（[English](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/PROACTIVE_DELIVERY.en.md)）。
 
 ### 客户端面板接入
 
-宿主可通过可选客户端服务 `dshImClient` 嵌入完整 IM 管理面板，并按需隐藏或恢复设置入口。dsh web 默认仍使用原来的「设置 → IM机器人」。接口、兼容要求与接入示例见[客户端接入文档](docs/client-integration.md)。
+宿主可通过可选客户端服务 `dshImClient` 嵌入完整 IM 管理面板，并按需隐藏或恢复设置入口。dsh web 默认仍使用原来的「设置 → IM机器人」。接口、兼容要求与接入示例见[客户端接入文档](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/client-integration.md)。
 
 ### 上下文增强
 
-[查看上下文增强说明](docs/上下文增强.md)
+[查看上下文增强说明](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/%E4%B8%8A%E4%B8%8B%E6%96%87%E5%A2%9E%E5%BC%BA.md)
 
 ### 访问模式
 
-[查看访问模式说明](docs/访问模式.md)
+[查看访问模式说明](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/%E8%AE%BF%E9%97%AE%E6%A8%A1%E5%BC%8F.md)
 
 ## 检查与安装更新
 
-[查看检查与安装更新说明](docs/检查与安装更新.md)
+[查看检查与安装更新说明](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/%E6%A3%80%E6%9F%A5%E4%B8%8E%E5%AE%89%E8%A3%85%E6%9B%B4%E6%96%B0.md)
 
 ## 机器人命令
 
@@ -330,7 +330,7 @@ Web 与机器人可同时处理同一审批，先提交的「批准一次」或�
 
 钉钉菜单使用插件内置的共享卡片模板，无需逐个机器人创建或配置模板。卡片打开后可操作 30 分钟；超时或 Host 重启后重新发送 `/m`。模板源文件保存在 `assets/dingtalk-menu-template.json`，供维护者导入卡片平台更新。
 
-[查看命令说明](docs/机器人命令.md)
+[查看命令说明](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%91%BD%E4%BB%A4.md)
 
 ## 其它功能
 
@@ -442,16 +442,16 @@ dsh web --trusted-host dsh.example.com
       <a href="mailto:longmanr307@gmail.com">longmanr307@gmail.com</a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/wecom.png"><img src="docs/images/wecom.png" alt="dsh-im 企业微信群二维码" width="240"></a>
+      <a href="https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/images/wecom.png"><img src="https://raw.githubusercontent.com/john-walks-slow/dsh-im-humanize/main/docs/images/wecom.png" alt="dsh-im 企业微信群二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/weixin.jpg"><img src="docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
+      <a href="https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/images/weixin.jpg"><img src="https://raw.githubusercontent.com/john-walks-slow/dsh-im-humanize/main/docs/images/weixin.jpg" alt="微信二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/xhs.jpg"><img src="docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
+      <a href="https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/images/xhs.jpg"><img src="https://raw.githubusercontent.com/john-walks-slow/dsh-im-humanize/main/docs/images/xhs.jpg" alt="小红书二维码" width="240"></a>
     </td>
     <td align="center" valign="top">
-      <a href="docs/images/WhatsApp.jpg"><img src="docs/images/WhatsApp.jpg" alt="WhatsApp 二维码" width="240"></a>
+      <a href="https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/docs/images/WhatsApp.jpg"><img src="https://raw.githubusercontent.com/john-walks-slow/dsh-im-humanize/main/docs/images/WhatsApp.jpg" alt="WhatsApp 二维码" width="240"></a>
     </td>
   </tr>
 </table>
@@ -539,6 +539,6 @@ dsh web --trusted-host dsh.example.com
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-名单和贡献类型统一维护在 [`.all-contributorsrc`](.all-contributorsrc) 中。若有遗漏，欢迎通过 [Issue](https://github.com/xmanrui/dsh-im/issues) 或 PR 补充，非代码贡献同样欢迎。
+名单和贡献类型统一维护在 [`.all-contributorsrc`](https://github.com/john-walks-slow/dsh-im-humanize/blob/HEAD/.all-contributorsrc) 中。若有遗漏，欢迎通过 [Issue](https://github.com/xmanrui/dsh-im/issues) 或 PR 补充，非代码贡献同样欢迎。
 
 维护者可运行 `npx --yes --package=all-contributors-cli@6.26.1 all-contributors add <username> <type[,type...]>` 添加贡献者及贡献类型；手动修改配置后，运行 `npx --yes --package=all-contributors-cli@6.26.1 all-contributors generate` 同步更新中英文 README。也可在仓库安装 [All Contributors Bot](https://allcontributors.org/en/bot/installation/) 后，通过 Issue 或 PR 评论中的 `@all-contributors please add @username for code, doc, test` 更新名单。

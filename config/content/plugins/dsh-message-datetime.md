@@ -1,8 +1,8 @@
 # dsh-message-datetime
 
 <p align="center">
-  <a href="./README.md"><strong>简体中文</strong></a> ·
-  <a href="./README.en.md"><strong>English</strong></a>
+  <a href="https://github.com/john-walks-slow/dsh-message-datetime/blob/HEAD/README.md"><strong>简体中文</strong></a> ·
+  <a href="https://github.com/john-walks-slow/dsh-message-datetime/blob/HEAD/README.en.md"><strong>English</strong></a>
 </p>
 
 每个对话 turn 开始时，向模型上下文注入**简短时间戳与跨轮空闲间隔**的 dsh 插件（DeepSeek Harness / cordis plugin）。

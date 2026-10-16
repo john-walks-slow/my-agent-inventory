@@ -1,8 +1,8 @@
 # dsh-cd
 
 <p align="center">
-  <a href="./README.md"><strong>简体中文</strong></a> ·
-  <a href="./README.en.md"><strong>English</strong></a>
+  <a href="https://github.com/john-walks-slow/dsh-cd/blob/HEAD/README.md"><strong>简体中文</strong></a> ·
+  <a href="https://github.com/john-walks-slow/dsh-cd/blob/HEAD/README.en.md"><strong>English</strong></a>
 </p>
 
 给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）补一个 `cd`：既能**只换工作基准**（文件工具的相对路径与 bash 默认工作目录跟随），也能**真正把会话搬到另一个工作区**（沙箱根、AGENTS.md、skills 发现、会话存储位置、侧边栏分组全部跟随）。用户还能用 `/cd` 命令直接搬。

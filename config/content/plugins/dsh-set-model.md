@@ -1,8 +1,8 @@
 # dsh-set-model
 
 <p align="center">
-  <a href="./README.md"><strong>简体中文</strong></a> ·
-  <a href="./README.en.md"><strong>English</strong></a>
+  <a href="https://github.com/john-walks-slow/dsh-set-model/blob/HEAD/README.md"><strong>简体中文</strong></a> ·
+  <a href="https://github.com/john-walks-slow/dsh-set-model/blob/HEAD/README.en.md"><strong>English</strong></a>
 </p>
 
 DeepSeek Harness（DSH / cordis plugin）插件：通过 Jev 或工具调用，让 Agent 根据任务场景自主切换模型预设和思考深度。
@@ -16,7 +16,7 @@ DeepSeek Harness（DSH / cordis plugin）插件：通过 Jev 或工具调用，�
 
 攻坚疑难问题时升到高推理档位，日常执行保持高性价比档位——开启 Jev 后这条策略每轮自动执行，不再需要用户手动改配置。
 
-![动态模型设置页](assets/model-policy-settings.png)
+![动态模型设置页](https://raw.githubusercontent.com/john-walks-slow/dsh-set-model/master/assets/model-policy-settings.png)
 
 ## 三个独立开关
 
